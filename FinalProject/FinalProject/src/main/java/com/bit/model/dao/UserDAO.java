@@ -1,5 +1,5 @@
 package com.bit.model.dao;
 
-public class UserDAO {
+public interface UserDAO {
 
 }

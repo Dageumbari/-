@@ -1,5 +1,5 @@
 package com.bit.model.service;
 
-public interface UserService {
-
+public interface PageService {
+	
 }
