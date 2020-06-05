@@ -1,5 +1,6 @@
 package com.bit.model.vo;
 
+import java.io.Serializable;
 import java.sql.Clob;
 import java.sql.Timestamp;
 import lombok.Getter;
@@ -9,7 +10,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PageVO {
+public class PageVO implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	/* 페이지 pk */
 	private String pageNo;
@@ -37,4 +40,7 @@ public class PageVO {
 
 	/* 부모 페이지 */
 	private int pageGroupNo;
+
+	
 }
+
