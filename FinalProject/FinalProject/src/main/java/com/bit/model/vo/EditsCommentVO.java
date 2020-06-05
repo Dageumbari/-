@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class EditsCommentVO {
 	private int commentNo;
-	private String editsCode;
+	private String editsNo;
 	private String commentContent;
 	private Timestamp commentTime;
 }

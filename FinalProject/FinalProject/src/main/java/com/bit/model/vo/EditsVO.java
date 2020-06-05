@@ -10,11 +10,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class EditsVO {
-	private String editsCode;
-	private String pageCode;
+	private String editsNo;
+	private String pageNo;
 	private String pageTitle;
 	private String pageDescription;
 	private Timestamp pageSavetime;
 	private Clob pageContent;
 	private String pageOrder;
+	private int pageParentNo;
 }
