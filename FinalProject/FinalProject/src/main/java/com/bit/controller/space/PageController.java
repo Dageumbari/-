@@ -24,7 +24,7 @@ public class PageController {
 		return "space/test";
 	}
 	@GetMapping("page")
-	public String aboutPage() {
+	public String page() {
 		return "page/page";
 	}
 	}
