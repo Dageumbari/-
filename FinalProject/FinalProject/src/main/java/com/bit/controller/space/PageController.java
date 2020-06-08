@@ -8,18 +8,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bit.model.service.PageService;
 
+import lombok.extern.java.Log;
+
+@Log
 @Controller
 public class PageController {
 
 	@Autowired
 	PageService PageService;
-
-	@GetMapping("/pageTest")
-	public void getPagebyPageNo(@RequestParam(value="pageNo", required=false) int pageNo, Model model) {
-		model.addAttribute("pageTest", PageService.getPagebyPageNo(pageNo));
-	}
+	/*
+	 * @GetMapping("/pageTest") public String pageList(Model model) {
+	 * model.addAttribute("pageTest", PageService.getPagebyPageNo(pageNo)); return
+	 * "/space/pageTest"; }
+	 */
 	
-	@GetMapping("/test")
+	@GetMapping("/spaceTest")
 	public String getTestEditPage() {
 		return "space/test";
 	}
