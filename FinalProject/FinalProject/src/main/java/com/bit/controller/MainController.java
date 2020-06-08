@@ -1,4 +1,4 @@
-package com.bit.controller.space;
+package com.bit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
