@@ -6,7 +6,7 @@
 
 	<select id="getPagebyPageNo" parameterType="Integer"
 		resultType="com.bit.model.vo.PageVO">
-		select * from page where pageNo=#{pageNo}
+		select * from page where pageNo=1
 	</select>
 	
 </mapper>

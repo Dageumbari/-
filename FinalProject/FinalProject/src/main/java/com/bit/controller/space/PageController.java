@@ -2,19 +2,26 @@ package com.bit.controller.space;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bit.model.dao.PageDAO;
+import com.bit.model.service.PageService;
 
-//@Controller
+@Controller
 public class PageController {
-	
-	/*
-	 * @Autowired PageDAO pageDAO;
-	 */
-	/*
-	 * @GetMapping("/pageTest") public String getPagebyPageNo(int PageNo) { return
-	 * "/space/pageTest"; }
-	 */
 
+	@Autowired
+	PageService PageService;
+
+	@GetMapping("/pageTest")
+	public void getPagebyPageNo(@RequestParam(value="pageNo", required=false) int pageNo, Model model) {
+		model.addAttribute("pageTest", PageService.getPagebyPageNo(pageNo));
+	}
+	
+	@GetMapping("/test")
+	public String getTestEditPage() {
+		return "space/test";
+	}
 }
