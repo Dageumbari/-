@@ -16,7 +16,7 @@ public class PersistenceTest {
 	@Autowired
 	private PageDAO pageDAO;
 	
-	@Test
+	
 	public void pageDAOTest() {
 		
 		
