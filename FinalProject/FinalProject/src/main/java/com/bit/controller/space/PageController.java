@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.bit.model.dao.PageDAO;
 import com.bit.model.service.PageService;
 
 @Controller
@@ -24,4 +23,8 @@ public class PageController {
 	public String getTestEditPage() {
 		return "space/test";
 	}
-}
+	@GetMapping("page")
+	public String aboutPage() {
+		return "page/page";
+	}
+	}

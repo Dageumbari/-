@@ -20,17 +20,16 @@
 	</properties>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/orai18n -->
+	<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/orai18n -->
+<dependency>
+    <groupId>com.oracle.ojdbc</groupId>
+    <artifactId>orai18n</artifactId>
+    <version>19.3.0.0</version>
+</dependency>
 		<dependency>
-			<groupId>com.oracle.ojdbc</groupId>
-			<artifactId>orai18n</artifactId>
-			<version>19.3.0.0</version>
-		</dependency>
-		<!-- 시큐리티때문에 로그인창이 자꾸 떠서 일단 주석처리할게요. 안티매치 필요-->
-		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
@@ -108,16 +107,19 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
+	<!-- 	<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+<<<<<<< HEAD
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+=======
+		</dependency> -->
 	</dependencies>
 	<build>
 		<plugins>
