@@ -10,8 +10,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class EditsVO {
-	private String editsNo;
-	private String pageNo;
+	private int editsNo;
+	private int pageNo;
 	private String pageTitle;
 	private String pageDescription;
 	private Timestamp pageSavetime;

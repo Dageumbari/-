@@ -12,7 +12,7 @@ import lombok.ToString;
 public class PageVO {
 
 	/* 페이지 pk */
-	private String pageNo;
+	private int pageNo;
 
 	/* 페이지 그룹 pk */
 	private String pageGroupCode;
