@@ -26,11 +26,9 @@
 			<artifactId>orai18n</artifactId>
 			<version>19.3.0.0</version>
 		</dependency>
-		<!-- 시큐리티때문에 로그인창이 자꾸 떠서 일단 주석처리할게요. 안티매치 필요-->
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
+		<!-- 시큐리티때문에 로그인창이 자꾸 떠서 일단 주석처리할게요. 안티매치 필요 -->
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
@@ -118,6 +116,12 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
