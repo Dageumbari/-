@@ -18,10 +18,11 @@ public class PersistenceTest {
 	
 	@Test
 	public void pageDAOTest() {
-		/*
-		 * PageVO pageVO = pageDAO.getPageVO(1);
-		 */		
-		System.err.println(pageDAO.getPageVO(1));
+		
+		
+		//System.err.println(pageDAO.getPageVO(1));
+		
+		System.err.println(pageDAO.getPagebyPageNo(1));
 		
 	}
 }

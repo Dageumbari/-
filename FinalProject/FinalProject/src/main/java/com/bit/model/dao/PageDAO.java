@@ -11,10 +11,11 @@ public interface PageDAO {
 	//pageNo로 page 조회
 	
 	
-	  @Select("select * from page where pageNo=1") 
-	  PageVO getPageVO(int PageNo);
+	/*
+	 * @Select("select * from page where pageNo=1") PageVO getPageVO(int PageNo);
+	 */
 	 
-	//public PageVO getPagebyPageNo(int pageNo);
+	PageVO getPagebyPageNo(int pageNo);
 	
 	
 }

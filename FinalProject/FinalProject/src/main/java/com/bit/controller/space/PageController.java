@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.bit.model.dao.PageDAO;
 
-@Controller
+//@Controller
 public class PageController {
 	
-	@Autowired
-	PageDAO pageDAO;
-	
+	/*
+	 * @Autowired PageDAO pageDAO;
+	 */
 	/*
 	 * @GetMapping("/pageTest") public String getPagebyPageNo(int PageNo) { return
 	 * "/space/pageTest"; }
