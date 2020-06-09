@@ -16,7 +16,7 @@ public class UserInfoVO {
 	private String userImage;
 	private int alert;
 	private String gender;
-	private int loginFallCount;
+	private int loginFailCount;
 	private Timestamp loginCountDate;
-	private String country;
+	private int countryCode;
 }

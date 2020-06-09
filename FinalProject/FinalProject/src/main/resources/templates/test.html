@@ -6,6 +6,6 @@
 </head>
 <body>
     <h1>테스트 페이지!</h1>
-    <!-- <p th:text="${user.email}"> -->
+    <p th:each="user : ${user_info}" th:text="${user}"></p>
 </body>
 </html>
