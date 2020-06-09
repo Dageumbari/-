@@ -1,6 +1,6 @@
 package com.bit.model.vo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -8,15 +8,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UserVO {
-	private int UserNo;
+public class UserInfoVO {
+	private int userNo;
 	private String email;
-	private String passward;
+	private String pw;
 	private String name;
 	private String userImage;
 	private int alert;
 	private String gender;
 	private int loginFallCount;
-	private Date loginCountDate;
+	private Timestamp loginCountDate;
 	private String country;
 }

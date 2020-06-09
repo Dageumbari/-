@@ -5,7 +5,7 @@
 <mapper namespace="com.bit.model.dao.MainDAO">
 
 	<select id="getUserInfo" resultType="com.bit.model.vo.UserVO">
-		select * from userinfo
+		select * from user_info
 	</select>
 	
 </mapper>
