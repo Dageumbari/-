@@ -16,11 +16,8 @@ public class PageController {
 
 	@Autowired
 	PageService PageService;
-	/*
-	 * @GetMapping("/pageTest") public String pageList(Model model) {
-	 * model.addAttribute("pageTest", PageService.getPagebyPageNo(pageNo)); return
-	 * "/space/pageTest"; }
-	 */
+	
+	
 	
 	@GetMapping("/spaceTest")
 	public String getTestEditPage() {
