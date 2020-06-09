@@ -1,8 +1,7 @@
 package com.bit.model.dao;
 
+
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import com.bit.model.vo.PageVO;
 
@@ -10,12 +9,11 @@ import com.bit.model.vo.PageVO;
 public interface PageDAO {
 	//pageNo로 page 조회
 	
-	
+	public PageVO getPagebyPageNo(int pageNo);
 	/*
 	 * @Select("select * from page where pageNo=1") PageVO getPageVO(int PageNo);
 	 */
 	 
-	PageVO getPagebyPageNo(int pageNo);
-	
-	
 }
+	
+
