@@ -13,10 +13,5 @@ public class PageServiceImpl implements PageService {
 	@Autowired
 	PageDAO pageDAO;
 	
-	@Override
-	public PageVO getPagebyPageNo(int pageNo) {
-		// TODO Auto-generated method stub
-		return pageDAO.getPagebyPageNo(pageNo);
-	}
-
+	
 }
