@@ -16,7 +16,7 @@ public class MainController {
 	@Autowired
 	MainDAO mainDAO;
 	
-	@GetMapping("/")
+	@GetMapping("/main")
 	public String main(Model model) {
 		
 		return "main";
