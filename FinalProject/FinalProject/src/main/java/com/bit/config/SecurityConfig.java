@@ -16,11 +16,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		log.info("security config -------------------");
 		
-		http
-			.authorizeRequests()
-				.antMatchers("/main/**").permitAll()
-				.antMatchers("/test").hasRole("ADMIN");
-		http.formLogin();
+		/*
+		 * http .authorizeRequests() .antMatchers("/main/**").permitAll()
+		 * .antMatchers("/test").hasRole("ADMIN"); http.formLogin();
+		 */
 		
 	}
 	
