@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
-import util.Greeting;
-import util.HelloMessage;
+import com.bit.util.Greeting;
+import com.bit.util.HelloMessage;
 
 @RestController
 public class GreetingController {
