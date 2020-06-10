@@ -1,31 +1,37 @@
 package com.bit.model.vo;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+
+import org.apache.ibatis.type.Alias;
+import org.springframework.context.annotation.Bean;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+
+
 @Getter
 @Setter
 @ToString
-public class ChattingVO {
-	private int chatNo;
-	private Timestamp msgSendTime;
-	private Timestamp msgGotTime;
-	private String chatContent;
-	private int adminCode;
-	private int userNo;
-	
-	public ChattingVO() {
-	}
-	public ChattingVO(int chatNo, String chatContent, int adminCode, int userNo )
-	{
-		this.chatNo = chatNo;
-		this.chatContent = chatContent;
-		this.adminCode = adminCode;
-		this.userNo = userNo;
-		this.msgGotTime=msgGotTime;
-		this.msgSendTime=msgSendTime;
-	}
+@Alias("chatting")
+public class ChattingVO implements Serializable {
+	private static final long serialVersionUID = 1L; //suid defalut로 명시~
+public ChattingVO getChatting() {
+	return new ChattingVO();
+	} //bean annotation x 
+	private String userNo;
+	private String email;
+	private String userImage;
+    private int chatNo;
+    private Timestamp msgSendTime;
+    private Timestamp msgGotTime;
+    private String chatContent;
+    private int adminCode;
+    private String adminId;
+    private String adminPW;
 }
+
+
+
