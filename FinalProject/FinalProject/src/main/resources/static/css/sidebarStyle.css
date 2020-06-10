@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+
+
+.sidebar {
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    display: flex;
+    position: fixed;
+    margin: 0px;
+    padding: 0px;	
+}
+
+.sidebarContent  {
+    color: rgb(157, 170, 182);
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex: 1 1 0%;
+    margin: 0px;
+    padding: 0px;
+    background: rgb(24, 48, 85);
+}
+
+.sidebarNav  {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    bottom: 0px;
+    display: flex;
+    z-index: 1;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    background: rgb(24, 48, 85);
+}
+
+
+.navigation  {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex: 1 1 0%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navigationHeader  {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    flex: 0 0 auto;
+    margin: 0px;
+    padding: 0px;
+}
+
+.tooltipContainer {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 128px;
+}
+
+.avatarFrame  {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-mask-image: radial-gradient(white, black);
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 128px;
+}
+
+
+
+.navigation-body-with-scrollbar {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: overlay;
+    flex: 1 1 0%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.navButtons  {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navigationButton  {
+    color: rgb(255, 255, 255);
+    width: 56px;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    margin: 0px;
+    padding: 8px 0px;
+    transition: color 150ms ease-out 0s;
+}
+
+.navigationButtonContent  {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navigationButtonIcon  {
+    display: block;
+    font-size: 18px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.textInfo  {
+    font-size: 10px;
+    margin-top: 4px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.625;
+}
+
+
+
+.draftsCountBadge  {
+    top: 0px;
+    color: rgb(255, 255, 255);
+    right: 0px;
+    width: 16px;
+    cursor: pointer;
+    height: 16px;
+    display: inline-flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    margin: 0px;
+    padding: 0px;
+    background: rgb(247, 125, 5);
+    border-radius: 50%;
+}
+
+.textUIFamily {
+    font-size: 10px;
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+
+.sidebarFooter  {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex: 0 0 auto;
+    margin: 8px 0px 0px;
+    padding: 8px 0px 16px;
+}
+
+
+
+
+
+
