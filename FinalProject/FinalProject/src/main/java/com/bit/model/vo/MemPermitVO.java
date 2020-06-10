@@ -7,9 +7,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class AdminVO {
-	private int adminCode;
-	private String adminId;
-	private String adminPw;
-	
+public class MemPermitVO {
+	private String teamCode;
+	private int userNo;
+	private int permissionNo;
 }
