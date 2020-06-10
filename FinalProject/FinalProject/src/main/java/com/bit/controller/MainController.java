@@ -24,15 +24,21 @@ public class MainController {
 	
 	@GetMapping("/test")
 	public String test(Model model) {
-		model.addAttribute("user_info", mainDAO.getUserInfo());
+		/* model.addAttribute("user_info", mainDAO.getUserInfo()); */
 		
 		return "test";
 	}
 	
-	@GetMapping("/member")
-	public String member() {
-		return "login";
+	@GetMapping("/mtest")
+	public String mtest(Model model) {
+		/* model.addAttribute("user_info", mainDAO.getUserInfo()); */
+		
+		return "mtest";
 	}
 	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 	
 }
