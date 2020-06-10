@@ -1,5 +1,7 @@
 package com.bit.model.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +14,12 @@ public class PageServiceImpl implements PageService {
 
 	@Autowired
 	PageDAO pageDAO;
-	
-	@Override
-	public PageVO getPagebyPageNo(int pageNo) {
-		// TODO Auto-generated method stub
-		return pageDAO.getPagebyPageNo(pageNo);
-	}
 
+	@Override
+	public List<PageVO> getPageList() {
+		// TODO Auto-generated method stub
+		return pageDAO.getPageList();
+	}
+	
+	
 }
