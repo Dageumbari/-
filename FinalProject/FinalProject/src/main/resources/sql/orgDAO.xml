@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDEMapper3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.model.dao.OrgDAO">
+	<select id="getAllOrgList" resultType="org">
+		SELECT *
+			FROM dashBoard
+		WHERE 사용자가 멤버로 속해있는 조직
+	</select>
+	<select id="getOrgInfo" resultType="">
+		SELECT *
+			FROM dashBoard
+		WHERE dashBoardCode = #{dashBoardCode}
+	</select>
+	<delete id="deleteOrg">
+		DELETE
+			FROM
+		WHERE
+	</delete>
+	<insert id="createOrg">
+		INSERT
+			FROM
+		WHERE
+	</insert>
+	<update id="orgNameModify">
+		UPDATE
+			FROM
+		WHERE
+	</update>
+	<update id="orgOrderModify">
+		UPDATE
+			FROM
+		WHERE
+	</update>
+	<!-- 
+	<update id="orgLogoModify">
+		UPDATE
+			FROM
+		WHERE
+	</update>
+	 -->
+</mapper>
