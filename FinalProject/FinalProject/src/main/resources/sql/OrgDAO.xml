@@ -3,12 +3,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.OrgDAO">
-	<select id="getAllOrgList" resultType="org">
+	<select id="getAllOrgList" >
 		SELECT *
 			FROM dashBoard
 		WHERE 사용자가 멤버로 속해있는 조직
 	</select>
-	<select id="getOrgInfo" resultType="">
+	<select id="getOrgInfo" >
 		SELECT *
 			FROM dashBoard
 		WHERE dashBoardCode = #{dashBoardCode}

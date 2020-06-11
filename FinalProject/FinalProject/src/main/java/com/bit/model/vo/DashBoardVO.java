@@ -9,7 +9,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Alias("org")
 public class DashBoardVO {
 	private String dashBoardCode;
 	private String dashBoardImage;
