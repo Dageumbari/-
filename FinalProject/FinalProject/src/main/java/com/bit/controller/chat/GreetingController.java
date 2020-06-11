@@ -11,10 +11,10 @@ import com.bit.util.HelloMessage;
 
 @RestController
 public class GreetingController {
-	@GetMapping("/")
-	public String chatmain() {
-		return "common/chatting/chatIndex";
-	}
+	/*
+	 * @GetMapping("/") public String chatmain() { return
+	 * "common/chatting/chatIndex"; }
+	 */
 	@MessageMapping("/hello")
 	@SendTo("/topic/greetings")
 	public Greeting greeting(HelloMessage message) throws Exception {

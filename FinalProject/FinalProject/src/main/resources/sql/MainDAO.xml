@@ -4,7 +4,7 @@
 
 <mapper namespace="com.bit.model.dao.MainDAO">
 
-	<select id="getUserInfo" resultType="com.bit.model.vo.UserVO">
+	<select id="getUserInfo" resultType="com.bit.model.vo.UserInfoVO">
 		select * from userinfo
 	</select>
 	
