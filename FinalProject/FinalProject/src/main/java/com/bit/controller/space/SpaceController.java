@@ -9,14 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SpaceController {
 	
-	@GetMapping("/sidebar")
+	@GetMapping("/sidenav")
 	public String sidebar() {
-		return "common/sidebar";
+		return "common/sidenav";
 	}
 	
-	@PostMapping("/spaceHello")
-	public String sayHello(@RequestParam("name") String name, Model model) {
-		model.addAttribute("name", name);
-		return "hello";
+	@GetMapping("/nav")
+	public String navigation() {
+		return "common/sidenavDrawer";
 	}
 }

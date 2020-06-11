@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+div {
+    display: block;
+}
 
 
 .sidebar {
@@ -35,7 +38,7 @@
     position: absolute;
     margin: 0px;
     padding: 0px;
-    background: rgb(24, 48, 85);
+    background: #343a40;
 }
 
 
@@ -85,8 +88,29 @@
     overflow: hidden;
     border-radius: 128px;
 }
+.avatarImg{
+	width: 100%;
+    height: 100%;
+    max-width: 100%;
+    background-size: cover;
+    background-color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+}
 
 
+.innerShadow  {
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: block;
+    position: absolute;
+    box-shadow: rgba(24, 48, 85, 0.1) 0px 0px 1px 1px inset;
+    pointer-events: none;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 128px;
+}
 
 .navigation-body-with-scrollbar {
     display: block;
@@ -131,11 +155,49 @@
     padding: 0px;
 }
 
+.draftsCountBadge  {
+    top: 0px;
+    color: rgb(255, 255, 255);
+    right: 0px;
+    width: 16px;
+    cursor: pointer;
+    height: 16px;
+    display: inline-flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    margin: 0px;
+    padding: 0px;
+    background: rgb(247, 125, 5);
+    border-radius: 50%;
+}
+
+
+.text-draftsCountBadge  {
+    font-size: 10px;
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
 .navigationButtonIcon  {
     display: block;
     font-size: 18px;
     margin: 0px;
     padding: 0px;
+}
+
+
+.text-navigationButtonTitle {
+    font-size: 10px;
+    margin-top: 4px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.625;
 }
 
 .textInfo  {
@@ -179,7 +241,7 @@
 
 .sidebarFooter  {
     display: flex;
-    position: relative;
+/*     position: relative; */
     align-items: center;
     flex-direction: column;
     -webkit-box-align: center;
@@ -190,8 +252,22 @@
     padding: 8px 0px 16px;
 }
 
+.sidebarFooter::before  {
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    content: " ";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+}
 
 
-
+.logoLink  {
+    color: rgb(157, 170, 182);
+    font-size: 30px;
+    padding-top: 16px;
+    transition: color 250ms ease-out 0s;
+ }
+ 
 
 
