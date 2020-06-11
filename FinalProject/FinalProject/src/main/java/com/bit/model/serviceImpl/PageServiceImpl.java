@@ -20,6 +20,4 @@ public class PageServiceImpl implements PageService {
 		// TODO Auto-generated method stub
 		return pageDAO.getPageList();
 	}
-	
-	
 }

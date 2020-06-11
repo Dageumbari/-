@@ -1,4 +1,4 @@
-package com.bit.msgStompWebSocket;
+package com.bit.util;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -14,10 +14,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
 		config.enableSimpleBroker("/topic");
+		//클라이언트로 메세지보낼 때 prefix
 		config.setApplicationDestinationPrefixes("/app");
+		//클라이언트에서 메세지 주고받을 때 prefix
 	}
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/gs-guide-websocket").withSockJS();
+		registry.addEndpoint("/websocket").withSockJS();
+		//처음 소켓 연결할 때 endpoint url설정, app.js에서 SockJS 생성자로 연결
 	}
 }

@@ -1,4 +1,4 @@
-package com.bit.msgStompWebSocket;
+package com.bit.util;
 
 public class HelloMessage {
 

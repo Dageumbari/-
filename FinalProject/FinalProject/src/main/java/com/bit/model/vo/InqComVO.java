@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class InquiryCommentVO {
+public class InqComVO {
 	private int inqComNo;
 	private int inqNo;
 	private Clob inqComConetent;

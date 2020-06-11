@@ -1,6 +1,11 @@
 package com.bit;
 
+<<<<<<< HEAD
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+=======
 import static org.junit.jupiter.api.Assertions.*;
+>>>>>>> 57641a5a7cac90665a03f2b4f761bf577b6228f1
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -11,7 +16,10 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 57641a5a7cac90665a03f2b4f761bf577b6228f1
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -28,8 +36,13 @@ import org.springframework.web.socket.sockjs.client.SockJsClient;
 import org.springframework.web.socket.sockjs.client.Transport;
 import org.springframework.web.socket.sockjs.client.WebSocketTransport;
 
+<<<<<<< HEAD
+import util.Greeting;
+import util.HelloMessage;
+=======
 import com.bit.msgStompWebSocket.Greeting;
 import com.bit.msgStompWebSocket.HelloMessage;
+>>>>>>> 57641a5a7cac90665a03f2b4f761bf577b6228f1
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class GreetingIntegrationTests {
