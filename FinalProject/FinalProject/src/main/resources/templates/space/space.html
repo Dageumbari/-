@@ -9,28 +9,30 @@
 <title> Space </title>
 
 <!--  Common header -->
-<th:block th:include="common/sidenav.html"></th:block>
-<th:block th:include="common/sidenavDrawer.html"></th:block>
+<th:block th:include="common/sidenav"></th:block>
+<th:block th:include="common/sidenavDrawer"></th:block>
 <!-- Custom styles for sidebar -->
 <link th:href="@{/css/sidenav.css}" rel="stylesheet">
 </head>
 <body>
 	<!-- Common script -->
-	<th:block th:include="common/include-script"></th:block>
+	<!-- <th:block th:include="common/include-script"></th:block> -->
 
 	<div class="wrapper">
+	
 		<!-- Side Bar -->
-		<nav th:replace="common/common-sidebar"></nav>
-		<div id="content">
-			<!-- Page Header -->
-			<header th:replace="common/common-header"></header>
+		<!-- <nav th:replace="common/common-sidebar"></nav> -->
 
-			<!-- Main Content -->
+		<div id="content">
+			Page Header
+			<header th:replace="common/common-header"></header>
+			
+			Main Content
 			<div th:replace="${template}"></div>
 
 			<hr>
 
-			<!-- Footer -->
+			Footer
 			<footer th:replace="common/common-footer"></footer>
 		</div>
 	</div>

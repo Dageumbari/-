@@ -18,4 +18,9 @@ public class SpaceController {
 	public String navigation() {
 		return "common/sidenavDrawer";
 	}
+	
+	@GetMapping("/space")
+	public String space() {
+		return "space/space";
+	}
 }
