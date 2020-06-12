@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+ <title>안녕 나 채팅~</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <link href="css/chatting/chatMain.css" rel="stylesheet"> 
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<!--     <script src="/chatView.html"></script> -->
+    <!-- SocketJS CDN -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+	<!-- STOMP CDN -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+ <h1>다금바리 챗XD</h1>
+	<div>
+		<input type="button" id="chattinglistbtn" value="참여자 목록"/>
+		<input type="button" id="outroom" value="채팅방 나가기"/>
+	</div>
+	<br>
+	<div>
+		<textarea id="chatOutput" name="" class="chatting_history" rows="30" cols="70"></textarea>
+		<div class="chatting_input">
+			<input id="chatInput" type="text" class="chat"/>
+			<input type="button" id="sendbtn" value="전송"/>
+		</div>
+	</div>
+	<div>
+	<input type="hidden" th:value='${userid}' id="sessionuserid"/>
+	<input type="hidden" th:value='${chatoutaddress}' id="chatoutaddress"/>
+	</div>
+
+<script th:inline="javascript">
+var stompClient = null;
+function setConnected(connected) {
+    $("#connect").prop("disabled", connected);
+    //return current value, cf.attr
+    $("#disconnect").prop("disabled", !connected);
+    if (connected) {
+        $("#conversation").show();
+    }
+    else {
+        $("#conversation").hide();
+    }
+    $("#").html("");
+}
+//웹소켓을 사용할 수 있도록 페이지 로딩 완료 시 웹소켓 초기화
+document.addEventListener("DOMContentLoaded", function(){
+	WebSocket.init();
+});
+//웹소켓 설정
+var WebSocket = (function(){
+	var stompClient;
+	var textArea = document.getElementById("chatOutput");
+	//메세지화면
+	var inputElm = document.getElementById("chatInput");
+	//입력란
+	var sendbtn = document.getElementById("sendbtn");
+	//전송버튼
+	var outroombtn = document.getElementById("outroom");
+	//나가기버튼
+	var usersessionid = document.getElementById("sessionuserid");
+	//세션id
+	var chatoutaddress = document.getElementById("chatoutaddress");
+	//<input type="hidden" value='${chatoutaddress}' id="chatoutaddress">
+}
+function connect() {
+    var socket = new SockJS('/websocket');
+    //sockjs,stomp client를 통해 연결시도
+    stompClient = Stomp.over(socket);
+   
+	stompClient.connect({}, function(){
+		//메세지를 받는다. 각각의 구독으로~
+		stompClient.subscribe('/topic/greetings', function(msg){
+			printMessage(JSON.parse(msg.body).sendMessage + '/' + JSON.parse(msg.body).email);
+		});
+		//사용자 아이디 파싱~
+		stompClient.subscribe('/topic/out', function(msg){
+			printMessage(msg.body);
+		});
+		//방나가기
+		stompClient.subscribe('/topic/in', function(msg){  
+			printMessage(msg.body);
+		});
+		//방들어오기
+		
+		//입장글
+		stompClient.send("/chatView/in", {}, usersessionid.value + ' 님이 입장하셨습니다.');
+	});
+	function disconnect() {
+    	if (stompClient !== null) {
+    		stompClient.send("/chatView/out", {}, usersessionid.value + ' is out chatroom');
+    		stompClient.disconnect();
+    		
+    		window.location.href=chatoutaddress.value;
+    	}}	}
+/* 	//연결끊기,잠깐 주석처리~
+function disconnect() {
+    if (stompClient !== null) {
+        stompClient.disconnect();
+    }
+    setConnected(false);
+    console.log("Disconnected");
+} */
+//메세지 전송 버튼 이벤트//
+sendbtn.onclick = function(){
+	sendMessage(inputElm.value);
+	clear(inputElm);
+}
+//채팅방 나가기 버튼 이벤트//
+outroombtn.onclick = function(){
+	disconnect();
+}
+function printMessage(message){
+	textArea.value += message + "\n";
+}
+//입력창 초기화//
+function clear(input){
+	input.value = "";	
+}
+//메세지전송
+function chatContent(text) {
+	//json파라미터를 msg body로 전송
+    stompClient.send("/chatView/hello", {}, JSON.stringify({'chatContent': $("#email").usersessionid.value()}));
+    //stringfy(전송할 데이터를 json형태로 만듦)로 vo와 매핑 -> subscribe info,msg handler 주소 매핑 
+}
+//초기화//
+function init(){
+	connect();
+}
+return {
+	init : init();
+}
+function showGreeting(message) {
+    $("#greetings").append("<tr><td>" + message + "</td></tr>");
+}
+$(function () {
+    $("form").on('submit', function (e) {
+        e.preventDefault();
+    });
+    $( "#connect" ).click(function() { connect(); });
+    $( "#disconnect" ).click(function() { disconnect(); });
+    $( "#send" ).click(function() { sendName(); });
+});
+</script>
+</body>
+</html>

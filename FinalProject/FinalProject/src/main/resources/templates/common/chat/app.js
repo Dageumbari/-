@@ -1,4 +1,4 @@
-var stompClient = null;
+/*var stompClient = null;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -49,3 +49,4 @@ $(function () {
     $( "#send" ).click(function() { sendName(); });
 });
 
+*/

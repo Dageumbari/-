@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import org.apache.ibatis.type.Alias;
-import org.springframework.context.annotation.Bean;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +31,5 @@ public ChattingVO getChatting() {
     private String adminId;
     private String adminPW;
 }
-
 
 
