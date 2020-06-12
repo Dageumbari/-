@@ -7,9 +7,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UserSocialVO {
-	private int userSocialNo;
+public class UserRoleVO {
+	
+	private int roleNo;
 	private int userNo;
-	private String userToken;
-	private String userTokenName;
+	private String roleName;
+
 }

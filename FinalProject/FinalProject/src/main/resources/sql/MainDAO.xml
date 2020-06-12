@@ -4,10 +4,12 @@
 
 <mapper namespace="com.bit.model.dao.MainDAO">
 
+
 	<select id="getUserInfo" resultType="com.bit.model.vo.UserInfoVO">
 
 		select * from user_info
 
 	</select>
+
 	
 </mapper>
