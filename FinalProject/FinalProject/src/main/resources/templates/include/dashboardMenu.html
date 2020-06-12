@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>조직 메뉴</title>
+<link href="/css/dashboard.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="reset-3c756112--dashboardBody-16d7793c">
+<div class="reset-3c756112--dashboardContent-33678280">
+	<div class="reset-3c756112--dashboardMenu-394a2b7e">
+		<div class="reset-3c756112--dashboardMenu-39fca444">
+			<div
+				class="reset-3c756112--S200Bottom-9b47328c--headerContainer-4648b796">
+				<div
+					class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10--headerAvatar-e0759ade">
+					<div
+						class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
+						role="presentation">
+						<img class="image-67b14f24--avatar-1c1d03ec"
+							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABoElEQVRYR+2VS0sCURiG39N4m1IyKITINIyylByRWmS0cNWihS36hf2LIqpNJCIEhZeyu1F0WQRl6thMOGCUmyPnzNAszmy/eec8PN/3nSGbT1s6bPwQAcjZHWGQUyCEQWGQ1wBvXsygMMhrgDfPPYNne3ncn1b/cMjDPoRScwhEwxiQJC5GSwC7RMFkFJFlBWSAMEOaAth4ryO2lobkdEDXdXy8vqG4fYh2U0VyIwPZ77MPYJfkuXqHyn4eSjYD76jffoAPxQvcFkpIZDPw+AbtA6h9aXi5rOH8oIDQYgwTiRlmuE7QlBns3WKX7EEknUAgOgVC2BfEMkDjw4RgPD6NyEoSkoP9qjHF4O8t7sC16g08lq9wnTtBeCmOydQ8c5stAezQ6JqO8m4OaqP5cwWxUFoIqKG0c4R2S7UfoPrZxE2hiNpxBcbfJK2wyDMyphjs3eIujXdsBAvrq3B7//ke7AV0D8nGBgeVWUguJ7M9Uwxynd5HmLvFfZzB9YoA5NJnxhbzAtDyosU0Q7S6MEgzRKsLgzRDtLowSDNEq38DSrQMYOZ84HwAAAAASUVORK5CYII=">
+					</div>
+				</div>
+				<span
+					class="text-4505230f--DisplayH700-a03ad9b4--textUIFamily-5ebd8e40--headerText-bece5cbe">OrgName</span>
+			</div>
+			<div class="reset-3c756112--menu-5b8a7448--menu-86b02dde">
+				<div
+					class="reset-3c756112--withScrollbar-39338630--scrollAxisY-7680295e--menuItems-2e6f017b--menuItems-86b02dde">
+					<a
+						class="reset-3c756112--menuItem-aa02f6ec--menuItemDark-e675f118--menuItemInline-173bdf97--menuItem-38f0db02"
+						th:href="@{'/dashboard/spaces'}" style=""><div
+							class="reset-3c756112--menuItemIcon-206eb252" style="">
+							<svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
+								fill="none" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+								stroke-linejoin="round" stroke="currentColor"
+								class="icon-7f6730be--text-3f89f380">
+								<g>
+								<rect x="3" y="3" width="7" height="7"></rect>
+								<rect x="14" y="3" width="7" height="7"></rect>
+								<rect x="14" y="14" width="7" height="7"></rect>
+								<rect x="3" y="14" width="7" height="7"></rect></g></svg>
+						</div>
+						<div class="reset-3c756112--menuItemContent-c44ec79e">
+							<span
+								class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40">Spaces</span>
+						</div></a><a
+						class="reset-3c756112--menuItem-aa02f6ec--menuItemDark-e675f118--menuItemInline-173bdf97--menuItem-38f0db02"
+						th:href="@{'/dashboard/teams'}" style="color: rgb(255, 255, 255);"><div
+							class="reset-3c756112--menuItemIcon-206eb252"
+							style="color: rgb(255, 255, 255);">
+							<svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
+								fill="none" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+								stroke-linejoin="round" stroke="currentColor"
+								class="icon-7f6730be--text-3f89f380">
+								<g>
+								<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+								<circle cx="9" cy="7" r="4"></circle>
+								<path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></g></svg>
+						</div>
+						<div class="reset-3c756112--menuItemContent-c44ec79e">
+							<span
+								class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40" th:href="@{'/dashboard/teams'}">Teams</span>
+						</div></a><a
+						class="reset-3c756112--menuItem-aa02f6ec--menuItemDark-e675f118--menuItemInline-173bdf97--menuItem-38f0db02"
+						th:href="@{'/dashboard/settings'}" style=""><div
+							class="reset-3c756112--menuItemIcon-206eb252" style="">
+							<svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
+								fill="none" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24" stroke="currentColor"
+								class="icon-7f6730be--text-3f89f380">
+								<g>
+								<circle cx="12" cy="12" r="3" stroke-linecap="round"
+									stroke-linejoin="round" stroke-width="2"></circle>
+								<path
+									d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+									stroke-miterlimit="10" stroke-width="2"></path></g></svg>
+						</div>
+						<div class="reset-3c756112--menuItemContent-c44ec79e">
+							<span
+								class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40" th:href="@{'/dashboard/settings'}">Settings</span>
+						</div></a><a
+						class="reset-3c756112--menuItem-aa02f6ec--menuItemDark-e675f118--menuItemInline-173bdf97--menuItem-38f0db02"
+						th:href="@{'/dashboard/billing'}" style=""><div
+							class="reset-3c756112--menuItemIcon-206eb252" style="">
+							<svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
+								fill="none" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+								stroke-linejoin="round" stroke="currentColor"
+								class="icon-7f6730be--text-3f89f380">
+								<g>
+								<rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+								<line x1="1" y1="10" x2="23" y2="10"></line></g></svg>
+						</div>
+						<div class="reset-3c756112--menuItemContent-c44ec79e">
+							<span
+								class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40" th:href="@{'/dashboard/billing'}">Billing</span>
+						</div></a>
+					<div
+						class="reset-3c756112--menuDivider-630eb14c--menuDividerDark-28d5c180--menuDivider-73a116b0"></div>
+					<div
+						class="reset-3c756112--menuItem-aa02f6ec--menuItemDark-e675f118--menuItemInline-173bdf97--menuItem-38f0db02"
+						role="presentation" style="">
+						<div class="reset-3c756112--menuItemIcon-206eb252" style="">
+							<svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
+								fill="none" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24" stroke="currentColor"
+								class="icon-7f6730be--text-3f89f380">
+								<g>
+								<path d="M10 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h5"
+									stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+								<polyline points="17 16 21 12 17 8" stroke-linecap="round"
+									stroke-linejoin="round" stroke-width="2"></polyline>
+								<line x1="21" y1="12" x2="9" y2="12" stroke-linecap="round"
+									stroke-linejoin="round" stroke-width="2"></line></g></svg>
+						</div>
+						<div class="reset-3c756112--menuItemContent-c44ec79e">
+							<span
+								class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40">Leave
+								organization</span>
+						</div>
+					</div>
+					<div
+						class="reset-3c756112--menuDivider-630eb14c--menuDividerDark-28d5c180--menuDivider-73a116b0"></div>
+					<div class="reset-3c756112--S100Top-62efda1a--S100Bottom-0d15855d">
+						<div role="button" tabindex="0"
+							class="reset-3c756112--touchableView-a079aa82">
+							<div
+								class="reset-3c756112--ownerAvatarList-696792ce--members-61af51ea">
+								<div
+									class="reset-3c756112--tooltipContainer-7fdb9b70--small-2ec8ae1a--circle-6c5acd10--ownerAvatarListItem-0c3ed569--darkOutline-a3afcd28">
+									<div
+										class="reset-3c756112--avatarFrame-2f40cdc9--small-2ec8ae1a--circle-6c5acd10"
+										role="presentation">
+										<img class="image-67b14f24--avatar-1c1d03ec"
+											src="https://gblobscdn.gitbook.com/users%2FIR8rlUhGuJOEVzaRL8eE9FmLRIO2%2Favatar-1590479261730.png?alt=media">
+										<div class="reset-3c756112--innerShadow-7a3a8651"></div>
+									</div>
+								</div>
+								<div
+									class="reset-3c756112--tooltipContainer-7fdb9b70--small-2ec8ae1a--circle-6c5acd10--ownerAvatarListItem-0c3ed569--darkOutline-a3afcd28">
+									<div
+										class="reset-3c756112--avatarFrame-2f40cdc9--small-2ec8ae1a--circle-6c5acd10"
+										role="presentation">
+										<img class="image-67b14f24--avatar-1c1d03ec"
+											src="https://lh3.googleusercontent.com/-vnngEZunLK4/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJMMQ1DtzMCQM3MEV5BzYkP9HXf_dQ/photo.jpg">
+										<div class="reset-3c756112--innerShadow-7a3a8651"></div>
+									</div>
+								</div>
+								<div
+									class="reset-3c756112--tooltipContainer-7fdb9b70--small-2ec8ae1a--circle-6c5acd10--ownerAvatarListItem-0c3ed569--darkOutline-a3afcd28">
+									<div
+										class="reset-3c756112--avatarFrame-2f40cdc9--small-2ec8ae1a--circle-6c5acd10"
+										role="presentation">
+										<img class="image-67b14f24--avatar-1c1d03ec"
+											src="https://lh3.googleusercontent.com/a-/AOh14GgMEk_JVwJ1YSLaAsiqwtwNIoPVGTC3_WGhkQWL8A">
+										<div class="reset-3c756112--innerShadow-7a3a8651"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<button
+							class="button-36063075--small-30ceeddb--button-7fcfb4a1--button-dark-6278d806--rounded-50d53f59--S300Top-6e4da708--block-33c27529">
+							<span class="small-3bde6db7"><svg
+									preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
+									fill="none" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+									stroke-linejoin="round" stroke="currentColor"
+									class="icon-7f6730be--text-3f89f380">
+									<g>
+									<line x1="12" y1="5" x2="12" y2="19"></line>
+									<line x1="5" y1="12" x2="19" y2="12"></line></g></svg></span><span
+								class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40--text-8ee2c8b2">Invite
+								your team</span>
+						</button>
+					</div>
+					<div
+						class="reset-3c756112--menuDivider-630eb14c--menuDividerDark-28d5c180--menuDivider-73a116b0"></div>
+					<div class="reset-3c756112--S200Top-6e4d3a2b">
+						<div class="reset-3c756112--marketingAlertContainer-55085b6a">
+							<div
+								class="reset-3c756112--card-6570f064--darkCard-44f5a012--marketingAlertCard-3ac665a8"
+								role="presentation">
+								<div
+									class="reset-3c756112--cardBody-25dca3b1--bodyWrapper-621955ff--S200-45c58e48">
+									<div class="reset-3c756112--content-554a4ae7">
+										<div class="reset-3c756112--bodyContent-ecc3d9a8">
+											<div class="reset-3c756112--S100Bottom-0d15855d">
+												<div class="reset-3c756112--titleAndHintWrapper-2f79c7a6">
+													<span class="wrapper-c9de902e--emoji-0c3ed569"
+														style="width: 16px; height: 16px;"><span
+														class="emojione emojione-40-nature _2728 emoji-64354ccb"
+														role="img" alt="✨" title=":sparkles:"
+														aria-label=":sparkles:"
+														style="transform: translate(-50%, -55%) scale(0.4); text-indent: 0em; font-size: 0px; color: rgba(0, 0, 0, 0);">✨</span></span><span
+														class="text-4505230f--UIH200-50ead35f--textUIFamily-5ebd8e40--white-42ab09c4">Upgrade
+														this organization</span>
+												</div>
+											</div>
+											<span
+												class="text-4505230f--TextH200-a3425406--textUIFamily-5ebd8e40--greyBase-2c5d8183">Your
+												organization is currently frozen. Upgrade to enjoy all the
+												possibilities of GitBook.</span>
+										</div>
+										<div class="reset-3c756112--actions-0dfff449">
+											<button
+												class="button-36063075--small-30ceeddb--button-f88b8e9a--block-33c27529--S100Top-351b6542">
+												<span
+													class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40--text-8ee2c8b2">Upgrade</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

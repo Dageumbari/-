@@ -6,17 +6,17 @@
 	<select id="getAllOrgList" >
 		SELECT *
 			FROM dashBoard
-		WHERE 사용자가 멤버로 속해있는 조직
+		WHERE
 	</select>
 	<select id="getOrgInfo" >
-		SELECT *
+		SELECT dashboardimage, dashboardname
 			FROM dashBoard
-		WHERE dashBoardCode = #{dashBoardCode}
+		WHERE dashBoardCode = #{dashboardCode}
 	</select>
 	<delete id="deleteOrg">
-		DELETE
-			FROM
-		WHERE
+		DELETE *
+			FROM dashBoard
+		WHERE dashboardCode = #{dashboardCode}
 	</delete>
 	<insert id="createOrg">
 		INSERT
@@ -29,9 +29,9 @@
 		WHERE
 	</update>
 	<update id="orgOrderModify">
-		UPDATE
+		UPDATE 
 			FROM
-		WHERE
+		WHERE 
 	</update>
 	<!-- 
 	<update id="orgLogoModify">
