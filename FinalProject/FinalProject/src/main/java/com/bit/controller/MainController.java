@@ -19,7 +19,7 @@ public class MainController {
 	
 	@GetMapping("/main")
 	public String main() {
-		mainDAO.getUserInfo("1q2w3e4r@naver.com");
+		//mainDAO.getUserInfo("1q2w3e4r@naver.com");
 		return "main";
 	}
 	
