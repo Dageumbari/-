@@ -11,4 +11,5 @@ public class UserSocialVO {
 	private int userSocialNo;
 	private int userNo;
 	private String userToken;
+	private String userTokenName;
 }

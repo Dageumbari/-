@@ -7,9 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.bit.model.dao.PageDAO;
 
-
 @SpringBootTest
-public class PersistenceTest {
+public class PageDAOTest {
 	@Autowired
 	private PageDAO pageDAO;
 	@Test

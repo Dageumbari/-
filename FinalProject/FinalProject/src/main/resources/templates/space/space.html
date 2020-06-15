@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="context-path" th:content="@{/}" />
+
+<title>Space</title>
+
+<link th:href="@{/css/sidenav.css}" rel="stylesheet">
+<link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/theme-1.css}" rel="stylesheet">
+<link th:href="@{/css/theme-2.css}" rel="stylesheet">
+<link th:href="@{/css/theme-3.css}" rel="stylesheet">
+<link th:href="@{/css/theme-4.css}" rel="stylesheet">
+<link th:href="@{/css/theme-5.css}" rel="stylesheet">
+<link th:href="@{/css/theme-6.css}" rel="stylesheet">
+<link th:href="@{/css/theme-7.css}" rel="stylesheet">
+
+
+</head>
+<body>
+	<!-- Common script -->
+	<!-- <th:block th:include="common/include-script"></th:block> -->
+
+
+	<div class="wrapper">
+	
+		<div class="nav">
+		<th:block th:include="common/sidenav"></th:block>
+		<!-- <th:block th:include="common/sidenavDrawer"></th:block> -->
+		</div>
+		
+		
+		<div id="page">
+			
+			<div th:replace="page/spacePage"></div>
+
+			<!-- Main Content
+			<div th:replace="${template}"></div> -->
+
+			<hr>
+
+			
+			<!-- <footer th:replace="common/common-footer"></footer> -->
+		</div>
+	</div>
+
+</body>
+</html>
