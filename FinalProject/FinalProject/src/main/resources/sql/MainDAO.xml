@@ -4,12 +4,53 @@
 
 <mapper namespace="com.bit.model.dao.MainDAO">
 
+	<resultMap type="com.bit.model.dto.UserDTO" id="userMap">
+		<id property="userNo" column="userNo" />
+		<result property="userNo" column="userNo" />
+		<result property="email" column="email" />
+		<result property="pw" column="pw" />
+		<result property="name" column="name" />
+		<result property="userImage" column="userImage" />
+		<result property="gender" column="gender" />
+		<result property="countryCode" column="countryCode" />
+		<collection property="roles" resultMap="roleMap">
+		</collection>
+	</resultMap>
 
-	<select id="getUserInfo" resultType="com.bit.model.vo.UserInfoVO">
+	<resultMap type="com.bit.model.vo.UserRoleVO" id="roleMap">
+		<result property="roleNo" column="roleNo" />
+		<result property="userNo" column="userNo" />
+		<result property="roleName" column="roleName" />
+	</resultMap>
 
-		select * from user_info
+
+
+	<select id="getUserInfo" resultMap="userMap">
+
+		select *
+		from
+		user_info
+		inner join user_role
+		on user_info.userNO = user_role.userNo
+		where user_info.email = #{email}
 
 	</select>
 
+	<insert id="setUserInfo" parameterType="com.bit.model.dto.UserDTO">
 	
+		insert into user_info (userNo, email, pw, name) 
+		values (USERINFOSEQ.NEXTVAL, #{email}, #{pw}, #{name}) 
+		
+	</insert>
+	
+	<insert id="setUserRole" parameterType="com.bit.model.dto.UserDTO">
+	
+		
+		insert into user_role (roleNO, userNo, roleName) 
+		values (USERROLESEQ.NEXTVAL, #{uNo}, #{roleName} );
+		
+		
+	</insert>
+
+
 </mapper>

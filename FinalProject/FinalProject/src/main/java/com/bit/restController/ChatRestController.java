@@ -13,12 +13,12 @@ import com.bit.model.vo.ChattingVO;
 @RestController 
 //messageHandler
 public class ChatRestController {
-	@RequestMapping(value="/chatting", method=RequestMethod.GET) //pathvariable쓸지 고민
-	public ModelAndView chat(ChattingVO chattingvo) {
-		ModelAndView mav=new ModelAndView("chat/chatMain");
-		mav.addObject("chatMain",chattingvo);
-		return mav;
-	}
+	/*
+	 * @RequestMapping(value="/chatting", method=RequestMethod.GET) //pathvariable쓸지
+	 * 고민 public ModelAndView chat(ChattingVO chattingvo) { ModelAndView mav=new
+	 * ModelAndView("chat/chatMain"); mav.addObject("chatMain",chattingvo); return
+	 * mav; }
+	 */
 	@MessageMapping("/hello")
 	@SendTo("/topic/roomId")
 	public ChattingVO broadcasting(ChattingVO message) throws Exception {
@@ -33,7 +33,6 @@ public class ChatRestController {
 		System.out.println("out message: " + message);
 		return message;
 	}
-	
 	@MessageMapping("/in") //설정한 prefix를 포함하면 /app/hello이다.//
 	@SendTo("/topic/in") //전달할려는 곳의 subscribe//
 	public String inroom(String message) throws Exception{

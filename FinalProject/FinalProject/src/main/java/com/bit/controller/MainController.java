@@ -1,12 +1,16 @@
 package com.bit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.bit.model.dao.MainDAO;
+import com.bit.model.dto.UserDTO;
 
 import lombok.extern.java.Log;
 
@@ -15,41 +19,63 @@ import lombok.extern.java.Log;
 public class MainController {
 	
 	@Autowired
+	PasswordEncoder pwEncoder;
+	
+	@Autowired
 	MainDAO mainDAO;
 	
 	@GetMapping("/main")
 	public String main() {
-		mainDAO.getUserInfo("1q2w3e4r@naver.com");
-		return "main";
+		
+		return "/main";
 	}
 	
-	@GetMapping("/test")
+	@GetMapping("/atest")
 	public String test(Model model) {
 		
-		return "test";
+		return "/atest";
 	}
 	
 	@GetMapping("/mtest")
 	public String mtest(Model model) {
 		
-		return "mtest";
+		return "/mtest";
 	}
 	
 	@GetMapping("/login")
 	public String login() {
 		
-		return "login";
+		return "/login";
 	}
 	
 	@GetMapping("/logout")
 	public String logout() {
 		
-		return "logout";
+		return "/logout";
+	}
+	
+	@GetMapping("/join")
+	public String join() {
+		
+		return "/join";
+	}
+	
+	@Transactional
+	@PostMapping("/join")
+	public String joinPost(@ModelAttribute("userDTO")UserDTO userDTO) {
+		
+		userDTO.setPw(pwEncoder.encode(userDTO.getPw()));
+		
+		mainDAO.setUserInfo(userDTO);
+		int uNo = mainDAO.getUserNo(userDTO.getEmail());
+		mainDAO.setUserRole(userDTO, uNo);
+		
+		return "/joinResult";
 	}
 	
 	@GetMapping("/accessDenied")
 	public String accessDenied() {
 		
-		return "main";
+		return "/main";
 	}
 }

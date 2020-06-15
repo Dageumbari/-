@@ -4,12 +4,33 @@ $(function(){
 
 function openNav(){
 	$('.navigationButton').on('click',function(event){
-		moveActive('.nav','a',target(event));
+		  e.preventDefault()
+		  $(this).tab('show')
 	})
-}
+});
 
-function moveActive(removeTarget, addTarget,target){
-	target.closest(removeTarget).find('.active').removeClass('active');
-	target.closest(addTarget).addClass('active');
+
+/*
+$(document).ready(function(){
+    $(".dropdown, .btn-group").hover(function(){
+        var dropdownMenu = $(this).children(".dropdown-menu");
+        if(dropdownMenu.is(":visible")){
+            dropdownMenu.parent().toggleClass("open");
+        }
+    });
+});     
+
+
+$(".secondary-menu-toggle").on("click", function(e)
+	$(".secondary-menu").toggleClass("hidden")})
 	
-}
+});*/
+
+
+
+						
+
+						
+						
+						
+						

@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.extern.java.Log;
@@ -19,30 +20,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		log.info("========= 시큐리티  =========");
 		
-		http.authorizeRequests()
+		httpSecurity.authorizeRequests()
 				.antMatchers("/resources/**").permitAll()
-				.antMatchers("/mtest").hasRole("MEMBER")
-				.antMatchers("/test").hasRole("ADMIN");
-		
-		http.formLogin()
+				.antMatchers("/mtest/**").hasRole("MEMBER")
+				.antMatchers("/atest/**").hasRole("ADMIN")
+			.and()
+				.formLogin()
 				.loginPage("/login")
 //				.loginProcessingUrl("/login") // 사용자의 매개변수가 POST로 전달되는 URL
 //				.failureUrl("/login") // 실패시 리다이렉션 페이지
 				.usernameParameter("username") 
-				.passwordParameter("password"); 
-		http.exceptionHandling().accessDeniedPage("/accessDenied");
-		
-		
-		http.logout()
+				.passwordParameter("password")
+			.and()
+				.exceptionHandling().accessDeniedPage("/accessDenied")
+			.and()
+				.logout()
 				.logoutUrl("/logout")
-				.invalidateHttpSession(true);
+				.invalidateHttpSession(true)
 //				.logoutSuccessUrl("/login?logout");
+			.and()
+				.rememberMe().key("book").userDetailsService(bitUserService);
 		
-		http.userDetailsService(bitUserService);
+		
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
 
+		return new BCryptPasswordEncoder();
 	}
 	
 	@Override
@@ -50,32 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			
 		log.info("========= AuthenticationManagerBuilder =========");
 		
-		auth.inMemoryAuthentication() // 메모리기반 인증 생성
-		.withUser("user@test.com").password("123456").roles("MEMBER") // 사용자
-		.and().withUser("ad").password("ad").roles("ADMIN"); // 관리자
-		
+		auth.userDetailsService(bitUserService).passwordEncoder(passwordEncoder());	
 	}
 	
-	
-	
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-
-		return new PasswordEncoder() {
-
-			@Override
-			public boolean matches(CharSequence rawPassword, String encodedPassword) {
-				// TODO Auto-generated method stub
-				return rawPassword.equals(encodedPassword);
-			}
-
-			@Override
-			public String encode(CharSequence rawPassword) {
-				// TODO Auto-generated method stub
-				return rawPassword.toString();
-			}
-		};
-	}
-
 }

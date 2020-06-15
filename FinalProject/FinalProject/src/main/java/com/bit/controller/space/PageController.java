@@ -20,7 +20,8 @@ public class PageController {
 		model.addAttribute("list", PageService.getPageList());
 		return "space/pageList";
 	}
-	@GetMapping("page")
+	
+	@GetMapping("/spacePage")
 	public String page() {
 		return "page/spacePage";
 	}

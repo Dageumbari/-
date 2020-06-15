@@ -4,8 +4,7 @@
 
 <mapper namespace="com.bit.model.dao.PageDAO">
 
-<select id="getPageList" resultType="com.bit.model.vo.PageVO">
-	select * from page
-</select>
-
+	<select id="getPageList" resultType="com.bit.model.vo.PageVO">
+		select * from page
+	</select>
 </mapper>
