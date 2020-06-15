@@ -12,12 +12,11 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	//전달되는 데이터 포맷을 ChattingVO로 해주기
-	
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
 		config.enableSimpleBroker("/topic/");
 		//클라이언트로 메세지보낼 때 prefix
-		config.setApplicationDestinationPrefixes("/chatView");
+		config.setApplicationDestinationPrefixes("/app");
 		//클라이언트에서 메세지 주고받을 때 prefix
 	}
 	@Override

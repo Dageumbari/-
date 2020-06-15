@@ -3,18 +3,14 @@ package com.bit.model.vo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import org.apache.ibatis.type.Alias;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
-
 @Getter
 @Setter
 @ToString
-@Alias("chatting")
 public class ChattingVO implements Serializable {
 	private static final long serialVersionUID = 1L; //suid defalut로 명시~
 public ChattingVO getChatting() {
@@ -31,5 +27,3 @@ public ChattingVO getChatting() {
     private String adminId;
     private String adminPW;
 }
-
-

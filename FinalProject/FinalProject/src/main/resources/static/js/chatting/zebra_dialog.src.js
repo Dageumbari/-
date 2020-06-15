@@ -46,7 +46,7 @@
                                                         //
                                                         //  Default is FALSE
 
-            buttons:                   true,           //  Use this for localization and for adding custom buttons.
+            buttons:                   true,            //  Use this for localization and for adding custom buttons.
                                                         //
                                                         //  If set to TRUE, the default buttons will be used, depending
                                                         //  on the type of the dialog box: ['Yes', 'No'] for "question"
