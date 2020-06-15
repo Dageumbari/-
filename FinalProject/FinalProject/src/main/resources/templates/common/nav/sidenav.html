@@ -13,7 +13,7 @@
 		<div class="sidebarNav">
 			<div class="navigation">
 				<div class="navigationHeader">
-					<a href="/@withtokki/spaces">
+					<a href="/{nickname}/spaces">
 						<div class="tooltipContainer">
 							<div class="avatarFrame-space" role="presentation">
 								<img class="avatarImg"
@@ -23,12 +23,14 @@
 						</div>
 					</a>
 				</div>
-				<div class="navigation-body-with-scrollbar">
+				<!-- navigation header end  -->
+				<div class="navigation-body-with-scrollbar active">
 					<nav class="navButtons">
-						<div class="navigationButton" role="presentation">
+						<div class="navigationButton -secondary collapsed" role="presentation" style="cursor: pointer" 
+						onclick="location.href='http://localhost/edits.html'">
 							<div class="navigationButtonContent">
 								<div class="navigationButtonIcon">
-									<a class="navLink" href="/"> <svg
+									<a class="navLink" href="/" data-target="#ipsum-secondary"> <svg
 											preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
 											fill="none" xmlns="http://www.w3.org/2000/svg"
 											viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
@@ -126,6 +128,7 @@
 					</nav>
 
 				</div>
+				<!-- navigation-body end -->
 
 				<div class="sidebarFooter">
 					<div class="navButtons"></div>
