@@ -21,6 +21,6 @@ public class SpaceController {
 	
 	@GetMapping("/space")
 	public String space() {
-		return "space/space";
+		return "layout/spaceMain";
 	}
 }

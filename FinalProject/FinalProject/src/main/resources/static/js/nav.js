@@ -4,11 +4,13 @@ $(function(){
 
 function openNav(){
 	$('.navigationButton').on('click',function(event){
-		const CLICKED_CLASS = "clicked"	
-		classlist.toggle(CLICKED_CLASS)
+		  e.preventDefault()
+		  $(this).tab('show')
 	})
 });
 
+
+/*
 $(document).ready(function(){
     $(".dropdown, .btn-group").hover(function(){
         var dropdownMenu = $(this).children(".dropdown-menu");
@@ -22,7 +24,7 @@ $(document).ready(function(){
 $(".secondary-menu-toggle").on("click", function(e)
 	$(".secondary-menu").toggleClass("hidden")})
 	
-});
+});*/
 
 
 

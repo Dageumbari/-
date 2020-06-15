@@ -3,12 +3,15 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="context-path" th:content="@{/}" />
 
-<title>Space</title>
+<title>스페이스 메인페이지</title>
+<script
+	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
 
 <link th:href="@{/css/sidenav.css}" rel="stylesheet">
 <link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet">
@@ -29,22 +32,24 @@
 
 
 	<div class="bodyWrapper">
-	
+
 		<div class="sidebar">
-			<th:block th:include="common/nav/sidenav"></th:block>
-			<th:block th:include="common/nav/sidenavDrawer"></th:block>
+			<th:block th:replace="common/nav/sidenav"></th:block>
+			<th:block th:replace="common/nav/sidenavDrawer"></th:block>
 		</div>
-		
-		
+
+		<!-- <th:block th:replace="~{layout/navBar :: topNavBar}"/> -->
+		<!-- page Main -->
 		<div class="body">
-			
-			<!-- <header th:replace="page/spacePage"></header> -->
+			<!-- <div layout:fragment="page"></div> -->
+			<!-- <th:block th:replace="page/spacePage"></th:block> -->
 
 			<!-- Main Content
 			<div th:replace="${template}"></div> -->
 
+			
 		</div>
 	</div>
-
+	
 </body>
 </html>
