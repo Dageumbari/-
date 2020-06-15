@@ -18,7 +18,5 @@ public class PageDAOTest {
 		
 		System.err.println(pageDAO.getPageList());		
 	}
-
 }
-
 
