@@ -20,7 +20,7 @@ public class PageController {
 		return "space/pageList";
 	}
 	
-	@GetMapping("page")
+	@GetMapping("spacePage")
 	public String page() {
 		return "page/spacePage";
 	}
