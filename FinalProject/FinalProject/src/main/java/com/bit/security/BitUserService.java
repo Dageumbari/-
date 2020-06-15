@@ -2,6 +2,7 @@ package com.bit.security;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,21 +10,31 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.bit.model.dao.MainDAO;
+import com.bit.model.dto.UserDTO;
+
 import lombok.extern.java.Log;
 
 @Log
 @Service
-public class BitUserService implements UserDetailsService{
-	
+public class BitUserService implements UserDetailsService {
+
+	@Autowired
+	MainDAO mainDAO;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		User sampleUser = new User(username, "1111", Arrays.asList
-							(new SimpleGrantedAuthority("MEMBER")));
+		UserDTO userDTO = mainDAO.getUserAllInfo(username);
 		
-		log.info(" 유저 확인 " + sampleUser);
+		log.info("CHECK \n"+ new BitSecurityUser(userDTO).toString());
 		
-		return sampleUser;
+		if (mainDAO.getUserAllInfo(username) != null) {
+
+			return new BitSecurityUser(userDTO);
+		}
+		
+		return null;
 	}
-	
+
 }

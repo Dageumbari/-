@@ -1,9 +1,8 @@
-/* @charset "UTF-8"; */
+@charset "UTF-8";
 
 div {
     display: block;
 }
-
 
 .sidebar {
     top: 0px;

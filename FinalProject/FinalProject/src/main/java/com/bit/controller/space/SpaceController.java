@@ -11,16 +11,16 @@ public class SpaceController {
 	
 	@GetMapping("/sidenav")
 	public String sidebar() {
-		return "common/sidenav";
+		return "common/nav/sidenav";
 	}
 	
 	@GetMapping("/nav")
 	public String navigation() {
-		return "common/sidenavDrawer";
+		return "common/nav/sidenavDrawer";
 	}
 	
 	@GetMapping("/space")
 	public String space() {
-		return "space/space";
+		return "layout/spaceMain";
 	}
 }
