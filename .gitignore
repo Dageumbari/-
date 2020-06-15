@@ -71,3 +71,8 @@ local.properties
 .sts4-cache/
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse
+.idea/.gitignore
+.idea/bitbook.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
