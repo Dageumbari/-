@@ -42,14 +42,20 @@
 		<!-- page Main -->
 		<div class="body">
 			<!-- <div layout:fragment="page"></div> -->
-			<!-- <th:block th:replace="page/spacePage"></th:block> -->
 
-			<!-- Main Content
+
+			<div id="spacePage">
+
+				<div th:replace="page/spacePage"></div>
+
+				<!-- Main Content
 			<div th:replace="${template}"></div> -->
 
-			
+
+				<!-- <footer th:replace="common/common-footer"></footer> -->
+			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>
