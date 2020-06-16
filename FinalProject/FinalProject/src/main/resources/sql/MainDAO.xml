@@ -25,11 +25,10 @@
 
 
 
-	<select id="getUserInfo" resultMap="userMap">
+	<select id="getUserAllInfo" resultMap="userMap">
 
 		select *
-		from
-		user_info
+		from user_info
 		inner join user_role
 		on user_info.userNO = user_role.userNo
 		where user_info.email = #{email}
@@ -37,20 +36,21 @@
 	</select>
 
 	<insert id="setUserInfo" parameterType="com.bit.model.dto.UserDTO">
-	
-		insert into user_info (userNo, email, pw, name) 
-		values (USERINFOSEQ.NEXTVAL, #{email}, #{pw}, #{name}) 
+		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
+		SELECT USERINFOSEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		insert all 
+		into user_info (userNo, email, pw, name) 
+		values (#{userNo}, #{email}, #{pw}, #{name})
+		into user_role (roleNo, userNo, roleName) 
+		values 
+		<foreach item="roles" collection="roles" separator=",">
+		(USERROLESEQ.NEXTVAL, #{userNo}, #{roles.roleName})
+  		</foreach>
+		SELECT * FROM DUAL
 		
 	</insert>
 	
-	<insert id="setUserRole" parameterType="com.bit.model.dto.UserDTO">
 	
-		
-		insert into user_role (roleNO, userNo, roleName) 
-		values (USERROLESEQ.NEXTVAL, #{uNo}, #{roleName} );
-		
-		
-	</insert>
-
-
 </mapper>

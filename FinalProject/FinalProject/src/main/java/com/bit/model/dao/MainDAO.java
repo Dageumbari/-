@@ -12,7 +12,6 @@ public interface MainDAO {
 	public UserDTO getUserAllInfo(String email);
 	
 	public void setUserInfo(UserDTO userDTO);
-	public void setUserRole(UserDTO userDTO, int uNo);
 	
 	@Select("select userNo from user_info where user_info.email = #{email}")
 	public int getUserNo(String email);

@@ -26,7 +26,7 @@ public class MainController {
 	
 	@GetMapping("/main")
 	public String main() {
-		
+		mainDAO.getUserNo("collin1016@naver.com");
 		return "/main";
 	}
 	
@@ -65,10 +65,10 @@ public class MainController {
 	public String joinPost(@ModelAttribute("userDTO")UserDTO userDTO) {
 		
 		userDTO.setPw(pwEncoder.encode(userDTO.getPw()));
+		log.info("\n 입력값 확인 \n" + userDTO + "\n");
 		
 		mainDAO.setUserInfo(userDTO);
-		int uNo = mainDAO.getUserNo(userDTO.getEmail());
-		mainDAO.setUserRole(userDTO, uNo);
+		
 		
 		return "/joinResult";
 	}

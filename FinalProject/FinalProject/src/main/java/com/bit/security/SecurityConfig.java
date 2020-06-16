@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.invalidateHttpSession(true)
 //				.logoutSuccessUrl("/login?logout");
 			.and()
-				.rememberMe().key("book").userDetailsService(bitUserService);
+				.rememberMe().key("book");
 		
 		
 	}
