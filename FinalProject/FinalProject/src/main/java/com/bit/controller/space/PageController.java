@@ -25,4 +25,5 @@ public class PageController {
 	public String page() {
 		return "page/spacePage";
 	}
+	
 }
