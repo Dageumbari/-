@@ -3,15 +3,23 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.OrgDAO">
-	<select id="getAllOrgList" >
-		SELECT *
-			FROM dashBoard
-		WHERE 
+	<!-- 시큐리티에서 userno 가져오기 -->
+	<select id="getAllOrgList" resultType="com.bit.model.vo.DashBoardVO">
+		SELECT DISTINCT D.DASHBOARDCODE, 
+			   D.DASHBOARDIMAGE, 
+			   D.DASHBOARDNAME, 
+			   D.DASHBOARDTYPE, 
+			   D.DASHBOARDURL
+		FROM DASHBOARD D 
+        	JOIN TEAM T ON (D.DASHBOARDCODE = T.DASHBOARDCODE)
+			JOIN MEMPERMIT M ON (T.TEAMCODE = M.TEAMCODE)
+        	JOIN USER_INFO U ON (M.USERNO = U.USERNO)
+    	WHERE 1 = U.USERNO; 
 	</select>
-	<select id="getOrgInfo" >
+	<select id="getOrgInfo">
 		SELECT dashboardimage, dashboardname
 			FROM dashBoard
-		WHERE dashBoardCode = #{dashboardCode}
+		WHERE #{dashboardCode} = dashBoardCode;
 	</select>
 	<delete id="deleteOrg">
 		DELETE *

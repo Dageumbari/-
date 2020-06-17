@@ -8,78 +8,31 @@
 <body>
 	<div class="reset-3c756112--dashboardNavigationContainer-c615f6e4">
 		<div class="reset-3c756112--navigation-3e92335c">
-			<div
-				class="reset-3c756112--withScrollbar-39338630--scrollAxisY-7680295e--navigationBody-3dc152bc">
-				<a class="reset-3c756112--orgTab-8d620844" href="/@yena/spaces"><div
-						class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
-						<div
-							class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
-							role="presentation">
+			<div class="reset-3c756112--withScrollbar-39338630--scrollAxisY-7680295e--navigationBody-3dc152bc">
+				
+				<!-- 반복문~ -->
+				
+				<a class="reset-3c756112--orgTab-8d620844" href="/${orgList.dashBoardUrl}/spaces" th:each="orgList : ${OrgList}">
+					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
+						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10" role="presentation">
 							<img class="image-67b14f24--avatar-1c1d03ec"
-								src="https://gblobscdn.gitbook.com/users%2FIR8rlUhGuJOEVzaRL8eE9FmLRIO2%2Favatar-1590479261730.png?alt=media">
+							src="https://gblobscdn.gitbook.com/users%2FIR8rlUhGuJOEVzaRL8eE9FmLRIO2%2Favatar-1590479261730.png?alt=media">
 							<div class="reset-3c756112--innerShadow-7a3a8651"></div>
 						</div>
-					</div></a><a class="reset-3c756112--orgTab-8d620844--orgTabActive-7ab59dc9"
-					href="/@bitfinal/spaces"><div
-						class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
-						<div
-							class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
+					</div>
+				</a>
+				
+				<a class="reset-3c756112--orgTab-8d620844--orgTabActive-7ab59dc9" href="/@bitfinal/spaces">
+					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
+						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
 							role="presentation">
 							<img class="image-67b14f24--avatar-1c1d03ec"
 								src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABoElEQVRYR+2VS0sCURiG39N4m1IyKITINIyylByRWmS0cNWihS36hf2LIqpNJCIEhZeyu1F0WQRl6thMOGCUmyPnzNAszmy/eec8PN/3nSGbT1s6bPwQAcjZHWGQUyCEQWGQ1wBvXsygMMhrgDfPPYNne3ncn1b/cMjDPoRScwhEwxiQJC5GSwC7RMFkFJFlBWSAMEOaAth4ryO2lobkdEDXdXy8vqG4fYh2U0VyIwPZ77MPYJfkuXqHyn4eSjYD76jffoAPxQvcFkpIZDPw+AbtA6h9aXi5rOH8oIDQYgwTiRlmuE7QlBns3WKX7EEknUAgOgVC2BfEMkDjw4RgPD6NyEoSkoP9qjHF4O8t7sC16g08lq9wnTtBeCmOydQ8c5stAezQ6JqO8m4OaqP5cwWxUFoIqKG0c4R2S7UfoPrZxE2hiNpxBcbfJK2wyDMyphjs3eIujXdsBAvrq3B7//ke7AV0D8nGBgeVWUguJ7M9Uwxynd5HmLvFfZzB9YoA5NJnxhbzAtDyosU0Q7S6MEgzRKsLgzRDtLowSDNEq38DSrQMYOZ84HwAAAAASUVORK5CYII=">
 						</div>
-					</div></a><a class="reset-3c756112--orgTab-8d620844" href="/@bit-8/spaces"><div
-						class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
-						<div
-							class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
-							role="presentation">
-							<img class="image-67b14f24--avatar-1c1d03ec"
-								src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABi0lEQVRYR+2WXUvCYBTH/6K78KVtJuSi6M2yIK0kiFDm0kro4/Sp+g7FTCUwrD5BL/iC5E3q3M1A0FCISBfIzkQvnnMzGDuc3/M752xzXN/0+5jjcDBAYneYQaJAMIPMINUANZ/NIDNINUDNJ83g+9srHosPYww+3wLWNzYR3t2Dx+MlMdoCuBXagdf7C6LrHdSqleE95ewCvCBYhrQF8DJzhaWg9AeiXq+hkMsiehhDJHIwf4Ca1sa9eodgUMLJaRxOp9MS5NQMtppfyKq3CG2HcRQ7tgQ3SJoKoN7p4OW5BF3XkFTOIYjibAHNqouiHwlZweBKCVsMjm5xt9tFtVoGx3GQkykIwowNmm2x1m6jkFchiH7EEzJcLs6SSFsMmgH2ej08lYpoND6RSmfA8zwDHDPw86kzM9hqNpHPqVgMBGbf4tElMQwDlfLH8ECykoYkLVtqr23vwdHqbrcbK6tr2I9EMfhxoARpSSiFJ81lgJOa+u85ZpAZpBqg5rMZZAapBqj5bAapBr8BqLEaqPjiEG0AAAAASUVORK5CYII=">
-						</div>
-					</div></a><a class="reset-3c756112--orgTab-8d620844" href="/@sample-6/spaces"><div
-						class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
-						<div
-							class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
-							role="presentation">
-							<img class="image-67b14f24--avatar-1c1d03ec"
-								src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAACUklEQVRYR+2Va08aQRSG3y0Q2EIKpoYVLQgItKlC7JfGWqkI6B/rv2pSbVWK0ovRaFsrlyLF3gChNtWFXWhmE40bm6zOENMPM1/PnJlnnpkzR8g87fbwHw+BAzLeDjfIKBDcIDfIaoA1n79BbpDVAGs+8xtUVRXlz/v4+GEX375+13iGPBIid8PwB0ZhNpuZGJkAlY6CtWwOO9vvMer3QZLcEG4IqNcaGrTXdwcz8WmIN0VqSCZAYu3l0grmUrMIR0IQBOEMZL9c0WITsXFMPojpYlehpQbsdrtYz+ZQrR4gvZCCy+XU7dvpdLC6nMHJiYxkOgGr1XoVrrO51IBkhY13m9je2kFyPoGRkWEdQK/XQ6PegKKqGBy8DZPJdP2Ah4dNvFhcRluWMR69j7FQEKJI/97+dQImg2TBeq2O17m3WlGQ4ZbcCIWDCI4FYLfbqaydT2IGJIuR6yQ2C/kiivkims0WLBaLVhyxySjTV9MXwPMnPoXd3NjCp909TM9MIRqboDZJDUiqlFyv1WbDwIDrAoAsy9o30253kJ6fg020UUFSA7Zav/D82SIkj4SpRw8vVKmiKMhm1vDzRw2phSSczlvXC0haXG79DUqFEuKzj+H1eXUApxVO7JJuYrbQtTxqg4Tm+M8xVldeoVgo6Vrd0dFvVMoVzeqTRBye4SEqeySJCZAsQEyStpbfK6D65QDk7ZGPORD0I3IvDIfDQQ3XF0Cm3S+RzGzwEnswTeGATPr6USSsAEb5/IqNDBnFuUEjQ0ZxbtDIkFGcGzQyZBT/C7LzQwBxEPGdAAAAAElFTkSuQmCC">
-						</div>
-					</div></a><a class="reset-3c756112--orgTab-8d620844" href="/@org1-4/spaces"><div
-						class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
-						<div
-							class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
-							role="presentation">
-							<img class="image-67b14f24--avatar-1c1d03ec"
-								src="https://gblobscdn.gitbook.com/orgs%2F-M7gNmAO6KQse2pm7SL5%2Favatar-1589882599777.png?alt=media">
-							<div class="reset-3c756112--innerShadow-7a3a8651"></div>
-						</div>
-					</div></a><a class="reset-3c756112--orgTab-8d620844"
-					href="/@yenasample/spaces"><div
-						class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
-						<div
-							class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
-							role="presentation">
-							<img class="image-67b14f24--avatar-1c1d03ec"
-								src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABrklEQVRYR+2Uy0tCQRSHf2pomRhZC3FhYS2yh4+KKDAqpU3RS+gvbN+T2kQvEoropRVGlGSIWShGhVaoN+5AgWSUc4xczGzv/M755pszVzF9PyOhjJdCABJvRxgkCoQwKAxSDVDzYgaFQaoBap57BsP7ZwjtBGDps6Ghu60gx2/2/HQAbsDX5zQCS5vIvL7BPjEEba0+r1cq+Qj/wgYqNGrYxgah0VX9xFLwOzegXC0WDOF8bQ/mLissffa8BqEdP24Ogmjx9MBotXDBySESoGzvZHkb6YcnOKbcnxaf4w84nl9HtaEGHaP9zCLvIgHKTRPXUZyu+GBqb0Kzq5NxXPoOET29QvuIC3WNJl42liMD5rJZBFd3kYzcwTHpRi6TgX9xCwazEdbhXihVqv8FlLs/xuIMitmSJCTCt7CPD0BvrCfBlcSgXETKSexaI/4LBtTQ3frl0fCSkq/4o7H8WzmeW4dCqYTT60alXsfLlJcrGeBb6gVHs2usuNPrgVpbKQCLMiAMFqWrwOayN0g94Hf5kr1iAfhXBqh1xRULg1QD1LyYQWGQaoCaL/sZfAcoivxRD+unAgAAAABJRU5ErkJggg==">
-						</div>
-					</div></a><a class="reset-3c756112--orgTab-8d620844"
-					href="/@2222222222/spaces"><div
-						class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
-						<div
-							class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
-							role="presentation">
-							<img class="image-67b14f24--avatar-1c1d03ec"
-								src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAB4UlEQVRYR+3W+ytDYRgH8O+5MDaKNcyYuSSiSEK5FIVya27J3yiKEH5wqVlyya0IxdaI2Y4Rsq1wtCNlFnXOc9J+eN9fz/v0fs73ed7T4boCsowkXhwDErvDEiQGCJYgS5CaALWezSBLkJoAtZ4+g7KMR885brfciEhBxWPINsNS14DsympwPE8ykoDy+zv8Gy5Ie9swmC3IKq9QMPenx4jeh2CprUd+azsJSQKGA35cTE8gw14Me2cP+JQUBfgWjcA7P41oSELp4BjSLLmaUyQBpYNd3LhWUDwwgkxHSRxC2t/BtWsVJc5RZBbFP1OjJQHDwVu8vrzAaLVBMBgSgP5NN0qdYzBa89WY4vaSgL+d+tVijuPg6BuCkJqaPMDYxblZX0Po6BCOXmdC69VKdU9QmUv3GqxNLcipb1LrSdivK/Dh7ARXy4swV9eQPy9fUt2Aj95z+BZmkVVZBVtbB3jx85NDXboAny+98C3NwWSzo7Czh3Qpfr4QGRgOBuCdnUJ6bh7s3f264mJYEjByF4RnZhKcICCvsRlCWnpCR3lRhMlWAE4QNXWbBHzyeRTgXyv241A2PA7RaPp/oKYTVRaRElR5lqbtDKgptm9FLEGWIDUBaj2bQZYgNQFqfdLP4Ad+hfkxw4YLNwAAAABJRU5ErkJggg==">
-						</div>
-					</div></a><a class="reset-3c756112--orgTab-8d620844" href="/@gg11/spaces"><div
-						class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
-						<div
-							class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
-							role="presentation">
-							<img class="image-67b14f24--avatar-1c1d03ec"
-								src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAACD0lEQVRYR+2Vy09aQRSHf/TChZur1HeqKFYJpCVRTG1So/GZxk3T0E3/wv4DdeXGqjE2rVajKApiQXkFEMW2WMVapZlJNBpNE+ZU6GJmN8k9Od/9zmMMb/feFfEfH4MEJFZHGiQKhDQoDVINUONlD0qDVAPUeHIPFi8ukA0nEF8JIp89BLurmgVNLjvsvW6YdY3ESAL8/esMwakFZMNxWKp11Lc3w6AoOPmeRy6WhqqZ0f16GFWNtcKQJMDo0gYin9bQ6nHBMdCDB4pyBfItuQf/5Dz0uofoejUIo1kVghQGLOSP4Xs/DcVkhMc7CpNmvgUQ/riKhC8Ej3cENbam8gIexjPwTcyg7dlTOPo9dyY/PTrmfanXWqHVVJcXMLm+jdDsEpxDvbzE93WES8xKtz23zIeg/nHLFV9o5guS/q83eCk/8c8BM1u7+JHJccBC/if2IwmSZWHAdGAHganPf02ei6Xgm5itDCBbIyx5s7sTrpHnd7ZgRQHPTk75FLNl3fNmDBarfguyooCMJh2IIPhhEXXtLXCP991YxuzJ21nwgy1zZtjW5RQadOEeZNkYxO7iBodgL0VDhw2KakLx/BwH0RQfkkZHG568fAGjaio/4GVGtoxjy5vIRVO85IpRgfVRA2zdTr6Crj+BpVKSDJaaTOR7CShi7XqMNCgNUg1Q42UPSoNUA9R42YNUg38A+dotYACAZKsAAAAASUVORK5CYII=">
-						</div>
 					</div></a>
+					
+					
+					
 				<div class="reset-3c756112--orgButton-8646a146">
 					<button
 						class="button-36063075--medium-6e2a217a--button-7fcfb4a1--button-dark-6278d806--medium-54db2ab3--rounded-50d53f59--S100Top-351b6542--S100Bottom-15862a5a">

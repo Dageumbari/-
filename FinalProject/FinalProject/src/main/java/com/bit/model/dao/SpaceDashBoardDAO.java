@@ -1,6 +1,10 @@
 package com.bit.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
+import com.bit.model.vo.SpaceVO;
 
 @Mapper
 public interface SpaceDashBoardDAO {
@@ -16,7 +20,7 @@ public interface SpaceDashBoardDAO {
 	
 	
 	//스페이스 대시보드
-	public void getAllSpaceList();
+	public List<SpaceVO> getAllSpaceList();
 	public void createSpace();
 	public void getSpaceInfo();
 	public void spaceInfoModify();
