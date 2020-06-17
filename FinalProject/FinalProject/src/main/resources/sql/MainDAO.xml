@@ -13,6 +13,7 @@
 		<result property="userImage" column="userImage" />
 		<result property="gender" column="gender" />
 		<result property="countryCode" column="countryCode" />
+		<result property="key" column="key" />
 		<collection property="roles" resultMap="roleMap">
 		</collection>
 	</resultMap>
@@ -34,6 +35,15 @@
 		where user_info.email = #{email}
 
 	</select>
+	
+	<select id="getJoinCheck" resultType="String" >
+
+		select user_info.email
+		from user_info
+		where user_info.email = #{email}
+
+	</select>
+	
 
 	<insert id="setUserInfo" parameterType="com.bit.model.dto.UserDTO">
 		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
@@ -41,8 +51,8 @@
 		</selectKey>
 		
 		insert all 
-		into user_info (userNo, email, pw, name) 
-		values (#{userNo}, #{email}, #{pw}, #{name})
+		into user_info (userNo, email, pw, name, key) 
+		values (#{userNo}, #{email}, #{pw}, #{name}, #{key})
 		into user_role (roleNo, userNo, roleName) 
 		values 
 		<foreach item="roles" collection="roles" separator=",">

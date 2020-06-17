@@ -3,7 +3,6 @@ package com.bit.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.bit.model.dao.MainDAO;
 import com.bit.model.dto.UserDTO;
+import com.bit.model.service.UserService;
 
 import lombok.extern.java.Log;
 
@@ -24,9 +24,12 @@ public class MainController {
 	@Autowired
 	MainDAO mainDAO;
 	
+	@Autowired
+	UserService userService;
+	
 	@GetMapping("/main")
 	public String main() {
-		mainDAO.getUserNo("collin1016@naver.com");
+
 		return "/main";
 	}
 	
@@ -60,15 +63,10 @@ public class MainController {
 		return "/join";
 	}
 	
-	@Transactional
 	@PostMapping("/join")
 	public String joinPost(@ModelAttribute("userDTO")UserDTO userDTO) {
 		
-		userDTO.setPw(pwEncoder.encode(userDTO.getPw()));
-		log.info("\n 입력값 확인 \n" + userDTO + "\n");
-		
-		mainDAO.setUserInfo(userDTO);
-		
+		userService.join(userDTO);
 		
 		return "/joinResult";
 	}

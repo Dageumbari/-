@@ -20,4 +20,6 @@ public class UserInfoVO {
 	private int loginFailCount;
 	private Timestamp loginCountDate;
 	private int countryCode;
+	private String Key;
+	
 }

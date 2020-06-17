@@ -19,6 +19,7 @@ public class UserDTO {
 	private String userImage;
 	private String gender;
 	private int countryCode;
+	private String key;
 	
 	private List<UserRoleVO> roles;
 
