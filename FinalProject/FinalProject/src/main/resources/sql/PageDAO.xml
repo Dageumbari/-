@@ -8,9 +8,7 @@
 		SELECT * FROM PAGE
 	</select>
 	
-<!-- 	<select id="getLists" resultType="com.bit.model.vo.PageVO">
-	SELECT 
-		*
-		FROM PAGE
-	</select> -->
+	<select id="getAllList" resultType="com.bit.model.vo.PageVO">
+	SELECT * FROM PAGE
+	</select>
 </mapper>
