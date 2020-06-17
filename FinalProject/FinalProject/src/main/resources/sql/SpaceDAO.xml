@@ -11,7 +11,7 @@
 		property="spaceUrl" column="spaceUrl" /> <collection property="draftList" 
 		column="draftCode" ofType="draftList" select="selectDraftsForSpace"> </collection> 
 		</resultMap> -->
-
+<!-- 
 	<resultMap type="com.bit.model.dto.space.DraftListDTO"
 		id="draftList_resultMap">
 		<id property="spaceCode" column="spaceCode" />
@@ -20,7 +20,7 @@
 			
 		</collection>
 	</resultMap>
-
+ -->
 
 
 
@@ -29,7 +29,7 @@
 
 
 
-
+<!-- 
 	<resultMap type="pageGroupDTO" id="pageGroup_resultMap">
 	</resultMap>
 
@@ -42,7 +42,7 @@
 		<result property="draftSavetime" column="draftSaveTime" />
 		<result property="draftStatus" column="draftStatus" />
 	</resultMap>
-
+ -->
 
 
 	<!-- edits 항목의 badge -->
