@@ -13,16 +13,18 @@
 <script
 	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
 
+
+<!-- 여기 링크+스크립트  나중에 묶어서 header.html 로 둘 예정 -->
 <link th:href="@{/css/sidenav.css}" rel="stylesheet">
 <link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet">
-<!-- <link th:href="@{/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
 <link th:href="@{/css/theme-1.css}" rel="stylesheet">
 <link th:href="@{/css/theme-2.css}" rel="stylesheet">
 <link th:href="@{/css/theme-3.css}" rel="stylesheet">
 <link th:href="@{/css/theme-4.css}" rel="stylesheet">
 <link th:href="@{/css/theme-5.css}" rel="stylesheet">
 <link th:href="@{/css/theme-6.css}" rel="stylesheet">
-<link th:href="@{/css/theme-7.css}" rel="stylesheet"> -->
+<link th:href="@{/css/theme-7.css}" rel="stylesheet">
 
 </head>
 
@@ -30,32 +32,32 @@
 	<!-- Common script -->
 	<!-- <th:block th:include="common/include-script"></th:block> -->
 
+	<div class="app">
+		<div class="bodyWrapper">
 
-	<div class="bodyWrapper">
+			<div class="sidebar">
+				<th:block th:replace="common/nav/sidenav"></th:block>
+				<th:block th:replace="common/nav/sidenavDrawer"></th:block>
+			</div>
 
-		<div class="sidebar">
-			<th:block th:replace="common/nav/sidenav"></th:block>
-			<th:block th:replace="common/nav/sidenavDrawer"></th:block>
-		</div>
+			<!-- <th:block th:replace="~{layout/navBar :: topNavBar}"/> -->
+			<div class="bodyWithSidebarMDExtended">
+				<!-- <div layout:fragment="page"></div> -->
 
-		<!-- <th:block th:replace="~{layout/navBar :: topNavBar}"/> -->
-		<!-- page Main -->
-		<div class="body">
-			<!-- <div layout:fragment="page"></div> -->
+				<div class="body">
+					<div id="spacePage">
 
+						<div th:replace="page/spacePage"></div>
 
-			<div id="spacePage">
-
-				<div th:replace="page/spacePage"></div>
-
-				<!-- Main Content
+						<!-- Main Content
 			<div th:replace="${template}"></div> -->
 
 
-				<!-- <footer th:replace="common/common-footer"></footer> -->
+						<!-- <footer th:replace="common/common-footer"></footer> -->
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
