@@ -3,13 +3,18 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="context-path" th:content="@{/}" />
 
-<title>Space</title>
+<title>스페이스 메인페이지</title>
+<script
+	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
 
+
+<!-- 여기 링크+스크립트  나중에 묶어서 header.html 로 둘 예정 -->
 <link th:href="@{/css/sidenav.css}" rel="stylesheet">
 <link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet">
 <link th:href="@{/css/style.css}" rel="stylesheet">
@@ -21,34 +26,38 @@
 <link th:href="@{/css/theme-6.css}" rel="stylesheet">
 <link th:href="@{/css/theme-7.css}" rel="stylesheet">
 
-
 </head>
+
 <body>
 	<!-- Common script -->
 	<!-- <th:block th:include="common/include-script"></th:block> -->
 
+	<div class="app">
+		<div class="bodyWrapper">
 
-	<div class="wrapper">
-	
-		<div class="nav">
-		<th:block th:include="common/sidenav"></th:block>
-		<!-- <th:block th:include="common/sidenavDrawer"></th:block> -->
-		</div>
-		
-		
-		<div id="spacePage">
-			
-			<div th:replace="page/spacePage"></div>
+			<div class="sidebar">
+				<th:block th:replace="common/nav/sidenav"></th:block>
+				<th:block th:replace="common/nav/sidenavDrawer"></th:block>
+			</div>
 
-			<!-- Main Content
+			<!-- <th:block th:replace="~{layout/navBar :: topNavBar}"/> -->
+			<div class="bodyWithSidebarMDExtended">
+				<!-- <div layout:fragment="page"></div> -->
+
+				<div class="body">
+					<div id="spacePage">
+
+						<div th:replace="page/spacePage"></div>
+
+						<!-- Main Content
 			<div th:replace="${template}"></div> -->
 
-			<hr>
 
-			
-			<!-- <footer th:replace="common/common-footer"></footer> -->
+						<!-- <footer th:replace="common/common-footer"></footer> -->
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-
 </body>
 </html>
