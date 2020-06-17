@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDEMapper3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.model.dao.SpaceDAO">
+
+	<!-- space -->
+	<!-- <resultMap type="com.bit.model.dto.SpaceDTO" id="space_resultMap"> 
+		<id property="spaceCode" column="spaceCode" /> <result property="userNo" 
+		column="userNo" /> <result property="spaceName" column="spaceName" /> <result 
+		property="spaceUrl" column="spaceUrl" /> <collection property="draftList" 
+		column="draftCode" ofType="draftList" select="selectDraftsForSpace"> </collection> 
+		</resultMap> -->
+<!-- 
+	<resultMap type="com.bit.model.dto.space.DraftListDTO"
+		id="draftList_resultMap">
+		<id property="spaceCode" column="spaceCode" />
+		<collection property="draftDTO" column="draftCode"
+			ofType="DraftDTO" select="getDraftList">
+			
+		</collection>
+	</resultMap>
+ -->
+
+
+
+	<!-- <result property="draftStatus" column="draftStatus" typeHandler=""/> -->
+
+
+
+
+<!-- 
+	<resultMap type="pageGroupDTO" id="pageGroup_resultMap">
+	</resultMap>
+
+	<select id="getDraftList" resultMap="draftList_resultMap">
+		select * from draft
+	</select>
+
+	<resultMap type="draftDTO" id="draft_resultMap">
+		<id property="draftCode" column="draftCode" />
+		<result property="draftSavetime" column="draftSaveTime" />
+		<result property="draftStatus" column="draftStatus" />
+	</resultMap>
+ -->
+
+
+	<!-- edits 항목의 badge -->
+	<!-- <select id="getEditsBadge" resultType="int" parameterType="int"> select 
+		count(*) from draft where userNo=#{userNo} and draftStauts="saved" </select> -->
+
+	<!-- <result property="userImage" column="userImage"/> <result property="name" 
+		column="name"/> -->
+
+	<!-- sidenav header의 사용자 로고이미지, url은 툴팁때문에 넣음 -->
+	<!-- <select id="com.bit.model.dto.space.getUserInfo" resultMap="space_resultMap"> 
+		select userNo, userImage, userUrl from userInfo where userNo=#{userNo} </select> -->
+
+
+
+</mapper>
