@@ -18,10 +18,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	BitUserService bitUserService;
 	
-	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		log.info("========= 시큐리티  =========");
 		
 		httpSecurity.authorizeRequests()
 				.antMatchers("/resources/**").permitAll()
@@ -42,9 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.invalidateHttpSession(true)
 //				.logoutSuccessUrl("/login?logout");
 			.and()
-				.rememberMe().key("book");
-		
-		
+				.rememberMe().key("book");		
 	}
 	
 	@Bean
@@ -55,10 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			
-		log.info("========= AuthenticationManagerBuilder =========");
+					
+		auth.userDetailsService(bitUserService).passwordEncoder(passwordEncoder());
 		
-		auth.userDetailsService(bitUserService).passwordEncoder(passwordEncoder());	
 	}
 	
 }

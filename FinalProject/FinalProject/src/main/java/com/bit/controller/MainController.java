@@ -66,6 +66,7 @@ public class MainController {
 	@PostMapping("/join")
 	public String joinPost(@ModelAttribute("userDTO")UserDTO userDTO) {
 		
+		log.info("join controller");
 		userService.join(userDTO);
 		
 		return "/joinResult";

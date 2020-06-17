@@ -2,23 +2,19 @@ package com.bit.security;
 
 import java.util.Random;
 
-import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SendEmail {
 
-	/*
-	 * @Autowired private SqlSessionTemplate sqlSession; private UserDaoInterface
-	 * userDao;
-	 */
 	@Autowired
-	private JavaMailSender mailSender;
+	private JavaMailSender javaMailSender;
 	
 	public String getKey() {
 		return keyGeneration();
@@ -43,27 +39,31 @@ public class SendEmail {
 		return stringBuffer.toString();
 	}
 
-	public void email(String email, String userName, String key, HttpServletRequest request) {
+	public void email(String email, String userName, String key)  {
 		
-		/*
-		 * userDao = sqlSession.getMapper(UserDaoInterface.class);
-		 * userDao.GetKey(user_id, key);
-		 */
 		
-		MimeMessage mail = mailSender.createMimeMessage();
-
+		
+		
 		String htmlStr = "<h2>BitBook 회원인증 메일입니다.</h2><br>" 
 				+ "<h3>" + userName + "님</h3>"
 				+ "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
 				+ "<a href='http://localhost:80" // + request.getContextPath()	
 				+ "/user/key_alter?email=" + email + "&user_key=" + key + "'>인증하기</a></p>"
 				+ "회원가입을 시도하지 않으셨다면 무시해주세요";
+		
+		
 		try {
-			mail.setSubject("BitBook 회원인증 메일입니다.", "UTF-8");
-			mail.setText(htmlStr, "UTF-8", "html");
-			mail.addRecipient(RecipientType.TO, new InternetAddress(email));
-			mailSender.send(mail);
+			MimeMessage message = javaMailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+			
+			messageHelper.setTo(email);
+			messageHelper.setFrom("Bitbook");
+			messageHelper.setSubject("BitBook 회원인증 메일입니다.");
+			messageHelper.setText(htmlStr);
+			
+			javaMailSender.send(message);
 		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
