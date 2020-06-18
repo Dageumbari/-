@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.bit.model.vo.ChattingVO;
 
+
 @Mapper
-@Repository
+@Repository //clarifying it's role as DAO
 public interface ChatDAO {
 	public List<ChattingVO> getChatting();
 }

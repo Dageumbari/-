@@ -14,3 +14,5 @@ public class DashBoardVO {
 	private String dashBoardType;
 	private String dashBoardUrl;
 }
+
+

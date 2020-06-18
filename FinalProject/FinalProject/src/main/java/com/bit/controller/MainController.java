@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.bit.model.dao.MainDAO;
+import com.bit.model.dao.NoticeDAO;
 import com.bit.model.dto.UserDTO;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
 @Controller
+@AllArgsConstructor
 public class MainController {
 	
 	@Autowired
@@ -23,6 +26,9 @@ public class MainController {
 	
 	@Autowired
 	MainDAO mainDAO;
+	
+
+	
 	
 	@GetMapping("/main")
 	public String main() {
@@ -78,4 +84,7 @@ public class MainController {
 		
 		return "/main";
 	}
+	
+	
+	
 }

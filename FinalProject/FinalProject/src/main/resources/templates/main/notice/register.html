@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><!-- 240 -->
+<meta charset="UTF-8">
+<title>공지 등록하께여</title>
+</head>
+<body>
+<div class="panel-body">공지 등록</div>
+<form role="form" action="/notice/register" method="post">
+<div class="form-group">
+<label>제목  </label><input class="form-control" name='noticeTitle'></div>
+<div class="form-group">
+<label>글작성  </label>
+<textarea class="form-control" rows="10" name='noticeContent'></textarea></div>
+<div class="form-group">
+<label>작성자  </label><input  class="form-control" name='adminCode'>
+</div>
+<button type="submit" class="btn btn-default">등록</button>
+<button type="reset" class="btn btn-default">초기화</button>
+</form> <!-- 등록,초기화 버튼 링크연결 -->
+</body>
+</html>
