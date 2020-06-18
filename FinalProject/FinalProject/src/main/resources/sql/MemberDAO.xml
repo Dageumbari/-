@@ -3,5 +3,92 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.MemberDAO">
+	<resultMap id="member" type="com.bit.model.dto.MemberDTO">
+		<result property="dashBoardCode" column="dashBoardCode" />
+		<result property="teamCode" column="teamCode" />
+		<result property="teamName" column="teamName" />
+		<collection property="memPermit" javaType="com.bit.model.vo.MemPermitVO">
+			<id property="teamCode" column="teamCode" />
+			<id property="userNo" column="userNo" />
+			<result property="teamName" column="teamName" />
+			<collection property="permission" javaType="com.bit.model.vo.PermissionVO">
+				<id property="permissionNo" column="permissionNo" />
+				<result property="permissionName" column="permissionName" />
+			</collection>
+			<collection property="userInfo" javaType="com.bit.model.vo.UserInfoVO">
+				<id property="userNo" column="userNo" />
+				<result property="name" column="name" />
+				<result property="userImage" column="userImage" />
+			</collection>
+		</collection>
+	</resultMap>
 
+	<!--  참고용
+	<resultMap id="categoryPreferenceValueMap" type="SyncCategoryPreferenceValueModel">
+		<id property="preferenceTypeId" column="preference_type_id" />
+		<result property="title" column="title" />
+		<result property="index" column="type_index" />
+		<result property="updatedAt" column="category_updated_at" />
+		<collection property="preferences" column="p_preference_id" ofType="SyncPreferenceModel">
+			<id property="preferenceId" column="p_preference_id" />
+			<result property="title" column="p_preference_title" />
+			<result property="index" column="preference_index" />
+			<result property="updatedAt" column="preference_updated_at" />
+			<collection property="preferenceValues" column="p_v_preference_value_id" ofType="SyncPreferenceValueModel">
+				<id property="preferenceValueId" column="p_v_preference_value_id" />
+				<result property="preferenceValue"
+					column="p_v_preference_value" />
+				<result property="updatedAt"
+					column="preference_value_updated_at" />
+			</collection>
+		</collection>
+	</resultMap>
+ -->
+	<!-- MemberDTO view테이블 만들기 -->
+	<!-- <select id="">
+		SELECT COUNT(*) FROM MEMBER
+	</select>  -->
+	<select id="createMemberViewTable">
+		CREATE VIEW MEMBER AS
+		SELECT T.DASHBOARDCODE,
+       		   T.TEAMCODE,
+       		   T.TEAMNAME,
+      		   M.PERMISSIONNO,
+     		   P.PERMISSIONNAME,
+      		   U.USERNO,
+      		   U.NAME,
+       		   U.USERIMAGE			 
+		FROM TEAM T
+			JOIN MEMPERMIT M ON (T.TEAMCODE = M.TEAMCODE)
+			JOIN PERMISSION P ON (M.PERMISSIONNO = P.PERMISSIONNO)
+			JOIN USER_INFO U ON (M.USERNO = U.USERNO)
+		ORDER BY DASHBOARDCODE, TEAMCODE, PERMISSIONNO
+	</select>
+
+	<select id="getAllMemberList" resultMap="member">
+		SELECT USERIMAGE
+		FROM MEMBER 
+		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
+			AND TEAMNAME ='All Members'
+	</select>
+	
+	<select id="getTeamList" resultMap="member">
+		SELECT TEAMCODE,
+			   TEAMNAME,
+		FROM MEMBER
+		WHERE 
+	</select>
+	
+	<select id="getTeamMemberList" resultMap="member">
+		SELECT TEAMCODE,
+			 TEAMNAME,
+			 PERMISSIONNO,
+			 PERMISSIONNAME,
+			 USERNO,
+			 NAME,
+			 USERIMAGE
+		FROM MEMBER
+		WHERE #{TEAMCODE} = TEAMCODE;
+	</select>
+	
 </mapper>

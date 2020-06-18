@@ -14,10 +14,8 @@ import com.bit.model.service.OrgService;
 import com.bit.model.service.SpaceDashBoardService;
 import com.bit.model.service.TeamService;
 import com.bit.model.vo.DashBoardVO;
-import com.bit.model.vo.UserInfoVO;
 
 import lombok.extern.java.Log;
-import lombok.extern.log4j.Log4j;
 
 @Log
 @Controller
@@ -34,7 +32,7 @@ public class DashBoardMainController {
 	//로그인 후 테스트 필요
 	//시큐리티의 현재 유저 정보 가져오기
 	public String currentUserNo(Principal principal) {
-		log.info("g");
+		log.info("USERNO을 알고 싶어요...");
 		return principal.getName();
 	}
 
@@ -42,11 +40,10 @@ public class DashBoardMainController {
 	@GetMapping("")
 	public String orgNavi(Model model, DashBoardVO Org) {
 		//테스트중 (대시보드 메인페이지처럼 사용 중)
-		//테스트 완료 후 frament ~ insert 처리 하기~
+		//테스트 완료 후 fragment ~ insert 처리 하기~
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
-		
 		model.addAttribute("orgList",orgList);
-		
+		System.out.println("나의 orgList: "+orgList);
 		return "include/dashboardNavi";
 	}
 	

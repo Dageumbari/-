@@ -14,7 +14,7 @@
         	JOIN TEAM T ON (D.DASHBOARDCODE = T.DASHBOARDCODE)
 			JOIN MEMPERMIT M ON (T.TEAMCODE = M.TEAMCODE)
         	JOIN USER_INFO U ON (M.USERNO = U.USERNO)
-    	WHERE 1 = U.USERNO; 
+    	WHERE 1 = U.USERNO
 	</select>
 	<select id="getOrgInfo">
 		SELECT dashboardimage, dashboardname
@@ -27,7 +27,7 @@
 		WHERE dashboardCode = #{dashboardCode}
 	</delete>
 	<insert id="createOrg">
-		INSERT
+		INSERT 
 			FROM
 		WHERE
 	</insert>
@@ -35,11 +35,6 @@
 		UPDATE
 			FROM
 		WHERE
-	</update>
-	<update id="orgOrderModify">
-		UPDATE 
-			FROM
-		WHERE 
 	</update>
 	<!-- 
 	<update id="orgLogoModify">

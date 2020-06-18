@@ -1,13 +1,20 @@
 package com.bit.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
+import com.bit.model.dto.MemberDTO;
 
 @Mapper
 public interface MemberDAO {
 
-	//리턴자료형, 매개변수 설정 필요
+	
 	//팀 멤버
-	public void getMemberList();
+	public List<MemberDTO> getAllMemberList();
+	public List<MemberDTO> getTeamMemberList();
+	
+	//리턴자료형, 매개변수 설정 필요
 	public void addMember();
 	public void memberPermissionModify();
 	public void removeOrgMember();

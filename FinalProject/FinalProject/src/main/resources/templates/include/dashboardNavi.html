@@ -10,17 +10,16 @@
 		<div class="reset-3c756112--navigation-3e92335c">
 			<div class="reset-3c756112--withScrollbar-39338630--scrollAxisY-7680295e--navigationBody-3dc152bc">
 				
-				<!-- 반복문~ -->
-				
-				<a class="reset-3c756112--orgTab-8d620844" href="/${orgList.dashBoardUrl}/spaces" th:each="orgList : ${OrgList}">
+				<a class="reset-3c756112--orgTab-8d620844" href="/${orgList.dashBoardUrl}/spaces" th:each="orgList : ${orgList}">
 					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
 						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10" role="presentation">
 							<img class="image-67b14f24--avatar-1c1d03ec"
-							src="https://gblobscdn.gitbook.com/users%2FIR8rlUhGuJOEVzaRL8eE9FmLRIO2%2Favatar-1590479261730.png?alt=media">
+							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABsUlEQVRYR+2WW0sCQRiG34V1zUyUysoTUlhBB+1IpWYZRUhI9Jv6TUGYrIeSCIqIoiK1NFJwDfLSvdmN9cKgLNodqL2YuZ19mYfn+76ZZXL7kgwdL4YCElaHGiQUCGqQGiQ1QJqnPUgNkhogzRP3oCzLEGp13N3eo/RUhiiKcDgd8PlGMDY+CtbAEjESAUqShOurG1ycX8Js7oZ32Asjx6FWE1AuPcPtcSEcCcJqtWqGJAIs5IvIpk8wOT2BufkZGAyGNkilUkWGz7ZshlaD4LiPPTW0mgGVUmZSx5AlGZFoGCaT6cu5StlPc2fYjm3B5Xaq4Wp/qxmwXn/F4UECgVk//IGpjoc33ho4SvDwej1YXFoAwzCqITUDFguPSCZ47MRjrV7rtJpNEXwyBYulByuhZbCs+oHRDJh/KIBPprG7F8eQY/BHQGVzYzOKri7j3xnUPaDuS6z7IdH9NaN0+28uavuAHZH1MIxG9QOinKF5ipXwd0+dINRReamir78Xa9EIbLZ/euoUSF3/LKi+1DQEiEqs4TzVEQqoWtmnADVIDZIaIM3THqQGSQ2Q5nXfg+9EKz0A21b+QQAAAABJRU5ErkJggg==">
 							<div class="reset-3c756112--innerShadow-7a3a8651"></div>
 						</div>
 					</div>
 				</a>
+				
 				
 				<a class="reset-3c756112--orgTab-8d620844--orgTabActive-7ab59dc9" href="/@bitfinal/spaces">
 					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
@@ -35,7 +34,7 @@
 					
 				<div class="reset-3c756112--orgButton-8646a146">
 					<button
-						class="button-36063075--medium-6e2a217a--button-7fcfb4a1--button-dark-6278d806--medium-54db2ab3--rounded-50d53f59--S100Top-351b6542--S100Bottom-15862a5a">
+						class="button-36063075--medium-6e2a217a--button-7fcfb4a1--button-dark-6278d806--medium-54db2ab3--rounded-50d53f59--S100Top-351b6542--S100Bottom-15862a5a"  onclick="setOrgName()">
 						<span class="medium-3bde6db7--iconOnly-bddce91a"><svg
 								preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
 								fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -47,19 +46,17 @@
 								<line x1="5" y1="12" x2="19" y2="12"></line></g></svg></span><span
 							class="text-4505230f--UIH400-4e41e82a--textUIFamily-5ebd8e40--text-8ee2c8b2"></span>
 					</button>
-					<span
-						class="text-4505230f--UIH200-50ead35f--textUIFamily-5ebd8e40--orgButtonText-2c5d8183">New
-						Org</span>
+					<span class="text-4505230f--UIH200-50ead35f--textUIFamily-5ebd8e40--orgButtonText-2c5d8183">NewOrg</span>
 				</div>
+				
 			</div>
+			
 			<div class="reset-3c756112--sidebarFooter-20adc0e5">
-				<div class="reset-3c756112--navButtons-8646a146">
-					<button
-						class="button-36063075--medium-6e2a217a--button-78c61f17--button-dark-50f870b6--medium-54db2ab3">
-						<span class="medium-3bde6db7--iconOnly-bddce91a"><div
-								class="reset-3c756112--iconWithBadge-56f27afc">
-								<div
-									class="reset-3c756112--badge-1428b40c--primary-2fc3f636--small-6a4dd14c--badge-8216a294"></div>
+				<div class="reset-3c756112--navButtons-8646a146" >
+					<button class="button-36063075--medium-6e2a217a--button-78c61f17--button-dark-50f870b6--medium-54db2ab3">
+						<span class="medium-3bde6db7--iconOnly-bddce91a">
+							<div class="reset-3c756112--iconWithBadge-56f27afc">
+								<div class="reset-3c756112--badge-1428b40c--primary-2fc3f636--small-6a4dd14c--badge-8216a294"></div>
 								<svg preserveAspectRatio="xMidYMid meet" height="1em"
 									width="1em" fill="currentColor" viewBox="0 0 24 24"
 									xmlns="http://www.w3.org/2000/svg"
@@ -69,12 +66,14 @@
 									<g transform="translate(6 2)" fill-rule="evenodd">
 									<mask>
 									<polygon
-										points="0 0.0003 11.999 0.0003 11.999 19.9993 0 19.9993"></polygon></mask>
+										points="0 0.0003 11.999 0.0003 11.999 19.9993 0 19.9993"></polygon>
+									</mask>
 									<path
 										d="M6.71 19.71a.99.99 0 0 0 .21-1.09c-.05-.13-.12-.23-.21-.33a1.037 1.037 0 0 0-1.42 0c-.09.1-.16.21-.21.33a.995.995 0 0 0 .21 1.09c.19.188.44.29.71.29.27 0 .52-.102.71-.29M6 16.165a1 1 0 0 1-1-1v-.336c0-2.168 1.173-4.205 3.138-5.449 1.426-.904 2.121-2.573 1.771-4.254A3.97 3.97 0 0 0 6.872 2.09c-1.234-.256-2.44.028-3.393.804A3.986 3.986 0 0 0 2 6a1 1 0 0 1-2 0c0-1.814.808-3.512 2.217-4.657C3.625.196 5.469-.247 7.28.132c2.271.474 4.114 2.317 4.586 4.588.523 2.503-.521 4.996-2.658 6.35C7.825 11.946 7 13.352 7 14.83v.336a1 1 0 0 1-1 1"
 										mask="url(#b)"></path></g></g></svg>
-							</div></span><span
-							class="text-4505230f--UIH400-4e41e82a--textUIFamily-5ebd8e40--text-8ee2c8b2"></span>
+							</div>
+						</span>
+						<span class="text-4505230f--UIH400-4e41e82a--textUIFamily-5ebd8e40--text-8ee2c8b2"></span>
 					</button>
 				</div>
 				<a class="logoLink-7eaeba6b" href="/"><svg
@@ -89,5 +88,14 @@
 			</div>
 		</div>
 	</div>
+<!-- <script src="js/~.js"></script>  -->
+<script type="text/javascript">
+
+	//프롬프트에서 입력받은 조직을 디비에 넣는 방법 찾기~! 오늘 내에요! insert 테스트 끝내기~
+	function setOrgName(orgName){
+		var orgName = prompt("Your app/company name 조직 이름 넣으쇼")
+		return orgName
+	}
+</script>
 </body>
 </html>
