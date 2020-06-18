@@ -5,11 +5,11 @@
 <mapper namespace="com.bit.model.dao.SpaceDAO">
 
 
-	<resultMap id="draftCardListMap" type="draftCardList">
+	<!-- <resultMap id="draftCardListMap" type="draftCardList">
 		<collection property="draftCards" javaType="List"
-			column="draftCode" ofType="DraftCard" select="getDraftCard">
-		</collection>
-	</resultMap>
+			column="draftCode" ofType="DraftCardList" select="getdraftList">
+		</collection> 
+	</resultMap>-->
 	<!-- space -->
 	<!-- <resultMap type="com.bit.model.dto.SpaceDTO" id="space_resultMap"> 
 		<id property="spaceCode" column="spaceCode" /> <result property="userNo" 
@@ -34,12 +34,13 @@
 
 
 	<!-- 드래프트 리스트 출력 -->
-	<select id="getdraftList" resultMap="draftCardListMap">
+	<!-- <select id="getdraftList" resultMap="draftCardListMap"> 
+	<select id="getdraftList" >
 		select * from draftCardList
 	</select>
-
+-->
 	<!-- 드래프트 카드 디테일 -->
-	<select id="getDraftCard">
+	<!-- <select id="getDraftCard">
 		select * from draftCard
 	</select>
 
@@ -53,22 +54,23 @@
 	</select>
 
 
-	<!-- 드래프트 메시지 입력, 저장 -->
+	드래프트 메시지 입력, 저장
 	<insert id="insertDraftMsg" parameterType="Map">
 		insert into
 		draftMsg
 		values (draftMsg_seq.nextval), #{msgContent}, #{editsCount},
 		#{draftCode} )
-	</insert>
-	<select id="getDraftList" resultMap="draftList_resultMap">
+	</insert> -->
+	
+	<!-- <select id="getDraftList" resultMap="draftList_resultMap">
 		select * from draft
-	</select>
+	</select> -->
 
-	<resultMap type="draftDTO" id="draft_resultMap">
+	<!-- <resultMap type="draftDTO" id="draft_resultMap">
 		<id property="draftCode" column="draftCode" />
 		<result property="draftSavetime" column="draftSaveTime" />
 		<result property="draftStatus" column="draftStatus" />
-	</resultMap>
+	</resultMap> -->
 
 	<update id="updateDraftMsg" parameterMap="String">
 		update draftMsg set

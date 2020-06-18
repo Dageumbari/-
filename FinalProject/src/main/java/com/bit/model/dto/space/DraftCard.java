@@ -10,9 +10,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class DraftCard {
-	
-@Getter @Setter @ToString
-public class DraftDTO {
 	private String draftCode;
 	private Timestamp draftSavetime;
 	private String draftStatus;
@@ -23,3 +20,4 @@ public class DraftDTO {
 	private int draftMsgNo;
 	private int editsCount;
 }
+	
