@@ -13,7 +13,6 @@
 <script
 	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
 
-
 <!-- 여기 링크+스크립트  나중에 묶어서 header.html 로 둘 예정 -->
 <link th:href="@{/css/sidenav.css}" rel="stylesheet">
 <link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet">
@@ -38,6 +37,9 @@
 			<div class="sidebar">
 				<th:block th:replace="common/nav/sidenav"></th:block>
 				<th:block th:replace="common/nav/sidenavDrawer"></th:block>
+				<th:block th:replace="common/nav/navHeader"></th:block>
+				<th:block th:replace="common/contents/pageContent"></th:block>
+					
 			</div>
 
 			<!-- <th:block th:replace="~{layout/navBar :: topNavBar}"/> -->
@@ -47,12 +49,10 @@
 				<div class="body">
 					<div id="spacePage">
 
-						<div th:replace="page/spacePage"></div>
-
+					<!-- <div th:replace="page/spacePage"></div>
+					 -->
 						<!-- Main Content
 			<div th:replace="${template}"></div> -->
-
-
 						<!-- <footer th:replace="common/common-footer"></footer> -->
 					</div>
 				</div>

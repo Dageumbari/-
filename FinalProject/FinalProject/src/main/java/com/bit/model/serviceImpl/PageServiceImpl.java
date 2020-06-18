@@ -17,7 +17,11 @@ public class PageServiceImpl implements PageService {
 
 	@Override
 	public List<PageVO> getPageList() {
-		// TODO Auto-generated method stub
 		return pageDAO.getPageList();
+	}
+
+	@Override
+	public List<PageVO> getAllList() {
+		return pageDAO.getAllList();
 	}
 }

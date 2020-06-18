@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>welcome</title>
+<title>spacePage</title>
 
 <!-- Meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Blog Template">
-<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
 <link rel="shortcut icon" href="favicon.ico">
 
 <!-- FontAwesome JS-->
@@ -18,13 +16,14 @@
 	crossorigin="anonymous"></script>
 
 <!-- Theme CSS -->
-<link id="theme-style" rel="stylesheet" href="/css/theme-7.css">
-
-
+<link id="theme-style" rel="stylesheet" href="/css/theme-1.css">
+<script src="content-script.js"></script>
 </head>
 
 <body>
 
+
+	<!-- Header -->
 	<header class="header text-center">
 		<h1 class="blog-name pt-lg-4 mb-0">
 			<a href="spacePage">hoya</a>
@@ -38,14 +37,12 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
+			<!-- Profile-Section -->
 			<div id="navigation" class="collapse navbar-collapse flex-column">
 				<div class="profile-section pt-3 pt-lg-0">
 					<img class="profile-image mb-3 rounded-circle mx-auto"
 						src="/images/hoya.jpg" alt="image">
 
-					<div class="bio mb-3">
-						<br>
-					</div>
 					<!--//bio-->
 					<!-- <ul class="social-list list-inline py-3 mx-auto">
 						<li class="list-inline-item"><a href="#"><i
@@ -59,76 +56,52 @@
 						<li class="list-inline-item"><a href="#"><i
 								class="fab fa-codepen fa-fw"></i></a></li>
 					</ul> -->
-					<!--//social-list-->
 					<hr>
 				</div>
-				<!--//profile-section-->
 
+				<!-- nav-section -->
 				<ul class="navbar-nav flex-column text-left">
 					<li class="nav-item"><a class="nav-link" href="spacePage"><i
-							class="fas fa-home fa-fw mr-2"></i>file <span class="sr-only">(current)</span></a></li>
+							class="fas fa-home fa-fw mr-2"></i>File <span class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="spacePage"><i
-							class="fas fa-bookmark fa-fw mr-2"></i>new</a></li>
+							class="fas fa-bookmark fa-fw mr-2"></i>New</a></li>
 				</ul>
-
-				<div class="my-2 my-md-3">
-
-					<!-- <a class="btn btn-primary" href="https://themes.3rdwavemedia.com/"
-						target="_blank">Get in Touch</a> -->
-
-				</div>
 			</div>
 		</nav>
 	</header>
-	<div class="main-wrapper">
 
-		<article class="about-section py-5">
-			<div class="container">
-				<h2 class="title mb-3">Untitled</h2>
+	<!-- Page Title,Content  -->
+		<div class="main-wrapper">
+				<div class="container" align="center">
+					<input type="text" class="form-control" placeholder="Untitled"
+						id="pageTitle" name="pageTitle">
+				</div>
+				<hr class="container">
+				<div class="container">
+					<textarea style="height: 400px" class="form-control"
+						placeholder="Enter your content here..." id="pageConenet"
+						name="pageConenet;"></textarea>
+				</div>
 
-				<p>Enter your content here...</p>
-				<!-- 
+				<hr class="container">
+				<div class="container" align="right">
+					<button type="submit"
+						class="btn btn-primary waves-effect waves-light">저장하기</button>
+				</div>
 
-				<h5 class="mt-5">About The Blog</h5>
-				<p>Vivamus elementum semper nisi. Aenean vulputate eleifend
-					tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-					ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,
-					tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque
-					rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur
-					ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas
-					tempus, tellus eget condimentum rhoncus, sem quam semper libero,
-					sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit
-					vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et
-					ante tincidunt tempus. Donec vitae sapien ut libero venenatis
-					faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus
-					tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec
-					sodales sagittis magna. Sed consequat, leo eget bibendum sodales,
-					augue velit cursus nunc, quis gravida magna mi a libero. Fusce
-					vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut,
-					mollis sed, nonummy id, metus.</p>
-				<h5 class="mt-5">My Skills and Experiences</h5>
-				<p>Vivamus elementum semper nisi. Aenean vulputate eleifend
-					tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-					ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,
-					tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque
-					rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur
-					ullamcorper ultricies nisi.</p>
-				<h5 class="mt-5">Side Projects</h5>
-				<p>Vivamus elementum semper nisi. Aenean vulputate eleifend
-					tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-					ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,
-					tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque
-					rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur
-					ullamcorper ultricies nisi.</p> -->
-			</div>
-		</article>
-		<section class="cta-section theme-bg-light py-5">
-			<div class="container text-center">
-				<a href="#" class="previous">&laquo; Previous</a> <a href="#"
-					class="next">Next &raquo;</a>
-			</div>
-		</section>
+			<!-- Previous,Next -->
 
+			<article class="container-center-plz">
+				<div class="container" align="left">
+					<button href="#" class="btn btn-primary">&laquo; Previous</button>
+				</div>
+				<div class="container" align="right">
+					<button href="#" class="btn btn-primary">Next &raquo;</button>
+				</div>
+			</article>
+		</div>
+
+		<!-- Footer -->
 		<footer class="footer text-center py-2 theme-bg-dark">
 			<small class="copyright">Design <i class="fas fa-heart"
 				style="color: #fb866a;"></i> by <a
@@ -136,10 +109,7 @@
 					tomas) </a>
 			</small>
 		</footer>
-
 	</div>
-	<!--//main-wrapper-->
-
 
 	<!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
 	<div id="config-panel" class="config-panel d-none d-lg-block">
@@ -169,11 +139,7 @@
 			<a id="config-close" class="close" href="#"><i
 				class="fa fa-times-circle"></i></a>
 		</div>
-		<!--//panel-inner-->
 	</div>
-	<!--//configure-panel-->
-
-
 
 	<!-- Javascript -->
 	<script src="/plugins/jquery-3.3.1.min.js"></script>
@@ -183,7 +149,5 @@
 	<!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
 	<script src="/js/demo/style-switcher.js"></script>
 
-
 </body>
 </html>
-

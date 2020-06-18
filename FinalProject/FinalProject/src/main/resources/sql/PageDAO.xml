@@ -5,6 +5,10 @@
 <mapper namespace="com.bit.model.dao.PageDAO">
 
 	<select id="getPageList" resultType="com.bit.model.vo.PageVO">
-		select * from page
+		SELECT * FROM PAGE
+	</select>
+	
+	<select id="getAllList" resultType="com.bit.model.vo.PageVO">
+	SELECT * FROM PAGE
 	</select>
 </mapper>
