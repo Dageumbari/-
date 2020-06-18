@@ -11,16 +11,25 @@
 		property="spaceUrl" column="spaceUrl" /> <collection property="draftList" 
 		column="draftCode" ofType="draftList" select="selectDraftsForSpace"> </collection> 
 		</resultMap> -->
-<!-- 
-	<resultMap type="com.bit.model.dto.space.DraftListDTO"
-		id="draftList_resultMap">
-		<id property="spaceCode" column="spaceCode" />
-		<collection property="draftDTO" column="draftCode"
-			ofType="DraftDTO" select="getDraftList">
-			
+
+	<resultMap id="spaceDraftMap" type="SpaceDTO">
+		<id property="spaceCode" column="spaceCode"/>
+		<collection property="draftDTO" javaType="List"
+			ofType="draftDTO" column="getSavedDraft" select="draftCard">
+			<id property="draftCode" column="draftCode" />
+			<result property="draftSavetime" column="draftSavetime" />
+			<result property="draftStatus" column="draftStatus" />
+			<result property="draftMsgNo" column="draftMsgNo" />
+			<result property="editsCount" column="editsCount" />
+			<result property="userNo" column="userNo" />
+			<result property="name" column="name" />
+			<result property="userImage" column="userImage" />
 		</collection>
 	</resultMap>
- -->
+	
+	<select id="draftCard" resultMap="spaceDraftMap">
+		select * from draft
+	</select>
 
 
 
@@ -29,20 +38,13 @@
 
 
 
-<!-- 
-	<resultMap type="pageGroupDTO" id="pageGroup_resultMap">
-	</resultMap>
 
-	<select id="getDraftList" resultMap="draftList_resultMap">
-		select * from draft
-	</select>
+	<!-- <resultMap type="pageGroupDTO" id="pageGroup_resultMap"> </resultMap> -->
 
-	<resultMap type="draftDTO" id="draft_resultMap">
-		<id property="draftCode" column="draftCode" />
-		<result property="draftSavetime" column="draftSaveTime" />
-		<result property="draftStatus" column="draftStatus" />
-	</resultMap>
- -->
+
+	<!-- <resultMap type="draftDTO" id="draft_resultMap"> <id property="draftCode" 
+		column="draftCode" /> <result property="draftSavetime" column="draftSaveTime" 
+		/> <result property="draftStatus" column="draftStatus" /> </resultMap> -->
 
 
 	<!-- edits 항목의 badge -->
@@ -51,10 +53,6 @@
 
 	<!-- <result property="userImage" column="userImage"/> <result property="name" 
 		column="name"/> -->
-
-	<!-- sidenav header의 사용자 로고이미지, url은 툴팁때문에 넣음 -->
-	<!-- <select id="com.bit.model.dto.space.getUserInfo" resultMap="space_resultMap"> 
-		select userNo, userImage, userUrl from userInfo where userNo=#{userNo} </select> -->
 
 
 

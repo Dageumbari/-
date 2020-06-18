@@ -13,11 +13,11 @@ import com.bit.model.service.PageService;
 public class PageController {
 
 	@Autowired
-	PageService PageService;
+	PageService pageService;
 	
 	@GetMapping("/pageList")
 	public String getPageList(Model model) {
-		model.addAttribute("list", PageService.getPageList());
+		model.addAttribute("list", pageService.getPageList());
 		return "space/pageList";
 	}
 	
