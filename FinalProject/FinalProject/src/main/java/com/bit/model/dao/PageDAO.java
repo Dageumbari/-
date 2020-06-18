@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.bit.model.vo.PageVO;
 
 @Mapper
+@Repository
 public interface PageDAO {
 	 List<PageVO> getPageList();
 }

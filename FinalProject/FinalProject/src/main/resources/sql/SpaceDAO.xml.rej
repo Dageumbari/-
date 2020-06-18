@@ -1,0 +1,9 @@
+diff a/FinalProject/FinalProject/src/main/resources/sql/SpaceDAO.xml b/FinalProject/FinalProject/src/main/resources/sql/SpaceDAO.xml	(rejected hunks)
+@@ -11,6 +11,7 @@
+ +			column="draftCode" ofType="DraftCard" select="getDraftCard">
+ +		</collection>
+ +	</resultMap>
+++=======
+  	<!-- space -->
+  	<!-- <resultMap type="com.bit.model.dto.SpaceDTO" id="space_resultMap"> 
+  		<id property="spaceCode" column="spaceCode" /> <result property="userNo" 

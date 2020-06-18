@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+<<<<<<< HEAD
 import com.bit.model.dto.space.DraftCard;
 import com.bit.model.dto.space.SpaceUserInfoDTO;
 

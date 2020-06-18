@@ -17,4 +17,5 @@ public class SpaceUserInfoDTO {
 	private String name;
 	private int userNo;
 	private String userImage;
+	
 }

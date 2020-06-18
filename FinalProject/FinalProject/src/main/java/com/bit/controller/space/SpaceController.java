@@ -1,15 +1,20 @@
 package com.bit.controller.space;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+<<<<<<< HEAD
 import com.bit.model.service.SpaceService;
 
+=======
+import lombok.extern.log4j.Log4j;
+>>>>>>> parent of 4894f7a... draftList
 import lombok.extern.log4j.Log4j2;
 
-@Log4j2
+
 @Controller
 public class SpaceController {
 	
@@ -30,10 +35,7 @@ public class SpaceController {
 	}
 	
 	@GetMapping("/drafts")
-	public String getSavedDraft(Model model) {
-		//log.error(spaceService.getSavedDraft());
-		model.addAttribute("draftList", spaceService.getSavedDraft());
-		
+	public String getDraftList() {
 		return "space/draft/draft";
 	}
 	
