@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.bit.model.dao.SpaceDAO;
 import com.bit.model.service.SpaceService;
 
 import lombok.extern.log4j.Log4j2;
@@ -18,26 +17,31 @@ public class SpaceController {
 	SpaceService spaceService;
 	
 	
-	@GetMapping("/sidenav")
-	public String sidebar() {
-		return "common/nav/sidenav";
-	}
-	
-	@GetMapping("/nav")
-	public String navigation() {
-		return "common/nav/sidenavDrawer";
-	}
-	
+	/*
+	 * @GetMapping("/sidenav") public String sidebar() { return
+	 * "common/nav/sidenav"; }
+	 * 
+	 * @GetMapping("/nav") public String navigation() { return
+	 * "common/nav/sidenavDrawer"; }
+	 */
 	@GetMapping("/space")
 	public String space() {
 		return "layout/spaceMain";
 	}
 	
-	@GetMapping("/draft")
+	@GetMapping("/drafts")
 	public String getSavedDraft(Model model) {
 		//log.error(spaceService.getSavedDraft());
-		model.addAttribute("savedDraft", spaceService.getSavedDraft());
+		model.addAttribute("draftList", spaceService.getSavedDraft());
 		
 		return "space/draft/draft";
 	}
+	
+	@GetMapping("/userInfo")
+	public String getSpaceUserInfo(Model model, int userNo, String spaceCode) {
+		model.addAttribute("userInfo", spaceService.getSpaceUserInfo(userNo, spaceCode));
+		
+		return "space/draft/userInfo";
+	}
+	
 }

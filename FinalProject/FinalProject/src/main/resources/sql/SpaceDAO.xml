@@ -4,55 +4,48 @@
 
 <mapper namespace="com.bit.model.dao.SpaceDAO">
 
-	<!-- space -->
-	<!-- <resultMap type="com.bit.model.dto.SpaceDTO" id="space_resultMap"> 
-		<id property="spaceCode" column="spaceCode" /> <result property="userNo" 
-		column="userNo" /> <result property="spaceName" column="spaceName" /> <result 
-		property="spaceUrl" column="spaceUrl" /> <collection property="draftList" 
-		column="draftCode" ofType="draftList" select="selectDraftsForSpace"> </collection> 
-		</resultMap> -->
 
-	<resultMap id="spaceDraftMap" type="SpaceDTO">
-		<id property="spaceCode" column="spaceCode"/>
-		<collection property="draftDTO" javaType="List"
-			ofType="draftDTO" column="getSavedDraft" select="draftCard">
-			<id property="draftCode" column="draftCode" />
-			<result property="draftSavetime" column="draftSavetime" />
-			<result property="draftStatus" column="draftStatus" />
-			<result property="draftMsgNo" column="draftMsgNo" />
-			<result property="editsCount" column="editsCount" />
-			<result property="userNo" column="userNo" />
-			<result property="name" column="name" />
-			<result property="userImage" column="userImage" />
+	<resultMap id="draftCardListMap" type="draftCardList">
+		<collection property="draftCards" javaType="List"
+			column="draftCode" ofType="DraftCard" select="getDraftCard">
 		</collection>
 	</resultMap>
-	
-	<select id="draftCard" resultMap="spaceDraftMap">
-		select * from draft
+
+
+	<!-- 드래프트 리스트 출력 -->
+	<select id="getdraftList" resultMap="draftCardListMap">
+		select * from draftCardList
+	</select>
+
+	<!-- 드래프트 카드 디테일 -->
+	<select id="getDraftCard">
+		select * from draftCard
 	</select>
 
 
-
-	<!-- <result property="draftStatus" column="draftStatus" typeHandler=""/> -->
-
-
-
-
-
-	<!-- <resultMap type="pageGroupDTO" id="pageGroup_resultMap"> </resultMap> -->
+	<select id="getSpaceUserInfo" resultType="spaceUserInfoDTO">
+		select
+		spaceCode,spaceName,spaceUrl,name,userNo,userImage from spaceUserInfo
+		where userNo=#{userNo} and spaceCode=#{spaceCode}
+	</select>
 
 
-	<!-- <resultMap type="draftDTO" id="draft_resultMap"> <id property="draftCode" 
-		column="draftCode" /> <result property="draftSavetime" column="draftSaveTime" 
-		/> <result property="draftStatus" column="draftStatus" /> </resultMap> -->
+	<!-- 드래프트 메시지 입력, 저장 -->
+	<insert id="insertDraftMsg" parameterType="Map">
+		insert into
+		draftMsg
+		values (draftMsg_seq.nextval), #{msgContent}, #{editsCount},
+		#{draftCode} )
+	</insert>
 
+	<update id="updateDraftMsg" parameterMap="String">
+		update draftMsg set
+		msgContent=#{msgContent}
+		where draftMsgno=#{draftMsgNo}
+	</update>
 
-	<!-- edits 항목의 badge -->
-	<!-- <select id="getEditsBadge" resultType="int" parameterType="int"> select 
-		count(*) from draft where userNo=#{userNo} and draftStauts="saved" </select> -->
+	<!-- 드래프트 카드 생성 -->
 
-	<!-- <result property="userImage" column="userImage"/> <result property="name" 
-		column="name"/> -->
 
 
 

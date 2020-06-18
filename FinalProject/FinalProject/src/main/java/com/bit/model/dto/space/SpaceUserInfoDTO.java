@@ -1,6 +1,6 @@
 package com.bit.model.dto.space;
 
-import java.util.List;
+import org.apache.ibatis.type.Alias;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,15 +9,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class SpaceDTO {
+@Alias("spaceUserInfoDTO")
+public class SpaceUserInfoDTO {
  	private String spaceCode;
-	private String groupCode;
 	private String spaceName;
 	private String spaceUrl;
-	private int spaceOrder;
-	private String spaceVisibility;
-	private String teamCode;
-	private String draftCode;
+	private String name;
 	private int userNo;
-	public List<DraftDTO> draftDTO;
+	private String userImage;
 }
