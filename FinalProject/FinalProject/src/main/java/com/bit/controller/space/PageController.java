@@ -22,8 +22,7 @@ public class PageController {
 	}
 	
 	@GetMapping("/spacePage")
-	public String getAllList(Model model) {
-		model.addAttribute("allList", PageService.getAllList());
+	public String page() {
 		return "page/spacePage";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 	}
 	

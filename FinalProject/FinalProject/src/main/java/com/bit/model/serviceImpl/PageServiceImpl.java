@@ -19,9 +19,4 @@ public class PageServiceImpl implements PageService {
 	public List<PageVO> getPageList() {
 		return pageDAO.getPageList();
 	}
-
-	@Override
-	public List<PageVO> getAllList() {
-		return pageDAO.getAllList();
-	}
 }
