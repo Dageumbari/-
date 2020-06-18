@@ -2,14 +2,18 @@ package com.bit.security;
 
 import java.util.Random;
 
+import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.java.Log;
+
+@Log
 @Service
 public class SendEmail {
 
@@ -38,35 +42,29 @@ public class SendEmail {
 
 		return stringBuffer.toString();
 	}
-
+	
 	public void email(String email, String userName, String key)  {
 		
+		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 		
-		
-		
-		String htmlStr = "<h2>BitBook 회원인증 메일입니다.</h2><br>" 
-				+ "<h3>" + userName + "님</h3>"
-				+ "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
-				+ "<a href='http://localhost:80" // + request.getContextPath()	
-				+ "/user/key_alter?email=" + email + "&user_key=" + key + "'>인증하기</a></p>"
-				+ "회원가입을 시도하지 않으셨다면 무시해주세요";
-		
+		String context = userName + "님"
+				+ "<p> 링크를 누르시면 가입이 완료됩니다.</p> " 
+				+ "<p><a href='http://localhost:80"
+				+ "/join/key?email=" + email + "&key=" + key 
+				+ "'>인증하기</a></p>"
+				+ "<p>회원가입을 시도하지 않으셨다면 무시해주세요</p>";
 		
 		try {
-			MimeMessage message = javaMailSender.createMimeMessage();
-			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+			mimeMessage.setFrom("Bitbook");
+			mimeMessage.setSubject("BitBook 회원인증 메일입니다.");
+			mimeMessage.setText(context, "UTF-8", "html");
+			mimeMessage.addRecipient(RecipientType.TO, new InternetAddress(email));
 			
-			messageHelper.setTo(email);
-			messageHelper.setFrom("Bitbook");
-			messageHelper.setSubject("BitBook 회원인증 메일입니다.");
-			messageHelper.setText(htmlStr);
+			javaMailSender.send(mimeMessage);
 			
-			javaMailSender.send(message);
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+			// TODO: handle exception
+		}		
 	}
 
 }

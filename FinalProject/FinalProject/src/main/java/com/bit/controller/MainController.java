@@ -7,10 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bit.model.dao.MainDAO;
 import com.bit.model.dto.UserDTO;
 import com.bit.model.service.UserService;
+import com.bit.security.SendEmail;
 
 import lombok.extern.java.Log;
 
@@ -27,8 +29,14 @@ public class MainController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	SendEmail sendEmail;
+	
 	@GetMapping("/main")
 	public String main() {
+		
+		
+		sendEmail.email("collin1016@naver.com", "유현준", "123456789");
 
 		return "/main";
 	}
@@ -71,6 +79,15 @@ public class MainController {
 		
 		return "/joinResult";
 	}
+	
+	@GetMapping("/join/key")
+	public String joinKey(@RequestParam("email")String email, @RequestParam("key")String key ) {
+		
+		log.info("email = " + email + "key " + key);
+		
+		return "/main";
+	}
+	
 	
 	@GetMapping("/accessDenied")
 	public String accessDenied() {
