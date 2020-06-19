@@ -9,31 +9,29 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import lombok.extern.java.Log;
-
-@Log
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {	
 	
 	@Autowired
-	BitUserService bitUserService;
+	CustomUserDetailsService customUserDetailsService;
 	
+	@Autowired
+	CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		log.info("========= 시큐리티  =========");
 		
 		httpSecurity.authorizeRequests()
 				.antMatchers("/resources/**").permitAll()
-				.antMatchers("/mtest/**").hasRole("MEMBER")
-				.antMatchers("/atest/**").hasRole("ADMIN")
+				.antMatchers("/main/mtest/**").hasRole("MEMBER")
+				.antMatchers("/main/atest/**").hasRole("ADMIN")
 			.and()
 				.formLogin()
-				.loginPage("/login")
+				.loginPage("/main/login")
 //				.loginProcessingUrl("/login") // 사용자의 매개변수가 POST로 전달되는 URL
-//				.failureUrl("/login") // 실패시 리다이렉션 페이지
 				.usernameParameter("username") 
 				.passwordParameter("password")
+				.failureHandler(customAuthenticationFailureHandler)
 			.and()
 				.exceptionHandling().accessDeniedPage("/accessDenied")
 			.and()
@@ -42,9 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.invalidateHttpSession(true)
 //				.logoutSuccessUrl("/login?logout");
 			.and()
-				.rememberMe().key("book").userDetailsService(bitUserService);
-		
-		
+				.rememberMe().key("book");		
 	}
 	
 	@Bean
@@ -55,10 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			
-		log.info("========= AuthenticationManagerBuilder =========");
+					
+		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
 		
-		auth.userDetailsService(bitUserService).passwordEncoder(passwordEncoder());	
 	}
 	
 }

@@ -1,20 +1,18 @@
 package com.bit.model.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-
 import com.bit.model.dto.UserDTO;
 
 
 @Mapper
 public interface MainDAO {
 
-	public UserDTO getUserAllInfo(String email);
+	public UserDTO getUserAllInfo(String email); // login에서 입력받은 회원 정보 가져오기
 	
-	public void setUserInfo(UserDTO userDTO);
-	public void setUserRole(UserDTO userDTO, int uNo);
+	public String getJoinCheck(String email); // 유저 아이디 중복 체크
 	
-	@Select("select userNo from user_info where user_info.email = #{email}")
-	public int getUserNo(String email);
+	public void setUserInfo(UserDTO userDTO); // join에서 들어온 정보로 회원 가입
+	
+	public void setEmailCheck(String email, String key); // 회원가입한 유저 이메일 인증
 	
 }

@@ -11,8 +11,12 @@
 		<result property="pw" column="pw" />
 		<result property="name" column="name" />
 		<result property="userImage" column="userImage" />
+		<result property="alert" column="alert" />
 		<result property="gender" column="gender" />
+		<result property="loginFailCount" column="loginFailCount" />
+		<result property="loginCountDate" column="loginCountDate" />
 		<result property="countryCode" column="countryCode" />
+		<result property="key" column="key" />
 		<collection property="roles" resultMap="roleMap">
 		</collection>
 	</resultMap>
@@ -25,32 +29,48 @@
 
 
 
-	<select id="getUserInfo" resultMap="userMap">
+	<select id="getUserAllInfo" resultMap="userMap">
 
 		select *
-		from
-		user_info
+		from user_info
 		inner join user_role
 		on user_info.userNO = user_role.userNo
 		where user_info.email = #{email}
 
 	</select>
+	
+	<select id="getJoinCheck" resultType="String" >
+
+		select user_info.email
+		from user_info
+		where user_info.email = #{email}
+
+	</select>
+	
 
 	<insert id="setUserInfo" parameterType="com.bit.model.dto.UserDTO">
-	
-		insert into user_info (userNo, email, pw, name) 
-		values (USERINFOSEQ.NEXTVAL, #{email}, #{pw}, #{name}) 
+		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
+		SELECT USERINFOSEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		insert all 
+		into user_info 
+		values (#{userNo}, #{email}, #{pw}, #{name}, 'IMG', 0, 'GENDER', 0, localtimestamp(0), 082, #{key})
+		into user_role (roleNo, userNo, roleName) 
+		values 
+		<foreach item="roles" collection="roles" separator=",">
+		(USERROLESEQ.NEXTVAL, #{userNo}, #{roles.roleName})
+  		</foreach>
+		SELECT * FROM DUAL
 		
 	</insert>
 	
-	<insert id="setUserRole" parameterType="com.bit.model.dto.UserDTO">
+	<update id="setEmailCheck">
 	
-		
-		insert into user_role (roleNO, userNo, roleName) 
-		values (USERROLESEQ.NEXTVAL, #{uNo}, #{roleName} );
-		
-		
-	</insert>
-
-
+	update user_info
+	set key = 'Y'
+	where email = #{email} and key = #{key}
+	
+	</update>
+	
 </mapper>
