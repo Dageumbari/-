@@ -9,8 +9,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Alias("spaceUserInfoDTO")
-public class SpaceUserInfoDTO {
+@Alias("spaceUserInfo")
+public class SpaceUserInfo {
  	private String spaceCode;
 	private String spaceName;
 	private String spaceUrl;
