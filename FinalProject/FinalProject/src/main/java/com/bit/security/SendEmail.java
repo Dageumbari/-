@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.java.Log;
 
-@Log
 @Service
 public class SendEmail {
 
@@ -48,9 +47,9 @@ public class SendEmail {
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 		
 		String context = userName + "님"
-				+ "<p> 링크를 누르시면 가입이 완료됩니다.</p> " 
-				+ "<p><a href='http://localhost:80"
-				+ "/join/key?email=" + email + "&key=" + key 
+				+ "<p> 링크를 누르시면 가입이 완료됩니다. " 
+				+ "<a href='http://localhost:80"
+				+ "/join/email/" + email + "/" + key 
 				+ "'>인증하기</a></p>"
 				+ "<p>회원가입을 시도하지 않으셨다면 무시해주세요</p>";
 		

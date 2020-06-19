@@ -4,7 +4,7 @@ import com.bit.model.dto.UserDTO;
 
 public interface UserService {
 	
-	public void join(UserDTO userDTO);
+	public String join(UserDTO userDTO);
 	
 	
 }

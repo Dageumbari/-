@@ -13,4 +13,6 @@ public interface MainDAO {
 	
 	public void setUserInfo(UserDTO userDTO); // join에서 들어온 정보로 회원 가입
 	
+	public void setEmailCheck(String email, String key); // 회원가입한 유저 이메일 인증
+	
 }
