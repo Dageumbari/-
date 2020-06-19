@@ -1,11 +1,5 @@
 package com.bit.model.dto;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.bit.model.vo.MemPermitVO;
-import com.bit.model.vo.PermissionVO;
-import com.bit.model.vo.UserInfoVO;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,18 +14,19 @@ public class MemberDTO {
 	public String teamCode;
 	public String teamName;
 	
-	@Autowired(required = false)
-	private MemPermitVO memPermitVO;
-	//public int permissionNo;
-	//public String permissionName;
+	//@Autowired(required = false)
+	//private MemPermitVO memPermitVO;
+	public int permissionNo;
+	public String permissionName;
 	
-	@Autowired(required = false)
-	private PermissionVO permissionVO;
+	//@Autowired(required = false)
+	//private PermissionVO permissionVO;
+	//복합키를...받을 객체가 필요할까요...?
 	
 	//유저테이블
-	@Autowired(required = false)
-	private UserInfoVO userInfoVO;
-	//public int userNo;
-	//public String userName;
-	//public String userImage;
+	//@Autowired(required = false)
+	//private UserInfoVO userInfoVO;
+	public int userNo;
+	public String userName;
+	public String userImage;
 }

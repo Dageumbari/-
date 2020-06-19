@@ -6,11 +6,12 @@
 <link href="/css/dashboard.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div class="reset-3c756112--dashboardNavigationContainer-c615f6e4">
+
+	<div class="reset-3c756112--dashboardNavigationContainer-c615f6e4" th:fragment="dashboardNavi">
 		<div class="reset-3c756112--navigation-3e92335c">
 			<div class="reset-3c756112--withScrollbar-39338630--scrollAxisY-7680295e--navigationBody-3dc152bc">
 				
-				<a class="reset-3c756112--orgTab-8d620844" href="/${orgList.dashBoardUrl}/spaces" th:each="orgList : ${orgList}">
+				<a class="reset-3c756112--orgTab-8d620844" href="@{/orgList.dashBoardUrl}/spaces" th:each="orgList : ${orgList}">
 					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
 						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10" role="presentation">
 							<img class="image-67b14f24--avatar-1c1d03ec"
@@ -88,10 +89,11 @@
 			</div>
 		</div>
 	</div>
+
 <!-- <script src="js/~.js"></script>  -->
 <script type="text/javascript">
 
-	//프롬프트에서 입력받은 조직을 디비에 넣는 방법 찾기~! 오늘 내에요! insert 테스트 끝내기~
+	//프롬프트에서 입력받은 조직을 디비에 넣는 방법 찾기~! 
 	function setOrgName(orgName){
 		var orgName = prompt("Your app/company name 조직 이름 넣으쇼")
 		return orgName

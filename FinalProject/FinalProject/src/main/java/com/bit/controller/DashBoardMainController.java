@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bit.model.dto.MemberDTO;
 import com.bit.model.service.MemberService;
 import com.bit.model.service.OrgService;
 import com.bit.model.service.SpaceDashBoardService;
@@ -35,15 +37,15 @@ public class DashBoardMainController {
 		log.info("USERNO을 알고 싶어요...");
 		return principal.getName();
 	}
-
 	
-	@GetMapping("")
-	public String orgNavi(Model model, DashBoardVO Org) {
+	@RequestMapping("")
+	public String orgNavi(Model model) {
 		//테스트중 (대시보드 메인페이지처럼 사용 중)
 		//테스트 완료 후 fragment ~ insert 처리 하기~
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
 		System.out.println("나의 orgList: "+orgList);
+		
 		return "include/dashboardNavi";
 	}
 	
@@ -52,12 +54,23 @@ public class DashBoardMainController {
 		//테스트중 
 		//테스트 완료 후 frament ~ insert 처리 하기~
 		
+		//admin, owner일때
+		//spaces, teams, settings, billings 모든 메뉴 보이기
+		
+		//reader, writer 일때
+		//space 메뉴만 보이기
+		
+		
 		return "include/dashboardMenu";
 	}
-	
-	
+
+
 	@GetMapping("spaces")
-	public String spaceDashboard() {
+	public String spaceDashboard(Model model) {
+		List<DashBoardVO> orgList = orgService.getAllOrgList();
+		model.addAttribute("orgList",orgList);
+		System.out.println("나의 orgList: "+orgList);
+	 
 		
 		return "dashboard/spaces";
 	}

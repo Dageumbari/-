@@ -17,13 +17,19 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberDTO> getTeamList() {
+	public List<MemberDTO> getTeamList(String dashboardCode) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<MemberDTO> getTeamMemberList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MemberDTO> getMemberListByPermission() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -42,12 +48,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void removeOrgMember() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void getMemberListByPermission() {
 		// TODO Auto-generated method stub
 		
 	}
