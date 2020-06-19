@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/main/atest/**").hasRole("ADMIN")
 			.and()
 				.formLogin()
-				.loginPage("/login")
+				.loginPage("/main/login")
 //				.loginProcessingUrl("/login") // 사용자의 매개변수가 POST로 전달되는 URL
 				.usernameParameter("username") 
 				.passwordParameter("password")
