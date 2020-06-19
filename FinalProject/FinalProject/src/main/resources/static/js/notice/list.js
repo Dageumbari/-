@@ -1,28 +1,18 @@
 
-//주영공지 
-
 $(document).ready(function(){
 	var result='<c:out value="${result}"/>';
-});
+	checkModal(result);
 
-
-function checkModal(result) {
-	if (result === ' ') {
+	history.replaceState({}, null, null);
+function checkModal(result) { 
+	if (result === '' || history.state) {
 		return;
 	}
 	if(parseInt(result)>0) {
-		$(".modal-body").html("게시글" +  parseInt(result) + "번이 등록되었습니다.")
-	}//class
-	$("#noticeModal").modal("show"); //id
-   }
+		$(".modal-body").html("게시글" +  parseInt(result) + "빈이 등록되었습니다.")
+	}
+	$("#myModal").modal("show");
+$(".regBtn").on("click", function() {
+	self.location = "/main/notice/register";
+});
    });
-   
-   $("#regBtn").on("click", function() {
-
-		self.location = "/notice/register";
-
-	});
-
-   
-   
-   

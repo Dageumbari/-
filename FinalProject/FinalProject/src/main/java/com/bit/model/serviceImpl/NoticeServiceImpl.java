@@ -31,6 +31,7 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		log.info("공지작성 :" + notice);
 		noticeDAO.insert(notice);
+		
 	}
 	
 	public NoticeVO get(int noticeNO) {

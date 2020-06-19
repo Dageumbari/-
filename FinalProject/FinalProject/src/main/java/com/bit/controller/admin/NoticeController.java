@@ -19,8 +19,9 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Builder
 @RequestMapping("/main/notice/*")
+
 public class NoticeController {
-	
+
 	private NoticeService noticeService;
 
 	@GetMapping("/list")
@@ -28,43 +29,42 @@ public class NoticeController {
 		log.info("list");
 		model.addAttribute("list", noticeService.getAllNoticeInfo());
 	}
-	
-	@PostMapping("/register") //등록작업POST
+
+	@PostMapping("/register") // 등록작업POST
 	public String register(NoticeVO notice, RedirectAttributes rttr) {
 		log.info("register :" + notice);
+
 		noticeService.register(notice);
-		rttr.addFlashAttribute("result", notice.getNoticeNo()); //보관된 데이터 한번만 처리
+		rttr.addFlashAttribute("result", notice.getNoticeNo()); // 보관된 데이터 한번만 처리
 		return "redirect:/notice/list";
 	}
-	
-	@GetMapping("/register") //화면에서 입력받기. 입력페이지를 보여주는 역할~
+
+	@GetMapping("/register")
 	public void register() {
-		
 	}
-	
+
 	@GetMapping("/get/{noticeNo}")
-	public void get(@ModelAttribute @PathVariable int noticeNo, Model model ) {
+	public void get(@ModelAttribute @PathVariable int noticeNo, Model model) {
 		log.info("/get");
-		model.addAttribute("notice",noticeService.get(noticeNo));
+		model.addAttribute("notice", noticeService.get(noticeNo));
 	}
-	
+
 	@PostMapping("/modify")
 	public String modify(NoticeVO notice, RedirectAttributes rttr) {
 		log.info("modify" + notice);
-		
+
 		if (noticeService.modify(notice)) {
 			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/notice/list";
 	}
-	
+
 	@PostMapping("/remove/{noticeNo}")
 	public String remove(@PathVariable("noticeNo") int noticeNo, RedirectAttributes rttr) {
 		log.info("remove" + noticeNo);
-		if(noticeService.remove(noticeNo)) {
+		if (noticeService.remove(noticeNo)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/notice/list"; 
+		return "redirect:/notice/list";
 	}
-    } 
-    
+}
