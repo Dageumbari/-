@@ -9172,10 +9172,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header {
-	position: fixed;
-	left: 0;
+	position: absolute;
 	top: 0;
-	height: 100vh;
 	width: 280px;
 	background: #5D6BA7;
 	color: #fff
