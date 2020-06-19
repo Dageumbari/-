@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.bit.model.service.SpaceService;
 
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Controller
 public class SpaceController {
 	
@@ -28,7 +30,7 @@ public class SpaceController {
 	}
 	
 	@GetMapping("/drafts")
-	public String getDraftList() {
+	public String getdraftCardList() {
 		return "space/draft/draft";
 	}
 	
@@ -36,6 +38,7 @@ public class SpaceController {
 	public String getSpaceUserInfo(Model model, int userNo, String spaceCode) {
 		model.addAttribute("userInfo", spaceService.getSpaceUserInfo(userNo, spaceCode));
 		
+		log.error(spaceService.getSpaceUserInfo(userNo, spaceCode));
 		return "space/draft/userInfo";
 	}
 	

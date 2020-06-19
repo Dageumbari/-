@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bit.model.dao.SpaceDAO;
 import com.bit.model.dto.space.DraftCard;
-import com.bit.model.dto.space.SpaceUserInfoDTO;
+import com.bit.model.dto.space.SpaceUserInfo;
 import com.bit.model.service.SpaceService;
 
 import lombok.extern.log4j.Log4j2;
@@ -21,17 +21,11 @@ public class SpaceServiceImpl implements SpaceService{
 	
 	
 	
-	 public List<SpaceUserInfoDTO> getSpaceUserInfo(int userNo,String spaceCode){
+	 public SpaceUserInfo getSpaceUserInfo(int userNo,String spaceCode){
+		 log.error(spaceDAO.getSpaceUserInfo(userNo,spaceCode));
 		 return spaceDAO.getSpaceUserInfo(userNo,spaceCode);
 	 }
 
-
-
-	@Override
-	public List<DraftCard> getSavedDraft() {
-		// TODO Auto-generated method stub
-		return spaceDAO.getdraftList();
-	}
 	 
 	
 }
