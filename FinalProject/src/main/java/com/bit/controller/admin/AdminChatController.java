@@ -1,4 +1,4 @@
-package com.bit.controller.chat;
+//package com.bit.controller.admin;
 /*
  * package com.bit.controller.chat;
  * 

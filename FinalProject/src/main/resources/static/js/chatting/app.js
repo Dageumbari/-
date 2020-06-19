@@ -96,8 +96,6 @@ return {
 	init : init
 }
 })();
-</script>
-</html>
 
 
 /*function showGreeting(message) {

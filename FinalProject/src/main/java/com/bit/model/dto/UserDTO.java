@@ -21,5 +21,5 @@ public class UserDTO {
 	private int countryCode;
 	
 	private List<UserRoleVO> roles;
-
+	
 }
