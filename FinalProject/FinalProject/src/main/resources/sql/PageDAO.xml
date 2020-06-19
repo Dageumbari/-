@@ -7,4 +7,13 @@
 	<select id="getPageList" resultType="com.bit.model.vo.PageVO">
 		SELECT * FROM PAGE
 	</select>
+	
+	<!-- <insert id="insertPage" parameterType="PageVO">
+		SELECT 
+		PAGENO,
+		PAGETITLE,
+		PAGECONENET,
+		PAGESAVETIME
+		FROM PAGE
+	</insert> -->
 </mapper>

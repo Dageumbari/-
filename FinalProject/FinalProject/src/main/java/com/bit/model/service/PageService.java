@@ -6,5 +6,5 @@ import com.bit.model.vo.PageVO;
 
 public interface PageService {
 	public List<PageVO> getPageList();
-	public List<PageVO> getAllList();
+	public List<PageVO> getAllList();	
 }
