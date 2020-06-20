@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bit.model.dao.MainDAO;
@@ -17,7 +16,6 @@ import com.bit.model.service.UserService;
 import lombok.extern.java.Log;
 
 @Log
-@RequestMapping("/main")
 @Controller
 public class MainController {
 
@@ -31,26 +29,26 @@ public class MainController {
 	@GetMapping("/main")
 	public String main() {
 
-		return "/main/main";
+		return "/main";
 	}
 
 	@GetMapping("/atest")
 	public String test(Model model) {
 
-		return "/main/atest";
+		return "/atest";
 	}
 
 	@GetMapping("/mtest")
 	public String mtest(Model model) {
 
-		return "/main/mtest";
+		return "/mtest";
 	}
 
 	@GetMapping("/login")
 	public String login() {
 		
-		
-		return "/main/login";
+		log.info("============================= login =========================");
+		return "/login";
 	}
 
 	@GetMapping("/logout")
@@ -64,20 +62,20 @@ public class MainController {
 		
 		System.out.println(email);
 		
-		return "/main/join";
+		return "/join";
 	}
 
 	@PostMapping("/join")
 	public String joinPost(@ModelAttribute("userDTO") UserDTO userDTO) {
 
 		log.info("join controller");
-		String check;
+		String check = "";
 		if (userService.join(userDTO) != null) {
 			log.info("존재하는 유저");
-			check = "/main/join";
+			check = "/join";
 		} else {
 			log.info("가입승인");
-			check = "/main/joinResult";
+			check = "/joinResult";
 		}
 
 		return check;
@@ -88,12 +86,12 @@ public class MainController {
 		log.info("joinKey");
 		mainDAO.setEmailCheck(email, key); // 이메일 인증 완료
 
-		return "/main/joinResult";
+		return "/joinResult";
 	}
 
 	@GetMapping("/accessDenied")
 	public String accessDenied() {
 
-		return "/main/main";
+		return "/main";
 	}
 }
