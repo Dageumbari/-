@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<th:block th:fragment="pageContent">
+
+<!-- Page Title,Content  -->
+	<div class="main-wrapper" align="center">
+		<article class="about-section py-5">
+			<div class="container-size-move"
+				style="width: 500px; height: 1000px;" align="center">
+				<div class="container" align="center">
+					<input type="text" class="form-control" placeholder="Untitled"
+						id="pageTitle" name="pageTitle">
+				</div>
+				<hr>
+				<div class="container2">
+					<textarea style="height: 400px" class="form-control"
+						placeholder="Enter your content here..." id="pageConenet"
+						name="pageConenet;"></textarea>
+				</div>
+			</div>
+
+			<div class="btn_wrap text-center">
+				<button class="btn btn-primary waves-effect waves-light">뒤로가기</button>
+				<button type="submit"
+					class="btn btn-primary waves-effect waves-light">저장하기</button>
+			</div>
+
+
+			<!-- Previous,Next -->
+		</article>
+		<article class="container-center-plz">
+			<div class="container text-left">
+				<button href="#" class="btn btn-primary">&laquo; Previous</button>
+			</div>
+			<div class="container text-right">
+				<button href="#" class="btn btn-primary">Next &raquo;</button>
+			</div>
+		</article>
+
+		<!-- Footer -->
+		<footer class="footer text-center py-2 theme-bg-dark">
+			<small class="copyright">Design <i class="fas fa-heart"
+				style="color: #fb866a;"></i> by <a
+				href="https://blog.naver.com/dustn0514" target="_blank">YeonSu(L
+					tomas) </a>
+			</small>
+		</footer>
+	</div>
+
+</th:block>
+</body>
+</html>

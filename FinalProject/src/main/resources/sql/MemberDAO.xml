@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDEMapper3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.model.dao.MemberDAO">
+	<!-- 
+	<resultMap id="member" type="com.bit.model.dto.MemberDTO">
+		<result property="dashBoardCode" column="dashBoardCode" />
+		<result property="teamCode" column="teamCode" />
+		<result property="teamName" column="teamName" />
+		<collection property="memPermit" javaType="com.bit.model.vo.MemPermitVO">
+			<id property="teamCode" column="teamCode" />
+			<id property="userNo" column="userNo" />
+			<result property="teamName" column="teamName" />
+			<collection property="permission" javaType="com.bit.model.vo.PermissionVO">
+				<id property="permissionNo" column="permissionNo" />
+				<result property="permissionName" column="permissionName" />
+			</collection>
+			<collection property="userInfo" javaType="com.bit.model.vo.UserInfoVO">
+				<id property="userNo" column="userNo" />
+				<result property="name" column="name" />
+				<result property="userImage" column="userImage" />
+			</collection>
+		</collection>
+	</resultMap>
+	 -->
+	 
+
+	<!-- MemberDTO view테이블 만들기? -->
+	<!-- <select id="">
+		SELECT COUNT(*) FROM MEMBER
+	</select>  
+	<select id="createMemberViewTable">
+		CREATE VIEW MEMBER AS
+		SELECT T.DASHBOARDCODE,
+       		   T.TEAMCODE,
+       		   T.TEAMNAME,
+      		   M.PERMISSIONNO,
+     		   P.PERMISSIONNAME,
+      		   U.USERNO,
+      		   U.NAME,
+       		   U.USERIMAGE			 
+		FROM TEAM T
+			JOIN MEMPERMIT M ON (T.TEAMCODE = M.TEAMCODE)
+			JOIN PERMISSION P ON (M.PERMISSIONNO = P.PERMISSIONNO)
+			JOIN USER_INFO U ON (M.USERNO = U.USERNO)
+		ORDER BY DASHBOARDCODE, TEAMCODE, PERMISSIONNO
+	</select>
+	-->
+	
+	<select id="getAllMemberList" resultType="com.bit.model.dto.MemberDTO">
+		SELECT USERIMAGE
+		FROM MEMBER 
+		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
+			AND TEAMNAME ='All Members'
+	</select>
+	
+	
+	<select id="getTeamList" resultType="com.bit.model.dto.MemberDTO">
+		SELECT  DISTINCT TEAMCODE,
+                TEAMNAME
+		FROM MEMBER
+		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
+        ORDER BY TEAMCODE
+	</select>
+	 
+	<!-- 
+	<select id="getTeamList" resultType="com.bit.model.dto.MemberDTO">
+		SELECT *
+			FROM MEMBER
+		WHERE 
+	</select>
+	-->
+	 
+	<select id="getTeamMemberList" resultType="com.bit.model.dto.MemberDTO">
+		SELECT TEAMCODE,
+			 TEAMNAME,
+			 PERMISSIONNO,
+			 PERMISSIONNAME,
+			 USERNO,
+			 NAME,
+			 USERIMAGE
+		FROM MEMBER
+		WHERE #{TEAMCODE} = TEAMCODE
+	</select>
+	
+	<select id="getMemberListByPermission" resultType="com.bit.model.dto.MemberDTO">
+		SELECT USERNO,
+			   NAME,
+			   USERIMAGE,
+			   PERMISSIONNO,
+			   PERMISSIONNAME
+		FROM MEMBER
+		WHERE #{PERMISSIONNO} = PERMISSIONNO
+	</select>
+	
+</mapper>

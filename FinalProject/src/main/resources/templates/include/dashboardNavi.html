@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>조직 네비인뎁쇼</title>
+<link href="/css/dashboard.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+	<div class="reset-3c756112--dashboardNavigationContainer-c615f6e4" th:fragment="dashboardNavi">
+		<div class="reset-3c756112--navigation-3e92335c">
+			<div class="reset-3c756112--withScrollbar-39338630--scrollAxisY-7680295e--navigationBody-3dc152bc">
+				
+				<a class="reset-3c756112--orgTab-8d620844" href="@{/orgList.dashBoardUrl}/spaces" th:each="orgList : ${orgList}">
+					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
+						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10" role="presentation">
+							<img class="image-67b14f24--avatar-1c1d03ec"
+							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABsUlEQVRYR+2WW0sCQRiG34V1zUyUysoTUlhBB+1IpWYZRUhI9Jv6TUGYrIeSCIqIoiK1NFJwDfLSvdmN9cKgLNodqL2YuZ19mYfn+76ZZXL7kgwdL4YCElaHGiQUCGqQGiQ1QJqnPUgNkhogzRP3oCzLEGp13N3eo/RUhiiKcDgd8PlGMDY+CtbAEjESAUqShOurG1ycX8Js7oZ32Asjx6FWE1AuPcPtcSEcCcJqtWqGJAIs5IvIpk8wOT2BufkZGAyGNkilUkWGz7ZshlaD4LiPPTW0mgGVUmZSx5AlGZFoGCaT6cu5StlPc2fYjm3B5Xaq4Wp/qxmwXn/F4UECgVk//IGpjoc33ho4SvDwej1YXFoAwzCqITUDFguPSCZ47MRjrV7rtJpNEXwyBYulByuhZbCs+oHRDJh/KIBPprG7F8eQY/BHQGVzYzOKri7j3xnUPaDuS6z7IdH9NaN0+28uavuAHZH1MIxG9QOinKF5ipXwd0+dINRReamir78Xa9EIbLZ/euoUSF3/LKi+1DQEiEqs4TzVEQqoWtmnADVIDZIaIM3THqQGSQ2Q5nXfg+9EKz0A21b+QQAAAABJRU5ErkJggg==">
+							<div class="reset-3c756112--innerShadow-7a3a8651"></div>
+						</div>
+					</div>
+				</a>
+				
+				
+				<a class="reset-3c756112--orgTab-8d620844--orgTabActive-7ab59dc9" href="/@bitfinal/spaces">
+					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
+						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
+							role="presentation">
+							<img class="image-67b14f24--avatar-1c1d03ec"
+								src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABoElEQVRYR+2VS0sCURiG39N4m1IyKITINIyylByRWmS0cNWihS36hf2LIqpNJCIEhZeyu1F0WQRl6thMOGCUmyPnzNAszmy/eec8PN/3nSGbT1s6bPwQAcjZHWGQUyCEQWGQ1wBvXsygMMhrgDfPPYNne3ncn1b/cMjDPoRScwhEwxiQJC5GSwC7RMFkFJFlBWSAMEOaAth4ryO2lobkdEDXdXy8vqG4fYh2U0VyIwPZ77MPYJfkuXqHyn4eSjYD76jffoAPxQvcFkpIZDPw+AbtA6h9aXi5rOH8oIDQYgwTiRlmuE7QlBns3WKX7EEknUAgOgVC2BfEMkDjw4RgPD6NyEoSkoP9qjHF4O8t7sC16g08lq9wnTtBeCmOydQ8c5stAezQ6JqO8m4OaqP5cwWxUFoIqKG0c4R2S7UfoPrZxE2hiNpxBcbfJK2wyDMyphjs3eIujXdsBAvrq3B7//ke7AV0D8nGBgeVWUguJ7M9Uwxynd5HmLvFfZzB9YoA5NJnxhbzAtDyosU0Q7S6MEgzRKsLgzRDtLowSDNEq38DSrQMYOZ84HwAAAAASUVORK5CYII=">
+						</div>
+					</div></a>
+					
+					
+					
+				<div class="reset-3c756112--orgButton-8646a146">
+					<button
+						class="button-36063075--medium-6e2a217a--button-7fcfb4a1--button-dark-6278d806--medium-54db2ab3--rounded-50d53f59--S100Top-351b6542--S100Bottom-15862a5a"  onclick="setOrgName()">
+						<span class="medium-3bde6db7--iconOnly-bddce91a"><svg
+								preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
+								fill="none" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+								stroke-linejoin="round" stroke="currentColor"
+								class="icon-7f6730be--text-3f89f380">
+								<g>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line></g></svg></span><span
+							class="text-4505230f--UIH400-4e41e82a--textUIFamily-5ebd8e40--text-8ee2c8b2"></span>
+					</button>
+					<span class="text-4505230f--UIH200-50ead35f--textUIFamily-5ebd8e40--orgButtonText-2c5d8183">NewOrg</span>
+				</div>
+				
+			</div>
+			
+			<div class="reset-3c756112--sidebarFooter-20adc0e5">
+				<div class="reset-3c756112--navButtons-8646a146" >
+					<button class="button-36063075--medium-6e2a217a--button-78c61f17--button-dark-50f870b6--medium-54db2ab3">
+						<span class="medium-3bde6db7--iconOnly-bddce91a">
+							<div class="reset-3c756112--iconWithBadge-56f27afc">
+								<div class="reset-3c756112--badge-1428b40c--primary-2fc3f636--small-6a4dd14c--badge-8216a294"></div>
+								<svg preserveAspectRatio="xMidYMid meet" height="1em"
+									width="1em" fill="currentColor" viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg"
+									xmlns:xlink="http://www.w3.org/1999/xlink" stroke="none"
+									class="icon-7f6730be--text-3f89f380">
+									<g>
+									<g transform="translate(6 2)" fill-rule="evenodd">
+									<mask>
+									<polygon
+										points="0 0.0003 11.999 0.0003 11.999 19.9993 0 19.9993"></polygon>
+									</mask>
+									<path
+										d="M6.71 19.71a.99.99 0 0 0 .21-1.09c-.05-.13-.12-.23-.21-.33a1.037 1.037 0 0 0-1.42 0c-.09.1-.16.21-.21.33a.995.995 0 0 0 .21 1.09c.19.188.44.29.71.29.27 0 .52-.102.71-.29M6 16.165a1 1 0 0 1-1-1v-.336c0-2.168 1.173-4.205 3.138-5.449 1.426-.904 2.121-2.573 1.771-4.254A3.97 3.97 0 0 0 6.872 2.09c-1.234-.256-2.44.028-3.393.804A3.986 3.986 0 0 0 2 6a1 1 0 0 1-2 0c0-1.814.808-3.512 2.217-4.657C3.625.196 5.469-.247 7.28.132c2.271.474 4.114 2.317 4.586 4.588.523 2.503-.521 4.996-2.658 6.35C7.825 11.946 7 13.352 7 14.83v.336a1 1 0 0 1-1 1"
+										mask="url(#b)"></path></g></g></svg>
+							</div>
+						</span>
+						<span class="text-4505230f--UIH400-4e41e82a--textUIFamily-5ebd8e40--text-8ee2c8b2"></span>
+					</button>
+				</div>
+				<a class="logoLink-7eaeba6b" href="/"><svg
+						preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
+						fill="currentColor" viewBox="0 0 1067 769"
+						xmlns="http://www.w3.org/2000/svg" stroke="none"
+						class="icon-7f6730be--text-3f89f380">
+						<g>
+						<path
+							d="M480.026 640.677c17.205 0 31.2 13.997 31.2 31.194s-13.995 31.193-31.2 31.193c-17.197 0-31.193-13.996-31.193-31.193 0-17.197 13.996-31.194 31.193-31.194m489.93-193.226c-17.203 0-31.2-13.998-31.2-31.195 0-17.204 13.997-31.2 31.2-31.2 17.198 0 31.194 13.996 31.194 31.2 0 17.197-13.996 31.195-31.193 31.195m0-127.804c-53.269 0-96.609 43.34-96.609 96.609 0 10.373 1.723 20.702 5.123 30.741L559.328 616.879c-18.132-26.128-47.521-41.617-79.302-41.617-36.821 0-70.391 21.065-86.63 54.003L106.68 478.109c-30.288-15.927-52.965-65.817-50.56-111.223 1.248-23.687 9.438-42.071 21.897-49.17 7.916-4.493 17.436-4.099 27.526 1.188l1.916 1.01c75.96 40.022 324.6 170.981 335.063 175.844 16.157 7.47 25.14 10.5 52.659-2.547l513.958-267.3c7.53-2.844 16.315-10.062 16.315-21.023 0-15.205-15.72-21.199-15.765-21.199-29.218-14.018-74.163-35.054-117.987-55.57C798.033 84.26 691.861 34.547 645.23 10.132c-40.253-21.072-72.655-3.311-78.432.282l-11.227 5.555C345.727 119.743 64.898 258.826 48.911 268.553 20.278 285.973 2.547 320.679.252 363.768c-3.586 68.304 31.261 139.506 81.069 165.634l303.172 156.354c6.83 47.306 47.55 82.725 95.532 82.725 52.78 0 95.808-42.546 96.603-95.14L910.541 492.38c16.93 13.233 37.92 20.486 59.416 20.486 53.268 0 96.61-43.341 96.61-96.61s-43.342-96.61-96.61-96.61"
+							fill-rule="evenodd"></path></g></svg></a>
+			</div>
+		</div>
+	</div>
+
+<!-- <script src="js/~.js"></script>  -->
+<script type="text/javascript">
+
+	//프롬프트에서 입력받은 조직을 디비에 넣는 방법 찾기~! 
+	function setOrgName(orgName){
+		var orgName = prompt("Your app/company name 조직 이름 넣으쇼")
+		return orgName
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDEMapper3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.model.dao.OrgDAO">
+	<!-- 시큐리티에서 userno 가져오기 -->
+	<select id="getAllOrgList" resultType="com.bit.model.vo.DashBoardVO">
+		SELECT DISTINCT D.DASHBOARDCODE, 
+			   D.DASHBOARDIMAGE, 
+			   D.DASHBOARDNAME, 
+			   D.DASHBOARDTYPE, 
+			   D.DASHBOARDURL
+		FROM DASHBOARD D 
+        	JOIN TEAM T ON (D.DASHBOARDCODE = T.DASHBOARDCODE)
+			JOIN MEMPERMIT M ON (T.TEAMCODE = M.TEAMCODE)
+        	JOIN USER_INFO U ON (M.USERNO = U.USERNO)
+    	WHERE 1 = U.USERNO
+	</select>
+	<select id="getOrgInfo">
+		SELECT dashboardimage, dashboardname
+			FROM dashBoard
+		WHERE #{dashboardCode} = dashBoardCode;
+	</select>
+	<delete id="deleteOrg">
+		DELETE *
+			FROM dashBoard
+		WHERE dashboardCode = #{dashboardCode}
+	</delete>
+	<insert id="createOrg">
+		INSERT 
+			FROM
+		WHERE
+	</insert>
+	<update id="orgNameModify">
+		UPDATE
+			FROM
+		WHERE
+	</update>
+	<!-- 
+	<update id="orgLogoModify">
+		UPDATE
+			FROM
+		WHERE
+	</update>
+	 -->
+</mapper>
