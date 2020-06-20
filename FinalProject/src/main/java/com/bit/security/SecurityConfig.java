@@ -15,8 +15,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	CustomUserDetailsService customUserDetailsService;
 	
-	@Autowired
-	CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+//	@Autowired
+//	CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.loginProcessingUrl("/login") // 사용자의 매개변수가 POST로 전달되는 URL
 				.usernameParameter("username") 
 				.passwordParameter("password")
-				.failureHandler(customAuthenticationFailureHandler)
+//				.failureHandler(customAuthenticationFailureHandler)
 			.and()
 				.exceptionHandling().accessDeniedPage("/accessDenied")
 			.and()
