@@ -1,42 +1,76 @@
 <!DOCTYPE html>
-<html>
-<head>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="context-path" th:content="@{/}" />
 <title>pageContent</title>
+<link th:href="@{/css/sidenav.css}" rel="stylesheet">
+<link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/theme-1.css}" rel="stylesheet">
+<!-- 
+<link th:href="@{/css/theme-2.css}" rel="stylesheet">
+<link th:href="@{/css/theme-3.css}" rel="stylesheet">
+<link th:href="@{/css/theme-4.css}" rel="stylesheet">
+<link th:href="@{/css/theme-5.css}" rel="stylesheet">
+<link th:href="@{/css/theme-6.css}" rel="stylesheet">
+<link th:href="@{/css/theme-7.css}" rel="stylesheet">
+ -->
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}" ></script>
+<style type="text/css">
+.btnPre {
+	float: left;
+}
+
+.btnNext {
+	float: right;
+}
+
+.btnSave {
+	margin-left: 250px;
+}
+
+
+</style>
+<script type="text/javascript">
+	function save() {
+		
+		
+	}
+</script>
 </head>
 <body>
+	<th:block th:replace="common/nav/sidenav"></th:block>
+	<th:block th:replace="common/nav/sidenavDrawer"></th:block>
+	<th:block th:replace="common/nav/navHeader"></th:block>
 	<th:block th:fragment="pageContent">
 
 		<!-- Page Title,Content  -->
 		<div class="main-wrapper">
+			<form action="/pageSave" method="get" >
 				<div class="container" align="center">
 					<input type="text" class="form-control" placeholder="Untitled"
 						id="pageTitle" name="pageTitle">
 				</div>
-				<hr class="container">
-				<div class="container">
+				<hr class="container" style="width: 400px;" />
+				<div class="container" align="center">
 					<textarea style="height: 400px" class="form-control"
 						placeholder="Enter your content here..." id="pageConenet"
-						name="pageConenet;"></textarea>
+						name="pageConenet"></textarea>
 				</div>
-
-				<hr class="container">
-				<div class="container" align="right">
-					<button type="submit"
-						class="btn btn-primary waves-effect waves-light">저장하기</button>
-				</div>
-
-			<!-- Previous,Next -->
-
-			<article class="container-center-plz">
-				<div class="container" align="left">
-					<button href="#" class="btn btn-primary">&laquo; Previous</button>
-				</div>
-				<div class="container" align="right">
-					<button href="#" class="btn btn-primary">Next &raquo;</button>
-				</div>
-			</article>
+	
+				<hr class="container" style="width: 400px;" />
+				<!-- Previous,Next -->
+	
+				<article class="container-center-plz">
+					<div class="container" style="left: 10px;">
+						<button class="btn btn-primary btnPre">&laquo; Previous</button>
+						<button onclick="save();" type="submit" class="btn btn-primary btnSave">저장하기</button>
+						<button class="btn btn-primary btnNext">Next &raquo;</button>
+					</div>
+				</article>
+			</form>
 		</div>
 
 	</th:block>

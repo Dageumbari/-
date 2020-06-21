@@ -1,13 +1,13 @@
 package com.bit.controller.space;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import lombok.extern.log4j.Log4j;
-import lombok.extern.log4j.Log4j2;
+import com.bit.model.service.PageService;
+import com.bit.model.vo.PageVO;
 
 
 @Controller
@@ -25,7 +25,8 @@ public class SpaceController {
 	
 	@GetMapping("/space")
 	public String space() {
-		return "layout/spaceMain";
+		//return "layout/spaceMain";
+		return "common/contents/pageContent";
 	}
 	
 	public String getDraftList() {
