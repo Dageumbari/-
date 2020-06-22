@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Page Title - SB Admin</title>
         <link type="text/css"  rel="stylesheet" th:href="@{/css/styles.css}" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+        <title>Login</title>        
     </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
@@ -22,17 +22,22 @@
                                     <div class="card-body">
                                     
                                         <form method="post">
-                                        
+                                        	<th:block th:if="${errorMsg != null} ">
+                                        		<font color='red'>
+                                        			<span th:text="${errorMsg}"></span>
+                                        		</font>
+                                        	</th:block>
+                                        	
                                         	<!-- 아이디 -->
                                             <div class="form-group">
                                                 <label class="small mb-1" for="username">Email</label>
-                                                <input class="form-control py-4" type="text" id="username" name="username" value="1q2w3e4r@naver.com" />
+                                                <input class="form-control py-4" type="text" id="username" name="username" value="collin1016@naver.com" />
                                             </div>
                                             
                                             <!-- 패스워드 -->
                                             <div class="form-group">
                                                 <label class="small mb-1" for="password">Password</label>
-                                                <input class="form-control py-4" type="password" id="password" name="password" value="3212d12DW" />
+                                                <input class="form-control py-4" type="password" id="password" name="password" value="1q2w3e4r!@" />
                                                 <!-- placeholder="Enter password" -->
                                             </div>
                                             
@@ -49,9 +54,16 @@
                                             
                                             <!-- 비밀번호 찾기 및 로그인 버튼 -->
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">Forgot Password?</a>
+                                                <a class="small" href="#">Forgot Password?</a>
                                                 <button class="btn btn-primary" type="submit">Sign in</button>
                                             </div>
+                                            
+                                            <th:block th:if="${loginFailCount > 3} ">
+                                        		<font color='red'>
+                                        			<span th:text="${loginFailCount}"></span>
+                                        		</font>
+                                        	</th:block>
+                                            
 
                                         </form>
                                         
@@ -82,6 +94,6 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script th:src="@{js/scripts.js}"></script>
+        <script th:src="@{/js/scripts.js}"></script>
     </body>
 </html>

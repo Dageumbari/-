@@ -1,6 +1,8 @@
 package com.bit.model.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
 import com.bit.model.dto.UserDTO;
 
 
@@ -15,4 +17,8 @@ public interface MainDAO {
 	
 	public void setEmailCheck(String email, String key); // 회원가입한 유저 이메일 인증
 	
+	public void setLoginFailCount(String email); // 로그인 실패시 유저 실패카운트 증가
+	
+	@Select("select loginFailCount from user_info where email = #{email}")
+	public int getLoginFailCount(String email); // 실패카운트 
 }
