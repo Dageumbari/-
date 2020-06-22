@@ -10,6 +10,7 @@ import com.bit.model.vo.PageVO;
 public interface PageDAO {
 	List<PageVO> getPageList();
 	List<PageVO> getAllList();
+	int pageSave(PageVO pv);
 	/*public PageVO insertPage(PageVO params);
 	public PageVO selectPageDetail(int pageNO);
 	public int updatePage(PageVO params);
