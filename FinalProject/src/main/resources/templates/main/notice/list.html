@@ -14,9 +14,10 @@
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-	crossorigin="anonymous"></script>
+ <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"/>
+	<script th:src="@{/js/navScript.js}"></script>
+<!-- 	crossorigin="anonymous"></script> -->
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -173,13 +174,16 @@
 									<tr th:each="notice:${list}">
 										<td th:text="${notice.noticeNo}">
 										<td th:text="${notice.noticeTitle}">
-										<td th:text="${notice.adminCode}">
+										<td th:text="${admin_info.adminid}">
 										<td
 											th:text="${#dates.format(notice.noticeDate,'yyyy-MM-dd HH:mm:ss')}">2014-07-08
 											00:00:00</td>
 									</tr>
 								</tbody>
-							</table>
+							</table><!-- 표 끝 -->
+							
+							<form th:object=${notice} th:action="@{/main/notice/register}"
+								method="get"></form>
 								<input type="button" class="regBtn" value="등록">
 							<!-- Modal -->
 							<div class="modal fade" id="noticeModal" tabindex="-1"
@@ -216,6 +220,14 @@
 					</div>
 				</div>
 		</div>
+		<!-- 페이징처리 -->
+		<div class='pull-right'>
+					<ul class="pagination">
+					<!--여기에 타임리프 if문써서 페이징 out~308  -->
+						</ul>
+				</div>
+		
+		
 		<!-- 모달창 -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">

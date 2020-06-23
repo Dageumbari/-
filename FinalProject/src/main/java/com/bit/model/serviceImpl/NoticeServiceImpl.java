@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bit.model.dao.NoticeDAO;
+import com.bit.model.dto.NoticeCriteriaDTO;
 import com.bit.model.service.NoticeService;
 import com.bit.model.vo.NoticeVO;
 
@@ -21,9 +22,10 @@ public class NoticeServiceImpl implements NoticeService {
 	private NoticeDAO noticeDAO;
 
 	@Override
-	public List<NoticeVO> getAllNoticeInfo() {
+	public List<NoticeVO> getAllNoticeInfo(NoticeCriteriaDTO noticeCri) {
 		// TODO Auto-generated method stub
-		return noticeDAO.getAllNoticeInfo();
+		log.info("Get notice PageList w/ criteria:" + noticeCri);
+		return noticeDAO.getListwithPaging(noticeCri);
 	}
 
 	@Override
@@ -52,5 +54,11 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		log.info("공지삭제: "+noticeNo);
 		return noticeDAO.delete(noticeNo)==1;
+	}
+
+	@Override
+	public int getTotalNoticeCount(NoticeCriteriaDTO noticeCriteria) {
+		// TODO Auto-generated method stub
+		return noticeDAO.getTotalNoticeCount(noticeCriteria);
 	}
 }
