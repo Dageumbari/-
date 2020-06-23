@@ -20,10 +20,7 @@ public class UsetTest {
 	@Test
 	public void DBtest() {
 		
-		
-		UserDTO userVal = new UserDTO();
-		userVal = maindao.getUserAllInfo("collin1016@naver.com");
-		log.info("\n TEST" + userVal);
+
 
 	}
 

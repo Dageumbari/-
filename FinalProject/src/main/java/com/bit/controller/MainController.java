@@ -1,36 +1,31 @@
 package com.bit.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.model.dao.MainDAO;
-import com.bit.model.dao.NoticeDAO;
 import com.bit.model.dto.UserDTO;
 import com.bit.model.service.UserService;
+import com.bit.security.RecaptchaService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
-@RequestMapping("/main")
 @Controller
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MainController {
 
-	@Autowired
-	MainDAO mainDAO;
-
-	
-	@Autowired
-	UserService userService;
-
+	private final MainDAO mainDAO;
+	private final UserService userService;
+	private final RecaptchaService recaptchaService;
 
 	@GetMapping("/main")
 	public String main() {
@@ -39,52 +34,48 @@ public class MainController {
 	}
 
 	@GetMapping("/atest")
-	public String test(Model model) {
+	public String test() {
 
 		return "/main/atest";
 	}
 
 	@GetMapping("/mtest")
-	public String mtest(Model model) {
+	public String mtest() {
 
 		return "/main/mtest";
 	}
 
 	@GetMapping("/login")
 	public String login() {
-		
-		
+		log.info("============================= get =========================");
+
+		return "/main/login";
+	}
+
+	@PostMapping("/login")
+	public String loginPost() {
+		log.info("============================= post =========================");
+
 		return "/main/login";
 	}
 
 	@GetMapping("/logout")
 	public String logout() {
 
-		return "/logout";
+		return "/main/logout";
 	}
 
 	@GetMapping("/join")
-	public String join(@RequestParam(required = false)String email) {
-		
-		System.out.println(email);
-		
+	public String join() {
+
 		return "/main/join";
 	}
 
 	@PostMapping("/join")
-	public String joinPost(@ModelAttribute("userDTO") UserDTO userDTO) {
-
+	public ModelAndView joinPost(@ModelAttribute("userDTO") UserDTO userDTO) {
 		log.info("join controller");
-		String check;
-		if (userService.join(userDTO) != null) {
-			log.info("존재하는 유저");
-			check = "/main/join";
-		} else {
-			log.info("가입승인");
-			check = "/main/joinResult";
-		}
 
-		return check;
+		return userService.join(userDTO);
 	}
 
 	@GetMapping("/join/email/{email}/{key}")
@@ -92,7 +83,7 @@ public class MainController {
 		log.info("joinKey");
 		mainDAO.setEmailCheck(email, key); // 이메일 인증 완료
 
-		return "/main/joinResult";
+		return "/main/main";
 	}
 
 	@GetMapping("/accessDenied")
@@ -101,6 +92,27 @@ public class MainController {
 		return "/main/main";
 	}
 	
-	
-	
+	@GetMapping("/valid-recaptcha")
+    public @ResponseBody String validRecaptcha(HttpServletRequest request){
+		
+		log.info("\n/valid-recaptcha : " +  request.getParameter("g-recaptcha-response"));
+		
+    	String result = null;
+    	String response = request.getParameter("g-recaptcha-response");
+    	
+    	log.info("\nCHECK1 : " + response + "\nrecaptchaService:" + recaptchaService.toString());
+    	boolean isRecaptcha = recaptchaService.verifyRecaptcha(response);
+    	
+    	
+    	log.info("\nCHECK2 : " + isRecaptcha);
+    	if(isRecaptcha) {
+    		result = "success";
+    	}else {
+    		result = "false";
+    	}  	
+    	
+    	log.info("\nCHECK3 : " + result);
+    	return result;
+    }
+
 }
