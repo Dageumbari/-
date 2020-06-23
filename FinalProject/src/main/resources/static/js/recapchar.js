@@ -1,8 +1,8 @@
 function doLogin() {
-    let loginFailCount = document.getElementById('loginFailCount');
-    console.info(loginFailCount);
+    var loginFailCount = $('#loginFailCount').val();
+    
     if (!isRecaptchachecked && loginFailCount > 3) {
-        alert('리캡차 인증 체크를 해주세요.');
+        alert('자동 로그인 방지!');
         $("#recaptcha").focus();
         return false;
     }
@@ -18,9 +18,9 @@ function recaptchaCallback() {
 
 function doVaildRecaptcha() {
     var formData = $("#login").serialize(); // 해당 데이터의 값을 직렬화
-
+    
     $.ajax({
-        type : 'GET',
+        type : 'POST',
         contentType : "application/x-www-form-urlencoded",
         url : '/valid-recaptcha',
         data : formData,
@@ -29,10 +29,9 @@ function doVaildRecaptcha() {
         success : function(data) {
             if (data == 'success') {
                 $('#login').submit();
-                alert('로그인 성공');
 
             } else {
-                alert('인증되지 않은 주소입니다.');
+                alert('관리자에게 문의해주세요.');
             }
         },
         error : function(xhr, status, error) {

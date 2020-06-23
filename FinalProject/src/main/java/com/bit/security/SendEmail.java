@@ -11,9 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 
-@Log
 @Service
 @RequiredArgsConstructor
 public class SendEmail {
@@ -45,7 +43,6 @@ public class SendEmail {
 	
 	public void email(String email, String userName, String key)  {
 		
-		log.info("email" + javaMailSender);
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 		
 		String context = userName + "님"

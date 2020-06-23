@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private final UserDetailsService customUserDetailsService;
 	private final AuthenticationFailureHandler customAuthenticationFailureHandler;
+	private final AuthenticationSuccessHandler customAuthenticationSuccessHandler;
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -34,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username") 
 				.passwordParameter("password")
 				.failureHandler(customAuthenticationFailureHandler)
+				.successHandler(customAuthenticationSuccessHandler)
 			.and()
 				.exceptionHandling().accessDeniedPage("/accessDenied")
 			.and()

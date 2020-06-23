@@ -92,7 +92,7 @@ public class MainController {
 		return "/main/main";
 	}
 	
-	@GetMapping("/valid-recaptcha")
+	@PostMapping("/valid-recaptcha")
     public @ResponseBody String validRecaptcha(HttpServletRequest request){
 		
 		log.info("\n/valid-recaptcha : " +  request.getParameter("g-recaptcha-response"));

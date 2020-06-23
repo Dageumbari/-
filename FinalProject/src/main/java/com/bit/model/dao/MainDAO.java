@@ -2,6 +2,7 @@ package com.bit.model.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.bit.model.dto.UserDTO;
 
@@ -21,4 +22,7 @@ public interface MainDAO {
 	
 	@Select("select loginFailCount from user_info where email = #{email}")
 	public int getLoginFailCount(String email); // 실패카운트 
+	
+	@Update("update user_info set loginFailCount where email = #{email}")
+	public void setLoginFailCountReset(String email);
 }

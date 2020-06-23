@@ -38,17 +38,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 		userDTO = mainDAO.getUserAllInfo(username);
 
 		log.info("\n 유저 정보 확인 \n");
-		if(userDTO == null) {
-			return null;
-		}
-
-		else if (userDTO.getKey().equals("Y")) {
+		if (userDTO.getKey().equals("Y")||userDTO.getLoginFailCount()<3) {
 			log.info("\n 이메일 인증 완료");
 
 			return new User(userDTO.getEmail(), userDTO.getPw(), makeGrantedAuthorities(userDTO.getRoles()));
 
 		} else {
-			log.info("\n 이메일 인증 필요");
+			log.info("\n 이메일 인증 또는 로그인 실패 횟수 초과");
 
 			return new User(userDTO.getEmail(), userDTO.getPw(), makeGrantedAuthorities(null));
 		}
