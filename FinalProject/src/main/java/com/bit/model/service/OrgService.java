@@ -7,13 +7,14 @@ import com.bit.model.vo.DashBoardVO;
 public interface OrgService {
 	
 	public List<DashBoardVO> getAllOrgList();
+	public DashBoardVO getOrgInfo(String dashBoardCode);
+	public DashBoardVO orgNameModify(DashBoardVO dashBoardVO);
+	public DashBoardVO orgURLModify(DashBoardVO dashBoardVO);
 	
 	//리턴자료형 설정 해야됨
-	//public void getOrgInfo();
-	//public void craetOrg();
+	//public void createOrg();
 	//public void deleteOrg();
-	//public void orgNameModify();
-	//public void orgURLModify();
+
 	
 	//조직 대표 이미지 업로드 변경
 	//public void orgLogoModify();

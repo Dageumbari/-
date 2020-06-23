@@ -18,13 +18,12 @@ public interface SpaceDashBoardDAO {
 	public void groupOrderModify();
 	public void deleteGroup();
 	
-	
 	//스페이스 대시보드
 	public List<SpaceVO> getAllSpaceList();
 	public void createSpace();
-	public void getSpaceInfo();
-	public void spaceInfoModify();
+	//public void getSpaceInfo();
+	//public void spaceInfoModify();
 	public void spaceOrderModify();
-	public void deleteSpace();
+	//public void deleteSpace();
 	
 }

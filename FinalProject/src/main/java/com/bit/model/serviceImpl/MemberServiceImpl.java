@@ -2,12 +2,17 @@ package com.bit.model.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.bit.model.dao.MemberDAO;
 import com.bit.model.dto.MemberDTO;
 import com.bit.model.service.MemberService;
 
+@Service
 public class MemberServiceImpl implements MemberService {
 
+	@Autowired
 	MemberDAO memberDAO;
 
 	@Override
