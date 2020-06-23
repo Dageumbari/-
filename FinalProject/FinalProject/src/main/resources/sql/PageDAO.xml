@@ -13,6 +13,15 @@
 		FROM PAGE
 	</select>
 	
+<!-- 	<select id="getPageSave" resultType="com.bit.model.vo.PageVO">
+	SELETE
+		PAGENO,
+		PAGETITLE,
+		PAGECONTENT,
+		PAGESAVETIME
+	FROM PAGE
+	</select> -->
+	
 	<!-- <insert id="insertPage" parameterType="PageVO">
 		SELECT 
 		PAGENO,

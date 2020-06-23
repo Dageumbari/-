@@ -49,4 +49,10 @@ public class PageController {
 		return "common/contents/pageContent";
 	}
 	
+	/*
+	 * @GetMapping("pageUpdate") public String getPageUpdate(HttpServletRequest req,
+	 * Model model) { int result = PageService.pageUpdate(pv); return
+	 * "common/contents/pageContent"; }
+	 */
+	
 }

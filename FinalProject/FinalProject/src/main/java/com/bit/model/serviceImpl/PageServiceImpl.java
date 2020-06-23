@@ -29,4 +29,8 @@ public class PageServiceImpl implements PageService {
 	public int pageSave(PageVO pv) {
 		return pageDAO.pageSave(pv);
 	}
+
+	/*
+	 * @Override public int pagePudate(PageVO pv) { return pageDAO.PageUpdate(pv); }
+	 */
 }

@@ -1,17 +1,18 @@
 package com.bit.controller.space;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.bit.model.service.PageService;
-import com.bit.model.vo.PageVO;
 
 
 @Controller
 public class SpaceController {
+	
+	@Autowired
+	PageService pageService;
 	
 	@GetMapping("/sidenav")
 	public String sidebar() {
@@ -24,8 +25,9 @@ public class SpaceController {
 	}
 	
 	@GetMapping("/space")
-	public String space() {
+	public String space(Model model) {
 		//return "layout/spaceMain";
+		model.addAttribute("list", pageService.getPageList());
 		return "common/contents/pageContent";
 	}
 	
