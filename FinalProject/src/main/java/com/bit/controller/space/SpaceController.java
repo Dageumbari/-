@@ -29,6 +29,7 @@ public class SpaceController {
 	public String space(Model model) {
 		model.addAttribute("list", pageService.getPageList());
 		return "common/contents/pageContent";
+		//모델에 리스트를 담아서 pageContent로 리턴 시키고 space로 뷰출력 
 	}
 	
 	@GetMapping("/space")

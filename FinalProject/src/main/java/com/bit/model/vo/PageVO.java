@@ -30,7 +30,7 @@ public class PageVO {
 	private Timestamp pageSavetime;
 
 	/* 페이지 내용 */
-	private Clob pageConenet;
+	private Clob pageContent;
 
 	/* 페이지 순서 */
 	private int pageOrder;

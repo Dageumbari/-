@@ -13,6 +13,8 @@
 		FROM PAGE
 	</select>
 	
+	<update id="pageUpdate">			
+	</update>
 <!-- 	<select id="getPageSave" resultType="com.bit.model.vo.PageVO">
 	SELETE
 		PAGENO,

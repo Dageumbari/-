@@ -9,9 +9,8 @@ import com.bit.model.vo.PageVO;
 @Mapper
 public interface PageDAO {
 	List<PageVO> getPageList();
-	List<PageVO> getAllList();
 	int pageSave(PageVO pv);
-	//int PageUpdate(PageVO pv);
+	int PageUpdate(PageVO pv);
 	
 	/*public PageVO insertPage(PageVO params);
 	public PageVO selectPageDetail(int pageNO);

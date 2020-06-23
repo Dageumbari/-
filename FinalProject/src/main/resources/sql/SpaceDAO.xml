@@ -52,13 +52,13 @@
 	<!--  드래프트 카드 생성 -->
 
 
-	<!-- sidenav header의 사용자 로고이미지 -->
+	<!-- sidenav header의 사용자 로고이미지 
 	<select id="getSpaceUserInfo" resultType="spaceUserInfo">
 		select spaceCode,
 		spaceName, spaceUrl, name, userNo, userImage from
 		spaceUserInfo where
 		userNo=#{userNo} and spaceCode=#{spaceCode}
-	</select>
+	</select>-->
 
 
 
