@@ -3,7 +3,11 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.OrgDAO">
-	<!-- 시큐리티에서 userno 가져오기 -->
+	<!-- 
+		XML쿼리문에서 부등호 사용시 CDATA 사용
+	 -->
+	 
+	<!-- 시큐리티에서 userNo 가져오기 -->
 	<select id="getAllOrgList" resultType="com.bit.model.vo.DashBoardVO">
 		SELECT DISTINCT D.DASHBOARDCODE, 
 			   D.DASHBOARDIMAGE, 
@@ -16,10 +20,14 @@
         	JOIN USER_INFO U ON (M.USERNO = U.USERNO)
     	WHERE 1 = U.USERNO
 	</select>
-	<select id="getOrgInfo">
-		SELECT dashboardimage, dashboardname
-			FROM dashBoard
-		WHERE #{dashboardCode} = dashBoardCode;
+	<select id="getOrgInfo"  resultType="com.bit.model.vo.DashBoardVO">
+		SELECT DASHBOARDCODE, 
+			   DASHBOARDIMAGE, 
+			   DASHBOARDNAME, 
+			   DASHBOARDTYPE, 
+			   DASHBOARDURL
+			FROM DASHBOARD
+		WHERE DASHBOARDCODE = #{DASHBOARDCODE, jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteOrg">
 		DELETE *

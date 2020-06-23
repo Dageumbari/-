@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Teams인뎁쇼</title>
+<title>Teams</title>
 <link href="/css/dashboard.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -19,7 +19,7 @@
 	<div class="reset-3c756112--dashboardTab-2357d04a--dashboardTabWithMenu-1be0e63a">
 		<div class="reset-3c756112--dashboardTab-6c6dd16c">
 			<div class="reset-3c756112--dashboardTabHeader-f7d1f108--S400Bottom-9b457f18">
-				<span class="text-4505230f--InfoH200-3a8a7a86--textUIFamily-5ebd8e40--orgTitle-22ea4f82">${dashboardName}</span>
+				<span class="text-4505230f--InfoH200-3a8a7a86--textUIFamily-5ebd8e40--orgTitle-22ea4f82">${orgList.dashboardName}</span>
 				<div class="reset-3c756112--dashboardTabContent-12b621e6">
 					<div class="reset-3c756112--mobileMenuContainer-19573906">
 						<button
@@ -323,5 +323,6 @@
 </div>
 </div>
 </div>
+<script th:src="@{/js/dashboard.js}" type="text/javascript"></script>
 </body>
 </html>
