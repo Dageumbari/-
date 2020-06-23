@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 			log.info("\n ==== email =======");
 			sendEmail.email(userDTO.getEmail(), userDTO.getName(), userDTO.getKey()); // 가입시 입력한 정보로 이메일 전송
 			
-			String url = "/main/joinResult";
+			String url = "main/joinResult";
 			
 			modelAndView.addObject("email", userDTO.getEmail());
 			modelAndView.setViewName(url);
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 			log.info("\n ==== not null =======");
 			
 			String errorMsg = "존재하는 유저입니다";
-			String url = "/main/join";
+			String url = "main/join";
 			
 			modelAndView.addObject("errorMsg", errorMsg);
 			modelAndView.setViewName(url);

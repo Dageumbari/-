@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bit.model.dao.MainDAO;
 import com.bit.model.dto.UserDTO;
 import com.bit.model.service.UserService;
+import com.bit.security.RecaptchaService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -24,6 +25,7 @@ public class MainController {
 
 	private final MainDAO mainDAO;
 	private final UserService userService;
+	private final RecaptchaService recaptchaService;
 
 	@GetMapping("/main")
 	public String main() {
@@ -90,5 +92,27 @@ public class MainController {
 		return "/main/main";
 	}
 	
+	@GetMapping("/valid-recaptcha")
+    public @ResponseBody String validRecaptcha(HttpServletRequest request){
+		
+		log.info("\n/valid-recaptcha : " +  request.getParameter("g-recaptcha-response"));
+		
+    	String result = null;
+    	String response = request.getParameter("g-recaptcha-response");
+    	
+    	log.info("\nCHECK1 : " + response + "\nrecaptchaService:" + recaptchaService.toString());
+    	boolean isRecaptcha = recaptchaService.verifyRecaptcha(response);
+    	
+    	
+    	log.info("\nCHECK2 : " + isRecaptcha);
+    	if(isRecaptcha) {
+    		result = "success";
+    	}else {
+    		result = "false";
+    	}  	
+    	
+    	log.info("\nCHECK3 : " + result);
+    	return result;
+    }
 
 }

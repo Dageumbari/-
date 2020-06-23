@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form id="loginForm" th:method="post">
+	<form id="loginForm" >
 		<div class="form-group">
 			<div class="form-label-group">
 				<input id="inputId" name="id" class="form-control" placeholder="아이디"
@@ -44,7 +44,7 @@
 		<div class="form-group" style="margin: 6% 0% 0% 7%;">
 
 			<div id="recaptcha" class="g-recaptcha"
-				data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+				th:attr="data-sitekey=${@recaptchaKey.getSite()}" 
 				data-callback="recaptchaCallback"></div>
 
 		</div>

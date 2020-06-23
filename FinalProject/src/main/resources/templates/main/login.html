@@ -7,6 +7,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link type="text/css"  rel="stylesheet" th:href="@{/css/styles.css}" />
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script th:src="@{/js/scripts.js}"></script>
+		<script th:src="@{/js/recapchar.js}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <title>Login</title>        
     </head>
@@ -19,9 +23,10 @@
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Sign in</h3></div>
+
                                     <div class="card-body">
-                                    
-                                        <form method="post">
+                                        <form id="login" method="post">
+                                            
                                         	<th:block th:if="${errorMsg != null} ">
                                         		<font color='red'>
                                         			<span th:text="${errorMsg}"></span>
@@ -48,26 +53,31 @@
                                                     <label class="custom-control-label" for="remember-me">Remember</label>
                                                 </div>
                                             </div>
-                                            
+
+                                            <!-- reCaptcha -->
+                                            <th:block th:if="${loginFailCount > 3}">
+                                                <div id="recaptcha" class="g-recaptcha" th:attr="data-sitekey=${@recaptchaKey.getSite()}"
+                                                     data-callback="recaptchaCallback" >
+                                                </div>
+                                                <span th:text="${loginFailCount}" id="loginFailCount" value ></span>
+                                            </th:block>
+
                                             <!-- csrf 토큰 (사이트간 위조 방지) -->
                                             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                                             
-                                            <!-- 비밀번호 찾기 및 로그인 버튼 -->
-                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="#">Forgot Password?</a>
-                                                <button class="btn btn-primary" type="submit">Sign in</button>
-                                            </div>
                                             
-                                            <th:block th:if="${loginFailCount > 3} ">
-                                        		<font color='red'>
-                                        			<span th:text="${loginFailCount}"></span>
-                                        		</font>
-                                        	</th:block>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                            	<!-- 비밀번호 찾기  -->
+                                                <a class="small" href="#">Forgot Password?</a>
+                                                
+                                                <!-- 로그인 버튼 -->
+                                                <button class="btn btn-primary" type="submit" >Sign in</button>
+                                            </div>
                                             
 
                                         </form>
-                                        
                                     </div>
+
                                     <div class="card-footer text-center">
                                         <div class="small"><a href="/join">Create an account</a></div>
                                     </div>
@@ -94,6 +104,6 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script th:src="@{/js/scripts.js}"></script>
+        
     </body>
 </html>
