@@ -1,10 +1,12 @@
 package com.bit.model.service;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.bit.model.dto.UserDTO;
 
 public interface UserService {
 	
-	public String join(UserDTO userDTO);
+	public ModelAndView join(UserDTO userDTO);
 	
 	
 }

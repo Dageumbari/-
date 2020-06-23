@@ -1,22 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<title>TEST</title>
-<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>reCAPTCHA demo: Simple page</title>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script th:src="@{/js/scripts.js}"></script>
 </head>
 <body>
-    <h1>admin</h1>
-    <h2 sec:authentication='name'> security username </h2>
-    <h3> [[${#authentication.name}]]</h3>
+
+	<form id="loginForm" >
+		<div class="form-group">
+			<div class="form-label-group">
+				<input id="inputId" name="id" class="form-control" placeholder="아이디"
+					required="required" autofocus="autofocus"> <label
+					for="inputId">아아디</label>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="form-label-group">
+				<input id="inputPassword" name="password" class="form-control"
+					type="password" placeholder="비밀번호" required="required"> <label
+					for="inputPassword">비밀번호</label>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="checkbox">
+				<label> <input type="checkbox" value="remember-me"
+					id="idSave"> 아이디 저장
+				</label>
+			</div>
+		</div>
+		
+		<div th:if="${error}" class="alert alert-danger">아이디 혹은 비밀번호가
+			틀렸습니다.</div>
+		<div class="form-group">
+			<button class="btn btn-primary btn-block" type="button"
+				onclick="doLogin()">로그인</button>
+		</div>
+		
+		<div class="form-group" style="margin: 6% 0% 0% 7%;">
+
+			<div id="recaptcha" class="g-recaptcha"
+				th:attr="data-sitekey=${@recaptchaKey.getSite()}" 
+				data-callback="recaptchaCallback"></div>
+
+		</div>
+	</form>
 
 
-    <p sec:authorize-url ="/atest/aaa">
-        <a href='/atest/aaa'>admin aaa</a>
-    </p>
 
-
-    <p sec:authorize-url ='/mtest/aaa'>
-        <a href="/mtest/aaa">member aaa</a>
-    </p>
 </body>
 </html>

@@ -55,7 +55,7 @@
 		
 		insert all 
 		into user_info 
-		values (#{userNo}, #{email}, #{pw}, #{name}, 'IMG', 0, 'GENDER', 0, localtimestamp(0), 082, #{key})
+		values (#{userNo}, #{email}, #{pw}, #{name}, #{userNo}, 0, #{gender}, 0, localtimestamp(0), 082, #{key})
 		into user_role (roleNo, userNo, roleName) 
 		values 
 		<foreach item="roles" collection="roles" separator=",">
@@ -70,6 +70,14 @@
 	update user_info
 	set key = 'Y'
 	where email = #{email} and key = #{key}
+	
+	</update>
+	
+	<update id="setLoginFailCount">
+
+	update user_info
+	set loginFailCount = loginFailCount + 1 
+	where email = #{email}
 	
 	</update>
 	
