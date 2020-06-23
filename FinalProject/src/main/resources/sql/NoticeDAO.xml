@@ -3,6 +3,19 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.NoticeDAO">
+	<resultMap id="getListwithPaging"
+		type="com.bit.model.vo.noticeVO">
+		<id property="noticeNo" column="noticeNo" />
+		<result property="noticeTitle" column="noticeTitle" />
+		<result property="noticeDate" column="noticeDate" />
+		<result property="noticeContent" column="noticeContent" />
+		<result property="adminCode" column="adminCode" />
+		<association property="admin_info"
+			javaType="com.bit.model.vo.AdminInfoVO">
+			<id property="adminCode" column="adminCode" />
+			<result property="adminId" column="adminId" />
+		</association>
+	</resultMap>
 
 	<select id="getAllNoticeInfo"
 		resultType="com.bit.model.vo.NoticeVO">     
@@ -20,13 +33,6 @@
 		values
 		(#{NOTICEDATE},#{NOTICECONTENT},seq_notice.nextval,#{NOTICETITLE},#{ADMINCODE})
 	</insert>
-	<!-- insert into notice (NOTICENO,NOTICETITLE,NOTICECONTENT,NOTICEDATE) 
-		select notice.NOTICENO,notice.NOTICETITLE,notice.NOTICECONTENT,notice.NOTICEDATE 
-		from notice inner join admin_info using(admin_info.admincode) where status 
-		= '1' group by noticeno insert into (select notice.NOTICENO,notice.NOTICETITLE,notice.NOTICECONTENT,notice.NOTICEDATE,admin_info.adminId 
-		from notice inner join admin_info on admin_info.admincode=notice.admincode) 
-		where(notice.NOTICENO,notice.NOTICETITLE,notice.NOTICECONTENT,notice.NOTICEDATE,admin_info.adminId) 
-		values (seq_notice.nextval,#{NOTICETITLE},#{NOTICECONTENT},#{NOTICEDATE},#{ADMINID}) -->
 
 	<select id="read" resultType="com.bit.model.vo.NoticeVO">
 		select * from
@@ -58,7 +64,7 @@
 	<select id="getListwithPaging"
 		resultType="com.bit.model.vo.NoticeVO">
 	 <![CDATA[
-		 select NOTICEDATE,NOTICECONTENT,NOTICENO,NOTICETITLE,ADMINid
+		 select NOTICEDATE,NOTICECONTENT,NOTICENO,NOTICETITLE,ADMINID
 		 from
 		 (select /*+INDEX_ASC(NOTICE NOTICENO) */
 		 rownum rn,NOTICEDATE,NOTICECONTENT,NOTICENO,NOTICETITLE,ADMINID
@@ -72,6 +78,10 @@
 		 )
 		 WHERE rn > (#{pageNo}-1)*#{noticeAmount}
 	 ]]>
+	</select>
+
+	<select id="getTotalNoticeCount" resultType="int">
+		select count(*) from notice where NOTICENO > 0
 	</select>
 </mapper>
 

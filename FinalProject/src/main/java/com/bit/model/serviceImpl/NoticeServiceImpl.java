@@ -55,4 +55,10 @@ public class NoticeServiceImpl implements NoticeService {
 		log.info("공지삭제: "+noticeNo);
 		return noticeDAO.delete(noticeNo)==1;
 	}
+
+	@Override
+	public int getTotalNoticeCount(NoticeCriteriaDTO noticeCriteria) {
+		// TODO Auto-generated method stub
+		return noticeDAO.getTotalNoticeCount(noticeCriteria);
+	}
 }

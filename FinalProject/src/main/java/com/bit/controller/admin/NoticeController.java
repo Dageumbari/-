@@ -28,8 +28,9 @@ public class NoticeController {
 	public void list(NoticeCriteriaDTO noticeCri, Model model) {
 		log.info("list:" +noticeCri);
 		model.addAttribute("list", noticeService.getAllNoticeInfo(noticeCri));
-	    model.addAttribute("pageMaking",new NoticePagingDTO(noticeCri, 123));
-	    
+		
+	    int total = noticeService.getTotalNoticeCount(noticeCri);
+	    model.addAttribute("pageMaking",new NoticePagingDTO(noticeCri, total));//전체 데이터 갯수처리
 	}
 
 	@PostMapping("/register") // 등록작업POST
