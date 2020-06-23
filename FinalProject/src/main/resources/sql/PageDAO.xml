@@ -5,8 +5,22 @@
 <mapper namespace="com.bit.model.dao.PageDAO">
 
 	<select id="getPageList" resultType="com.bit.model.vo.PageVO">
-		SELECT * FROM PAGE
+		SELECT
+		    PAGENO,
+		    PAGETITLE,
+		    PAGECONTENT,
+		    PAGESAVETIME
+		FROM PAGE
 	</select>
+	
+<!-- 	<select id="getPageSave" resultType="com.bit.model.vo.PageVO">
+	SELETE
+		PAGENO,
+		PAGETITLE,
+		PAGECONTENT,
+		PAGESAVETIME
+	FROM PAGE
+	</select> -->
 	
 	<!-- <insert id="insertPage" parameterType="PageVO">
 		SELECT 
