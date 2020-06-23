@@ -1257,29 +1257,6 @@ input, select, textarea, button {
 
 
 /*space*/
-.button-36063075--small-30ceeddb--button-5f5907cd {
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-    height: 30px;
-    display: inline-flex;
-    align-items: center;
-    line-height: 1em;
-    white-space: nowrap;
-    justify-content: center;
-    -webkit-box-pack: center;
-    background-color: rgb(56, 132, 255);
-    -webkit-box-align: center;
-    border-width: 1px;
-    border-style: solid;
-    border-image: initial;
-    outline: none;
-    padding: 0px 16px;
-    border-color: transparent;
-    border-radius: 3px;
-    text-decoration: none;
-    transition: all 250ms ease-out 0s;
-}
-
 .button-36063075--small-30ceeddb--button-5f5907cd--small-54db2a94 {
     color: rgb(255, 255, 255);
     width: 30px;
