@@ -1,5 +1,6 @@
 package com.bit.controller.space;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,6 @@ public class SpaceController {
 	
 	@GetMapping("/space")
 	public String space(Model model) {
-		//return "layout/spaceMain";
 		model.addAttribute("list", pageService.getPageList());
 		return "common/contents/pageContent";
 	}
