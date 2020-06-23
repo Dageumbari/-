@@ -1,12 +1,11 @@
 package com.bit.model.serviceImpl;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bit.model.dao.SpaceDAO;
-import com.bit.model.dto.space.DraftCard;
 import com.bit.model.dto.space.SpaceUserInfo;
 import com.bit.model.service.SpaceService;
 

@@ -22,6 +22,7 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/main/notice/*")
 
 public class NoticeController {
+
 	private NoticeService noticeService;
 
 	@GetMapping("/list")

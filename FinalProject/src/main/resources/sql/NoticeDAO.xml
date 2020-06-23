@@ -79,8 +79,7 @@
 		 WHERE rn > (#{pageNo}-1)*#{noticeAmount}
 	 ]]>
 	</select>
-
-	<select id="getTotalNoticeCount" resultType="int">
+	<select id="getTotalNoticeCount" resultType="int" >
 		select count(*) from notice where NOTICENO > 0
 	</select>
 </mapper>

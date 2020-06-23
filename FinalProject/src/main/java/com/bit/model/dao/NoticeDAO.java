@@ -18,7 +18,6 @@ public interface NoticeDAO {
 	public int delete(int noticeNO);   //remove
 	public int update(NoticeVO notice); //modify
 	public List<NoticeVO> getListwithPaging(NoticeCriteriaDTO noticeCriteria);   
-	public int getTotalNoticeCount(NoticeCriteriaDTO noticeCriteria);
-	
+	public int getTotalNoticeCount(NoticeCriteriaDTO noticeCriteria); //전체데이터 갯수
 }
 
