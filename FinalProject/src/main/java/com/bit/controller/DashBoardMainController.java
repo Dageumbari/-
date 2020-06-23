@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bit.model.dto.MemberDTO;
 import com.bit.model.service.MemberService;
@@ -49,11 +52,16 @@ public class DashBoardMainController {
 	}
 	
 	@GetMapping("")
-	public String orgNavi(Model model) { //자동으로 파라미터의 setter 메서드가 동작하면서 파라미터를 수집함
+	public String orgNavi(Model model,String dashBoardUrl) { //자동으로 파라미터의 setter 메서드가 동작하면서 파라미터를 수집함
 		
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
 		System.out.println("나의 orgList: "+orgList);
+		
+		DashBoardVO dashBoardVO = new DashBoardVO();
+		dashBoardVO.setDashBoardCode(dashBoardVO.getDashBoardCode());
+		dashBoardVO.setDashBoardUrl(dashBoardUrl);
+		System.out.println("대시유알엘: "+dashBoardUrl);
 		
 		return "include/dashboardNavi";
 	}
@@ -78,18 +86,22 @@ public class DashBoardMainController {
 		return "include/dashboardMenu";
 	}
 
-
-	@GetMapping("spaces")
-	public String spaceDashboard(Model model,String dashBoardCode) {
-		
+	@RequestMapping(value = "{dashBoardUrl}/spaces", method = RequestMethod.GET)
+	//@GetMapping("spaces")
+	public String spaceDashboard(Model model, @PathVariable String dashBoardUrl) {
+		//조직 리스트 불러오기
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
 		System.out.println("나의 orgList: "+orgList);
-		model.getAttribute(dashBoardCode);
-		System.out.println("대시보드코드 : "+dashBoardCode);
+
+		DashBoardVO dashBoardVO = new DashBoardVO();
+		dashBoardVO.setDashBoardCode(dashBoardVO.getDashBoardCode());
+		dashBoardVO.setDashBoardUrl(dashBoardUrl);
+		System.out.println("대시유알엘: "+dashBoardUrl);
 		
-		model.addAttribute("orgInfo", orgService.getOrgInfo(dashBoardCode));
-		System.out.println("조직 정보: "+orgService.getOrgInfo(dashBoardCode));
+		DashBoardVO orgInfo = orgService.getOrgInfo(dashBoardVO.getDashBoardCode());
+		model.addAttribute("orgInfo", orgInfo);
+		System.out.println("조직 정보: "+orgInfo);
 		
 		return "dashboard/spaces";
 	}
