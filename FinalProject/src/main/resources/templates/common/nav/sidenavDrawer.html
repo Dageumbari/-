@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<th:block th:fragment="sidenavDrawer">
+	<th:block th:fragment="sidenavDrawer(userInfo)">
 		<div class="sidebarDrawer">
 			<div class="sidebarDrawerInner">
 				<div class="drawerContent">
@@ -15,11 +15,11 @@
 						<div class="drawerHeader">
 							<div class="spaceSummary">
 								<div class="ownerTitle">
-									<span class="text-ownerTitle">ORG1</span>
+									<span class="text-ownerTitle" th:text="${userInfo.spaceName}"></span>
 								</div>
 								<div class="spaceNameWrapper">
 									<div class="spaceName">
-										<span class="text-spaceName">New Rules</span>
+										<span class="text-spaceName" th:text="${userInfo.name}"></span>
 									</div>
 								</div>
 							</div>
@@ -38,15 +38,13 @@
 						<div class="draftsDrawer">
 							<div class="controlsCenterTabHeader">
 								<div class="draftTabs">
-									<div role="button" tabindex="0" class="tabsItem-touchableView">
-										<span class="tabsItemInfo-draftTabs">drafts</span>
-									</div>
-									<div role="button" tabindex="0" class="tabsItem-touchableView">
-										<span class="tabsItemInfo-draftTabs">merged</span>
-									</div>
-									<div role="button" tabindex="0" class="tabsItem-touchableView">
-										<span class="tabsItemInfo-draftTabs">archived</span>
-									</div>
+									<a role="button" tabindex="0" class="tabsItem-touchableView"
+										href="/draftList"> <span class="tabsItemInfo-draftTabs">drafts</span>
+									</a> <a role="button" tabindex="0" class="tabsItem-touchableView"
+										href="/mergedList"> <span class="tabsItemInfo-draftTabs">merged</span>
+									</a> <a role="button" tabindex="0" class="tabsItem-touchableView"
+										href="/archivedList"> <span class="tabsItemInfo-draftTabs">archived</span>
+									</a>
 								</div>
 							</div>
 							<div class="draftsListing">
