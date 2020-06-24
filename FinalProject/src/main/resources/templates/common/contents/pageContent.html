@@ -64,27 +64,36 @@
 		<div class="main-wrapper">
 			<form action="/pageSave" method="get">
 				<div class="container" align="center">
+					
+					<!-- th:if Not Null -->
 					<th:block th:each="ld : ${listDetail}" th:if="${listDetail != null}">
-					<th:out>NOT NULL</th:out>
+					<th:out>Not Null</th:out>
 					<input th:value="${ld.pageTitle}" type="text" class="form-control" placeholder="Untitled" 
 						id="pageTitle" name="pageTitle" />
 					</th:block>
-					<th:block th:each="ld : ${listDetail}" th:unless="${listDetail != null && listDetail != ''}">
-					<span>null</span>
+					
+					<!-- th:unless Null -->
+					<!-- <th:block th:each="ld : ${listDetail}" th:unless="${listDetail != null && listDetail != ''}"> 
+					</th:block>-->
+					<span>Null</span>
 					<input type="text" class="form-control" placeholder="Untitled" 
 						id="pageTitle" name="pageTitle" />
-					</th:block>
+				
 				</div>
 				<hr class="container" style="width: 400px;" />
 				<div class="container" align="center">
+					
+					<!-- th:if Not Null -->
 					<th:block th:each="ld : ${listDetail}" th:if="${listDetail != null && listDetail != ''}">
 					<textarea style="height: 400px" class="form-control" placeholder="Enter your content here..."
 						id="pageContent" name="pageContent" th:text="${ld.pageContent}"></textarea>
 					</th:block>
-					<th:block th:each="ld : ${listDetail}" th:unless="${listDetail != null && listDetail != ''}">
+					
+					<!-- th:unless Null -->
+					<!-- <th:block th:each="ld : ${listDetail}" th:unless="${listDetail != null && listDetail != ''}"> 
+					</th:block> -->
 					<textarea style="height: 400px" class="form-control" placeholder="Enter your content here..."
 						id="pageContent" name="pageContent"></textarea>
-					</th:block>
 				
 				</div>
 

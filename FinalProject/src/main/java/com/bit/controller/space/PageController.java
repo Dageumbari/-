@@ -61,11 +61,15 @@ public class PageController {
 		}
 		return "redirect:/pageList";
 	}
+}
 
 	/*
 	 * @GetMapping("/pageUpdate") public String getPageUpdate(HttpServletRequest
 	 * req, Model model) { PageVO pv = new PageVO(); int result =
 	 * PageService.pageUpdate(pv); return "common/contents/pageContent"; }
 	 */
-
-}
+	
+	/*
+	 * @GetMapping("/pageContent") public String pageContent() { return
+	 * "common/contents/pageContent"; }
+	 */
