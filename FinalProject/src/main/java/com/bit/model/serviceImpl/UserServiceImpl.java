@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
 		log.info("\n==UserServiceImpl");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		
-		if (mainDAO.getJoinCheck(userDTO.getEmail()) == null) { // 유저 중복 체크
+		String name = mainDAO.getJoinCheck(userDTO.getEmail());
+		if ( name == null) { // 유저 중복 체크
 			log.info("\n==null");
 
 			userDTO.setKey(sendEmail.getKey()); // 키 생성후 유저 정보에 입력
@@ -39,12 +39,10 @@ public class UserServiceImpl implements UserService {
 			mainDAO.setUserInfo(userDTO); // 유저 등록
 			
 			log.info("\n==email");
-			sendEmail.email(userDTO.getEmail(), userDTO.getName(), userDTO.getKey()); // 가입시 입력한 정보로 이메일 전송
-			
-			String url = "main/joinResult";
+			sendEmail.joinEmail(userDTO.getEmail(), userDTO.getName(), userDTO.getKey()); // 가입시 입력한 정보로 이메일 전송
 			
 			modelAndView.addObject("email", userDTO.getEmail());
-			modelAndView.setViewName(url);
+			modelAndView.setViewName("/main/joinResult");
 			
 			return modelAndView;
 		} else {
@@ -59,6 +57,21 @@ public class UserServiceImpl implements UserService {
 			return modelAndView;
 		}
 
+	}
+	
+	@Override
+	public void forgot(String email) {
+		String name = mainDAO.getJoinCheck(email);
+		if (name == null) {
+			
+		}else {
+			String key = sendEmail.getKey();
+			
+			mainDAO.setForgotPassword(pwEncoder.encode(key), email);
+
+			sendEmail.forgotEmail(email, name, key);			
+		}
+		
 	}
 
 }

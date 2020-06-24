@@ -1,7 +1,10 @@
 package com.bit.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,23 +29,42 @@ public class MainController {
 	private final MainDAO mainDAO;
 	private final UserService userService;
 	private final RecaptchaService recaptchaService;
-
+	private final PasswordEncoder passwordEncoder;
+	
 	@GetMapping("/main")
 	public String main() {
 
 		return "/main/main";
 	}
 
-	@GetMapping("/atest")
-	public String test() {
+	@GetMapping("/password")
+	public String password() {
 
-		return "/main/atest";
+		return "/main/password";
+	}
+	
+	@PostMapping("/password")
+	public String postPassword(Principal principal, String password) {
+		log.info("\n==password" + principal + "\n" + password);
+		String email = principal.getName();
+		mainDAO.setForgotPassword(passwordEncoder.encode(password), email);
+		
+		// 로그아웃 실행할것.
+		return "redirect:/login";
 	}
 
-	@GetMapping("/mtest")
-	public String mtest() {
+	@GetMapping("/forgot")
+	public String forgot() {
 
-		return "/main/mtest";
+		return "/main/forgot";
+	}
+	
+	@PostMapping("/forgot")
+	public String forgotEamil(String email) {
+		
+		userService.forgot(email);
+		
+		return "/main/main";
 	}
 
 	@GetMapping("/login")
@@ -97,7 +119,7 @@ public class MainController {
 		
 		log.info("\n/valid-recaptcha : " +  request.getParameter("g-recaptcha-response"));
 		
-    	String result = null;
+    	String result;
     	String response = request.getParameter("g-recaptcha-response");
     	
     	log.info("\nCHECK1 : " + response + "\nrecaptchaService:" + recaptchaService.toString());

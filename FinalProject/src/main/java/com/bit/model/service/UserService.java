@@ -8,5 +8,5 @@ public interface UserService {
 	
 	public ModelAndView join(UserDTO userDTO);
 	
-	
+	public void forgot(String email);
 }

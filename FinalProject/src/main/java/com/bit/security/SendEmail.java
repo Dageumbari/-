@@ -41,16 +41,9 @@ public class SendEmail {
 		return stringBuffer.toString();
 	}
 	
-	public void email(String email, String userName, String key)  {
+	private void sendEmail (String email, String context)  {
 		
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-		
-		String context = userName + "님"
-				+ "<p> 링크를 누르시면 가입이 완료됩니다. " 
-				+ "<a href='http://localhost:80"
-				+ "/join/email/" + email + "/" + key 
-				+ "'>인증하기</a></p>"
-				+ "<p>회원가입을 시도하지 않으셨다면 무시해주세요</p>";
 		
 		try {
 			mimeMessage.setFrom("Bitbook");
@@ -63,6 +56,24 @@ public class SendEmail {
 		} catch (MessagingException e) {
 			// TODO: handle exception
 		}		
+	}
+	
+	public void joinEmail (String email, String name, String key) {
+		String context = name + "님"
+				+ "<p> 링크를 누르시면 가입이 완료됩니다. " 
+				+ "<a href='http://localhost:80"
+				+ "/join/email/" + email + "/" + key 
+				+ "'>인증하기</a></p>"
+				+ "<p>회원가입을 시도하지 않으셨다면 무시해주세요</p>";
+		
+		sendEmail(email, context);
+	}
+	
+	public void forgotEmail (String email, String name, String key) {
+		String context = name + "님의 임시 비밀번호는 " + key + " 입니다."
+				+ "<p> 로그인후 비밀번호를 변경해주세요. </p> " ;
+		
+		sendEmail(email, context);
 	}
 
 }
