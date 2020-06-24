@@ -28,9 +28,12 @@
 					<hr>
 				</div>
 				<!-- nav-section -->
-				<ul class="navbar-nav flex-column" th:each="pageList : ${list}">
+			<!-- 	<p  th:text=" ${list}"></p> -->
+				
+				<ul class="navbar-nav flex-column" th:each="pageDetail: ${list}"  th:if="${pageDetail != null}">
+				
 					<li>
-						<a th:href="@{/pageDetail(pageNo=${pageList.pageNo})}" th:text="${pageList.pageTitle}" >
+						<a th:href="@{/pageDetail(pageNo=${pageDetail.pageNo})}" th:text="${pageDetail.pageTitle}" >
 						</a>
 					</li>
 				</ul>

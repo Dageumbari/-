@@ -64,37 +64,34 @@
 		<div class="main-wrapper">
 			<form action="/pageSave" method="get">
 				<div class="container" align="center">
-					
-					<!-- th:if Not Null -->
-					<th:block th:each="ld : ${listDetail}" th:if="${listDetail != null}">
-					<th:out>Not Null</th:out>
-					<input th:value="${ld.pageTitle}" type="text" class="form-control" placeholder="Untitled" 
-						id="pageTitle" name="pageTitle" />
-					</th:block>
-					
-					<!-- th:unless Null -->
-					<!-- <th:block th:each="ld : ${listDetail}" th:unless="${listDetail != null && listDetail != ''}"> 
-					</th:block>-->
-					<span>Null</span>
+				
+					<!-- <th:block  th:if="${#strings.equals(pageDetail, 'NoData')}"> -->
+					<th:block th:if="${pageDetail == null}">
 					<input type="text" class="form-control" placeholder="Untitled" 
 						id="pageTitle" name="pageTitle" />
-				
+					</th:block>
+
+					<!-- Not Null -->
+					 <th:block th:if="${pageDetail != null}">
+					      <input  th:value="${pageDetail.pageTitle}" type="text" class="form-control" placeholder="Untitled" id="pageTitle" name="pageTitle" />
+					</th:block>
+					
 				</div>
 				<hr class="container" style="width: 400px;" />
 				<div class="container" align="center">
+				
+					<!-- Null -->
+					<!-- <th:block  th:unless="${pageDetail != 'null' && pageDetail != ''}"> -->
+					<th:block th:if="${pageDetail == null}">
+					<textarea style="height: 400px" class="form-control" placeholder="Enter your content here..."
+						id="pageContent" name="pageContent"></textarea>
+					</th:block>
 					
-					<!-- th:if Not Null -->
-					<th:block th:each="ld : ${listDetail}" th:if="${listDetail != null && listDetail != ''}">
+					<!-- Not Null -->
+					<th:block th:each="ld : ${pageDetail}" th:if="${pageDetail != null}">
 					<textarea style="height: 400px" class="form-control" placeholder="Enter your content here..."
 						id="pageContent" name="pageContent" th:text="${ld.pageContent}"></textarea>
 					</th:block>
-					
-					<!-- th:unless Null -->
-					<!-- <th:block th:each="ld : ${listDetail}" th:unless="${listDetail != null && listDetail != ''}"> 
-					</th:block> -->
-					<textarea style="height: 400px" class="form-control" placeholder="Enter your content here..."
-						id="pageContent" name="pageContent"></textarea>
-				
 				</div>
 
 				<hr class="container" style="width: 400px;" />

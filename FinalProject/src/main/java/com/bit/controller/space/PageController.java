@@ -15,12 +15,12 @@ import com.bit.model.vo.PageVO;
 public class PageController {
 
 	@Autowired(required = false)
-	PageService PageService;
+	PageService pageService;
 
 	@GetMapping("/pageList")
 	public String getPageList(Model model) {
-		model.addAttribute("list", PageService.getPageList());
-		model.addAttribute("listDetail", null);
+		//model.addAttribute("pageDetail", "NoData");
+		model.addAttribute("list", pageService.getPageList());
 		System.out.println("PAGELIST START");
 		//return "space/pageList";
 		//return "common/nav/navHeader"; // navHeader가 나오는데 인클루드할때 값이 나와야함
@@ -30,14 +30,17 @@ public class PageController {
 	
 	@GetMapping("/pageDetail")
 	public String getPageDetail(Model model, PageVO pv) {
-		System.out.println("==================pageDetailStart=================");
-		/*
-		 * List =
-		 * 
-		 * if(ls.isEmpty()){ model.addAttribute("response","NoData"); }else{
-		 * model.addAttribute("response",); }
-		 */
-		model.addAttribute("listDetail", PageService.getPageDetail(pv));
+		System.out.println("==================pageDetailStart================="+ pv);
+		
+		pv =pageService.getPageDetail(pv.getPageNo());
+		System.out.println("pv===="+pv);
+		if(pv==null) {
+			System.out.println("NoData");
+			model.addAttribute("pageDetail","NoData");			
+		}else {
+			System.out.println("222222222222");
+			model.addAttribute("pageDetail",pv );
+		}
 		return "common/contents/pageContent";
 
 	}
@@ -53,7 +56,7 @@ public class PageController {
 		System.out.println("3::"+pv.getPageTitle());
 		System.out.println("4::"+pv.getPageContent());
 		System.out.println("=====================================");
-		int result = PageService.pageSave(pv);
+		int result = pageService.pageSave(pv);
 		if (result < 1) {
 			System.out.println("저장 실패!!!");
 		} else {
@@ -61,15 +64,11 @@ public class PageController {
 		}
 		return "redirect:/pageList";
 	}
-}
 
 	/*
 	 * @GetMapping("/pageUpdate") public String getPageUpdate(HttpServletRequest
 	 * req, Model model) { PageVO pv = new PageVO(); int result =
 	 * PageService.pageUpdate(pv); return "common/contents/pageContent"; }
 	 */
-	
-	/*
-	 * @GetMapping("/pageContent") public String pageContent() { return
-	 * "common/contents/pageContent"; }
-	 */
+
+}

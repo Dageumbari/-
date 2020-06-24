@@ -35,4 +35,9 @@ public class PageVO {
 
 	/* 부모 페이지 */
 	private int pageGroupNo;
+
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
