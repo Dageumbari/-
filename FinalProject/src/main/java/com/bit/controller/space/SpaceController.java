@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.bit.model.service.PageService;
+import com.bit.model.service.SpaceService;
 
 
 @Controller
@@ -14,6 +15,9 @@ public class SpaceController {
 	
 	@Autowired(required=false)
 	PageService pageService;
+	
+	@Autowired(required=false)
+	SpaceService spaceService;
 	
 	@GetMapping("/sidenav")
 	public String sidebar() {
@@ -26,13 +30,15 @@ public class SpaceController {
 	}
 	
 	@GetMapping("/space")
-	public String space(Model model) {
-		model.addAttribute("list", pageService.getPageList());
-		return "common/contents/pageContent";
+	public String space() {
+		return "layout/spaceMain";
 	}
 	
-	@GetMapping("/space")
-	public String getDraftList() {
-		return "space/draft/draft";
+	@GetMapping("/userInfo")
+	public String getSpaceUserInfo(Model model) {
+		
+		model.addAttribute("userInfo", spaceService.getSpaceUserInfo() );
+		
+		return "space/draft/userInfo";
 	}
 }

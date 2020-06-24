@@ -57,7 +57,7 @@
 		select spaceCode,
 		spaceName, spaceUrl, name, userNo, userImage from
 		spaceUserInfo where
-		userNo=#{userNo} and spaceCode=#{spaceCode}
+		userNo=10
 	</select>
 
 

@@ -2,9 +2,11 @@ package com.bit.model.service;
 
 
 
-import com.bit.model.dto.space.SpaceUserInfo;
+import java.util.List;
+
+import com.bit.model.dto.space.SpaceUserInfoDTO;
 
 public interface SpaceService {
-	 public SpaceUserInfo getSpaceUserInfo(int userNo, String spaceCode);
+	 public List<SpaceUserInfoDTO> getSpaceUserInfo();
 
 }

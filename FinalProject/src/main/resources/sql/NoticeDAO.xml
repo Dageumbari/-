@@ -1,88 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDEMapper3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.NoticeDAO">
-	<resultMap id="getListwithPaging"
-		type="com.bit.model.vo.noticeVO">
-		<id property="noticeNo" column="noticeNo" />
-		<result property="noticeTitle" column="noticeTitle" />
-		<result property="noticeDate" column="noticeDate" />
-		<result property="noticeContent" column="noticeContent" />
-		<result property="adminCode" column="adminCode" />
-		<association property="admin_info"
-			javaType="com.bit.model.vo.AdminInfoVO">
-			<id property="adminCode" column="adminCode" />
-			<result property="adminId" column="adminId" />
-		</association>
-	</resultMap>
 
-	<select id="getAllNoticeInfo"
-		resultType="com.bit.model.vo.NoticeVO">     
-	 <![CDATA[select * from 
-	 (select notice.NOTICENO,notice.NOTICETITLE,notice.NOTICEDATE,admin_info.adminId
-			from notice
-			inner join admin_info 
-			on admin_info.admincode=notice.admincode) 
-			where noticeNo>0]]>
-	</select>
+   <select id="getAllNoticeInfo"
+      resultType="com.bit.model.vo.NoticeVO">     
+    <![CDATA[select * from notice where noticeNo>0]]>
+   </select>
 
-	<insert id="insert">
-		insert into
-		notice(NOTICEDATE,NOTICECONTENT,NOTICENO,NOTICETITLE,ADMINCODE)
-		values
-		(#{NOTICEDATE},#{NOTICECONTENT},seq_notice.nextval,#{NOTICETITLE},#{ADMINCODE})
-	</insert>
+   <insert id="insert">
+      insert into notice(NOTICEDATE,NOTICECONTENT,NOTICENO,NOTICETITLE,ADMINCODE)
+      values
+      (#{NOTICEDATE},#{NOTICECONTENT},seq_notice.nextval,#{NOTICETITLE},#{ADMINCODE})
+   </insert>
 
-	<select id="read" resultType="com.bit.model.vo.NoticeVO">
-		select * from
-		(select
-		notice.NOTICENO,notice.NOTICETITLE,notice.NOTICEDATE,admin_info.adminId
-		from notice
-		inner join admin_info
-		on
-		admin_info.admincode=notice.admincode)
-		where
-		noticeNo=#{noticeNo}
-	</select>
+   <select id="read" resultType="com.bit.model.vo.NoticeVO">
+      select * from notice where noticeNo=#{noticeNo}
+   </select>
 
-	<delete id="delete">
-		delete from notice where noticeNo=#{noticeNo}
-	</delete>
+   <delete id="delete">
+      delete from notice where noticeNo=#{noticeNo}
+   </delete>
 
-	<update id="update">
-		update notice
-		set
-		NOTICETITLE=#{NOTICETITLE},
-		NOTICECONTENT=#{NOTICECONTENT},
-		NOTICEDATE =
-		SYSDATE
-		where
-		noticeNo=#{noticeNo}
-	</update>
-
-	<select id="getListwithPaging"
-		resultType="com.bit.model.vo.NoticeVO">
-	 <![CDATA[
-		 select NOTICEDATE,NOTICECONTENT,NOTICENO,NOTICETITLE,ADMINID
-		 from
-		 (select /*+INDEX_ASC(NOTICE NOTICENO) */
-		 rownum rn,NOTICEDATE,NOTICECONTENT,NOTICENO,NOTICETITLE,ADMINID
-		 FROM 
-		 (select
-				notice.NOTICENO,notice.NOTICETITLE,NOTICE.NOTICECONTENT,notice.NOTICEDATE,admin_info.adminId
-				from notice
-				inner join admin_info
-				on admin_info.admincode=notice.admincode)
-		 WHERE ROWNUM <= #{pageNo}*#{noticeAmount}
-		 )
-		 WHERE rn > (#{pageNo}-1)*#{noticeAmount}
-	 ]]>
-	</select>
-	<select id="getTotalNoticeCount" resultType="int" >
-		select count(*) from notice where NOTICENO > 0
-	</select>
+   <update id="update">
+      update notice set
+      NOTICETITLE=#{NOTICETITLE},
+      NOTICECONTENT=#{NOTICECONTENT},
+      NOTICEDATE = SYSDATE
+      where noticeNo=#{noticeNo}
+   </update>
+   
+   <!--    <insert id="insertSelectKey" parameterType="noticeVO"> put this values in MAP(hashMap)
+      <selectkey keyproperty="noticeNo" order="before"
+         resultType="long">
+         select seq_notice.nextval from dual
+      </selectkey>
+      insert into
+      notice(NOTICEDATE,NOTICECONTENT,NOTICENO,NOTICETITLE,ADMINCODE)
+      values
+      (#{NOTICEDATE},#{NOTICECONTENT},#{NOTICENO},#{NOTICETITLE},#{ADMINCODE})
+   </insert> -->
+   
 </mapper>
+
+
 
 
 
