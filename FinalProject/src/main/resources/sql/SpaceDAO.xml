@@ -5,60 +5,54 @@
 <mapper namespace="com.bit.model.dao.SpaceDAO">
 
 
-	<!-- <resultMap type="draftCardList" id="draftCardListMap">
-		<id property="spaceCode" column="spaceCode" />
-		<collection property="draftCard" javaType="List"
-			column="draftCode" ofType="draftCard" select="getDraftCard">
-		</collection>
-	</resultMap> -->
+	<!-- space-user데이터 -->
+	<select id="getSpaceUserInfo" resultType="spaceDTO">
+		select
+		sp.spaceCode,
+		sp.spaceName,
+		sp.spaceUrl,
+		sp.spaceImage,
+		sp.spaceUrl,
+		sp.spaceVisibility,
+		ui.userNo,
+		ui.name,
+		ui.userImage
 
-	<!-- space -->
-	<!-- <resultMap type="" id="space_resultMap"> <id property="spaceCode" column="spaceCode" 
-		/> <result property="userNo" column="userNo" /> <result property="spaceName" 
-		column="spaceName" /> <result property="spaceUrl" column="spaceUrl" /> <collection 
-		property="draftList" column="draftCode" ofType="draftList" select="selectDraftsForSpace"> 
-		</collection> </resultMap>
-	<resultMap type="com.bit.model.dto.space.DraftListDTO" id="draftList_resultMap"> 
-		<id property="spaceCode" column="spaceCode" /> <collection property="draftDTO" 
-		column="draftCode" ofType="DraftDTO" select="getDraftList"> </collection> 
+		from Space sp
+		left outer join team te on te.teamCode=sp.teamCode
+		left outer join memPermit mp on te.teamCode=mp.teamCode
+		left outer join user_info ui on mp.userNo=ui.userNo
+	</select>
+
+	<!-- <resultMap type="spaceDTO" id="space_resultMap"> <id property="spaceCode" 
+		column="spaceCode"/> <result property="userNo" column="userNo"/> <result 
+		property="name" column="name"/> <result property="userImage" column="userImage"/> 
+		<collection property=""> <association property=""> </association> </collection> 
 		</resultMap> -->
 
+	<!-- sidenavDrawer-Header의 스페이스 이름,사용자 이름 -->
+	<!-- <select id="getSpaceUserInfo" resultType="spaceUserInfo"> select name, 
+		spaceName from spaceUserInfo where userNo=#{userNo} and spaceCode=#{spaceCode} 
+		</select> sidenav 사용자 이미지 <select id="getNavUserImg" resultType="spaceUserInfo"> 
+		select userImage from spaceUserInfo where userNo=#{userNo} and spaceCode=#{spaceCode} 
+		</select> -->
+
 	<!-- 드래프트 리스트 출력 -->
-	<!-- <select id="getdraftCardList" resultMap="draftCardListMap">
-		select * from draftCardList
-	</select> -->
-	
+	<!-- <select id="getdraftCardList" resultMap="draftCardListMap"> select 
+		* from draftCardList </select> -->
+
 	<!-- 드래프트 카드 디테일 -->
-	<!-- <select id="getDraftCard" resultMap=""> select * from draftCard 
-	
-	</select>
-	
-	<insert id="insertDraftMsg" parameterType="Map"> insert into
-		draftMsg values (draftMsg_seq.nextval), #{msgContent}, #{editsCount},
-		#{draftCode}
-		)
-	</insert>  -->
-<!-- 
-	<select id="getDraftList" resultMap="draftList_resultMap"> select * 
-		from draft </select>
+	<!-- <select id="getDraftCard" resultMap=""> select * from draftCard </select> 
+		<insert id="insertDraftMsg" parameterType="Map"> insert into draftMsg values 
+		(draftMsg_seq.nextval), #{msgContent}, #{editsCount}, #{draftCode} ) </insert> -->
+	<!-- <select id="getDraftList" resultMap="draftList_resultMap"> select * 
+		from draft </select> <resultMap type="draftDTO" id="draft_resultMap"> <id 
+		property="draftCode" column="draftCode" /> <result property="draftSavetime" 
+		column="draftSaveTime" /> <result property="draftStatus" column="draftStatus" 
+		/> </resultMap> <update id="updateDraftMsg" parameterMap="String"> update 
+		draftMsg set msgContent=#{msgContent} where draftMsgno=#{draftMsgNo} </update> -->
 
-	<resultMap type="draftDTO" id="draft_resultMap"> <id property="draftCode" 
-		column="draftCode" /> <result property="draftSavetime" column="draftSaveTime" 
-		/> <result property="draftStatus" column="draftStatus" /> </resultMap>
-
-	<update id="updateDraftMsg" parameterMap="String"> update draftMsg 
-		set msgContent=#{msgContent} where draftMsgno=#{draftMsgNo} </update> -->
-
-	<!--  드래프트 카드 생성 -->
-
-
-	<!-- sidenav header의 사용자 로고이미지 -->
-	<select id="getSpaceUserInfo" resultType="spaceUserInfo">
-		select spaceCode,
-		spaceName, spaceUrl, name, userNo, userImage from
-		spaceUserInfo where
-		userNo=#{userNo} and spaceCode=#{spaceCode}
-	</select>
+	<!-- 드래프트 카드 생성 -->
 
 
 

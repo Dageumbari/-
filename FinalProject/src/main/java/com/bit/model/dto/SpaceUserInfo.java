@@ -1,4 +1,4 @@
-package com.bit.model.dto.space;
+package com.bit.model.dto;
 
 import org.apache.ibatis.type.Alias;
 
@@ -17,5 +17,4 @@ public class SpaceUserInfo {
 	private String name;
 	private int userNo;
 	private String userImage;
-	
 }
