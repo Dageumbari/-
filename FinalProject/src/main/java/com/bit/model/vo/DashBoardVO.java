@@ -13,10 +13,6 @@ public class DashBoardVO {
 	private String dashBoardName;
 	private String dashBoardType;
 	private String dashBoardUrl;
-	
-	public DashBoardVO() {
-		// TODO Auto-generated constructor stub
-	}
 
 }
 

@@ -7,7 +7,7 @@ import com.bit.model.dto.MemberDTO;
 public interface MemberService {
 	
 	//팀 멤버
-	public List<MemberDTO> getAllMemberList();
+	public List<MemberDTO> getAllMemberList(String dashboardCode);
 	public List<MemberDTO> getTeamList(String dashboardCode);
 	public List<MemberDTO> getTeamMemberList();
 	public List<MemberDTO> getMemberListByPermission();

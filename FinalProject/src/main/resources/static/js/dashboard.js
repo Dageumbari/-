@@ -4,3 +4,12 @@ function setOrgName(){
 	console.log("조직 이름 입력 값 : "+orgName)
 	return orgName
 }
+
+
+//var dashURL2 = document.getElementByClassName("dashURL")[0].textContent;
+
+function setDashURL() {
+	var dashURL1 = document.getElementByClassName("dashURL")[0].textContent;
+	location.href="/dashboard/"+dashURL1+"/spaces"
+	console.log("대시유알엘 :"+dashURL1)
+}
