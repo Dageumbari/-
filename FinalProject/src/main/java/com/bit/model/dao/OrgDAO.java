@@ -9,6 +9,7 @@ import com.bit.model.vo.DashBoardVO;
 
 
 @Mapper
+
 public interface OrgDAO {
 
 	public List<DashBoardVO> getAllOrgList();

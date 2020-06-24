@@ -56,7 +56,7 @@ public class DashBoardMainController {
 	}
 	
 	
-	@GetMapping("menu")
+	@GetMapping("/menu")
 	public String orgMenu(Model model, @RequestParam(value = "dashBoardCode") String dashBoardCode) {
 
 		DashBoardVO orgInfo = orgService.getOrgInfo(dashBoardCode);
@@ -76,7 +76,7 @@ public class DashBoardMainController {
 	}
 
 
-	@GetMapping("spaces")
+	@GetMapping("/spaces")
 	public String spaceDashboard(Model model,String dashBoardCode) {
 		
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
@@ -91,7 +91,7 @@ public class DashBoardMainController {
 		return "dashboard/spaces";
 	}
 	
-	@GetMapping("teams")
+	@GetMapping("/teams")
 	public String teamDashBoard(Model model, DashBoardVO dashBoardVO) {
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
@@ -104,7 +104,7 @@ public class DashBoardMainController {
 		return "dashboard/teams";
 	}
 	
-	@GetMapping("settings")
+	@GetMapping("/settings")
 	public String settingDashBoard(Model model) {
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
@@ -116,7 +116,7 @@ public class DashBoardMainController {
 	}
 	
 	//결제 진행은 별도 컨트롤러에서
-	@GetMapping("billing")
+	@GetMapping("/billing")
 	public String billingDashBoard(Model model) {
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);

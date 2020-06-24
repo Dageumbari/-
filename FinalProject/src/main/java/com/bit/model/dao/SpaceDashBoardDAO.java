@@ -3,10 +3,12 @@ package com.bit.model.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import com.bit.model.vo.SpaceVO;
 
 @Mapper
+@Repository
 public interface SpaceDashBoardDAO {
 
 	//리턴자료형, 매개변수 설정 필요

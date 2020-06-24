@@ -14,9 +14,9 @@
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
- <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"/>
-	<script th:src="@{/js/navScript.js}"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" />
+<!-- <script th:src="@{/js/navScript.js}"></script> -->
 <!-- 	crossorigin="anonymous"></script> -->
 </head>
 <body class="sb-nav-fixed">
@@ -166,25 +166,26 @@
 										th:checked is considered as a fixed-value Boolean attribute -->
 										<th>글번호</th>
 										<th>글제목</th>
-										<th>작성자</th>
 										<th>작성일</th>
+										<th>작성자</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="notice:${list}">
+									<tr th:each="notice : ${list}">
 										<td th:text="${notice.noticeNo}">
 										<td th:text="${notice.noticeTitle}">
-										<td th:text="${admin_info.adminid}">
 										<td
 											th:text="${#dates.format(notice.noticeDate,'yyyy-MM-dd HH:mm:ss')}">2014-07-08
 											00:00:00</td>
+										<td th:text="${notice.adminInfoVO.adminId}">
 									</tr>
 								</tbody>
-							</table><!-- 표 끝 -->
-							
+							</table>
+							<!-- 표 끝 -->
+
 							<form th:object=${notice} th:action="@{/main/notice/register}"
 								method="get"></form>
-								<input type="button" class="regBtn" value="등록">
+							<input type="button" class="regBtn" value="등록">
 							<!-- Modal -->
 							<div class="modal fade" id="noticeModal" tabindex="-1"
 								role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -222,12 +223,12 @@
 		</div>
 		<!-- 페이징처리 -->
 		<div class='pull-right'>
-					<ul class="pagination">
-					<!--여기에 타임리프 if문써서 페이징 out~308  -->
-						</ul>
-				</div>
-		
-		
+			<ul class="pagination">
+				<!--여기에 타임리프 if문써서 페이징 out~308  -->
+			</ul>
+		</div>
+
+
 		<!-- 모달창 -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">

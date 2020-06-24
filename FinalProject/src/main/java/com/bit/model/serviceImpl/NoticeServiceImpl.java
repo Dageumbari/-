@@ -56,9 +56,12 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.delete(noticeNo)==1;
 	}
 
+	
 	@Override
 	public int getTotalNoticeCount(NoticeCriteriaDTO noticeCriteria) {
 		// TODO Auto-generated method stub
 		return noticeDAO.getTotalNoticeCount(noticeCriteria);
 	}
 }
+	
+
