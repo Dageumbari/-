@@ -10,7 +10,7 @@
 			<!-- Header -->
 	<header class="header text-center flex-direction:row">
 		<h1 class="blog-name pt-lg-4 mb-0">
-			<a href="spacePage">hoya</a>
+			<a href="space">hoya</a>
 		</h1>
 
 
@@ -29,9 +29,12 @@
 				</div>
 				<!-- nav-section -->
 				<ul class="navbar-nav flex-column" th:each="pageList : ${list}">
-					<li th:text="${pageList.pageTitle}"></li>
-					</ul>
-					<ul class="nav-item" onclick="">
+					<li>
+						<a th:href="@{/pageDetail(pageNo=${pageList.pageNo})}" th:text="${pageList.pageTitle}" >
+						</a>
+					</li>
+				</ul>
+				<ul class="nav-item">
 					<li class="nav-item">
 						<a class="nav-link" href="space">
 							<i class="fas fa-home fa-fw mr-2"></i>

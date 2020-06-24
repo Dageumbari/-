@@ -13,8 +13,37 @@
 		FROM PAGE
 	</select>
 	
-	<update id="pageUpdate">			
-	</update>
+	<select id="getPageDetail" resultType="com.bit.model.vo.PageVO" parameterType="com.bit.model.vo.PageVO">
+		SELECT
+		    PAGENO,
+		    PAGETITLE,
+		    PAGECONTENT,
+		    PAGESAVETIME
+		FROM PAGE
+		WHERE 1=1
+		AND PAGENO = #{pageNo, jdbcType=INTEGER}
+	</select>
+	
+	<!-- view에서 저장시킬 데이터를 DB에 최초로 저장 시켜주는 것 -->
+	<update id="pageSave" parameterType="com.bit.model.vo.PageVO">
+		INSERT INTO 
+		page(PAGENO, PAGEGROUPCODE, PAGETYPECODE, 
+			 PAGETITLE, PAGESAVETIME, PAGECONTENT)
+		values(PAGE_SEQ.NEXTVAL, 'pg01', 'page', 
+			  #{pageTitle}, sysdate, #{pageContent})
+	</update> 
+	
+	<!-- <update id="pageUpdate">
+		UPDATE PAGE
+		SET
+		PAGETITLE=#{PAGETITLE},
+		PAGECONTENT=#{PAGECONTENT},
+		PAGESAVETIME =
+		SYSDATE
+		WHERE
+		PAGENO=#{PAGENO}
+	</update> -->
+
 <!-- 	<select id="getPageSave" resultType="com.bit.model.vo.PageVO">
 	SELETE
 		PAGENO,
