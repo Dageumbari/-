@@ -17,6 +17,7 @@
 		</association>
 	</resultMap> -->
 
+
 	<select id="getAllNoticeInfo"
 		resultType="com.bit.model.vo.NoticeVO">     
 	 <![CDATA[select * from 

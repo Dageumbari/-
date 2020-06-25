@@ -174,7 +174,7 @@
 									<tr th:each="notice:${list}">
 										<td th:text="${notice.noticeNo}">
 										<td th:text="${notice.noticeTitle}">
-										<td th:text="${admin_info.adminid}">
+										<td th:text="${notice.adminCode}">
 										<td
 											th:text="${#dates.format(notice.noticeDate,'yyyy-MM-dd HH:mm:ss')}">2014-07-08
 											00:00:00</td>

@@ -49,10 +49,14 @@
 	-->
 	
 	<select id="getAllMemberList" resultType="com.bit.model.dto.MemberDTO">
-		SELECT USERIMAGE
+		<![CDATA[
+		SELECT 	NAME AS USERNAME,
+				USERIMAGE
 		FROM MEMBER 
-		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
+		WHERE #{DASHBOARDCODE, jdbcType=VARCHAR} = DASHBOARDCODE
 			AND TEAMNAME ='All Members'
+			AND ROWNUM < 7
+		ORDER BY PERMISSIONNO ]]>
 	</select>
 	
 	

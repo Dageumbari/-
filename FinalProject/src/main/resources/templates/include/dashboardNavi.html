@@ -11,7 +11,7 @@
 		<div class="reset-3c756112--navigation-3e92335c">
 			<div class="reset-3c756112--withScrollbar-39338630--scrollAxisY-7680295e--navigationBody-3dc152bc">
 				
-				<a class="reset-3c756112--orgTab-8d620844" th:href="@{/${orgList.dashboardurl}/spaces}" th:each="orgList : ${orgList}" th:value="${orgList.dashBoardCode}" >
+				<a class="reset-3c756112--orgTab-8d620844" th:each="orgList : ${orgList}" th:href="@{/dashboard/spaces(dashBoardUrl=${orgList.dashBoardUrl})}">
 					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
 						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10" role="presentation">
 							<img class="image-67b14f24--avatar-1c1d03ec"
@@ -89,7 +89,7 @@
 							fill-rule="evenodd"></path></g></svg></a>
 			</div>
 		</div>
-	</div>
-<script th:src="@{/js/dashboard.js}" type="text/javascript"></script>
+	</div><!-- 
+<script th:src="@{/js/dashboard.js}" type="text/javascript"></script> -->
 </body>
 </html>
