@@ -148,11 +148,11 @@ sup {
 }
 
 a {
-	color: #5469C9;
+	color: white;
 	text-decoration: none;
 	background-color: transparent
 }
-
+/* 
 a:hover {
 	color: #32469e;
 	text-decoration: underline
@@ -171,7 +171,7 @@ a:not ([href] ):not ([tabindex] ):hover, a:not ([href] ):not ([tabindex]
 
 a:not ([href] ):not ([tabindex] ):focus {
 	outline: 0
-}
+} */
 
 pre, code, kbd, samp {
 	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",

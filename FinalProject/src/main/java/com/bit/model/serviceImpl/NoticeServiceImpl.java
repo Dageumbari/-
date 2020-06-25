@@ -21,11 +21,12 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired(required = false)
 	private NoticeDAO noticeDAO;
 
-	@Override
-	public List<NoticeVO> getAllNoticeInfo(NoticeCriteriaDTO noticeCri) {
-		// TODO Auto-generated method stub
-		return noticeDAO.getAllNoticeInfo();
-	}
+   @Override
+   public List<NoticeVO> getAllNoticeInfo(NoticeCriteriaDTO noticeCri) {
+      // TODO Auto-generated method stub
+      log.info("Get notice PageList w/ criteria:" + noticeCri);
+      return noticeDAO.getListwithPaging(noticeCri);
+   }
 
 	@Override
 	public void register(NoticeVO notice) {
@@ -55,9 +56,11 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.delete(noticeNo) == 1;
 	}
 
-	@Override
-	public int getTotalNoticeCount(NoticeCriteriaDTO noticeCriteria) {
-		// TODO Auto-generated method stub
-		return noticeDAO.getTotalNoticeCount(noticeCriteria);
-	}
+   
+   @Override
+   public int getTotalNoticeCount(NoticeCriteriaDTO noticeCriteria) {
+      // TODO Auto-generated method stub
+      return noticeDAO.getTotalNoticeCount(noticeCriteria);
+   }
 }
+   

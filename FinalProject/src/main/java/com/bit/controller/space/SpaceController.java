@@ -25,13 +25,51 @@ public class SpaceController {
 	@Autowired(required=false)
 	SpaceService spaceService;
 	
-	
 	@GetMapping("/space")
 	public String space(Model model) {
 		SpaceUserInfoDTO userInfo = spaceService.getSpaceUserInfo();
+		//여주  END
+
+		//연수 페이지 리스트
+		model.addAttribute("list", pageService.getPageList());
+		System.out.println("PAGELIST START");
+		//연수 페이지 리스트 END
 		
+		//연수 pageDetail
+		/*System.out.println("==================pageDetailStart=================" + pv);
+		pv = pageService.getPageDetail(pv.getPageNo());
+		System.out.println("pv====" + pv);
+		if (pv == null) {
+			System.out.println("NoData");
+			model.addAttribute("pageDetail", "NoData");
+		} else {
+			System.out.println("222222222222");
+			model.addAttribute("pageDetail", pv);
+		}*/
+		
+		
+		//연수 pageSave
+		/*System.out.println("=====================================");
+		System.out.println("1::" + req.getParameter("pageTitle"));
+		System.out.println("2::" + req.getParameter("pageContent"));
+		PageVO pv = new PageVO();
+		pv.setPageTitle(req.getParameter("pageTitle"));
+		pv.setPageContent(req.getParameter("pageContent"));
+		System.out.println("3::" + pv.getPageTitle());
+		System.out.println("4::" + pv.getPageContent());
+		System.out.println("=====================================");
+		int result = pageService.pageSave(pv);
+		if (result < 1) {
+			System.out.println("저장 실패!!!");
+		} else {
+			System.out.println("저장 성공!!!");
+		}*/
+		//연수 END
+		
+		//여주
 		//log.error(userInfo);
 		model.addAttribute("userInfo", userInfo);
+		//여주 END
 		return "layout/spaceMain";
 	}
 
@@ -42,6 +80,7 @@ public class SpaceController {
 		model.addAttribute("draftList", draftList);
 		return "layout/spaceMain";
 	}
+
 	
 	@GetMapping("/mergedList")
 	public String getMedrgedList(Model model) {

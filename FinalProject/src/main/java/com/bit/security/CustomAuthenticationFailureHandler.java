@@ -27,20 +27,20 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		log.info("\n onAuthenticationFailure ");
+		log.info("\n==onAuthenticationFailure");
 		
 		String errorMsg;
 		String email = request.getParameter("username");
 		
 		if (exception instanceof BadCredentialsException) {			
-			log.info("BadCredentialsException");
+			log.info("\n==BadCredentialsException");
 			
 			errorMsg = "아이디와 비밀번호를 다시 확인해주세요.";
 			maindao.setLoginFailCount(email);
 			request.setAttribute("loginFailCount", maindao.getLoginFailCount(email));
 			
 		} else if (exception instanceof InternalAuthenticationServiceException) {
-			log.info("InternalAuthenticationServiceException");
+			log.info("\n==InternalAuthenticationServiceException");
 			
 			errorMsg = "아이디와 비밀번호를 다시 확인해주세요.";
 			

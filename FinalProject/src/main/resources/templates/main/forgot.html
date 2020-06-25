@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Page Title - SB Admin</title>
+        <title>Forgot</title>
         <link th:href="@{/css/styles.css}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -18,44 +18,24 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Forgot</h3></div>
                                     
                                     <div class="card-body">
-                                        <form method="post">
+                                        <form th:action="@{/forgot}" method="POST" >
+                                        
                                         	<th:block th:if="${errorMsg != null} ">
                                         		<font color='red'>
                                         			<span th:text="${errorMsg}"></span>
                                         		</font>
                                         	</th:block>
-                                        
-                                            <div class="form-group">
-                                                <label class="small mb-1" for="name">Name</label>
-                                                <input class="form-control py-4" type="text" id="name" name="name"  placeholder="Enter name" required/>
-                                            </div>
                                             
                                             <div class="form-group">
                                                 <label class="small mb-1" for="email">Email</label>
                                                 <input class="form-control py-4" type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email address" required/>
                                             </div>
-                                            
-                                            <div class="form-group">
-                                                <label class="small mb-1" for="pw">Password</label>
-                                                <input class="form-control py-4" type="password" id="pw" name="pw" placeholder="Enter password" required/>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                            	<input type="radio" id="man" name="gender" value="man" required/>
-                                            	<label for="man"> 남성 </label>
-                                            	<input type="radio" id="woman" name="gender" value="woman"/>      
-                                            	<label for="woman"> 여성 </label>                                         
-                                            </div>
-                                            
-                                            
-                                            <input type="hidden" name="roles[0].roleName" value="MEMBER">
-                                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
                                             <div class="form-group mt-4 mb-0">
-                                                <button class="btn btn-primary btn-block" type="submit">Create account</button>
+                                                <button class="btn btn-primary btn-block" type="submit">Send email</button>
                                             </div>
                                         
                                         </form>
@@ -89,6 +69,5 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
     </body>
 </html>

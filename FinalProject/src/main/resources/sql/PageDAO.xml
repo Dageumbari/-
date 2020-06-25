@@ -4,31 +4,16 @@
 
 <mapper namespace="com.bit.model.dao.PageDAO">
 
-	<select resultType="com.bit.model.vo.PageVO" id="getPageList">
-	SELECT
-		PAGENO,
-		PAGETITLE,
-		PAGECONTENT,
-		PAGESAVETIME
-		FROM PAGE 
-	</select>
-
-	<select resultType="com.bit.model.vo.PageVO" id="getPageDetail"
-		parameterType="com.bit.model.vo.PageVO">
+	<select id="getPageList" resultType="com.bit.model.vo.PageVO">
 		SELECT
-			PAGENO,
-			PAGETITLE,
-			PAGECONTENT,
-			PAGESAVETIME
-		FROM
-			PAGE
-		WHERE 1=1
-		AND PAGENO = #{pageNo, jdbcType=INTEGER} 
+		    PAGENO,
+		    PAGETITLE,
+		    PAGECONTENT,
+		    PAGESAVETIME
+		FROM PAGE
 	</select>
-
-	<!-- view에서 저장시킬 데이터를 DB에 최초로 저장 시켜주는 것 -->
-
-
+	
+		<!-- view에서 저장시킬 데이터를 DB에 최초로 저장 시켜주는 것 -->
 	<update id="pageSave" parameterType="com.bit.model.vo.PageVO">
 	INSERT INTO 
 		page(PAGENO, PAGEGROUPCODE, PAGETYPECODE,
@@ -37,6 +22,33 @@
 		(PAGE_SEQ.NEXTVAL, 'pg01', 'page',#{pageTitle},
 		sysdate, #{pageContent}) 
 	</update>
+	
+	<select id="getPageDetail" resultType="com.bit.model.vo.PageVO">
+		SELECT
+		    PAGENO,
+		    PAGETITLE,
+		    PAGECONTENT,
+		    PAGESAVETIME
+		FROM PAGE
+		WHERE 1=1
+		AND PAGENO = #{pageNo, jdbcType=INTEGER}
+	</select>
+	
+<!-- 	<update id="getPageUpdate">
+		UPDATE PAGE
+		SET
+		PAGETITLE=#{PAGETITLE},
+		PAGECONTENT=#{PAGECONTENT},
+		PAGESAVETIME =
+		SYSDATE
+		WHERE
+		PAGENO=#{PAGENO}
+	</update> -->
+
+	<!-- view에서 저장시킬 데이터를 DB에 최초로 저장 시켜주는 것 -->
+
+
+
 
 	<!-- <update id="pageUpdate">UPDATE PAGESETPAGETITLE=#{PAGETITLE},PAGECONTENT=#{PAGECONTENT},PAGESAVETIME 
 		=SYSDATEWHEREPAGENO=#{PAGENO}</update> -->
