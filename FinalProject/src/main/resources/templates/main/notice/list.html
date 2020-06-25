@@ -16,8 +16,8 @@
 	rel="stylesheet" crossorigin="anonymous" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" />
-<!-- <script th:src="@{/js/navScript.js}"></script> -->
-<!-- 	crossorigin="anonymous"></script> -->
+<script th:src="@{/js/notice/list.js}"></script>
+<
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -38,7 +38,7 @@
 					</button>
 				</div>
 			</div>
-			<!-- <a id="navLogoutLink" th:href="@{/logout}">Logout</a> -->
+			<a id="navLogoutLink" th:href="@{/logout}">Logout</a> 
 		</form>
 		<!-- Navbar-->
 		<ul class="navbar-nav ml-auto ml-md-0">
@@ -182,10 +182,14 @@
 								</tbody>
 							</table>
 							<!-- 표 끝 -->
-
-							<form th:object=${notice} th:action="@{/main/notice/register}"
-								method="get"></form>
-							<input type="button" class="regBtn" value="등록">
+							<div class="regBtn" >
+								<a th:href="@{/main/notice/register}" class="regBtn" 
+									type="button">Write Notice</a>
+								<!-- 	<div th:text-align="right">
+								<form action="./register.html" th:action="@{/register}"
+									th:object="${notice}" method="post"></form>
+								<input type="button" class="regBtn" value="Submit"> -->
+							</div>
 							<!-- Modal -->
 							<div class="modal fade" id="noticeModal" tabindex="-1"
 								role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -221,10 +225,33 @@
 					</div>
 				</div>
 		</div>
-		<!-- 페이징처리 -->
-		<div class='pull-right'>
+		<!-- 페이징처리 ,여기에 타임리프 if문써서 페이징 out~308  --> 
+<!-- 		<div class='pull-right'>
 			<ul class="pagination">
-				<!--여기에 타임리프 if문써서 페이징 out~308  -->
+					<div class='pull-right'>
+					<ul class="pagination">
+						<c:if test="${pageMaking.prev}">
+							<li class="paginate_button previous"><a
+								href="${pageMaking.noticeStartPage -1}">Previous</a></li>
+						</c:if>
+
+						<c:forEach var="num" begin="${pageMaking.noticeStartPage}"
+							end="${pageMaking.noticeEndPage}">
+							<li class="paginate_button  ${pageMaking.noticeCri.pageNo == num ? "active":""} ">
+								<a href="${num}">${num}</a>
+							</li>
+						</c:forEach>
+						
+						<th:each="pageMaking: ${students}"
+
+						<c:if test="${pageMaking.next}">
+							<li class="paginate_button next"><a
+								href="${pageMaking.noticeEndPage +1 }">Next</a></li>
+						</c:if>
+					</ul>
+				</div>
+				 end Pagination -->
+				
 			</ul>
 		</div>
 

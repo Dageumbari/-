@@ -39,7 +39,6 @@ public class NoticeController {
 		int total = noticeService.getTotalNoticeCount(noticeCri);
 		model.addAttribute("pageMaking", new NoticePagingDTO(noticeCri, total));// 전체 데이터 갯수처리
 	}
-
 	@PostMapping("/register") // 등록작업POST
 	public String register(NoticeVO notice, RedirectAttributes rttr) {
 		log.info("register :" + notice);
@@ -48,11 +47,9 @@ public class NoticeController {
 		rttr.addFlashAttribute("result", notice.getNoticeNo()); // 보관된 데이터 한번만 처리
 		return "redirect:/notice/list";
 	}
-
 	@GetMapping("/register")
 	public void register() {
 	}
-
 	/*
 	 * 수정,삭제 페이지 이동위해 get메소드 수정
 	 * 
@@ -66,7 +63,6 @@ public class NoticeController {
 		log.info("/get or modify");
 		model.addAttribute("notice", noticeService.get(noticeNO));
 	}
-
 	@PostMapping("/modify")
 	public String modify(NoticeVO notice, RedirectAttributes rttr) {
 		log.info("modify" + notice);
@@ -76,7 +72,6 @@ public class NoticeController {
 		}
 		return "redirect:/notice/list"; 
 	}
-
 	@PostMapping("/remove/{noticeNo}")
 	public String remove(@PathVariable("noticeNo") int noticeNo, RedirectAttributes rttr) {
 		log.info("remove" + noticeNo);
