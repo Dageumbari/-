@@ -48,16 +48,17 @@
 								</div>
 							</div>
 							<div class="draftsListing">
+							<!-- 드래프트 카드 컨테이너  -->
 								<div class="draftItemContainer">
 									<div class="draftItem">
 										<div class="draftCardActive" role="presentation">
 											<div class="draftCardExtra">
 												<div class="draftCardHeader">
 													<div class="reset-3c756112">
-														<div class="ownerAvatarList">
+														<div class="ownerAvatarList"><!-- 드래프트 유저 정보 넣는곳  -->
 															<div aria-label="User1" class="ownerAvatarStackListItem">
-																<div class="avatarFrame" role="presentation">
-																	<img class="avatarImg"
+																<div class="avatarFrame" role="presentation" > <!-- 드래프트 유저 이미지경로 -->
+																	<img class="avatarImg" 
 																		src="https://lh3.googleusercontent.com/a-/AOh14GgMEk_JVwJ1YSLaAsiqwtwNIoPVGTC3_WGhkQWL8A">
 																	<div class="innerShadow"></div>
 																</div>
@@ -69,8 +70,8 @@
 													</div>
 													<div class="draftCardHeaderAuthor">
 														<div class="reset-3c756112"></div>
-														<span class="text-draftAuthorInfo">Liz - <span
-															title="Jun 1, 2020, 4:23 PM">9d</span>
+														<span class="text-draftAuthorInfo" th:text="${userInfo.name}">
+														<!-- <span title="Jun 1, 2020, 4:23 PM">9d</span> -->
 														</span>
 													</div>
 												</div>
