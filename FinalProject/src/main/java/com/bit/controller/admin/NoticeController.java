@@ -1,5 +1,6 @@
 package com.bit.controller.admin;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +11,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bit.model.dto.NoticeCriteriaDTO;
 import com.bit.model.dto.NoticePagingDTO;
+import com.bit.model.service.MemberService;
 import com.bit.model.service.NoticeService;
+import com.bit.model.service.OrgService;
+import com.bit.model.service.SpaceDashBoardService;
+import com.bit.model.service.TeamService;
 import com.bit.model.vo.NoticeVO;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.extern.log4j.Log4j2;
 
@@ -20,18 +26,18 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Builder
 @RequestMapping("/main/notice/*")
-
+@AllArgsConstructor
 public class NoticeController {
-
+	@Autowired(required = false)
 	private NoticeService noticeService;
 
 	@GetMapping("/list")
 	public void list(NoticeCriteriaDTO noticeCri, Model model) {
-		log.info("list:" +noticeCri);
+		log.info("list:" + noticeCri);
 		model.addAttribute("list", noticeService.getAllNoticeInfo(noticeCri));
-		
-	    int total = noticeService.getTotalNoticeCount(noticeCri);
-	    model.addAttribute("pageMaking",new NoticePagingDTO(noticeCri, total));//전체 데이터 갯수처리
+
+		int total = noticeService.getTotalNoticeCount(noticeCri);
+		model.addAttribute("pageMaking", new NoticePagingDTO(noticeCri, total));// 전체 데이터 갯수처리
 	}
 
 	@PostMapping("/register") // 등록작업POST
@@ -40,7 +46,7 @@ public class NoticeController {
 
 		noticeService.register(notice);
 		rttr.addFlashAttribute("result", notice.getNoticeNo()); // 보관된 데이터 한번만 처리
-		return "redirect:/notice/list";// "redirect:/notice/list"
+		return "redirect:/notice/list";
 	}
 
 	@GetMapping("/register")
@@ -55,7 +61,6 @@ public class NoticeController {
 	 * log.info("/get"); model.addAttribute("notice", noticeService.get(noticeNo));
 	 * }
 	 */
-
 	@GetMapping({ "/get/{noticeNo}", "/modify" })
 	public void get(@PathVariable("noticeNo") int noticeNO, Model model) {
 		log.info("/get or modify");
@@ -69,7 +74,7 @@ public class NoticeController {
 		if (noticeService.modify(notice)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/notice/list"; // redirect:/notice/list -> add main/ -> do not working
+		return "redirect:/notice/list"; 
 	}
 
 	@PostMapping("/remove/{noticeNo}")

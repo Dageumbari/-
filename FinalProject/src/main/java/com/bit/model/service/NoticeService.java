@@ -12,5 +12,6 @@ public interface NoticeService {
 	public boolean modify(NoticeVO notice);
 	public boolean remove(int noticeNo);
 	public int getTotalNoticeCount(NoticeCriteriaDTO noticeCriteria);
+
 	
 }

@@ -57,6 +57,10 @@ public class DashBoardMainController {
 		return "include/dashboardNavi";
 	}
 	
+
+
+
+
 	@GetMapping("spaces")
 	//@RequestMapping(value = "{dashBoardURl}/spaces", method = RequestMethod.GET)
 	public String spaceDashboard(Model model,DashBoardVO dashBoardVO) {
@@ -107,6 +111,7 @@ public class DashBoardMainController {
 		return "dashboard/teams";
 	}
 	
+
 	@GetMapping("settings")
 	public String settingDashBoard(Model model, DashBoardVO dashBoardVO) {
 		//네비
@@ -127,9 +132,8 @@ public class DashBoardMainController {
 	}
 	
 	//결제 진행은 별도 컨트롤러에서
-	@GetMapping("billing")
+	@GetMapping("/billing")
 	public String billingDashBoard(Model model, DashBoardVO dashBoardVO) {
-		//네비
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
 		System.out.println("나의 orgList: "+orgList);

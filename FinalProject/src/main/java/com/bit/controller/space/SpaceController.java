@@ -12,7 +12,7 @@ import com.bit.model.service.PageService;
 @Controller
 public class SpaceController {
 	
-	@Autowired(required=false)
+	@Autowired
 	PageService pageService;
 	
 	@GetMapping("/sidenav")
@@ -29,8 +29,7 @@ public class SpaceController {
 	public String space(Model model) {
 		return "layout/spaceMain";
 	}
-	
-	//@GetMapping("/space")
+
 	public String getDraftList() {
 		return "space/draft/draft";
 	}
