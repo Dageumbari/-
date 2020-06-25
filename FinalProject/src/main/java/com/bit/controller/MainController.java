@@ -30,7 +30,7 @@ public class MainController {
 	private final UserService userService;
 	private final RecaptchaService recaptchaService;
 	private final PasswordEncoder passwordEncoder;
-	
+
 	@GetMapping("/main")
 	public String main() {
 
@@ -42,13 +42,13 @@ public class MainController {
 
 		return "/main/password";
 	}
-	
+
 	@PostMapping("/password")
 	public String postPassword(Principal principal, String password) {
 		log.info("\n==password" + principal + "\n" + password);
 		String email = principal.getName();
 		mainDAO.setForgotPassword(passwordEncoder.encode(password), email);
-		
+
 		// 로그아웃 실행할것.
 		return "redirect:/login";
 	}
@@ -58,12 +58,12 @@ public class MainController {
 
 		return "/main/forgot";
 	}
-	
+
 	@PostMapping("/forgot")
 	public String forgotEamil(String email) {
-		
+
 		userService.forgot(email);
-		
+
 		return "/main/main";
 	}
 
@@ -95,9 +95,26 @@ public class MainController {
 
 	@PostMapping("/join")
 	public ModelAndView joinPost(@ModelAttribute("userDTO") UserDTO userDTO) {
-		log.info("join controller");
+		log.info("\n==join controller" + userDTO.getRoles().get(0));
+		
 
 		return userService.join(userDTO);
+	}
+
+	@GetMapping("/join/admin")
+	public String adminJoin() {
+
+		return "/main/joinAdmin";
+	}
+
+	@PostMapping("/join/admin")
+	public ModelAndView adminJoinPost(UserDTO userDTO) {
+		log.info("\n==aminjoin controller");
+		
+		String superAdminEmail = "collin7202@gmail.com";
+		
+		return null;
+		//return userService.adminjoin(userDTO, superAdminEmail);
 	}
 
 	@GetMapping("/join/email/{email}/{key}")
@@ -113,28 +130,27 @@ public class MainController {
 
 		return "/main/main";
 	}
-	
+
 	@PostMapping("/valid-recaptcha")
-    public @ResponseBody String validRecaptcha(HttpServletRequest request){
-		
-		log.info("\n/valid-recaptcha : " +  request.getParameter("g-recaptcha-response"));
-		
-    	String result;
-    	String response = request.getParameter("g-recaptcha-response");
-    	
-    	log.info("\nCHECK1 : " + response + "\nrecaptchaService:" + recaptchaService.toString());
-    	boolean isRecaptcha = recaptchaService.verifyRecaptcha(response);
-    	
-    	
-    	log.info("\nCHECK2 : " + isRecaptcha);
-    	if(isRecaptcha) {
-    		result = "success";
-    	}else {
-    		result = "false";
-    	}  	
-    	
-    	log.info("\nCHECK3 : " + result);
-    	return result;
-    }
+	public @ResponseBody String validRecaptcha(HttpServletRequest request) {
+
+		log.info("\n/valid-recaptcha : " + request.getParameter("g-recaptcha-response"));
+
+		String result;
+		String response = request.getParameter("g-recaptcha-response");
+
+		log.info("\nCHECK1 : " + response + "\nrecaptchaService:" + recaptchaService.toString());
+		boolean isRecaptcha = recaptchaService.verifyRecaptcha(response);
+
+		log.info("\nCHECK2 : " + isRecaptcha);
+		if (isRecaptcha) {
+			result = "success";
+		} else {
+			result = "false";
+		}
+
+		log.info("\nCHECK3 : " + result);
+		return result;
+	}
 
 }

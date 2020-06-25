@@ -16,6 +16,8 @@ public interface MainDAO {
 	
 	public void setUserInfo(UserDTO userDTO); // join에서 들어온 정보로 회원 가입
 	
+	public void setAdminInfo(UserDTO userDTO); // admin 정보 입력
+	
 	public void setEmailCheck(String email, String key); // 회원가입한 유저 이메일 인증
 	
 	public void setLoginFailCount(String email); // 로그인 실패시 유저 실패카운트 증가
@@ -28,4 +30,5 @@ public interface MainDAO {
 	
 	@Update("update user_info set user_info.pw = #{encodeKey} where user_info.email = #{email}")
 	public void setForgotPassword(String encodeKey, String email);
+	
 }
