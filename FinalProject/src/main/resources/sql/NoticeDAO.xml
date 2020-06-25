@@ -145,7 +145,6 @@
 		from notice
 		]]>
 	</select>
-
 	<!-- <select id="getTotalNoticeCount" resultType="int"> select count(*) 
 		from (select notice.noticeNo,notice.noticeTitle,notice.noticeContent,notice.noticeDate,admin_info.adminId 
 		from notice inner join admin_info on admin_info.adminCode=notice.admincode) 

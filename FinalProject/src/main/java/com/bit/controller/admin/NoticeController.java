@@ -46,7 +46,7 @@ public class NoticeController {
 
 		noticeService.register(notice);
 		rttr.addFlashAttribute("result", notice.getNoticeNo()); // 보관된 데이터 한번만 처리
-		return "redirect:/notice/list";// "redirect:/notice/list"
+		return "redirect:/notice/list";
 	}
 
 	@GetMapping("/register")
@@ -74,7 +74,7 @@ public class NoticeController {
 		if (noticeService.modify(notice)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/notice/list"; // redirect:/notice/list -> add main/ -> do not working
+		return "redirect:/notice/list"; 
 	}
 
 	@PostMapping("/remove/{noticeNo}")
