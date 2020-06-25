@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,14 +19,15 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {	
 	
 	private final UserDetailsService customUserDetailsService;
-	private final AuthenticationFailureHandler customAuthenticationFailureHandler;
+	private final AuthenticationFailureHandler authenticationFailureHandler;
+	private final AuthenticationSuccessHandler authenticationSuccessHandler;
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		
 		httpSecurity.authorizeRequests()
 				.antMatchers("/resources/**").permitAll()
-//				.antMatchers("/main/mtest/**").hasRole("MEMBER")
+				.antMatchers("/password").hasRole("MEMBER")
 //				.antMatchers("/main/atest/**").hasRole("ADMIN")
 			.and()
 				.formLogin()
@@ -33,7 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.loginProcessingUrl("/login") // 사용자의 매개변수가 POST로 전달되는 URL
 				.usernameParameter("username") 
 				.passwordParameter("password")
-				.failureHandler(customAuthenticationFailureHandler)
+				.failureHandler(authenticationFailureHandler)
+				.successHandler(authenticationSuccessHandler)
 			.and()
 				.exceptionHandling().accessDeniedPage("/accessDenied")
 			.and()
