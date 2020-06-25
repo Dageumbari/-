@@ -11,17 +11,11 @@
 		select name, spaceName,
 		spaceCode, userNo from
 		spaceUserInfo where
-<<<<<<< HEAD
-		userNo=10 and
-		spaceCode='sp11'
-=======
 		userNo=1 and spaceCode='sp11'
->>>>>>> master
 	</select>
 
 	<!-- draftList불러오기(only saved) -->
 	<select id="getDraftList" resultType="draftList">
-<<<<<<< HEAD
 		select DRAFTCODE,
 		DRAFTSAVETIME, DRAFTSTATUS, MSGNO, MSGCONTENT, EDITSCOUNT, USERNO,
 		NAME, USERIMAGE
@@ -29,14 +23,10 @@
 		where spaceCode='sp11' and userNo=1 and
 		draftStatus='saved' and
 		msgno=(select max(msgno) from draftlist)
-=======
-		select * from draftList where spaceCode='sp11' and userNo=1 and draftStatus='saved'
->>>>>>> master
 	</select>
 
 	<!-- 병합리스트 불러오기 -->
 	<select id="getMergedList" resultType="draftList">
-<<<<<<< HEAD
 		select DRAFTCODE,
 		DRAFTSAVETIME, DRAFTSTATUS, MSGNO, MSGCONTENT,
 		EDITSCOUNT, USERNO,
@@ -46,14 +36,10 @@
 		spaceCode='sp11' and userNo=1 and
 		draftStatus='merged' and
 		msgno=(select max(msgno) from draftlist)
-=======
-		select * from draftList where spaceCode='sp11' and userNo=1 and draftStatus='merged'
->>>>>>> master
 	</select>
 
 	<!-- 병합리스트 불러오기 -->
 	<select id="getArchivedList" resultType="draftList">
-<<<<<<< HEAD
 		select DRAFTCODE,
 		DRAFTSAVETIME, DRAFTSTATUS, MSGNO, MSGCONTENT,
 		EDITSCOUNT, USERNO,
@@ -63,9 +49,6 @@
 		and userNo=1 
 		and draftStatus='archived' 
 		and msgno=(select max(msgno) from draftlist)
-=======
-		select * from draftList where spaceCode='sp11' and userNo=1 and draftStatus='archived'
->>>>>>> master
 	</select>
 
 	<!-- 드래프트 카드 생성 -->
