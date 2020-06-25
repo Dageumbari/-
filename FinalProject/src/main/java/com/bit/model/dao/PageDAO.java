@@ -12,7 +12,7 @@ public interface PageDAO {
 	int pageSave(PageVO pv);
 	PageVO getPageDetailVo(PageVO pv);
 	PageVO getPageDetail(int pageNo);
-	//int PageUpdate(PageVO pv);
+	int getPageUpdate(PageVO pv);
 	
 	//int delete(int PageNo);
 	/*public PageVO insertPage(PageVO params);

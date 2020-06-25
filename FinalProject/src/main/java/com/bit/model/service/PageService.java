@@ -9,6 +9,6 @@ public interface PageService {
 	public int pageSave(PageVO pv);
 	public PageVO getPageDetailVo(PageVO pv);
 	public PageVO getPageDetail(int pageNo);
-	//public int pageUpdate(PageVO pv);
+	public int getPageUpdate(PageVO pv);
 
 }

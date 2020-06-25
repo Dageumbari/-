@@ -33,7 +33,7 @@
 			  #{pageTitle}, sysdate, #{pageContent})
 	</update> 
 	
-	<!-- <update id="pageUpdate">
+	<update id="getPageUpdate">
 		UPDATE PAGE
 		SET
 		PAGETITLE=#{PAGETITLE},
@@ -42,7 +42,7 @@
 		SYSDATE
 		WHERE
 		PAGENO=#{PAGENO}
-	</update> -->
+	</update>
 
 <!-- 	<select id="getPageSave" resultType="com.bit.model.vo.PageVO">
 	SELETE
