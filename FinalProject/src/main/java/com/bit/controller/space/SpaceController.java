@@ -27,8 +27,7 @@ public class SpaceController {
 	
 	@GetMapping("/space")
 	public String space(Model model) {
-		model.addAttribute("list", pageService.getPageList());
-		return "common/contents/pageContent";
+		return "layout/spaceMain";
 	}
 	
 	//@GetMapping("/space")
