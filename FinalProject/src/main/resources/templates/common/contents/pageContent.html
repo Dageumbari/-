@@ -1,41 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/spaceMain}">
+
 <head>
-<title>pageContent</title>
-<!-- Meta -->
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="context-path" th:content="@{/}" />
-<!-- Link -->
-<link rel="shortcut icon" href="favicon.ico">
+	<title>pageContent</title>
+</th:block>
 
-<link th:href="@{/css/sidenav.css}" rel="stylesheet">
-<link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet">
-<link th:href="@{/css/style.css}" rel="stylesheet">
-<link th:href="@{/css/theme-1.css}" rel="stylesheet">
-<link th:href="@{/css/theme-2.css}" rel="stylesheet">
-<link th:href="@{/css/theme-3.css}" rel="stylesheet">
-<link th:href="@{/css/theme-4.css}" rel="stylesheet">
-<link th:href="@{/css/theme-5.css}" rel="stylesheet">
-<link th:href="@{/css/theme-6.css}" rel="stylesheet">
-<link th:href="@{/css/theme-7.css}" rel="stylesheet">
-
-<!-- FontAwesome JS-->
-<script defer
-	src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
-	integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
-	crossorigin="anonymous"></script>
-
-<!-- Theme CSS -->
-<link id="theme-style" rel="stylesheet" href="/css/theme-1.css">
-<script src="content-script.js"></script>
 </head>
 
-<!-- Javascript_ -->
-<script
-	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
-<style type="text/css">
+<th:block layout:fragment="script">
+
+	<!-- Javascript_ -->
+	<script
+		th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+	<style type="text/css">
 .btnPre {
 	float: left;
 }
@@ -48,49 +27,52 @@
 	margin-left: 250px;
 }
 </style>
-<script type="text/javascript">
-	function save() {
+	<script type="text/javascript">
+		function save() {
 
-	}
-</script>
+		}
+	</script>
+</th:block>
 </head>
 <body>
-	<th:block th:replace="common/nav/sidenav"></th:block>
-	<th:block th:replace="common/nav/sidenavDrawer"></th:block>
-	<th:block th:replace="common/nav/navHeader"></th:block>
-	<th:block th:fragment="pageContent">
 
+	<div layout:fragment="pageContent">
 		<!-- Page Title,Content  -->
 		<div class="main-wrapper">
 			<form action="/pageSave" method="get">
 				<div class="container" align="center">
-				
+
 					<!-- <th:block  th:if="${#strings.equals(pageDetail, 'NoData')}"> -->
 					<th:block th:if="${pageDetail == null}">
-					<input type="text" class="form-control" placeholder="Untitled" 
-						id="pageTitle" name="pageTitle" />
+						<input type="text" class="form-control" placeholder="Untitled"
+							id="pageTitle" name="pageTitle" />
 					</th:block>
 
 					<!-- Not Null -->
-					 <th:block th:if="${pageDetail != null}">
-					      <input  th:value="${pageDetail.pageTitle}" type="text" class="form-control" placeholder="Untitled" id="pageTitle" name="pageTitle" />
+					<th:block th:if="${pageDetail != null}">
+						<input th:value="${pageDetail.pageTitle}" type="text"
+							class="form-control" placeholder="Untitled" id="pageTitle"
+							name="pageTitle" />
 					</th:block>
-					
+
 				</div>
 				<hr class="container" style="width: 400px;" />
 				<div class="container" align="center">
-				
+
 					<!-- Null -->
 					<!-- <th:block  th:unless="${pageDetail != 'null' && pageDetail != ''}"> -->
 					<th:block th:if="${pageDetail == null}">
-					<textarea style="height: 400px" class="form-control" placeholder="Enter your content here..."
-						id="pageContent" name="pageContent"></textarea>
+						<textarea style="height: 400px" class="form-control"
+							placeholder="Enter your content here..." id="pageContent"
+							name="pageContent"></textarea>
 					</th:block>
-					
+
 					<!-- Not Null -->
-					<th:block th:each="ld : ${pageDetail}" th:if="${pageDetail != null}">
-					<textarea style="height: 400px" class="form-control" placeholder="Enter your content here..."
-						id="pageContent" name="pageContent" th:text="${ld.pageContent}"></textarea>
+					<th:block th:each="ld : ${pageDetail}"
+						th:if="${pageDetail != null}">
+						<textarea style="height: 400px" class="form-control"
+							placeholder="Enter your content here..." id="pageContent"
+							name="pageContent" th:text="${ld.pageContent}"></textarea>
 					</th:block>
 				</div>
 
@@ -108,13 +90,6 @@
 				</div>
 			</form>
 		</div>
-	</th:block>
-	<!-- Javascript -->
-	<script src="/plugins/jquery-3.3.1.min.js"></script>
-	<script src="/plugins/popper.min.js"></script>
-	<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-	<script src="/js/demo/style-switcher.js"></script>
+	</div>
 </body>
 </html>

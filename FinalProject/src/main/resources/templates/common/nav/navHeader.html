@@ -5,14 +5,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<th:block th:fragment="navHeader">
+	<header th:fragment="navHeaderFragment">
 
 			<!-- Header -->
-	<header class="header text-center flex-direction:row">
+	<div class="header text-center flex-direction:row">
 		<h1 class="blog-name pt-lg-4 mb-0">
-			<a href="pageList">hoya</a>
+			<a href="space">hoya</a>
 		</h1>
-
 
 			<nav class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navigation" aria-controls="navigation"
@@ -28,10 +27,7 @@
 					<hr>
 				</div>
 				<!-- nav-section -->
-			<!-- 	<p  th:text=" ${list}"></p> -->
-				
 				<ul class="navbar-nav flex-column" th:each="pageDetail: ${list}"  th:if="${pageDetail != null}">
-				
 					<li>
 						<a th:href="@{/pageDetail(pageNo=${pageDetail.pageNo})}" th:text="${pageDetail.pageTitle}" >
 						</a>
@@ -39,20 +35,20 @@
 				</ul>
 				<ul class="nav-item">
 					<li class="nav-item">
-						<a class="nav-link" href="pageList">
+						<a class="nav-link" href="space">
 							<i class="far fa-images"></i>
 							File 
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="pageList">
+						<a class="nav-link" href="space">
 							<i class="fas fa-plus"></i>
 							New
 						</a>
 					</li>
 				</ul>
 			</div>
+	</div>
 	</header>
-	</th:block>
 </body>
 </html>

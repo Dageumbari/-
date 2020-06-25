@@ -25,7 +25,6 @@ public class PageController {
 		// return "space/pageList";
 		// return "common/nav/navHeader"; // navHeader가 나오는데 인클루드할때 값이 나와야함
 		return "common/contents/pageContent";
-
 	}
 
 	@GetMapping("/pageDetail")
@@ -63,11 +62,10 @@ public class PageController {
 		return "redirect:/pageList";
 	}
 
-	@GetMapping("/pageUpdate")
-	public String getPageUpdate(HttpServletRequest req, Model model) {
-		PageVO pv = new PageVO();
-		int result = pageService.getPageUpdate(pv);
-		return "common/contents/pageContent";
-	}
+	/*
+	 * @GetMapping("/pageUpdate") public String getPageUpdate(HttpServletRequest
+	 * req, Model model) { PageVO pv = new PageVO(); int result =
+	 * pageService.getPageUpdate(pv); return "common/contents/pageContent"; }
+	 */
 
 }

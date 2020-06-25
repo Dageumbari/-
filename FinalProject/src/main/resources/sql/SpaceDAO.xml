@@ -3,63 +3,36 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.SpaceDAO">
-
-
-	<!-- <resultMap type="draftCardList" id="draftCardListMap">
-		<id property="spaceCode" column="spaceCode" />
-		<collection property="draftCard" javaType="List"
-			column="draftCode" ofType="draftCard" select="getDraftCard">
-		</collection>
-	</resultMap> -->
-
-	<!-- space -->
-	<!-- <resultMap type="" id="space_resultMap"> <id property="spaceCode" column="spaceCode" 
-		/> <result property="userNo" column="userNo" /> <result property="spaceName" 
-		column="spaceName" /> <result property="spaceUrl" column="spaceUrl" /> <collection 
-		property="draftList" column="draftCode" ofType="draftList" select="selectDraftsForSpace"> 
-		</collection> </resultMap>
-	<resultMap type="com.bit.model.dto.space.DraftListDTO" id="draftList_resultMap"> 
-		<id property="spaceCode" column="spaceCode" /> <collection property="draftDTO" 
-		column="draftCode" ofType="DraftDTO" select="getDraftList"> </collection> 
-		</resultMap> -->
-
-	<!-- 드래프트 리스트 출력 -->
-	<!-- <select id="getdraftCardList" resultMap="draftCardListMap">
-		select * from draftCardList
-	</select> -->
 	
-	<!-- 드래프트 카드 디테일 -->
-	<!-- <select id="getDraftCard" resultMap=""> select * from draftCard 
-	
+
+
+	<!-- sidenavDrawer의 사용자 이름, 스페이스 이름 출력-->
+	<select id="getSpaceUserInfo" resultType="spaceUserInfo">
+		select name, spaceName, spaceCode, userNo from
+		spaceUserInfo where
+		userNo=1 and spaceCode='sp11'
+	</select>
+
+	<!-- draftList불러오기(only saved) -->
+	<select id="getDraftList" resultType="draftList">
+		select * from draftList where spaceCode='sp11' and userNo=1 and draftStatus='saved'
 	</select>
 	
-	<insert id="insertDraftMsg" parameterType="Map"> insert into
-		draftMsg values (draftMsg_seq.nextval), #{msgContent}, #{editsCount},
-		#{draftCode}
-		)
-	</insert>  -->
-<!-- 
-	<select id="getDraftList" resultMap="draftList_resultMap"> select * 
-		from draft </select>
-
-	<resultMap type="draftDTO" id="draft_resultMap"> <id property="draftCode" 
-		column="draftCode" /> <result property="draftSavetime" column="draftSaveTime" 
-		/> <result property="draftStatus" column="draftStatus" /> </resultMap>
-
-	<update id="updateDraftMsg" parameterMap="String"> update draftMsg 
-		set msgContent=#{msgContent} where draftMsgno=#{draftMsgNo} </update> -->
-
+	<!-- 병합리스트 불러오기 -->
+	<select id="getMergedList" resultType="draftList">
+		select * from draftList where spaceCode='sp11' and userNo=1 and draftStatus='merged'
+	</select>
+	
+	<!-- 병합리스트 불러오기 -->
+	<select id="getArchivedList" resultType="draftList">
+		select * from draftList where spaceCode='sp11' and userNo=1 and draftStatus='archived'
+	</select>
+	
 	<!--  드래프트 카드 생성 -->
-
-
-	<!-- sidenav header의 사용자 로고이미지 
-	<select id="getSpaceUserInfo" resultType="spaceUserInfo">
-		select spaceCode,
-		spaceName, spaceUrl, name, userNo, userImage from
-		spaceUserInfo where
-		userNo=#{userNo} and spaceCode=#{spaceCode}
-	</select>-->
-
-
+	<!-- <insert id="insertDraft">
+		INSERT INTO draft VALUES(draft_seq.nextval, #{lectureCode},#{content},
+			(SELECT NVL( MAX(board_group_order)+1 , 1 ) FROM draft WHERE lecture_code = #{lectureCode} )
+		)
+	</insert> -->
 
 </mapper>

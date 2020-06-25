@@ -36,10 +36,9 @@ public class PageServiceImpl implements PageService {
 		return null;
 	}
 
-	@Override
-	public int getPageUpdate(PageVO pv) {
-		return pageDAO.getPageUpdate(pv);
-	}
-	 
+	/*
+	 * @Override public int getPageUpdate(PageVO pv) { return
+	 * pageDAO.getPageUpdate(pv); }
+	 */
 
 }
