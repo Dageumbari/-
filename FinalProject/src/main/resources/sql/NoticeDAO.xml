@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.NoticeDAO">
-	<resultMap id="getListwithPaging"
+	<!-- <resultMap id="getListwithPaging"
 		type="com.bit.model.vo.noticeVO">
 		<id property="noticeNo" column="noticeNo" />
 		<result property="noticeTitle" column="noticeTitle" />
@@ -15,7 +15,7 @@
 			<id property="adminCode" column="adminCode" />
 			<result property="adminId" column="adminId" />
 		</association>
-	</resultMap>
+	</resultMap>  -->
 
 	<select id="getAllNoticeInfo"
 		resultType="com.bit.model.vo.NoticeVO">     

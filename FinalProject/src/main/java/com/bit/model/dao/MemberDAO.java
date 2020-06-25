@@ -11,7 +11,7 @@ public interface MemberDAO {
 
 	
 	//팀 멤버
-	public List<MemberDTO> getAllMemberList();
+	public List<MemberDTO> getAllMemberList(String dashBoardCode);
 	public List<MemberDTO> getTeamList();
 	public List<MemberDTO> getTeamMemberList();
 	public List<MemberDTO> getMemberListByPermission();

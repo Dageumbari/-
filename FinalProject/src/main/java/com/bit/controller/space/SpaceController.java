@@ -31,7 +31,7 @@ public class SpaceController {
 		return "common/contents/pageContent";
 	}
 	
-	@GetMapping("/space")
+	//@GetMapping("/space")
 	public String getDraftList() {
 		return "space/draft/draft";
 	}

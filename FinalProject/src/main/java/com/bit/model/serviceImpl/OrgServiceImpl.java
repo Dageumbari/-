@@ -28,9 +28,9 @@ public class OrgServiceImpl implements OrgService {
 	}
 
 	@Override
-	public DashBoardVO getOrgInfo(String dashBoardCode) {
+	public DashBoardVO getOrgInfo(String dashBoardUrl) {
 		// TODO Auto-generated method stub
-		return orgDAO.getOrgInfo(dashBoardCode);
+		return orgDAO.getOrgInfo(dashBoardUrl);
 	}
 
 	@Override
