@@ -4,6 +4,7 @@ $(document).ready(function(){
 	checkModal(result);
 
 	history.replaceState({}, null, null);
+	
 function checkModal(result) { 
 	if (result === '' || history.state) {
 		return;
@@ -12,6 +13,7 @@ function checkModal(result) {
 		$(".modal-body").html("게시글" +  parseInt(result) + "빈이 등록되었습니다.")
 	}
 	$("#myModal").modal("show");
+	
 $(".regBtn").on("click", function() {
 	self.location = "/main/notice/register";
 });
