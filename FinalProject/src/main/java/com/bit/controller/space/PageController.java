@@ -62,6 +62,10 @@ public class PageController {
 		return "redirect:/pageList";
 	}
 
+	@GetMapping("/pageWrite")
+	public String pageWrite() {
+		return "page/pageWrite";
+	}
 	/*
 	 * @GetMapping("/pageUpdate") public String getPageUpdate(HttpServletRequest
 	 * req, Model model) { PageVO pv = new PageVO(); int result =
