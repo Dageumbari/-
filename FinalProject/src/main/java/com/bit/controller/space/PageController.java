@@ -15,7 +15,7 @@ import com.bit.model.vo.PageVO;
 @Controller
 public class PageController {
 
-	@Autowired(required = false)
+	@Autowired
 	PageService PageService;
 
 	@GetMapping("/pageList")

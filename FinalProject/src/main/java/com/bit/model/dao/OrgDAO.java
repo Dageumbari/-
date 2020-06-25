@@ -9,10 +9,11 @@ import com.bit.model.vo.DashBoardVO;
 
 
 @Mapper
+
 public interface OrgDAO {
 
 	public List<DashBoardVO> getAllOrgList();
-	public DashBoardVO getOrgInfo(String dashBoardCode);
+	public DashBoardVO getOrgInfo(String dashBoardUrl);
 	public DashBoardVO orgNameModify(DashBoardVO dashBoardVO);
 	public DashBoardVO orgURLModify(DashBoardVO dashBoardVO);
 	

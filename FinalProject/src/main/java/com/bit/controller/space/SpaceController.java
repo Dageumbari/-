@@ -19,7 +19,7 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 public class SpaceController {
 	
-	@Autowired(required=false)
+	@Autowired
 	PageService pageService;
 	
 	@Autowired(required=false)
@@ -40,7 +40,7 @@ public class SpaceController {
 		List<DraftListDTO> draftList = spaceService.getDraftList();
 		//log.error(draftList);
 		model.addAttribute("draftList", draftList);
-		return "space/draft/draft";
+		return "layout/spaceMain";
 	}
 	
 	@GetMapping("/mergedList")

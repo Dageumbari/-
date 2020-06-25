@@ -16,13 +16,13 @@ public class MemberServiceImpl implements MemberService {
 	MemberDAO memberDAO;
 
 	@Override
-	public List<MemberDTO> getAllMemberList() {
+	public List<MemberDTO> getAllMemberList(String dashBoardCode) {
 		// TODO Auto-generated method stub
-		return null;
+		return memberDAO.getAllMemberList(dashBoardCode);
 	}
 
 	@Override
-	public List<MemberDTO> getTeamList(String dashboardCode) {
+	public List<MemberDTO> getTeamList(String dashBoardCode) {
 		// TODO Auto-generated method stub
 		return null;
 	}
