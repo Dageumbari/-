@@ -3,11 +3,28 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.OrgDAO">
-	<!-- 
-		XML쿼리문에서 부등호 사용시 CDATA 사용
-	 -->
+	 <!-- 조직insert에 사용 : 대시보드 + 그룹인포 + 멤버DTO
+	 <resultMap id="" type="" >
+	 	<result property="dashBoardCode" column="dashBoardCode" />
+		<result property="dashBoardImage" column="dashBoardImage"/>
+		<result property="dashBoardName" column="dashBoardName"/>
+	 	<result property="dashBoardType" column="dashBoardType"/>
+	 	<result property="dashBoardUrl" column="dashBoardUrl"/>
+	 	<collection property="groupInfo" ofType="">
+	 		<id property="groupCode" column="groupCode"/>
+	 		<result property="groupName" column="groupName"/>
+	 		<result property="groupOrder" column="groupOrder"/>
+	 	</collection>
+	 	<collection property="memberDTO" ofType="">
+	 		<id property="memberDTO." column=""/>
+	 		<result property="" column=""/>
+	 		<result property="" column=""/>
+	 		<result property="" column=""/>
+	 	</collection>
+	 </resultMap>
+	  -->
 	 
-	<!-- 시큐리티에서 userNo 가져오기 -->
+	<!-- 시큐리티에서 userNo 가져오는 처리 완료 후 WHERE절 수정하기 -->
 	<select id="getAllOrgList" resultType="com.bit.model.vo.DashBoardVO">
 		SELECT DISTINCT D.DASHBOARDCODE, 
 			   D.DASHBOARDIMAGE, 
@@ -34,10 +51,22 @@
 			FROM dashBoard
 		WHERE dashboardCode = #{dashboardCode}
 	</delete>
+	<!-- ???
+	1.입력받는 값이 여러개 
+	2.여러 테이블에 INSERT인데 DTO를 만들어야 하는지
+	-->
 	<insert id="createOrg">
-		INSERT 
-			FROM
-		WHERE
+		INSERT ALL
+			INTO DASHBOARD 
+			VALUES('da'||LPAD(DASHBOARD_SEQ.NEXTVAL, 2, 0),'orgdefault.png', #{DASHBOARDNAME}, 'private', #{DASHBOARDNAME})
+			INTO GROUPINFO 
+			VALUES('gr'||LPAD(GROUPINFO_SEQ.NEXTVAL, 2, 0), 'da'||LPAD(DASHBOARD_SEQ.CURRVAL, 2, 0), 'default', 1)
+			INTO TEAM 
+			VALUES('te'||LPAD(TEAM_SEQ.NEXTVAL, 2, 0), 'da'||LPAD(DASHBOARD_SEQ.CURRVAL, 2, 0), 'All Members')
+			INTO MEMPERMIT 
+			VALUES('te'||LPAD(TEAM_SEQ.CURRVAL, 2, 0), #{USERNO}, 1)
+		SELECT * 
+		FROM DUAL
 	</insert>
 	<update id="orgNameModify">
 		UPDATE
