@@ -59,7 +59,7 @@
 </script>
 </head>
 <body>
-	<div layout:fragment="pageContent">
+	<div layout:fragment="pageContent"></div>
 		<!-- <form method="post" action="/pageWrite"> -->
 		<!-- 	<input type="text" name="writer" style="width: 20%;" placeholder="작성자"/><br> -->
 		<!-- 	<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
@@ -87,7 +87,7 @@
 				<div class="container" align="center">
 
 					<!-- Null -->
-					<th:block th:unless="${pageDetail != 'null' && pageDetail != ''}">
+					<!-- <th:block th:unless="${pageDetail != 'null' && pageDetail != ''}"> -->
 						<th:block th:if="${pageDetail == null}">
 							<textarea style="height: 400px" class="form-control"
 								placeholder="Enter your content here..." id="pageContent"
@@ -118,6 +118,6 @@
 				</div>
 			</form>
 		</div>
-	</div>
+
 </body>
 </html>
