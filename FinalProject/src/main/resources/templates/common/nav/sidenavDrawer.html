@@ -6,7 +6,7 @@
 </head>
 <body>
 
-	<header th:fragment="sideNavDrawerFragment">
+	<header th:fragment="sideNavDrawerFragment(userInfo)">
 	
 		<div class="sidebarDrawer">
 			<div class="sidebarDrawerInner">
@@ -14,12 +14,12 @@
 					<div class="drawerContentHeader">
 						<div class="drawerHeader">
 							<div class="spaceSummary">
-								<div class="ownerTitle">
-									<span class="text-ownerTitle" th:text="${userInfo.spaceName}"></span>
+								<div class="ownerTitle"> <!--   -->
+									<span class="text-ownerTitle" th:text="${userInfo.name}"></span>
 								</div>
 								<div class="spaceNameWrapper">
-									<div class="spaceName">
-										<span class="text-spaceName" th:text="${userInfo.name}"></span>
+									<div class="spaceName"> <!--th:text="${userInfo.name}"  -->
+										<span class="text-spaceName" th:text="${userInfo.spaceName}"></span>
 									</div>
 								</div>
 							</div>
@@ -70,7 +70,7 @@
 													</div>
 													<div class="draftCardHeaderAuthor">
 														<div class="reset-3c756112"></div>
-														<span class="text-draftAuthorInfo" th:text="${userInfo.name}">
+														<span class="text-draftAuthorInfo" > <!--th:text="${userInfo.name}"  -->
 														<!-- <span title="Jun 1, 2020, 4:23 PM">9d</span> -->
 														</span>
 													</div>

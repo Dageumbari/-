@@ -52,15 +52,15 @@
 <link th:href="@{/css/theme-5.css}" rel="stylesheet">
 <link th:href="@{/css/theme-6.css}" rel="stylesheet">
 <link th:href="@{/css/theme-7.css}" rel="stylesheet">
-<link href="/css/sidenavStyle.css" rel="stylesheet" type="text/css">
-<link href="/css/sidenavDrawer.css" rel="stylesheet" type="text/css">
+<link th:href="@{/css/sidenavStyle.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet" type="text/css">
 </head>
 <!-- 공통 css js end -->
 
 
-<header th:replace="common/nav/navHeader :: navHeaderFragment"></header>
 <header th:replace="common/nav/sidenav :: sidenavFragment"></header>
-<header th:replace="common/nav/sideNavDrawer :: sideNavDrawerFragment"></header>
+<header th:replace="common/nav/sideNavDrawer :: sideNavDrawerFragment(${userInfo})"></header>
+<header th:replace="common/nav/navHeader :: navHeaderFragment"></header>
 
 <!-- nav -->
 
