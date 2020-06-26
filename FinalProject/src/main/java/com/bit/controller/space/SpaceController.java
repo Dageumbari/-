@@ -73,9 +73,10 @@ public class SpaceController {
 		if (pv == null) {
 			System.out.println("NoData");
 			model.addAttribute("pageDetail", "NoData");
+			model.addAttribute("list", pageService.getPageList());
 		} else {
-			System.out.println("222222222222");
 			model.addAttribute("pageDetail", pv);
+			model.addAttribute("list", pageService.getPageList());
 		}
 		return "common/contents/pageContent";
 	}
@@ -99,9 +100,12 @@ public class SpaceController {
 		}
 		return "redirect:/pageList";
 	}
-
-	/*
-	 * @GetMapping("/pageWrite") public String pageWrite() { return
-	 * "page/pageWrite"; }
-	 */
+	@GetMapping("/edits")
+	public String editsPage(){
+		return "draft/edits";
+	}
+	@GetMapping("/spacePage")
+	public String spacePage() {
+		return "page/spacePage";
+	}
 }
