@@ -3,36 +3,57 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.SpaceDAO">
-	
 
 
-	<!-- sidenavDrawer의 사용자 이름, 스페이스 이름 출력-->
+
+	<!-- sidenavDrawer의 사용자 이름, 스페이스 이름 출력 -->
 	<select id="getSpaceUserInfo" resultType="spaceUserInfo">
-		select name, spaceName, spaceCode, userNo from
+		select name, spaceName,
+		spaceCode, userNo from
 		spaceUserInfo where
 		userNo=1 and spaceCode='sp11'
 	</select>
 
 	<!-- draftList불러오기(only saved) -->
 	<select id="getDraftList" resultType="draftList">
-		select * from draftList where spaceCode='sp11' and userNo=1 and draftStatus='saved'
+		select DRAFTCODE,
+		DRAFTSAVETIME, DRAFTSTATUS, MSGNO, MSGCONTENT, EDITSCOUNT, USERNO,
+		NAME, USERIMAGE
+		from draftlist
+		where spaceCode='sp11' and userNo=1 and
+		draftStatus='saved' and
+		msgno=(select max(msgno) from draftlist)
 	</select>
-	
+
 	<!-- 병합리스트 불러오기 -->
 	<select id="getMergedList" resultType="draftList">
-		select * from draftList where spaceCode='sp11' and userNo=1 and draftStatus='merged'
+		select DRAFTCODE,
+		DRAFTSAVETIME, DRAFTSTATUS, MSGNO, MSGCONTENT,
+		EDITSCOUNT, USERNO,
+		NAME, USERIMAGE
+		from draftlist
+		where
+		spaceCode='sp11' and userNo=1 and
+		draftStatus='merged' and
+		msgno=(select max(msgno) from draftlist)
 	</select>
-	
+
 	<!-- 병합리스트 불러오기 -->
 	<select id="getArchivedList" resultType="draftList">
-		select * from draftList where spaceCode='sp11' and userNo=1 and draftStatus='archived'
+		select DRAFTCODE,
+		DRAFTSAVETIME, DRAFTSTATUS, MSGNO, MSGCONTENT,
+		EDITSCOUNT, USERNO,
+		NAME, USERIMAGE
+		from draftlist
+		where spaceCode='sp11' 
+		and userNo=1 
+		and draftStatus='archived' 
+		and msgno=(select max(msgno) from draftlist)
 	</select>
-	
-	<!--  드래프트 카드 생성 -->
-	<!-- <insert id="insertDraft">
-		INSERT INTO draft VALUES(draft_seq.nextval, #{lectureCode},#{content},
-			(SELECT NVL( MAX(board_group_order)+1 , 1 ) FROM draft WHERE lecture_code = #{lectureCode} )
-		)
-	</insert> -->
+
+	<!-- 드래프트 카드 생성 -->
+	<!-- <insert id="insertDraft"> INSERT INTO draft VALUES(draft_seq.nextval, 
+		#{lectureCode},#{content}, (SELECT NVL( MAX(board_group_order)+1 , 1 ) FROM 
+		draft WHERE lecture_code = #{lectureCode} ) ) </insert> -->
 
 </mapper>

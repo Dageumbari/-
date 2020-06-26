@@ -4,121 +4,124 @@
 
 <mapper namespace="com.bit.model.dao.NoticeDAO">
 
-   <sql id="noticeCriteria">
-      <trim prefix="(" suffix=") AND " prefixOverrides="OR">
-         <foreach item='type' collection="typeArr">
-            <trim prefix="OR">
-               <choose>
-                  <when test="type == 'NOTICETITLE'.toString()">
-                     NOTICETITLE like '%'||#{keyword}||'%'
-                  </when>
-                  <when test="type == 'NOTICECONTENT'.toString()">
-                     NOTICECONTENT like '%'||#{keyword}||'%'
-                  </when>
-                  <when test="type == 'ADMINID'.toString()">
-                     ADMINID like '%'||#{keyword}||'%'
-                  </when>
-               </choose>
-            </trim>
-         </foreach>
-      </trim>
-   </sql>
 
-   <select id="getAllNoticeInfo"
-      resultType="com.bit.model.vo.NoticeVO">     
-   <![CDATA[select * from notice where noticeNo>0]]>
-   </select>
+	<sql id="noticeCriteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'NOTICETITLE'.toString()">
+							NOTICETITLE like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'NOTICECONTENT'.toString()">
+							NOTICECONTENT like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'ADMINID'.toString()">
+							ADMINID like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 
-   <insert id="insert">
-      insert into
-      notice(NOTICEDATE,NOTICECONTENT,NOTICENO,NOTICETITLE,ADMINCODE)
-      values
-      (#{NOTICEDATE},#{NOTICECONTENT},seq_notice.nextval,#{NOTICETITLE},#{ADMINCODE})
-   </insert>
 
-   <select id="read" resultType="com.bit.model.vo.NoticeVO">
-      select * from
-      (select
-      notice.NOTICENO,notice.NOTICETITLE,notice.NOTICEDATE,admin_info.adminId
-      from notice
-      inner join admin_info
-      on
-      admin_info.admincode=notice.admincode)
-      where
-      noticeNo=#{noticeNo}
-   </select>
+	<select id="getAllNoticeInfo"
+		resultType="com.bit.model.vo.NoticeVO">     
+	<![CDATA[select * from notice where noticeNo>0]]>
+	</select>
 
-   <delete id="delete">
-      delete from notice where noticeNo=#{noticeNo}
-   </delete>
+	<insert id="insert">
+		insert into
+		notice(NOTICEDATE,NOTICECONTENT,NOTICENO,NOTICETITLE,ADMINCODE)
+		values
+		(#{NOTICEDATE},#{NOTICECONTENT},seq_notice.nextval,#{NOTICETITLE},#{ADMINCODE})
+	</insert>
 
-   <update id="update">
-      update notice
-      set
-      NOTICETITLE=#{NOTICETITLE},
-      NOTICECONTENT=#{NOTICECONTENT},
-      NOTICEDATE =
-      SYSDATE
-      where
-      noticeNo=#{noticeNo}
-   </update>
+	<select id="read" resultType="com.bit.model.vo.NoticeVO">
+		select * from
+		(select
+		notice.NOTICENO,notice.NOTICETITLE,notice.NOTICEDATE,admin_info.adminId
+		from notice
+		inner join admin_info
+		on
+		admin_info.admincode=notice.admincode)
+		where
+		noticeNo=#{noticeNo}
+	</select>
 
-   <resultMap id="getListwithPaging"
-      type="com.bit.model.vo.NoticeVO">
-      <id property="noticeNo" column="noticeno" />
-      <result property="noticeTitle" column="noticetitle" />
-      <result property="noticeDate" column="noticedate" />
-      <result property="noticeContent" column="noticecontent" />
-      <result property="adminCode" column="admincode" />
-      <association property="adminInfoVO"
-         javaType="com.bit.model.vo.AdminInfoVO">
-         <result property="adminCode" column="admincode" />
-         <result property="adminId" column="adminid" />
-      </association>
-   </resultMap>
+	<delete id="delete">
+		delete from notice where noticeNo=#{noticeNo}
+	</delete>
 
-   <select id="getListwithPaging"
-      parameterType="com.bit.model.dto.NoticeCriteriaDTO"
-      resultMap="getListwithPaging">
-      select *
-      FROM
-      (select
-      rn
-      ,noticeDate
-      ,noticeContent
-      ,noticeNo
-      ,noticeTitle
-      ,adminId
-      FROM
-      (select
-      rownum rn
-      ,notice.noticeNo
-      ,notice.noticeTitle
-      ,notice.noticeContent
-      ,notice.noticeDate
-      ,admin_info.adminId
-      from notice
-      inner join admin_info
-      on admin_info.adminCode=notice.admincode
-      <trim prefix="AND">
-         <foreach item='type' collection="typeArr">
-            <trim prefix="OR">
-               <choose>
-                  <when test="type == 'NOTICETITLE'.toString()">
-                     noticeTitle like '%'||#{keyword}||'%'
-                  </when>
-                  <when test="type == 'NOTICECONTENT'.toString()">
-                     noticeContent like '%'||#{keyword}||'%'
-                  </when>
-                  <when test="type == 'ADMINID'.toString()">
-                     adminId like '%'||#{keyword}||'%'
-                  </when>
-               </choose>
-            </trim>
-         </foreach>
-      </trim>
-      order by notice.noticeNo)
-        <![CDATA[    
+	<update id="update">
+		update notice
+		set
+		NOTICETITLE=#{NOTICETITLE},
+		NOTICECONTENT=#{NOTICECONTENT},
+		NOTICEDATE =
+		SYSDATE
+		where
+		noticeNo=#{noticeNo}
+	</update>
+
+
+	<resultMap id="getListwithPaging"
+		type="com.bit.model.vo.NoticeVO">
+		<id property="noticeNo" column="noticeno" />
+		<result property="noticeTitle" column="noticetitle" />
+		<result property="noticeDate" column="noticedate" />
+		<result property="noticeContent" column="noticecontent" />
+		<result property="adminCode" column="admincode" />
+		<association property="adminInfoVO"
+			javaType="com.bit.model.vo.AdminInfoVO">
+			<result property="adminCode" column="admincode" />
+			<result property="adminId" column="adminid" />
+		</association>
+	</resultMap>
+
+	<select id="getListwithPaging"
+		parameterType="com.bit.model.dto.NoticeCriteriaDTO"
+		resultMap="getListwithPaging">
+		select *
+		FROM
+		(select
+		rn
+		,noticeDate
+		,noticeContent
+		,noticeNo
+		,noticeTitle
+		,adminId
+		FROM
+		(select
+		rownum rn
+		,notice.noticeNo
+		,notice.noticeTitle
+		,notice.noticeContent
+		,notice.noticeDate
+		,admin_info.adminId
+		from notice
+		inner join admin_info
+		on admin_info.adminCode=notice.admincode
+		<trim prefix="AND">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'NOTICETITLE'.toString()">
+							noticeTitle like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'NOTICECONTENT'.toString()">
+							noticeContent like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'ADMINID'.toString()">
+							adminId like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+		order by notice.noticeNo)
+		  <![CDATA[    
      where rownum <= #{pageNo} * #{noticeAmount})
      where rn > (#{pageNo} -1) * #{noticeAmount}
   ]]>
@@ -150,6 +153,7 @@
       from notice inner join admin_info on admin_info.adminCode=notice.admincode) 
       ) where <include refid="noticeCriteria"></include> noticeNo > 0 </select> -->
 </mapper>
+
 
 
 

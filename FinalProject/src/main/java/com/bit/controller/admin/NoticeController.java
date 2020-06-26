@@ -11,11 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bit.model.dto.NoticeCriteriaDTO;
 import com.bit.model.dto.NoticePagingDTO;
-import com.bit.model.service.MemberService;
 import com.bit.model.service.NoticeService;
-import com.bit.model.service.OrgService;
-import com.bit.model.service.SpaceDashBoardService;
-import com.bit.model.service.TeamService;
 import com.bit.model.vo.NoticeVO;
 
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/spaceMain}">
+	layout:decorate="~{layout/default}">
 
 <head>
 <title>pageContent</title>
@@ -49,7 +49,7 @@
 <script>
 	$(document).ready(function() {
 		$('#summernote').summernote({
-			placeholder : 'pageContent',
+			placeholder : 'content',
 			minHeight : 370,
 			maxHeight : null,
 			focus : true,
@@ -57,24 +57,14 @@
 		});
 	});
 </script>
-<script>
-	function pageSave(frm) {
-		var pageTitle = frm.pageTitle.value;
-		var pageContent = frm.pageContent.value;
-
-		if (pageTitle.trim() == '') {
-			alert("제목을 입력해주세요");
-		}
-		if (pageContent.trim() == '') {
-			alert("내용을 입력해주세요");
-		}
-		frm.submit();
-	}
-</script>
 </head>
 <body>
 	<div layout:fragment="pageContent">
-
+		<!-- <form method="post" action="/pageWrite"> -->
+		<!-- 	<input type="text" name="writer" style="width: 20%;" placeholder="작성자"/><br> -->
+		<!-- 	<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
+		<br><br> 
+		</form> -->
 		<!-- Page Title,Content  -->
 		<div class="main-wrapper">
 			<form action="/pageSave" method="get">
