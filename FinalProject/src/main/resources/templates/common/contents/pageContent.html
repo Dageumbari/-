@@ -4,17 +4,30 @@
 	layout:decorate="~{layout/spaceMain}">
 
 <head>
-	<title>pageContent</title>
-</th:block>
+<title>pageContent</title>
 
-</head>
+<!-- editor 적용 -->
+<!-- include libraries(jQuery, bootstrap) -->
+<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
-<th:block layout:fragment="script">
+<!-- include summernote css/js-->
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet"> -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
-	<!-- Javascript_ -->
-	<script
-		th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
-	<style type="text/css">
+<!-- include summernote-ko-KR -->
+<script src="/js/summernote-ko-KR.js"></script>
+<!-- editor end -->
+
+
+<!-- Javascript_ -->
+<script
+	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+<style type="text/css">
 .btnPre {
 	float: left;
 }
@@ -27,27 +40,48 @@
 	margin-left: 250px;
 }
 </style>
-	<script type="text/javascript">
-		function save() {
+<script type="text/javascript">
+	function save() {
 
-		}
-	</script>
+	}
+</script>
+
 <script>
-$(document).ready(function() {
-	  $('#summernote').summernote({
- 	    	placeholder: 'content',
-	        minHeight: 370,
-	        maxHeight: null,
-	        focus: true, 
-	        lang : 'ko-KR'
-	  });
+	$(document).ready(function() {
+		$('#summernote').summernote({
+			placeholder : 'pageContent',
+			minHeight : 370,
+			maxHeight : null,
+			focus : true,
+			lang : 'ko-KR'
+		});
 	});
 </script>
-</th:block>
+<script>
+	function pageSave(frm) {
+		var pageTitle = frm.pageTitle.value;
+		var pageContent = frm.pageContent.value;
+
+		if (pageTitle.trim() == '') {
+			alert("제목을 입력해주세요");
+		}
+		if (pageContent.trim() == '') {
+			alert("내용을 입력해주세요");
+		}
+		frm.submit();
+	}
+</script>
 </head>
 <body>
 
 	<div layout:fragment="pageContent">
+
+<form method="post" action="/pageWrite">
+<!-- 	<input type="text" name="writer" style="width: 20%;" placeholder="작성자"/><br> -->
+		<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
+		<br><br> 
+		</form>
+
 		<!-- Page Title,Content  -->
 		<div class="main-wrapper">
 			<form action="/pageSave" method="get">
@@ -65,35 +99,35 @@ $(document).ready(function() {
 							class="form-control" placeholder="Untitled" id="pageTitle"
 							name="pageTitle" />
 					</th:block>
-
 				</div>
 				<hr class="container" style="width: 400px;" />
 				<div class="container" align="center">
 
 					<!-- Null -->
-					<!-- <th:block  th:unless="${pageDetail != 'null' && pageDetail != ''}"> -->
-					<th:block th:if="${pageDetail == null}">
-						<textarea style="height: 400px" class="form-control"
-							placeholder="Enter your content here..." id="pageContent"
-							name="pageContent"></textarea>
-					</th:block>
+					<th:block th:unless="${pageDetail != 'null' && pageDetail != ''}">
+						<th:block th:if="${pageDetail == null}">
+							<textarea style="height: 400px" class="form-control"
+								placeholder="Enter your content here..." id="pageContent"
+								name="pageContent"></textarea>
+						</th:block>
 
-					<!-- Not Null -->
-					<th:block th:each="ld : ${pageDetail}"
-						th:if="${pageDetail != null}">
-						<textarea style="height: 400px" class="form-control"
-							placeholder="Enter your content here..." id="pageContent"
-							name="pageContent" th:text="${ld.pageContent}"></textarea>
-					</th:block>
+						<!-- Not Null -->
+						<th:block th:each="ld : ${pageDetail}"
+							th:if="${pageDetail != null}">
+							<textarea style="height: 400px" class="form-control"
+								placeholder="Enter your content here..." id="pageContent"
+								name="pageContent" th:text="${ld.pageContent}"></textarea>
+						</th:block>
 				</div>
-
 				<hr class="container" style="width: 400px;" />
-				<!-- Previous,Next -->
 
+				<!-- Previous,Next -->
 				<div class="container-center-plz">
 					<!-- 수정  -->
 					<div class="container" style="left: 10px;">
 						<button class="btn btn-primary btnPre">&laquo; Previous</button>
+
+						<!-- <button onclick="save(this.form)" type="submit"	class="btn btn-primary btnSave">저장하기</button> -->
 						<button onclick="save();" type="submit"
 							class="btn btn-primary btnSave">저장하기</button>
 						<button class="btn btn-primary btnNext">Next &raquo;</button>
