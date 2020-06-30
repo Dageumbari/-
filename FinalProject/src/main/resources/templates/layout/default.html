@@ -5,12 +5,12 @@
 <head>
 <!-- 공통 css js -->
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="context-path" th:content="@{/}" />
+<link rel="shortcut icon" href="favicon.ico">
 <title>스페이스 레이아웃</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- FontAwesome JS-->
 <script defer
@@ -19,32 +19,16 @@
 	crossorigin="anonymous"></script>
 
 <!-- Javascript -->
-<!-- <script src="/plugins/jquery-3.3.1.min.js"></script>
+<script src="/plugins/jquery-3.3.1.min.js"></script>
 <script src="/plugins/popper.min.js"></script>
 <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
- -->
-<!-- editor 적용 -->
-<!-- include libraries(jQuery, bootstrap) -->
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
-<!-- include summernote css/js-->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
-<!-- include summernote-ko-KR -->
-<script src="page/summernote-ko-KR.js"></script>
-<!-- editor end -->
 <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
 <script src="/js/demo/style-switcher.js"></script>
 
 <!-- Theme CSS -->
-<link id="theme-style" rel="stylesheet" href="/css/theme-1.css">
+<link id="theme-style" rel="stylesheet" href="/css/theme-2.css">
 
 <!-- 여기 링크+스크립트  나중에 묶어서 header.html 로 둘 예정 -->
 <link th:href="@{/css/style.css}" rel="stylesheet">
@@ -62,8 +46,7 @@
 
 
 <header th:replace="common/nav/sidenav :: sidenavFragment"></header>
-<header
-	th:replace="common/nav/sideNavDrawer :: sideNavDrawerFragment(${userInfo})"></header>
+<header	th:replace="common/nav/sideNavDrawer :: sideNavDrawerFragment(${userInfo})"></header>
 <header th:replace="common/nav/navHeader :: navHeaderFragment"></header>
 
 <!-- nav -->
@@ -71,5 +54,29 @@
 <!-- 내용/비워두는 자리 -->
 
 <div layout:fragment="pageContent"></div>
+
+<!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
+<div id="config-panel" class="config-panel d-none d-lg-block">
+	<div class="panel-inner">
+		<a id="config-trigger"
+			class="config-trigger config-panel-hide text-center" href="#"><i
+			class="fas fa-cog fa-spin mx-auto" data-fa-transform="down-6"></i></a>
+		<h5 class="panel-title">Choose Colour</h5>
+		<ul id="color-options" class="list-inline mb-0">
+			<li class="theme-1 active list-inline-item"><a data-style="/css/theme-1.css" href="#"></a></li>
+			<li class="theme-2  list-inline-item"><a data-style="/css/theme-2.css" href="#"></a></li>
+			<li class="theme-3  list-inline-item"><a data-style="/css/theme-3.css" href="#"></a></li>
+			<li class="theme-4  list-inline-item"><a data-style="/css/theme-4.css" href="#"></a></li>
+			<li class="theme-5  list-inline-item"><a data-style="/css/theme-5.css" href="#"></a></li>
+			<li class="theme-6  list-inline-item"><a data-style="/css/theme-6.css" href="#"></a></li>
+			<li class="theme-7  list-inline-item"><a data-style="/css/theme-7.css" href="#"></a></li>
+			<li class="theme-8  list-inline-item"><a data-style="/css/theme-8.css" href="#"></a></li>
+		</ul>
+		<a id="config-close" class="close" href="#"><i
+			class="fa fa-times-circle"></i></a>
+	</div>
+</div>
+
+
 
 </html>

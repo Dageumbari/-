@@ -21,7 +21,7 @@ public class PageServiceImpl implements PageService {
 	}
 
 	@Override
-	public int pageSave(PageVO pv) {
+	public int pageSave(PageVO pv) { 
 		return pageDAO.pageSave(pv);
 	}
 
