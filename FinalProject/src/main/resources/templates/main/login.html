@@ -3,16 +3,12 @@
 
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
         <link type="text/css"  rel="stylesheet" th:href="@{/css/styles.css}" />
         <script src='https://www.google.com/recaptcha/api.js'></script>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script th:src="@{/js/scripts.js}"></script>
 		<script th:src="@{/js/recapchar.js}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-        <title>Login</title>        
+        <title>Login</title>
     </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
@@ -74,10 +70,20 @@
                                                 <!-- 로그인 버튼 -->
                                                 <button class="btn btn-primary" type="button" onclick="doLogin()" >Sign in</button>
                                             </div>
-                                            
 
                                         </form>
-                                    </div>
+                                        	<div class="form-group">
+                                        		<!-- 구글 로그인 -->
+                                        		<a href="/oauth2/authorization/google" role="button">
+                                        			<img th:src="@{/images/google.png}" height="45px"/>
+                                        		</a>
+                                        		
+                                        		<!-- 네이버 로그인 -->
+                                        		<a href="/oauth2/authorization/naver" role="button">
+                                        			<img th:src="@{/images/naver.png}" height="40px"/>
+                                        		</a>                                        		
+                                        	</div>
+                                      </div>
 
                                     <div class="card-footer text-center">
                                         <div class="small"><a href="/join">Create an account</a></div>

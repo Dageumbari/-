@@ -31,4 +31,7 @@ public interface MainDAO {
 	@Update("update user_info set user_info.pw = #{encodeKey} where user_info.email = #{email}")
 	public void setForgotPassword(String encodeKey, String email);
 	
+	@Update("update user_info set user_info.name = #{name} where user_info.email = #{email}")
+	public void setName(String name, String email);
+	
 }
