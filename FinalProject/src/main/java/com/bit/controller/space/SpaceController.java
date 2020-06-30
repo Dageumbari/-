@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.bit.model.dto.space.DraftListDTO;
-import com.bit.model.dto.space.SpaceUserInfoDTO;
 import com.bit.model.service.PageService;
 import com.bit.model.service.SpaceService;
 import com.bit.model.vo.PageVO;
@@ -22,7 +21,7 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 public class SpaceController {
 
-	@Autowired
+	@Autowired(required = false)
 	PageService pageService;
 
 	@Autowired(required = false)
@@ -30,16 +29,16 @@ public class SpaceController {
 
 	@ModelAttribute
 	public void sideNavDrawerFragmentValue(Model model) {
-
 		model.addAttribute("userInfo", spaceService.getSpaceUserInfo());
 	}
+	
 
 	@GetMapping("/draftList")
 	public String getDraftList(Model model) {
-		List<DraftListDTO> draftList = spaceService.getDraftList();
-//		log.error(draftList);
+		List<DraftListDTO> draftList = spaceService.getDraftList(); //
+		log.error(draftList);
 		model.addAttribute("draftList", draftList);
-		return "common/nav/sidenavDrawer";
+		return "common/draft/draftList";
 	}
 
 	/*
