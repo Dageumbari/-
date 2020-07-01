@@ -101,6 +101,13 @@
 		where email = #{email}
 
 	</update>
-
+	
+	<select id="getInquiryVO" resultType="com.bit.model.dto.InquiryDTO">
+	
+	select inquiry.inqno, inquiry.userno , inquiry.inqtitle, inquiry.inqdate, user_info.name 
+	from inquiry inner join user_info on inquiry.userNo = user_info.userNo 
+	order by inquiry.inqno DESC
+	
+	</select>
 
 </mapper>

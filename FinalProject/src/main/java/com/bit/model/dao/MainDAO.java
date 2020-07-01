@@ -1,9 +1,12 @@
 package com.bit.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.bit.model.dto.InquiryDTO;
 import com.bit.model.dto.UserDTO;
 
 
@@ -34,4 +37,5 @@ public interface MainDAO {
 	@Update("update user_info set user_info.name = #{name} where user_info.email = #{email}")
 	public void setName(String name, String email);
 	
+	public List<InquiryDTO> getInquiryVO();
 }

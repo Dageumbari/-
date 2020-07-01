@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Settings인뎁쇼</title>
+<link href="/css/dashboard.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="reset-3c756112--app-68cac36c">
+<div class="reset-3c756112--dashboardBody-16d7793c">
+
+<div th:insert="/include/dashboardNavi.html :: dashboardNavi"></div> 
+
+<div class="reset-3c756112--dashboardInner-bfcc3d9a">
+<div class="reset-3c756112--dashboardContent-33678280">
+
+<div th:insert="/include/dashboardMenu.html :: dashboardMenu"></div>
+
+	<div
+		class="reset-3c756112--dashboardTab-2357d04a--dashboardTabWithMenu-1be0e63a">
+		<div class="reset-3c756112--dashboardTab-6c6dd16c">
+			<div
+				class="reset-3c756112--dashboardTabHeader-f7d1f108--S400Bottom-9b457f18">
+				<span
+					class="text-4505230f--InfoH200-3a8a7a86--textUIFamily-5ebd8e40--orgTitle-22ea4f82">bitfinal</span>
+				<div class="reset-3c756112--dashboardTabContent-12b621e6">
+					<div class="reset-3c756112--mobileMenuContainer-19573906">
+						<button
+							class="button-36063075--small-30ceeddb--button-78c61f17--button-dark-50f870b6--small-54db2a94--mobileMenuButton-42ab09c4">
+							<span class="small-3bde6db7--iconOnly-bddce91a"><svg
+									preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
+									fill="none" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+									stroke-linejoin="round" stroke="currentColor"
+									class="icon-7f6730be--text-3f89f380">
+									<g>
+									<line x1="3" y1="12" x2="21" y2="12"></line>
+									<line x1="3" y1="6" x2="21" y2="6"></line>
+									<line x1="3" y1="18" x2="21" y2="18"></line></g></svg></span><span
+								class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40--text-8ee2c8b2"></span>
+						</button>
+					</div>
+					<div class="reset-3c756112--titleContainer-b2de0990">
+						<span
+							class="text-4505230f--DisplayH900-bfb998fa--textUIFamily-5ebd8e40--white-42ab09c4">Settings</span>
+					</div>
+					<div class="reset-3c756112--actionsContainer-15fb9d8d"></div>
+				</div>
+			</div>
+			<div
+				class="reset-3c756112--S300Bottom-9b4658d2--panel-1b61b7b4--dark-095bdbe8--medium-1b61b7b5">
+				<div class="reset-3c756112--panelHeader-2f79c7a6--medium-90fc7d46">
+					<div class="reset-3c756112--panelHeaderLeft-f6ad52b8">
+						<div class="reset-3c756112--panelHeaderTitle-c44ec79e">
+							<span
+								class="text-4505230f--UIH400-4e41e82a--textUIFamily-5ebd8e40">Your
+								Organization</span>
+						</div>
+					</div>
+				</div>
+				<form class="form-34d2bb8e">
+					<div
+						class="reset-3c756112--panelBody-19b86669--dark-9f89be6e--medium-b7383e74">
+						<div
+							class="reset-3c756112--formGroup-46050ff4--S300Bottom-9b4658d2">
+							<div
+								class="reset-3c756112--S100Bottom-15862a5a--flexWrapper-a5c6faba">
+								<span
+									class="text-4505230f--InfoH200-3a8a7a86--textUIFamily-5ebd8e40--greyBase-2c5d8183">Logo</span>
+							</div>
+							<div class="reset-3c756112--container-32f74724">
+								<div
+									class="reset-3c756112--preview-684786fa--previewDark-369c06b0">
+									<div
+										class="reset-3c756112--tooltipContainer-7fdb9b70--xlarge-3c778fc4--circle-6c5acd10">
+										<div
+											class="reset-3c756112--avatarFrame-2f40cdc9--xlarge-3c778fc4--circle-6c5acd10"
+											role="presentation">
+											<img class="image-67b14f24--avatar-1c1d03ec"
+												src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABxlTA0AAAEFElEQVR4Xu3aWU9TURQF4HWBDtCWoQwOVFBGA1oGcRYReFMQefAX+q7GkEg0YiQSjUZFEQ1UoiIYBRSZShlKzT6mVRsMtLC5h+s+j4Yu2o/lvr27Na5OXItADpuAIcBstipYgHl9BZjZV4AFmFuAOV9msAAzCzDHS4MFmFmAOV4aLMDMAszx0mABZhZgjpcGCzCzAHO8NFiAmQWY46XBAswswBwvDRZgZgHmeGmwADMLMMdLgwWYWYA5Xhr8PwAvB0N4cf0egtOzm3q5hmHA4c5AepYb+WUHkHfIB4c7fVOP3ekf0qLBiQLHIxF4QUUxSs/WwuHSC9oSwFFwpycDR9ua4M7L3umi/vP3aQmcareh5JQfzkzXuk88vLyCH+MT+PbhM5YWFv/6GXd+Dvxt59UI0eFoCWxLd6D2SsuGTYxEIpgY/oihnicIr4ZjniWn/ShuqNbBV4/vpsXP4M0CRwXHXg4h0Ps8Bpq5xwv/5WbYnHbTkXd1g6N6obkgXt7sQfDHnPonm5P+BzSDxoXZxxLA4ZVVDHb3qZkcPTUdF+At2me2rzVGBCkO33+K8dfvBHi9Sm11BtMF7k13H6bejwswBzD9gfpv9GDh+4zMYA7g8YEAAg+egd620cnx7cGRS41Is9tkBpPAVkYEjYW3dx5hdXlFYaampeLIxUZ4i82/wNHz2ZXvItbCa5ifmsan/iFMBkZjzaWdBO0jfDWVMFIM09urLXAyMjQOSs/VYV9VCQhal6NlgxPFob1DZfNxNRZ0wrVUg+nFZBcW4HDrSbUn1uVo2eCNtmmEFwmvYXrsKyYCo1gJLcU8aR/sb2/S4jZZ2wYnsuyh1eVIXz8+D47ELnYeWlm2N8GuwfJdywYnAkwtWQuH8fbuY9Xm6Ck9U4OiY1WmTwpLAJMijYtXtx4obDq6rCwtAxx/s2LPcKK2swUub5apLbYMcPzKki6UtR3NyNybK8BbuVWO6tGt8kBXr/qsTt0yC/DvYm0HcGhuQW3UFmfmVXCiF0qumltmREyOjGHw9sPYWzVXbhbqOlsVtJnHEsBL80G86urF/OR0zLLwaDkqLjSYaat+964HpiU7rSvn/sBNc9jVh56eAq8Ak0D8DN7MrXJodkHdWMx+mYqNBdUYw0BZYz18NRWm42rb4GRlCJe+cHLwRDWMlJRkY7b1cVqOiGReodPjQvn5euSV+JJ5ONtjdi0wfTSUnu1BbvF+5JcXqa9Z6bYL1mZEsNVHg2AtGqyBA9tTEGA22l/BAizAzALM8dJgAWYWYI6XBgswswBzvDRYgJkFmOOlwQLMLMAcLw0WYGYB5nhpsAAzCzDHS4MFmFmAOV4aLMDMAszx0mABZhZgjpcGCzCzAHO8NFiAmQWY46XBAswswBz/E0DL+88nYlQRAAAAAElFTkSuQmCC">
+										</div>
+									</div>
+								</div>
+								<div class="reset-3c756112--dropAreaContainer-69e3e3af">
+									<div
+										class="reset-3c756112--dropArea-bed6a8c4--dropAreaDark-ba5a3a34--dropArea-510eefa6">
+										<input type="file" accept="image/*" style="display: none;">
+										<div class="reset-3c756112">
+											<span
+												class="text-4505230f--TextH200-a3425406--textUIFamily-5ebd8e40--greyBase-2c5d8183">Drop
+												your file here <a class="link-a079aa82--primary-53a25e66"
+												style="color: rgb(56, 132, 255);">or browse</a>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div
+								class="reset-3c756112--S100Vertical-3cebd7ec--greyBase-2c5d8183">
+								<span
+									class="text-4505230f--TextH200-a3425406--textUIFamily-5ebd8e40">Some
+									tips: Use a graphical logo or image rather than text and upload
+									an image that is 132px square or larger.</span>
+							</div>
+						</div>
+						<div
+							class="reset-3c756112--formGroup-46050ff4--S300Bottom-9b4658d2">
+							<div
+								class="reset-3c756112--S100Bottom-15862a5a--flexWrapper-a5c6faba">
+								<span
+									class="text-4505230f--InfoH200-3a8a7a86--textUIFamily-5ebd8e40--greyBase-2c5d8183">Organization
+									Name</span>
+							</div>
+							<div aria-label=""
+								class="reset-3c756112--inputWrapper-63396dac--TextH400-3033861f--medium-4505230f--dark-73932add">
+								<div class="reset-3c756112--inputInnerSizer-756c9114">
+									<input type="text"
+										class="inputInner-5c86b87d--inputInnerDark-42ab09c4--medium-0bbed4bd"
+										value="bitfinal">
+								</div>
+							</div>
+							<div
+								class="reset-3c756112--S100Vertical-3cebd7ec--greyBase-2c5d8183">
+								<span
+									class="text-4505230f--TextH200-a3425406--textUIFamily-5ebd8e40">Your
+									organization's name as displayed in the header and all email
+									correspondances</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div
+				class="reset-3c756112--S300Bottom-9b4658d2--panel-1b61b7b4--dark-095bdbe8--dark-7dfad810--dark-a885782e--medium-1b61b7b5"
+				role="presentation">
+				<div class="reset-3c756112--panelHeader-2f79c7a6--medium-90fc7d46">
+					<div class="reset-3c756112--panelHeaderLeft-f6ad52b8">
+						<div class="reset-3c756112--panelHeaderTitle-c44ec79e">
+							<span
+								class="text-4505230f--UIH400-4e41e82a--textUIFamily-5ebd8e40">Your
+								Organization URL</span>
+						</div>
+					</div>
+					<div class="reset-3c756112--panelHeaderRight-2f79c7a6">
+						<div class="reset-3c756112--panelHeaderHint-2c5d8183">
+							<span
+								class="text-4505230f--TextH200-a3425406--textUIFamily-5ebd8e40">bitfinal</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div
+				class="reset-3c756112--S300Bottom-9b4658d2--panel-1b61b7b4--dark-095bdbe8--dark-7dfad810--dark-a885782e--medium-1b61b7b5"
+				role="presentation">
+				<div class="reset-3c756112--panelHeader-2f79c7a6--medium-90fc7d46">
+					<div class="reset-3c756112--panelHeaderLeft-f6ad52b8">
+						<div class="reset-3c756112--panelHeaderTitle-c44ec79e">
+							<span
+								class="text-4505230f--UIH400-4e41e82a--textUIFamily-5ebd8e40">Danger
+								Zone</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

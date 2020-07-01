@@ -81,17 +81,14 @@
 									
 									<thead>
 										<tr>
-											<th>/</th>
-											<th>No</th>
-											<th>Title</th>
-											<th>Write</th>
-											<th>Date</th>
+											<th>제목
+											<input type="text" />
+											</th>
+											
 										</tr>
 									</thead>
 									
 									<tbody>
-										<div th:each="inquiryVO : ${inquiryList}">
-										
 										<tr>
 											<td ><!-- 체크박스 --></td>
 											<td th:text="${inquiryVOStat.count}"></td>
@@ -99,8 +96,6 @@
 											<td th:text="${inquiryVO.name}"></td>
 											<td th:text="${#dates.format(inquiryVO.inqDate, 'yyyy-MM-dd')}"></td>
 										</tr>
-											
-										</div>
 									</tbody>
 									
 								</table>
@@ -108,14 +103,7 @@
 							
 						</div>
 						<div class="form-group">
-						 <!-- 작성 버튼 -->
-						 <a th:href="@{/inquiry/write}"
-						 <button class="btn btn-primary" type="button" >작성</button>
-						 </a>
-						 </div>
-						  <div class="form-group mt-4 mb-0">
-                          <button class="btn btn-primary btn-block" type="submit">페이징 처리</button>
-                         </div>
+						 
 					</div>
 				</div>
 			</main>
