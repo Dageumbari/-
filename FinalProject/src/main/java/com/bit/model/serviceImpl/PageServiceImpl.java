@@ -21,7 +21,7 @@ public class PageServiceImpl implements PageService {
 	}
 
 	@Override
-	public int pageSave(PageVO pv) { 
+	public int pageSave(PageVO pv) {
 		return pageDAO.pageSave(pv);
 	}
 
@@ -37,8 +37,17 @@ public class PageServiceImpl implements PageService {
 	}
 
 	/*
+	 * @Override public int getPageUpdate(PageVO pv) { // TODO Auto-generated method
+	 * stub return 0; }
+	 */
+
+	/*
 	 * @Override public int getPageUpdate(PageVO pv) { return
 	 * pageDAO.getPageUpdate(pv); }
 	 */
+	@Override
+	public int deletePage(int pageNo) {
+		return pageDAO.deletePage(pageNo);
+	}
 
 }

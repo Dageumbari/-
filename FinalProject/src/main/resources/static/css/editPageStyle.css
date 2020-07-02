@@ -8,7 +8,7 @@
     좌우지정하고 싶으면 left, 넓이 지정 : width */
 .editBoardGroupPanelWrapper{
 	top: 0px;
-    left: 299px;
+    left: 649px;
     width: 385px;
     height: 100%;
     display: flex;

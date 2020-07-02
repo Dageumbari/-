@@ -12,9 +12,12 @@ public interface PageDAO {
 	int pageSave(PageVO pv);
 	PageVO getPageDetailVo(PageVO pv);
 	PageVO getPageDetail(int pageNo);
-	//int getPageUpdate(PageVO pv);
 	
-	//int delete(int PageNo);
+	int deletePage(int pageNo);
+	/*
+	 * int getPageUpdate(PageVO pv);
+	 */	//int delete(int PageNo);
+	
 	/*public PageVO insertPage(PageVO params);
 	public PageVO selectPageDetail(int pageNO);
 	public int updatePage(PageVO params);

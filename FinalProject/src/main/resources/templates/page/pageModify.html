@@ -4,7 +4,7 @@
 	layout:decorate="~{layout/default}">
 
 <head>
-<title>pageContent</title>
+<title>pageModify</title>
 
 <!-- editor 적용 -->
 <!-- include libraries(jQuery, bootstrap) -->
@@ -118,6 +118,7 @@ function goWrite(frm){
 						
 						<!-- <button onclick="save(this.form)" type="submit" class="btn btn-primary btnSave">저장하기</button> -->
 						<button onclick="gowrite(this.form)" type="submit" class="btn btn-primary btnSave">저장하기</button>
+						<button onclick="goModify(this.form)" id="subBtn"></button>
 						<!-- <button onclick="save();" type="submit" class="btn btn-primary btnSave">저장하기</button> -->
 						<button class="btn btn-primary btnNext">Next &raquo;</button>
 					</div>
