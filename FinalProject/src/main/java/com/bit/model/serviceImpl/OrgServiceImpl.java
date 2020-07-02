@@ -44,4 +44,10 @@ public class OrgServiceImpl implements OrgService {
 		// TODO Auto-generated method stub
 		return orgDAO.orgURLModify(dashBoardVO);
 	}
+
+	@Override
+	public void createOrg(String dashBoardName) {
+		
+		orgDAO.createOrg(dashBoardName);
+	}
 }

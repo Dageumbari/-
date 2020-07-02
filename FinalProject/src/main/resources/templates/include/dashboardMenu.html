@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>조직 메뉴</title>
 <link href="/css/dashboard.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -124,29 +125,12 @@
 					<div class="reset-3c756112--menuDivider-630eb14c--menuDividerDark-28d5c180--menuDivider-73a116b0"></div>
 					<div class="reset-3c756112--S100Top-62efda1a--S100Bottom-0d15855d">
 						<div role="button" tabindex="0" class="reset-3c756112--touchableView-a079aa82">
-							<div class="reset-3c756112--ownerAvatarList-696792ce--members-61af51ea">
+							<div class="reset-3c756112--ownerAvatarList-696792ce--members-61af51ea" th:href="@{/dashboard/teams(dashBoardUrl=${orgInfo.dashBoardUrl})}">
 								<div th:each="allMemberList : ${allMemberList}" class="reset-3c756112--tooltipContainer-7fdb9b70--small-2ec8ae1a--circle-6c5acd10--ownerAvatarListItem-0c3ed569--darkOutline-a3afcd28">
 									<div
 										class="reset-3c756112--avatarFrame-2f40cdc9--small-2ec8ae1a--circle-6c5acd10"
 										role="presentation">
 										<img class="image-67b14f24--avatar-1c1d03ec" src="https://gblobscdn.gitbook.com/users%2FIR8rlUhGuJOEVzaRL8eE9FmLRIO2%2Favatar-1590479261730.png?alt=media">
-										<div class="reset-3c756112--innerShadow-7a3a8651"></div>
-									</div>
-								</div>
-								<div class="reset-3c756112--tooltipContainer-7fdb9b70--small-2ec8ae1a--circle-6c5acd10--ownerAvatarListItem-0c3ed569--darkOutline-a3afcd28">
-									<div
-										class="reset-3c756112--avatarFrame-2f40cdc9--small-2ec8ae1a--circle-6c5acd10"
-										role="presentation">
-										<img class="image-67b14f24--avatar-1c1d03ec" src="https://lh3.googleusercontent.com/-vnngEZunLK4/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJMMQ1DtzMCQM3MEV5BzYkP9HXf_dQ/photo.jpg">
-										<div class="reset-3c756112--innerShadow-7a3a8651"></div>
-									</div>
-								</div>
-								<div class="reset-3c756112--tooltipContainer-7fdb9b70--small-2ec8ae1a--circle-6c5acd10--ownerAvatarListItem-0c3ed569--darkOutline-a3afcd28">
-									<div
-										class="reset-3c756112--avatarFrame-2f40cdc9--small-2ec8ae1a--circle-6c5acd10"
-										role="presentation">
-										<img class="image-67b14f24--avatar-1c1d03ec"
-											src="https://lh3.googleusercontent.com/a-/AOh14GgMEk_JVwJ1YSLaAsiqwtwNIoPVGTC3_WGhkQWL8A">
 										<div class="reset-3c756112--innerShadow-7a3a8651"></div>
 									</div>
 								</div>
@@ -211,6 +195,6 @@
 			</div>
 		</div>
 	</div>
-
+<script th:src="@{/js/dashboard.js}" type="text/javascript"></script>
 </body>
 </html>

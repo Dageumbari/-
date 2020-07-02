@@ -10,9 +10,9 @@ public interface OrgService {
 	public DashBoardVO getOrgInfo(String dashBoardUrl);
 	public DashBoardVO orgNameModify(DashBoardVO dashBoardVO);
 	public DashBoardVO orgURLModify(DashBoardVO dashBoardVO);
+	public void createOrg(String dashBoardName);
 	
 	//리턴자료형 설정 해야됨
-	//public void createOrg();
 	//public void deleteOrg();
 
 	

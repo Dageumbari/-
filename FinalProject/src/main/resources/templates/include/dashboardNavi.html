@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8">
-<title>조직 네비인뎁쇼</title>
+<!-- 
+<meta name="_csrf_header"  th:content="${_csrf.headerName}" />
+<meta name="_csrf" th:content="${_csrf.token}" />
+ -->
 <link href="/css/dashboard.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-
+<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	<div class="reset-3c756112--dashboardNavigationContainer-c615f6e4" th:fragment="dashboardNavi">
 		<div class="reset-3c756112--navigation-3e92335c">
 			<div class="reset-3c756112--withScrollbar-39338630--scrollAxisY-7680295e--navigationBody-3dc152bc">
 				
-				<a class="reset-3c756112--orgTab-8d620844" th:each="orgList : ${orgList}" th:href="@{/dashboard/spaces(dashBoardUrl=${orgList.dashBoardUrl})}">
+				<a class="reset-3c756112--orgTab-8d620844"  th:each="orgList : ${orgList}" th:href="@{/dashboard/spaces(dashBoardUrl=${orgList.dashBoardUrl})}">
 					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
 						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10" role="presentation">
 							<img class="image-67b14f24--avatar-1c1d03ec"
@@ -22,21 +26,13 @@
 				</a>
 				
 				
-				
-				<a class="reset-3c756112--orgTab-8d620844--orgTabActive-7ab59dc9" href="/@bitfinal/spaces">
-					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
-						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
-							role="presentation">
-							<img class="image-67b14f24--avatar-1c1d03ec"
-								src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABoElEQVRYR+2VS0sCURiG39N4m1IyKITINIyylByRWmS0cNWihS36hf2LIqpNJCIEhZeyu1F0WQRl6thMOGCUmyPnzNAszmy/eec8PN/3nSGbT1s6bPwQAcjZHWGQUyCEQWGQ1wBvXsygMMhrgDfPPYNne3ncn1b/cMjDPoRScwhEwxiQJC5GSwC7RMFkFJFlBWSAMEOaAth4ryO2lobkdEDXdXy8vqG4fYh2U0VyIwPZ77MPYJfkuXqHyn4eSjYD76jffoAPxQvcFkpIZDPw+AbtA6h9aXi5rOH8oIDQYgwTiRlmuE7QlBns3WKX7EEknUAgOgVC2BfEMkDjw4RgPD6NyEoSkoP9qjHF4O8t7sC16g08lq9wnTtBeCmOydQ8c5stAezQ6JqO8m4OaqP5cwWxUFoIqKG0c4R2S7UfoPrZxE2hiNpxBcbfJK2wyDMyphjs3eIujXdsBAvrq3B7//ke7AV0D8nGBgeVWUguJ7M9Uwxynd5HmLvFfZzB9YoA5NJnxhbzAtDyosU0Q7S6MEgzRKsLgzRDtLowSDNEq38DSrQMYOZ84HwAAAAASUVORK5CYII=">
-						</div>
-					</div></a>
-					
 					
 					
 				<div class="reset-3c756112--orgButton-8646a146">
-					<button
-						class="button-36063075--medium-6e2a217a--button-7fcfb4a1--button-dark-6278d806--medium-54db2ab3--rounded-50d53f59--S100Top-351b6542--S100Bottom-15862a5a"  onclick="setOrgName()">
+				<!-- <button type="button" id="createOrgBtn" id="createOrgBtn"
+						class="button-36063075--medium-6e2a217a--button-7fcfb4a1--button-dark-6278d806--medium-54db2ab3--rounded-50d53f59--S100Top-351b6542--S100Bottom-15862a5a"  > -->
+					<button id="createOrgBtn"
+						class="button-36063075--medium-6e2a217a--button-7fcfb4a1--button-dark-6278d806--medium-54db2ab3--rounded-50d53f59--S100Top-351b6542--S100Bottom-15862a5a" th:object="${dashBoardName}">
 						<span class="medium-3bde6db7--iconOnly-bddce91a"><svg
 								preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
 								fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +85,7 @@
 							fill-rule="evenodd"></path></g></svg></a>
 			</div>
 		</div>
-	</div><!-- 
-<script th:src="@{/js/dashboard.js}" type="text/javascript"></script> -->
+	</div> 
+<script th:src="@{/js/dashboard.js}" type="text/javascript"></script>
 </body>
 </html>

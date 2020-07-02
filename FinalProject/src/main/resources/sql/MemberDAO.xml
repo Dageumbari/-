@@ -59,22 +59,39 @@
 		ORDER BY PERMISSIONNO ]]>
 	</select>
 	
-	
-	<select id="getTeamList" resultType="com.bit.model.dto.MemberDTO">
-		SELECT  DISTINCT TEAMCODE,
-                TEAMNAME
-		FROM MEMBER
-		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
-        ORDER BY TEAMCODE
+	<select id="getAllMembers" resultType="com.bit.model.dto.MemberDTO">
+		SELECT 	TEAMCODE,
+			 TEAMNAME,
+			 PERMISSIONNO,
+			 PERMISSIONNAME,
+			 USERNO,
+			 NAME AS USERNAME,
+			 USERIMAGE
+		FROM MEMBER 
+		WHERE #{DASHBOARDCODE, jdbcType=VARCHAR} = DASHBOARDCODE
+			AND TEAMNAME ='All Members'
+		ORDER BY PERMISSIONNO
 	</select>
-	 
+	
+	<select id="">
+	
+	
+	</select>
+	
 	<!-- 
 	<select id="getTeamList" resultType="com.bit.model.dto.MemberDTO">
-		SELECT *
-			FROM MEMBER
-		WHERE 
+		SELECT TEAMCODE,
+			 TEAMNAME,
+			 PERMISSIONNO,
+			 PERMISSIONNAME,
+			 USERNO,
+			 NAME,
+			 USERIMAGE
+		FROM MEMBER
+		WHERE 'da01' = DASHBOARDCODE
+		ORDER BY TEAMCODE, PERMISSIONNO
 	</select>
-	-->
+	 -->
 	 
 	<select id="getTeamMemberList" resultType="com.bit.model.dto.MemberDTO">
 		SELECT TEAMCODE,
@@ -86,6 +103,14 @@
 			 USERIMAGE
 		FROM MEMBER
 		WHERE #{TEAMCODE} = TEAMCODE
+		ORDER BY PERMISSIONNO
+	</select>
+	
+	<select id="getAllMemberCnt" resultType="int" >
+		SELECT COUNT(*)
+		FROM MEMBER 
+		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
+			AND TEAMNAME ='All Members'
 	</select>
 	
 	<select id="getMemberListByPermission" resultType="com.bit.model.dto.MemberDTO">

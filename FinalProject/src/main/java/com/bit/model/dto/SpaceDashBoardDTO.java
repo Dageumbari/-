@@ -13,6 +13,7 @@ public class SpaceDashBoardDTO {
 	public String dashBoardCode;
 	public String groupCode;
 	public String groupName;
+	public String groupOrder;
 	
 	//space 테이블
 	public String spaceCode;
@@ -20,6 +21,6 @@ public class SpaceDashBoardDTO {
 	public String spaceImage;
 	public String spaceUrl;
 	public int spaceOrder;
-	public boolean spaceVisibility;
+	public String spaceVisibility;
 	
 }
