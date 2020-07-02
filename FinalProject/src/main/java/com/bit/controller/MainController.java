@@ -1,5 +1,6 @@
 package com.bit.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,8 +38,8 @@ public class MainController {
 	private final HttpSession httpSession;
 
 	@GetMapping("/main")
-	public String main() {
-
+	public String main(Principal principal) {
+		//log.info("\n==main : " + principal.getName());
 		return "/main/main";
 	}
 	

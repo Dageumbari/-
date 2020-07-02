@@ -43,12 +43,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 		log.info("\n==userNameAttributeName : " + userNameAttributeName);
 		
 		UserDTO userDTO = new UserDTO();
-		userDTO  = OAuthAttributes.of(registrationId, userDTO, oAuth2User.getAttributes()); // OAuth2User의 값을 받아줌
+		userDTO  = new OAuthAttributes().of(registrationId, userDTO, oAuth2User.getAttributes()); // OAuth2User의 값을 받아줌
 		log.info("\n==loadUser : " + userDTO);
 		
 		if (mainDAO.getJoinCheck(userDTO.getEmail()) == null) {
 			
-			mainDAO.setUserInfo(userDTO);
+			mainDAO.setSocialUserInfo(userDTO);
 			httpSession.setAttribute("sessionUser", new SessionUser(userDTO));
 			
 			return new DefaultOAuth2User(makeGrantedAuthorities.getRoles(userDTO.getRoles()),

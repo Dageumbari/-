@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 import com.bit.model.dto.UserDTO;
 
+import groovy.transform.ToString;
 import lombok.Getter;
 
 @Getter
+@ToString
 public class SessionUser implements Serializable {
 	
 	private String name;
