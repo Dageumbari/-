@@ -5,22 +5,28 @@ function recaptchaCallback() {
 }
 
 function doLogin() {
-    var loginFailCount = $('#loginFailCount').val();
+
+    var loginFailCount = $("#loginFailCount").val();
+    this.loginFailCount = loginFailCount;
     
     if (!isRecaptchachecked && loginFailCount > 3) {
+    
         alert('자동 로그인 방지!');
         $("#recaptcha").focus();
+        
         return false;
+        
     } else{
-    	
+    
     	doVaildRecaptcha();
-    	
     }
 }
 
 function doVaildRecaptcha() {
+
+	var that = this;
 	
-	if ( loginFailCount > 3) {
+	if ( that.loginFailCount > 3) {
 		var formData = $("#login").serialize(); // 해당 데이터의 값을 직렬화
 	    
 	    $.ajax({

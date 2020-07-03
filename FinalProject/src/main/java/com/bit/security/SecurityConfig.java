@@ -8,43 +8,49 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import lombok.RequiredArgsConstructor;
 
-
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {	
 	
-	private final UserDetailsService customUserDetailsService;
+	private final UserDetailsService userDetailsService;
 	private final AuthenticationFailureHandler authenticationFailureHandler;
 	private final AuthenticationSuccessHandler authenticationSuccessHandler;
+	private final OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService;
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable();
-		
 		httpSecurity.authorizeRequests()
 				.antMatchers("/resources/**").permitAll()
 				.antMatchers("/password").hasRole("MEMBER")
 //				.antMatchers("/main/atest/**").hasRole("ADMIN")
 			.and()
 				.formLogin()
+				.loginPage("/login") // 로그인 페이지
+					.usernameParameter("username") 
+					.passwordParameter("password")
+					.successHandler(authenticationSuccessHandler)
+					.failureHandler(authenticationFailureHandler)
+			.and()
+				.oauth2Login()
 				.loginPage("/login")
-//				.loginProcessingUrl("/login") // 사용자의 매개변수가 POST로 전달되는 URL
-				.usernameParameter("username") 
-				.passwordParameter("password")
-				.failureHandler(authenticationFailureHandler)
-				.successHandler(authenticationSuccessHandler)
+						.userInfoEndpoint().userService(oAuth2UserService)
+			.and()
 			.and()
 				.exceptionHandling().accessDeniedPage("/accessDenied")
 			.and()
 				.logout()
-				.logoutUrl("/logout")
-				.invalidateHttpSession(true)
-//				.logoutSuccessUrl("/login?logout");
+					.logoutUrl("/logout")
+					.deleteCookies("JSESSIONID")
+					.logoutSuccessUrl("/main")
 			.and()
 				.rememberMe().key("book");		
 	}
@@ -58,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 					
-		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 		
 	}
 	

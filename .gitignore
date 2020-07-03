@@ -76,3 +76,5 @@ local.properties
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+
+FinalProject/src/main/resources/application-oauth.properties
