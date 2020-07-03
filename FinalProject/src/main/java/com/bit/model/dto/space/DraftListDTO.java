@@ -20,6 +20,7 @@ public class DraftListDTO {
    private int msgNo;
    private String msgContent;
    private int editsCount;
+   private int userNo;
    private String name;
    private String userImage;
 

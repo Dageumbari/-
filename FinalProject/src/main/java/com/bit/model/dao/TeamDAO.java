@@ -1,17 +1,19 @@
 package com.bit.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
+
+import com.bit.model.vo.TeamVO;
 
 @Mapper
-@Repository
 public interface TeamDAO {
 
-	//리턴 자료형, 파라미터 설정필요
-	public void getAllTeamList();
-	public void getTeamInfo();
+	public List<TeamVO> getAllTeamList(String dashBoardCode);
 	
+	//public void getTeamInfo();
 	//public void teamNameModify();
+	
 	//public void createTeam();
 	//public void deleteTeam();
 }

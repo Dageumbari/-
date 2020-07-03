@@ -1,9 +1,12 @@
 package com.bit.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.bit.model.dto.InquiryDTO;
 import com.bit.model.dto.UserDTO;
 
 
@@ -15,6 +18,8 @@ public interface MainDAO {
 	public String getJoinCheck(String email); // 유저 아이디 중복 체크
 	
 	public void setUserInfo(UserDTO userDTO); // join에서 들어온 정보로 회원 가입
+	
+	public void setSocialUserInfo(UserDTO userDTO); // join에서 들어온 정보로 회원 가입
 	
 	public void setAdminInfo(UserDTO userDTO); // admin 정보 입력
 	
@@ -31,4 +36,8 @@ public interface MainDAO {
 	@Update("update user_info set user_info.pw = #{encodeKey} where user_info.email = #{email}")
 	public void setForgotPassword(String encodeKey, String email);
 	
+	@Update("update user_info set user_info.name = #{name} where user_info.email = #{email}")
+	public void setName(String name, String email);
+	
+	public List<InquiryDTO> getInquiryVO();
 }

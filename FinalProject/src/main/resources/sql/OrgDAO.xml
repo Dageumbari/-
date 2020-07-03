@@ -3,11 +3,32 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.model.dao.OrgDAO">
-	<!-- 
-		XML쿼리문에서 부등호 사용시 CDATA 사용
-	 -->
+	 <!-- 조직생성 insert에 사용 : 대시보드 + 그룹인포 + 멤버DTO  -->
+	 <resultMap id="dashBoardResultMap" type="com.bit.model.vo.DashBoardVO" >
+	 	<result property="dashBoardCode" column="dashBoardCode" />
+		<result property="dashBoardImage" column="dashBoardImage"/>
+		<result property="dashBoardName" column="dashBoardName"/>
+	 	<result property="dashBoardType" column="dashBoardType"/>
+	 	<result property="dashBoardUrl" column="dashBoardUrl"/>
+	 	<result property="status" column="status"/>
+	 	<association property="groupInfo" javaType="com.bit.model.vo.GroupVO">
+	 		<id property="groupCode" column="groupCode"/>
+	 		<result property="groupName" column="groupName"/>
+	 		<result property="groupOrder" column="groupOrder"/>
+	 	</association>
+	 	<association property="team" javaType="com.bit.model.vo.TeamVO">
+	 		<id property="teamCode" column="teamCode"/>
+	 		<result property="teamName" column="teamName"/>
+	 		<association property="memPermit" javaType="com.bit.model.vo.MemPermitVO">
+	 			<id property="userNo" column="userNo"/>
+	 			<result property="permissionNo" column="permissionNo"/>
+	 		</association>
+	 	</association>
+	 </resultMap>
+	
 	 
-	<!-- 시큐리티에서 userNo 가져오기 -->
+	<!-- 가입 조직 리스트 불러오기 -->
+	<!-- 시큐리티에서 userNo 가져오는 처리 완료 후 WHERE절 수정하기 -->
 	<select id="getAllOrgList" resultType="com.bit.model.vo.DashBoardVO">
 		SELECT DISTINCT D.DASHBOARDCODE, 
 			   D.DASHBOARDIMAGE, 
@@ -19,7 +40,11 @@
 			JOIN MEMPERMIT M ON (T.TEAMCODE = M.TEAMCODE)
         	JOIN USER_INFO U ON (M.USERNO = U.USERNO)
     	WHERE 1 = U.USERNO
+    		AND D.STATUS = 1
+    	ORDER BY DASHBOARDCODE
 	</select>
+	
+	<!-- 조직정보 -->
 	<select id="getOrgInfo"  resultType="com.bit.model.vo.DashBoardVO">
 		SELECT DASHBOARDCODE, 
 			   DASHBOARDIMAGE, 
@@ -29,16 +54,30 @@
 			FROM DASHBOARD
 		WHERE DASHBOARDURL = #{DASHBOARDURL, jdbcType=VARCHAR}
 	</select>
-	<delete id="deleteOrg">
-		DELETE *
-			FROM dashBoard
-		WHERE dashboardCode = #{dashboardCode}
-	</delete>
-	<insert id="createOrg">
-		INSERT 
-			FROM
-		WHERE
+	
+	<!-- 조직 삭제 -->
+	<update id="deleteOrg" >
+		UPDATE DASHBOARD
+ 			SET STATUS = 0
+ 		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
+	</update>
+	
+	<!-- 조직 생성 -->
+	<!-- 시큐리티에서 userNo 가져오는 처리 완료 후 MEMPERMIT 수정하기 -->
+	<insert id="createOrg" parameterType="String">
+		INSERT ALL
+			INTO DASHBOARD 
+			VALUES('da'||LPAD(DASHBOARD_SEQ.NEXTVAL, 2, 0),'orgdefault.png', #{DASHBOARDNAME}, 'private', #{DASHBOARDNAME}, 1)
+			INTO GROUPINFO 
+			VALUES('gr'||LPAD(GROUPINFO_SEQ.NEXTVAL, 2, 0), 'da'||LPAD(DASHBOARD_SEQ.CURRVAL, 2, 0), 'default', 1)
+			INTO TEAM 
+			VALUES('te'||LPAD(TEAM_SEQ.NEXTVAL, 2, 0), 'da'||LPAD(DASHBOARD_SEQ.CURRVAL, 2, 0), 'All Members')
+			INTO MEMPERMIT 
+			VALUES('te'||LPAD(TEAM_SEQ.CURRVAL, 2, 0), 1, 1)
+		SELECT * 
+		FROM DUAL
 	</insert>
+	
 	<update id="orgNameModify">
 		UPDATE
 			FROM

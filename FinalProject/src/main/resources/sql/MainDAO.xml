@@ -66,6 +66,25 @@
 		SELECT * FROM DUAL
 
 	</insert>
+	
+	<insert id="setSocialUserInfo" parameterType="com.bit.model.dto.UserDTO">
+		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
+			SELECT USERINFOSEQ.NEXTVAL FROM DUAL
+		</selectKey>
+
+		insert all
+		into user_info
+		values (#{userNo}, #{email}, #{pw}, #{name}, #{userNo}, 0, #{gender}, 0, localtimestamp(0), 082, #{key})
+		into usersocial
+		values (USERSOCIALSEQ.NEXTVAL, #{userNo}, #{pw}, #{key})
+		into user_role (roleNo, userNo,	roleName)
+		values
+		<foreach item="roles" collection="roles" separator=",">
+			(USERROLESEQ.NEXTVAL, #{userNo}, #{roles.roleName})
+		</foreach>
+		SELECT * FROM DUAL
+
+	</insert>
 
 	<insert id="setAdminInfo" parameterType="com.bit.model.dto.UserDTO">
 		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
@@ -101,6 +120,13 @@
 		where email = #{email}
 
 	</update>
-
+	
+	<select id="getInquiryVO" resultType="com.bit.model.dto.InquiryDTO">
+	
+	select inquiry.inqno, inquiry.userno , inquiry.inqtitle, inquiry.inqdate, user_info.name 
+	from inquiry inner join user_info on inquiry.userNo = user_info.userNo 
+	order by inquiry.inqno DESC
+	
+	</select>
 
 </mapper>

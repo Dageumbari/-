@@ -20,17 +20,16 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.getAllMemberList(dashBoardCode);
 	}
+	
+	/*
+	 * @Override public List<MemberDTO> getTeamList(String dashBoardCode) { // TODO
+	 * Auto-generated method stub return memberDAO.getTeamList(dashBoardCode); }
+	 */
 
 	@Override
-	public List<MemberDTO> getTeamList(String dashBoardCode) {
+	public List<MemberDTO> getTeamMemberList(String teamCode) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<MemberDTO> getTeamMemberList() {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDAO.getTeamMemberList(teamCode);
 	}
 
 	@Override
@@ -69,5 +68,16 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	@Override
+	public List<MemberDTO> getAllMembers(String dashBoardCode) {
+		// TODO Auto-generated method stub
+		return memberDAO.getAllMembers(dashBoardCode);
+	}
+
+	@Override
+	public int getAllMemberCnt(String DashBoardCode) {
+		// TODO Auto-generated method stub
+		return memberDAO.getAllMemberCnt(DashBoardCode);
+	}
 
 }

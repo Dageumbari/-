@@ -34,7 +34,7 @@
 		AND PAGENO = #{pageNo, jdbcType=INTEGER}
 	</select>
 	
-<!-- 	<update id="getPageUpdate">
+ 	<!-- <update id="getPageUpdate">
 		UPDATE PAGE
 		SET
 		PAGETITLE=#{PAGETITLE},

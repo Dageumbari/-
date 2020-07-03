@@ -4,4 +4,30 @@
 
 <mapper namespace="com.bit.model.dao.SpaceDashBoardDAO">
 	
+
+	<!-- 스페이스 그룹 -->
+	<!-- 스페이스 그룹 리스트 -->
+	<select id="getAllGroupList" resultType="com.bit.model.vo.GroupVO">
+		SELECT	GROUPCODE,
+			GROUPNAME,
+			GROUPORDER
+		FROM GROUPINFO
+		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
+	</select>
+
+	<!-- 스페이스 대시보드 -->
+	<!-- 스페이스 리스트 -->
+	<select id="getAllSpaceList" resultType="com.bit.model.vo.SpaceVO">
+		SELECT 	SPACECODE,
+			SPACENAME,
+			SPACEIMAGE,
+			SPACEURL,
+			SPACEORDER,
+			SPACEVISIBILITY,
+			TEAMCODE
+		FROM SPACE
+		WHERE #{GROUPCODE, jdbcType=VARCHAR} = GROUPCODE
+		ORDER BY SPACEORDER
+	</select>
+	
 </mapper>

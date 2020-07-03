@@ -1,55 +1,96 @@
 package com.bit.controller.space;
 
-
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.bit.model.dto.space.DraftListDTO;
-import com.bit.model.dto.space.SpaceUserInfoDTO;
 import com.bit.model.service.PageService;
 import com.bit.model.service.SpaceService;
+import com.bit.model.vo.PageVO;
 
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
 public class SpaceController {
-	
-	@Autowired
-	PageService pageService;
-	
-	@Autowired(required=false)
-	SpaceService spaceService;
-	
-	@GetMapping("/space")
-	public String space(Model model) {
-		SpaceUserInfoDTO userInfo = spaceService.getSpaceUserInfo();
-		//여주  END
 
-		//연수 페이지 리스트
+	@Autowired(required = false)
+	PageService pageService;
+
+	@Autowired(required = false)
+	SpaceService spaceService;
+
+	@ModelAttribute
+	public void sideNavFragmentValue(Model model) {
+		model.addAttribute("userInfo", spaceService.getSpaceUserInfo());
+	}
+
+	//드래프트 리스트 호출
+	//@ModelAttribute
+	@GetMapping("/draftList")
+	public String getDraftList(Model model) {
+		List<DraftListDTO> draftList = spaceService.getDraftList();
+		log.error(draftList);
+		model.addAttribute("draftList", draftList);
+		return "draft/draftList";
+	}
+	/*
+	 * @ModelAttribute public String getNavbar(@ModelAttribute("userId") String
+	 * userId,Model model){ model.addAttribute("userId", "jin2020");
+	 * model.addAttribute("boardGroupList",boardService.getNavbar(userId)); return
+	 * "include/nav/boardNavbar"; }
+	 */
+
+	/*
+	 * @GetMapping("/mergedList") public String getMedrgedList(Model model) {
+	 * List<DraftListDTO> merged = spaceService.getMergedList();
+	 * //log.error(merged); model.addAttribute("merged", merged); return
+	 * "space/draft/mergedList"; }
+	 * 
+	 * @GetMapping("/archivedList") public String getArchivedList(Model model) {
+	 * List<DraftListDTO> archived = spaceService.getArchivedList();
+	 * log.error(archived); model.addAttribute("archived", archived); return
+	 * "space/draft/archivedList"; }
+	 */
+
+	/**
+	 * 페이지 파트
+	 */
+	@GetMapping("/pageList")
+	public String getPageList(Model model) {
+		// model.addAttribute("pageDetail", "NoData");
 		model.addAttribute("list", pageService.getPageList());
 		System.out.println("PAGELIST START");
-		//연수 페이지 리스트 END
-		
-		//연수 pageDetail
-		/*System.out.println("==================pageDetailStart=================" + pv);
+		return "common/contents/pageContent"; // navHeader가 나오는데 인클루드할때 값이 나와야함
+	}
+
+	@GetMapping("/pageDetail")
+	public String getPageDetail(Model model, PageVO pv) {
+		System.out.println("==================pageDetailStart=================" + pv);
 		pv = pageService.getPageDetail(pv.getPageNo());
 		System.out.println("pv====" + pv);
 		if (pv == null) {
 			System.out.println("NoData");
 			model.addAttribute("pageDetail", "NoData");
+			model.addAttribute("list", pageService.getPageList());
 		} else {
-			System.out.println("222222222222");
 			model.addAttribute("pageDetail", pv);
-		}*/
-		
-		
-		//연수 pageSave
-		/*System.out.println("=====================================");
+			model.addAttribute("list", pageService.getPageList());
+		}
+		return "common/contents/pageContent";
+	}
+
+	@GetMapping("/pageSave")
+	public String getPageSave(HttpServletRequest req, Model model) {
+		System.out.println("=====================================");
 		System.out.println("1::" + req.getParameter("pageTitle"));
 		System.out.println("2::" + req.getParameter("pageContent"));
 		PageVO pv = new PageVO();
@@ -63,38 +104,17 @@ public class SpaceController {
 			System.out.println("저장 실패!!!");
 		} else {
 			System.out.println("저장 성공!!!");
-		}*/
-		//연수 END
-		
-		//여주
-		//log.error(userInfo);
-		model.addAttribute("userInfo", userInfo);
-		//여주 END
-		return "layout/spaceMain";
+		}
+		return "redirect:/pageList";
 	}
 
-	@GetMapping("/draftList")
-	public String getDraftList(Model model) {
-		List<DraftListDTO> draftList = spaceService.getDraftList();
-		//log.error(draftList);
-		model.addAttribute("draftList", draftList);
-		return "layout/spaceMain";
+	@GetMapping("/edits")
+	public String editsPage() {
+		return "draft/edits";
 	}
 
-	
-	@GetMapping("/mergedList")
-	public String getMedrgedList(Model model) {
-		List<DraftListDTO> merged = spaceService.getMergedList();
-		//log.error(merged);
-		model.addAttribute("merged", merged);
-		return "space/draft/mergedList";
-	}
-	
-	@GetMapping("/archivedList")
-	public String getArchivedList(Model model) {
-		List<DraftListDTO> archived = spaceService.getArchivedList();
-		log.error(archived);
-		model.addAttribute("archived", archived);
-		return "space/draft/archivedList";
+	@GetMapping("/spacePage")
+	public String spacePage() {
+		return "page/spacePage";
 	}
 }

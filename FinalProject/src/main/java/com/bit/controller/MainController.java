@@ -1,11 +1,14 @@
 package com.bit.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.model.dao.MainDAO;
+import com.bit.model.dto.InquiryDTO;
 import com.bit.model.dto.UserDTO;
 import com.bit.model.service.UserService;
 import com.bit.security.RecaptchaService;
+import com.bit.security.SessionUser;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -30,11 +35,18 @@ public class MainController {
 	private final UserService userService;
 	private final RecaptchaService recaptchaService;
 	private final PasswordEncoder passwordEncoder;
+	private final HttpSession httpSession;
 
 	@GetMapping("/main")
-	public String main() {
-
+	public String main(Principal principal) {
+		//log.info("\n==main : " + principal.getName());
 		return "/main/main";
+	}
+	
+	@GetMapping("/usersettings")
+	public String usersettings() {
+
+		return "/main/userSettings";
 	}
 
 	@GetMapping("/password")
@@ -44,13 +56,57 @@ public class MainController {
 	}
 
 	@PostMapping("/password")
-	public String postPassword(Principal principal, String password) {
-		log.info("\n==password" + principal + "\n" + password);
-		String email = principal.getName();
+	public String postPassword(String password) {
+		log.info("\n==password");
+
+		SessionUser sessionUser = (SessionUser) httpSession.getAttribute("sessionUser");
+		String email = sessionUser.getEmail();
 		mainDAO.setForgotPassword(passwordEncoder.encode(password), email);
 
 		// 로그아웃 실행할것.
 		return "redirect:/login";
+	}
+
+	@GetMapping("/rename")
+	public String rename() {
+
+		return "/main/rename";
+	}
+
+	@PostMapping("/rename")
+	public String postRename(String name) {
+		log.info("\n==rename");
+
+		SessionUser sessionUser = (SessionUser) httpSession.getAttribute("sessionUser");
+		String email = sessionUser.getEmail();
+		mainDAO.setName(name, email);
+
+		return "/main/rename";
+	}
+
+	@GetMapping("/inquiry")
+	public String inquiry(Model model) {
+		
+		List<InquiryDTO> InquiryDTO = mainDAO.getInquiryVO();
+		model.addAttribute("inquiryList", InquiryDTO);
+		log.info(InquiryDTO.toString());
+		
+		return "/main/inquiry";
+	}
+
+	@PostMapping("/inquiry")
+	public String postInquiry() {
+		log.info("\n==inquiry");
+		
+		
+
+		return "/main/inquiry";
+	}
+	@GetMapping("/inquiry/write")
+	public String inquiryWrite() {
+		
+		
+		return "/main/inquiryWrite";
 	}
 
 	@GetMapping("/forgot")
@@ -81,12 +137,6 @@ public class MainController {
 		return "/main/login";
 	}
 
-	@GetMapping("/logout")
-	public String logout() {
-
-		return "/main/logout";
-	}
-
 	@GetMapping("/join")
 	public String join() {
 
@@ -94,9 +144,8 @@ public class MainController {
 	}
 
 	@PostMapping("/join")
-	public ModelAndView joinPost(@ModelAttribute("userDTO") UserDTO userDTO) {
-		log.info("\n==join controller" + userDTO.getRoles().get(0));
-		
+	public ModelAndView postJoin(@ModelAttribute("userDTO") UserDTO userDTO) {
+		log.info("\n==join controller");
 
 		return userService.join(userDTO);
 	}
@@ -110,16 +159,16 @@ public class MainController {
 	@PostMapping("/join/admin")
 	public ModelAndView adminJoinPost(UserDTO userDTO) {
 		log.info("\n==aminjoin controller");
-		
-		String superAdminEmail = "collin7202@gmail.com";
-		
-		return null;
-		//return userService.adminjoin(userDTO, superAdminEmail);
+
+		String superAdminEmail = userDTO.getEmail(); // "collin7202@gmail.com";
+
+		return userService.adminjoin(userDTO, superAdminEmail);
 	}
 
 	@GetMapping("/join/email/{email}/{key}")
 	public String joinKey(@PathVariable("email") String email, @PathVariable("key") String key) {
 		log.info("joinKey");
+		
 		mainDAO.setEmailCheck(email, key); // 이메일 인증 완료
 
 		return "/main/main";
@@ -133,23 +182,21 @@ public class MainController {
 
 	@PostMapping("/valid-recaptcha")
 	public @ResponseBody String validRecaptcha(HttpServletRequest request) {
-
-		log.info("\n/valid-recaptcha : " + request.getParameter("g-recaptcha-response"));
-
+		log.info("\n==valid-Recaptcha");
+		
 		String result;
 		String response = request.getParameter("g-recaptcha-response");
-
-		log.info("\nCHECK1 : " + response + "\nrecaptchaService:" + recaptchaService.toString());
 		boolean isRecaptcha = recaptchaService.verifyRecaptcha(response);
 
-		log.info("\nCHECK2 : " + isRecaptcha);
+		log.info("\nCHECK1 : " + isRecaptcha);
+		
 		if (isRecaptcha) {
 			result = "success";
 		} else {
 			result = "false";
 		}
-
-		log.info("\nCHECK3 : " + result);
+		
+		log.info("\nCHECK2 : " + result);
 		return result;
 	}
 
