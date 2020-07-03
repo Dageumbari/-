@@ -11,5 +11,21 @@
 	<p th:text="${email} + '을 확인해주세요'"></p>
 	</th:block>
 	
+	<script th:inline="javascript">
+	window.onload = function () {
+	
+	 /*<![CDATA[*/
+	var msg = [[${msg}]];
+	
+	if(msg != null){
+	alert(msg);
+	location.href="/login";
+	}
+	
+	/*]]>*/
+	}
+	</script>
+	
+	
 </body>
 </html>

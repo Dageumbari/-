@@ -39,10 +39,10 @@ public class MainController {
 
 	@GetMapping("/main")
 	public String main(Principal principal) {
-		//log.info("\n==main : " + principal.getName());
+		// log.info("\n==main : " + principal.getName());
 		return "/main/main";
 	}
-	
+
 	@GetMapping("/usersettings")
 	public String usersettings() {
 
@@ -86,26 +86,24 @@ public class MainController {
 
 	@GetMapping("/inquiry")
 	public String inquiry(Model model) {
-		
+
 		List<InquiryDTO> InquiryDTO = mainDAO.getInquiryVO();
 		model.addAttribute("inquiryList", InquiryDTO);
 		log.info(InquiryDTO.toString());
-		
+
 		return "/main/inquiry";
 	}
 
 	@PostMapping("/inquiry")
 	public String postInquiry() {
 		log.info("\n==inquiry");
-		
-		
 
 		return "/main/inquiry";
 	}
+
 	@GetMapping("/inquiry/write")
 	public String inquiryWrite() {
-		
-		
+
 		return "/main/inquiryWrite";
 	}
 
@@ -166,12 +164,14 @@ public class MainController {
 	}
 
 	@GetMapping("/join/email/{email}/{key}")
-	public String joinKey(@PathVariable("email") String email, @PathVariable("key") String key) {
+	public String joinKey(@PathVariable("email") String email, @PathVariable("key") String key, Model model) {
 		log.info("joinKey");
+	
+		String msg = userService.emailCheck(email, key);
 		
-		mainDAO.setEmailCheck(email, key); // 이메일 인증 완료
+		model.addAttribute("msg", msg);
 
-		return "/main/main";
+		return "/main/joinResult";
 	}
 
 	@GetMapping("/accessDenied")
@@ -183,19 +183,19 @@ public class MainController {
 	@PostMapping("/valid-recaptcha")
 	public @ResponseBody String validRecaptcha(HttpServletRequest request) {
 		log.info("\n==valid-Recaptcha");
-		
+
 		String result;
 		String response = request.getParameter("g-recaptcha-response");
 		boolean isRecaptcha = recaptchaService.verifyRecaptcha(response);
 
 		log.info("\nCHECK1 : " + isRecaptcha);
-		
+
 		if (isRecaptcha) {
 			result = "success";
 		} else {
 			result = "false";
 		}
-		
+
 		log.info("\nCHECK2 : " + result);
 		return result;
 	}
