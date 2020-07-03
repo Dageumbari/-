@@ -1,94 +1,86 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div class="draftsListing" th:fragment="draftList(draftUserInfo)">
-		<!-- 드래프트 리스트 출력 -->
-		<div class="draftItemContainer">
-			<div class="draftItem">
-				<div class="draftCardActive" role="presentation">
-					<div class="draftCardExtra">
-						<div class="draftCardHeader">
-							<div class="reset-3c756112">
-								<div class="ownerAvatarList">
-									<!-- 드래프트 유저 정보 넣는곳  -->
-									<div aria-label="User1" class="ownerAvatarStackListItem"
-									th:text={draftUserInfo.name}>
-										<div class="avatarFrame" role="presentation">
-											<!-- 드래프트 유저 이미지경로-->
-											<img class="avatarImg"
-												src="https://lh3.googleusercontent.com/a-/AOh14GgMEk_JVwJ1YSLaAsiqwtwNIoPVGTC3_WGhkQWL8A">
-											<div class="innerShadow"></div>
+<div th:fragment="draftList">
+	<div id="draftListTmpl">
+		<div class="reset-3c756112--draftsListing"
+			th:each="draftList : ${draftList}">
+			<!-- 드래프트 리스트 출력 -->
+			<input th:value="${draftList.draftCode}" type="hidden"
+				class="hidden-draftCode">
+			<div class="reset-3c756112--draftItemContainer">
+				<div class="reset-3c756112--draftItem">
+					<div class="reset-3c756112--draftCardActive" role="presentation">
+						<div class="reset-3c756112--draftCardExtra">
+							<div class="reset-3c756112--draftCardHeader">
+								<div class="reset-3c756112">
+									<div class="reset-3c756112--ownerAvatarList">
+										<!-- 드래프트 유저 정보 넣는곳  -->
+										<div aria-label="User1" th:text="${draftList.name}"
+											class="reset-3c756112--ownerAvatarStackListItem">
+											<div class="reset-3c756112--avatarFrame" role="presentation">
+												<!-- 드래프트 유저 이미지경로-->
+												<img class="reset-3c756112--avatarImg"
+													src="https://lh3.googleusercontent.com/a-/AOh14GgMEk_JVwJ1YSLaAsiqwtwNIoPVGTC3_WGhkQWL8A">
+												<div class="reset-3c756112--innerShadow"></div>
+											</div>
 										</div>
+		
+										<div class="reset-3c756112"></div>
+										<div class="reset-3c756112--white-42ab09c4"></div>
 									</div>
-
-									<div class="reset-3c756112"></div>
-									<div class="reset-3c756112--white-42ab09c4"></div>
 								</div>
 							</div>
-							<div class="draftCardHeaderAuthor">
-								<div class="reset-3c756112"></div>
-								<span class="text-draftAuthorInfo"> <!--th:text="${userInfo.name}"  -->
-									<!-- <span title="Jun 1, 2020, 4:23 PM">9d</span> -->
-								</span>
-							</div>
+		
+		
 						</div>
-
-
-					</div>
-					<div class="draftCardFooter">
-						<div class="draftCardFooterActivitySummary" role="presentation">
-							<div class="draftCardFooterActivitySummaryIcon">
-								<svg preserveAspectRatio="xMidYMid meet" height="1em"
-									width="1em" fill="none" xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
-									stroke-linejoin="round" stroke="currentColor"
-									class="icon-7f6730be--text-3f89f380">
-																<g>
-																<polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon>
-																<line x1="3" y1="22" x2="21" y2="22"></line></g></svg>
+						<div class="reset-3c756112--draftCardFooter">
+							<div class="reset-3c756112--draftCardFooterActivitySummary"
+								role="presentation">
+								<div class="reset-3c756112--draftCardFooterActivitySummaryIcon">
+									<svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
+										fill="none" xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" stroke="currentColor"
+										class="icon-7f6730be--text-3f89f380">
+																		<g>
+																		<polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon>
+																		<line x1="3" y1="22" x2="21" y2="22"></line></g></svg>
+								</div>
+								<span class="text-activitySummary" th:text="${draftList.editsCount}"> edits</span>
 							</div>
-							<span class="text-activitySummary">0 edits</span>
+		
+							<!-- 드래프트 카드 클릭시 오픈되는 부분 -->
+							<!-- <div class="reset-3c756112--toolbar-small"
+														style="grid-template-columns: repeat(2, auto);">
+														<button cla	ss="button">
+															<span class="iconOnly"><svg
+																	preserveAspectRatio="xMidYMid meet" height="1em"
+																	width="1em" fill="none"
+																	xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+																	stroke-width="2" stroke-linecap="round"
+																	stroke-linejoin="round" stroke="currentColor"
+																	class="icon-7f6730be--text-3f89f380">
+																			<g>
+																			<line x1="18" y1="6" x2="6" y2="18"></line>
+																			<line x1="6" y1="6" x2="18" y2="18"></line></g></svg></span><span
+																class="textUIFamily-button"></span>
+														</button>
+														<button class="button">
+															<span class="reset-3c756112--small"> <svg
+																	preserveAspectRatio="xMidYMid meet" height="1em"
+																	width="1em" fill="none"
+																	xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+																	stroke-width="2" stroke-linecap="round"
+																	stroke-linejoin="round" stroke="currentColor"
+																	class="icon-7f6730be--text-3f89f380">
+																			<g>
+																			<polyline points="20 6 9 17 4 12"></polyline></g></svg></span><span
+																class="textUIFamily">Save</span>
+														</button>
+													</div> -->
 						</div>
-
-						<!-- 드래프트 카드 클릭시 오픈되는 부분 -->
-						<!-- <div class="toolbar-small"
-												style="grid-template-columns: repeat(2, auto);">
-												<button class="button">
-													<span class="iconOnly"><svg
-															preserveAspectRatio="xMidYMid meet" height="1em"
-															width="1em" fill="none"
-															xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-															stroke-width="2" stroke-linecap="round"
-															stroke-linejoin="round" stroke="currentColor"
-															class="icon-7f6730be--text-3f89f380">
-																	<g>
-																	<line x1="18" y1="6" x2="6" y2="18"></line>
-																	<line x1="6" y1="6" x2="18" y2="18"></line></g></svg></span><span
-														class="textUIFamily-button"></span>
-												</button>
-												<button class="button">
-													<span class="small"> <svg
-															preserveAspectRatio="xMidYMid meet" height="1em"
-															width="1em" fill="none"
-															xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-															stroke-width="2" stroke-linecap="round"
-															stroke-linejoin="round" stroke="currentColor"
-															class="icon-7f6730be--text-3f89f380">
-																	<g>
-																	<polyline points="20 6 9 17 4 12"></polyline></g></svg></span><span
-														class="textUIFamily">Save</span>
-												</button>
-											</div> -->
 					</div>
 				</div>
 			</div>
+		
 		</div>
-
 	</div>
-</body>
-</html>
+</div>

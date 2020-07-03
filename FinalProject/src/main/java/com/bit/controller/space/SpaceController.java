@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.bit.model.dto.space.DraftListDTO;
 import com.bit.model.service.PageService;
@@ -28,18 +29,25 @@ public class SpaceController {
 	SpaceService spaceService;
 
 	@ModelAttribute
-	public void sideNavDrawerFragmentValue(Model model) {
+	public void sideNavFragmentValue(Model model) {
 		model.addAttribute("userInfo", spaceService.getSpaceUserInfo());
 	}
-	
 
+	//드래프트 리스트 호출
+	//@ModelAttribute
 	@GetMapping("/draftList")
 	public String getDraftList(Model model) {
-		List<DraftListDTO> draftList = spaceService.getDraftList(); //
+		List<DraftListDTO> draftList = spaceService.getDraftList();
 		log.error(draftList);
 		model.addAttribute("draftList", draftList);
-		return "common/draft/draftList";
+		return "draft/draftList";
 	}
+	/*
+	 * @ModelAttribute public String getNavbar(@ModelAttribute("userId") String
+	 * userId,Model model){ model.addAttribute("userId", "jin2020");
+	 * model.addAttribute("boardGroupList",boardService.getNavbar(userId)); return
+	 * "include/nav/boardNavbar"; }
+	 */
 
 	/*
 	 * @GetMapping("/mergedList") public String getMedrgedList(Model model) {
@@ -99,10 +107,12 @@ public class SpaceController {
 		}
 		return "redirect:/pageList";
 	}
+
 	@GetMapping("/edits")
-	public String editsPage(){
+	public String editsPage() {
 		return "draft/edits";
 	}
+
 	@GetMapping("/spacePage")
 	public String spacePage() {
 		return "page/spacePage";

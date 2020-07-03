@@ -59,29 +59,26 @@ public class DashBoardMainController {
 	
 
 
-
-
-	@GetMapping("spaces")
-	//@RequestMapping(value = "{dashBoardURl}/spaces", method = RequestMethod.GET)
-	public String spaceDashboard(Model model,DashBoardVO dashBoardVO) {
-		//네비
-		List<DashBoardVO> orgList = orgService.getAllOrgList();
-		model.addAttribute("orgList",orgList);
-		
-		dashBoardVO = orgService.getOrgInfo(dashBoardVO.getDashBoardUrl());
-		model.addAttribute("orgInfo",dashBoardVO);
-		System.out.println("조직 정보: "+dashBoardVO);
-		
-		String getDashCode = dashBoardVO.getDashBoardCode();
-		List<MemberDTO> allMemberList = memberService.getAllMemberList(getDashCode);
-		model.addAttribute("allMemberList",allMemberList);
-		System.out.println("조직 모든 멤버: "+allMemberList);
-		
-		
-		
-		return "dashboard/spaces";
-	}
-	
+	/*
+	 * 
+	 * @GetMapping("spaces") //@RequestMapping(value = "{dashBoardURl}/spaces",
+	 * method = RequestMethod.GET) public String spaceDashboard(Model
+	 * model,DashBoardVO dashBoardVO) { //네비 List<DashBoardVO> orgList =
+	 * orgService.getAllOrgList(); model.addAttribute("orgList",orgList);
+	 * 
+	 * dashBoardVO = orgService.getOrgInfo(dashBoardVO.getDashBoardUrl());
+	 * model.addAttribute("orgInfo",dashBoardVO);
+	 * System.out.println("조직 정보: "+dashBoardVO);
+	 * 
+	 * String getDashCode = dashBoardVO.getDashBoardCode(); List<MemberDTO>
+	 * allMemberList = memberService.getAllMemberList(getDashCode);
+	 * model.addAttribute("allMemberList",allMemberList);
+	 * System.out.println("조직 모든 멤버: "+allMemberList);
+	 * 
+	 * 
+	 * 
+	 * return "dashboard/spaces"; }
+	 */
 	
 	
 	

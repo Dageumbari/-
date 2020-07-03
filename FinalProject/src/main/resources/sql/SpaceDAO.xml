@@ -53,7 +53,7 @@
 	<!-- draftList불러오기(only saved) -->
 	<select id="getDraftList" resultType="draftList">
 		select DRAFTCODE,
-		DRAFTSAVETIME, DRAFTSTATUS, MSGNO, MSGCONTENT, EDITSCOUNT, USERNO,
+		DRAFTSAVETIME, DRAFTSTATUS, MSGCONTENT, EDITSCOUNT,
 		NAME, USERIMAGE
 		from draftlist
 		where spaceCode='sp11' and userNo=1 and
@@ -61,20 +61,14 @@
 		msgno=(select max(msgno) from draftlist)
 	</select>
 
-	<!-- <select id="getDraftList" resultMap="draftList_resultmap">
-		select * from draftlist
-		where spaceCode='sp11' and userNo=1 and
-		draftStatus='saved' and
-		msgno=(select max(msgno) from draftlist)
-	</select>
- -->
-	<!-- 병합리스트 불러오기 -->
+
+	<!-- 병합리스트 불러오기(merged) -->
 	<!-- <select id="getMergedList" resultType="draftList"> select DRAFTCODE, 
 		DRAFTSAVETIME, DRAFTSTATUS, MSGNO, MSGCONTENT, EDITSCOUNT, USERNO, NAME, 
 		USERIMAGE from draftlist where spaceCode='sp11' and userNo=1 and draftStatus='merged' 
 		and msgno=(select max(msgno) from draftlist) </select> -->
 
-	<!-- 병합리스트 불러오기 -->
+	<!-- 아카이빙리스트 불러오기(archived) -->
 	<!-- <select id="getArchivedList" resultType="draftList"> select DRAFTCODE, 
 		DRAFTSAVETIME, DRAFTSTATUS, MSGNO, MSGCONTENT, EDITSCOUNT, USERNO, NAME, 
 		USERIMAGE from draftlist where spaceCode='sp11' and userNo=1 and draftStatus='archived' 

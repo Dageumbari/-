@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -8,23 +8,26 @@
 <body>
 
 	<header th:fragment="sideNavDrawerFragment(userInfo)">
-	
-		<div class="sidebarDrawer">
-			<div class="sidebarDrawerInner">
-				<div class="drawerContent">
-					<div class="drawerContentHeader">
-						<div class="drawerHeader">
-							<div class="spaceSummary">
-								<div class="ownerTitle"> <!--   -->
+
+		<div class="reset-3c756112--sidebarDrawer">
+			<div class="reset-3c756112--sidebarDrawerInner">
+				<div class="reset-3c756112--drawerContent">
+					<div class="reset-3c756112--drawerContentHeader">
+						<div class="reset-3c756112--drawerHeader">
+							<div class="reset-3c756112--spaceSummary">
+								<div class="reset-3c756112--ownerTitle">
+									<!--   -->
 									<span class="text-ownerTitle" th:text="${userInfo.name}"></span>
 								</div>
-								<div class="spaceNameWrapper">
-									<div class="spaceName"> <!--th:text="${userInfo.name}"  -->
+								<div class="reset-3c756112--spaceNameWrapper">
+									<div class="reset-3c756112--spaceName">
+										<!--th:text="${userInfo.name}"  -->
 										<span class="text-spaceName" th:text="${userInfo.spaceName}"></span>
 									</div>
 								</div>
 							</div>
-							<div class="closeButton" role="presentation">
+							<div class="reset-3c756112--closeButton" role="presentation">
+								<a onclick="closeNav()"></a>
 								<svg preserveAspectRatio="xMidYMid meet" fill="none"
 									xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
 									stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -36,23 +39,35 @@
 						</div>
 					</div>
 					<!-- 드래프트 리스트 -->
-					<div class="drawerContentBody-with-scrollbar">
-					
-						<div class="draftsDrawer">
-							<div class="controlsCenterTabHeader">
-								<div class="draftTabs">
-									<a role="button" tabindex="0" class="tabsItem-touchableView"
-										href="/draftList"> <span class="tabsItemInfo-draftTabs">drafts</span>
-									</a> <a role="button" tabindex="0" class="tabsItem-touchableView"
+					<div class="reset-3c756112--drawerContentBody-with-scrollbar">
+
+						<div class="reset-3c756112--draftsDrawer">
+							<div class="reset-3c756112--controlsCenterTabHeader">
+								<div class="reset-3c756112--draftTabs">
+									<div th:include="draft/draftList :: draftList"></div>
+									<a role="button" tabindex="0"
+										class="reset-3c756112--tabsItem-touchableView" type="button"
+										href="javascript:void(0);" onclick="callDraftList();"><span
+										class="tabsItemInfo-draftTabs">drafts</span> <!-- <div th:insert="~{draft/draftList::draftList}"></div>  -->
+										<!-- <a role="button" tabindex="0"
+										class="reset-3c756112--tabsItem-touchableView" type="button"
+										href="getDraftList(/draftList)"> <span class="tabsItemInfo-draftTabs">drafts</span> -->
+									</a> <a role="button" tabindex="0"
+										class="reset-3c756112--tabsItem-touchableView"
 										href="/mergedList"> <span class="tabsItemInfo-draftTabs">merged</span>
-									</a> <a role="button" tabindex="0" class="tabsItem-touchableView"
+									</a> <a role="button" tabindex="0"
+										class="reset-3c756112--tabsItem-touchableView"
 										href="/archivedList"> <span class="tabsItemInfo-draftTabs">archived</span>
 									</a>
 								</div>
 							</div>
-							<div class="draftsListing">
-							<th:block th:replace="~{draft/draftList :: draftList(${draftUserInfo})"/>
-							
+							<div class="reset-3c756112--draftsPlaceholder">
+								<div role="presentation" alt=""
+									class="reset-3c756112--illustration--draftsPlaceholderImage"
+									style="background-image: url(&quot;https://gstatic.gitbook.com/images/73188aba462371bfa26eab516a719e24.svg&quot;);"></div>
+								<span class="draftsPlaceholderText">No drafts yet. Drafts
+									contain changes that have not been merged yet. Start editing to
+									create a draft.</span>
 							</div>
 						</div>
 					</div>
@@ -60,7 +75,41 @@
 
 			</div>
 		</div>
+		<script type="text/javascript">
+			$(function() {
+				getDraftList("/draftList");
+			});
+			/*
+			function openNavDrawer() {
+				$('#draft').click(function(){
+					$(this).show()
+				});
+				
+			};
+			 */
 
+			function getDraftList(url) {
+				var ajaxOption = {
+					url : url,
+					async : true,
+					type : "GET",
+					dataType : "html",
+					cache : false
+				};
+
+				$.ajax(ajaxOption).done(
+						function(data) {
+							 // if('.reset-3c756112--draftsPlaceholder') = null이면 placeholder호출
+							 // 아니면 draftListing 호출 
+							// Contents 영역 삭제
+							$('#draftListTmpl').children().remove();
+							$('.reset-3c756112--draftsPlaceholder').children()
+									.remove();
+							// Contents 영역 교체
+							$('#draftListTmpl').html(data);
+						});
+			}
+		</script>
 	</header>
 </body>
 </html>
