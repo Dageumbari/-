@@ -2,8 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Settings인뎁쇼</title>
+<title>Settings</title>
 <link href="/css/dashboard.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div class="reset-3c756112--app-68cac36c">
@@ -21,8 +22,7 @@
 		<div class="reset-3c756112--dashboardTab-6c6dd16c">
 			<div
 				class="reset-3c756112--dashboardTabHeader-f7d1f108--S400Bottom-9b457f18">
-				<span
-					class="text-4505230f--InfoH200-3a8a7a86--textUIFamily-5ebd8e40--orgTitle-22ea4f82">bitfinal</span>
+				<span class="text-4505230f--InfoH200-3a8a7a86--textUIFamily-5ebd8e40--orgTitle-22ea4f82" th:text="${orgInfo.dashBoardName}">dashBoardName</span>
 				<div class="reset-3c756112--dashboardTabContent-12b621e6">
 					<div class="reset-3c756112--mobileMenuContainer-19573906">
 						<button
@@ -116,7 +116,7 @@
 								<div class="reset-3c756112--inputInnerSizer-756c9114">
 									<input type="text"
 										class="inputInner-5c86b87d--inputInnerDark-42ab09c4--medium-0bbed4bd"
-										value="bitfinal">
+										th:value="${orgInfo.dashBoardName}">
 								</div>
 							</div>
 							<div
@@ -130,6 +130,8 @@
 					</div>
 				</form>
 			</div>
+			
+			<!--  url 수정
 			<div
 				class="reset-3c756112--S300Bottom-9b4658d2--panel-1b61b7b4--dark-095bdbe8--dark-7dfad810--dark-a885782e--medium-1b61b7b5"
 				role="presentation">
@@ -143,12 +145,13 @@
 					</div>
 					<div class="reset-3c756112--panelHeaderRight-2f79c7a6">
 						<div class="reset-3c756112--panelHeaderHint-2c5d8183">
-							<span
-								class="text-4505230f--TextH200-a3425406--textUIFamily-5ebd8e40">bitfinal</span>
+							<span class="text-4505230f--TextH200-a3425406--textUIFamily-5ebd8e40">bitfinal</span>
 						</div>
 					</div>
 				</div>
 			</div>
+			 -->
+			 
 			<div
 				class="reset-3c756112--S300Bottom-9b4658d2--panel-1b61b7b4--dark-095bdbe8--dark-7dfad810--dark-a885782e--medium-1b61b7b5"
 				role="presentation">
@@ -161,6 +164,24 @@
 						</div>
 					</div>
 				</div>
+				<div class="reset-3c756112--panelBody-19b86669--dark-9f89be6e--medium-b7383e74">
+				<div class="reset-3c756112--buttonField-2140f61a">
+					<div class="reset-3c756112--buttonFieldLabel-7cd0bf62">
+						<div class="reset-3c756112--S100Bottom-15862a5a">
+							<span class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40--white-42ab09c4">Delete Organization</span>
+						</div>
+						<div class="reset-3c756112">
+							<span class="text-4505230f--TextH200-a3425406--textUIFamily-5ebd8e40--greyBase-2c5d8183">Once deleted, it will be gone forever. Please be certain.</span>
+						</div>
+					</div>
+					<div class="reset-3c756112">
+						<button class="button-36063075--small-30ceeddb--button-ec6b2350" id="orgDelete">
+							<span class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40--text-8ee2c8b2">Delete</span>
+						</button>
+					</div>
+				</div>
+			</div>
+				
 			</div>
 		</div>
 	</div>
@@ -168,5 +189,6 @@
 </div>
 </div>
 </div>
+<script th:src="@{/js/dashboard.js}" type="text/javascript"></script>
 </body>
 </html>

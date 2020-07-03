@@ -1,14 +1,17 @@
 package com.bit.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bit.model.dto.MemberDTO;
 import com.bit.model.service.MemberService;
@@ -16,18 +19,17 @@ import com.bit.model.service.OrgService;
 import com.bit.model.service.SpaceDashBoardService;
 import com.bit.model.service.TeamService;
 import com.bit.model.vo.DashBoardVO;
+import com.bit.model.vo.GroupVO;
+import com.bit.model.vo.SpaceVO;
+import com.bit.model.vo.TeamVO;
 
 import lombok.extern.java.Log;
 
 @Log
 @Controller
-@RequestMapping("dashboard/*")
-//@AllArgsConstructor //controller가 Service에 대해 의존적. 생성자를 만들고 자동으로 주입하도록 하는 어노테이션
+@RequestMapping("/dashboard/*")
 public class DashBoardMainController {
 	//예나 😁😎✨	
-	
-	//파라미터 @RequestParam : 파라미터로 사용된 변수 이름과 전달되는 파라미터 이름이 다른 경우
-	//@RequestParam("name") String name
 	
 	@Autowired
 	OrgService orgService;
@@ -46,7 +48,7 @@ public class DashBoardMainController {
 	}
 	
 	
-	@GetMapping("/")
+	@GetMapping("/orgNavi")
 	public String orgNavi(Model model) { //자동으로 파라미터의 setter 메서드가 동작하면서 파라미터를 수집함
 		
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
@@ -54,39 +56,53 @@ public class DashBoardMainController {
 		model.addAttribute("orgList",orgList);
 		System.out.println("나의 orgList: "+orgList);
 		
+		//return "redirect:include/dashboardNavi";
 		return "include/dashboardNavi";
 	}
 	
-
-
-	/*
-	 * 
-	 * @GetMapping("spaces") //@RequestMapping(value = "{dashBoardURl}/spaces",
-	 * method = RequestMethod.GET) public String spaceDashboard(Model
-	 * model,DashBoardVO dashBoardVO) { //네비 List<DashBoardVO> orgList =
-	 * orgService.getAllOrgList(); model.addAttribute("orgList",orgList);
-	 * 
-	 * dashBoardVO = orgService.getOrgInfo(dashBoardVO.getDashBoardUrl());
-	 * model.addAttribute("orgInfo",dashBoardVO);
-	 * System.out.println("조직 정보: "+dashBoardVO);
-	 * 
-	 * String getDashCode = dashBoardVO.getDashBoardCode(); List<MemberDTO>
-	 * allMemberList = memberService.getAllMemberList(getDashCode);
-	 * model.addAttribute("allMemberList",allMemberList);
-	 * System.out.println("조직 모든 멤버: "+allMemberList);
-	 * 
-	 * 
-	 * 
-	 * return "dashboard/spaces"; }
-	 */
+	@PostMapping("/createOrg")
+	@ResponseBody
+	public void createOrg(String dashBoardName) {
+		//+유저 정보 가져오기
+		orgService.createOrg(dashBoardName);
+		System.out.println("조직 만들기 컨트롤러 메소드 실행됨: ");
+		
+		//return "redirect:/dashboard/spaces?dashboardUrl="+dashBoardName;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	@GetMapping("spaces")
+	public String spaceDashboard(Model model,DashBoardVO dashBoardVO, GroupVO groupVO) {
+		//네비
+		List<DashBoardVO> orgList = orgService.getAllOrgList();
+		model.addAttribute("orgList",orgList);
+		
+		dashBoardVO = orgService.getOrgInfo(dashBoardVO.getDashBoardUrl());
+		model.addAttribute("orgInfo",dashBoardVO);
+		System.out.println("조직 정보: "+dashBoardVO);
+		
+		String getDashCode = dashBoardVO.getDashBoardCode();
+		List<MemberDTO> allMemberList = memberService.getAllMemberList(getDashCode);
+		model.addAttribute("allMemberList",allMemberList);
+		System.out.println("조직 모든 멤버: "+allMemberList);
+		
+		//스페이스
+		//그룹 리스트
+		List<GroupVO> groupList = spaceDashBoardService.getAllGroupList(getDashCode);
+		model.addAttribute("groupList",groupList);
+		System.out.println("스페이스 그룹  리스트: "+groupList);
+		
+		//스페이스 리스트
+		for(int i=0; i<groupList.size(); i++) {
+			GroupVO group = groupList.get(i);
+			String groupCode = group.getGroupCode();
+			
+			List<SpaceVO> spaceList = spaceDashBoardService.getAllSpaceList(groupCode);
+			model.addAttribute("spaceList", spaceList);
+			System.out.println("스페이스 리스트: "+spaceList);
+		}
+		
+		return "dashboard/spaces";
+	}	
 	
 	@GetMapping("teams")
 	public String teamDashBoard(Model model, DashBoardVO dashBoardVO) {
@@ -104,8 +120,52 @@ public class DashBoardMainController {
 		model.addAttribute("allMemberList",allMemberList);
 		System.out.println("조직 모든 멤버: "+allMemberList);
 		
+		//조직 모든 멤버
+		List<MemberDTO> allMembers = memberService.getAllMembers(getDashCode);
+		model.addAttribute("allMembers",allMembers);
 		
-		return "dashboard/teams";
+		int allMemberCount = memberService.getAllMemberCnt(getDashCode);
+		model.addAttribute("allMemberCount",allMemberCount);
+		System.out.println("조직 모든 멤버 카운트: "+allMemberCount);
+		
+		//팀 리스트
+		List<TeamVO> teamList = teamService.getAllTeamList(getDashCode);
+		model.addAttribute("teamList",teamList);
+		System.out.println("팀 리스트: "+teamList);
+		
+	
+		return "dashboard/teams2";
+	}
+	
+	/* 
+	 * 
+	@RequestMapping(value = "teams/{teamCode}", method = {RequestMethod.POST,RequestMethod.GET})
+	public String getTeamCode(Model model, @PathVariable String teamCode) {
+
+		model.addAttribute("getTeamCode", teamCode);
+		System.out.println("팀코드...?" + teamCode);
+
+		return "dashboard/teams2";
+	}
+	*/
+	
+
+
+
+	@PostMapping("getTeamCode")
+	@ResponseBody
+	public void getTeamCode(@RequestParam(value="teamCode") String teamCode, Model model, MemberDTO memberDTO) {
+		
+		System.out.println("code???"+teamCode);
+		
+		List<MemberDTO> memberList = memberService.getTeamMemberList(teamCode);
+		model.addAttribute("memberList", memberList);
+		
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		hashMap.put(teamCode, memberDTO);
+		
+		
+		
 	}
 	
 
@@ -125,11 +185,20 @@ public class DashBoardMainController {
 		model.addAttribute("allMemberList",allMemberList);
 		System.out.println("조직 모든 멤버: "+allMemberList);
 		
+		
 		return "dashboard/settings";
 	}
 	
+	@GetMapping("deleteOrg")
+	@ResponseBody
+	public void deleteOrg(DashBoardVO dashBoardVO) {
+		dashBoardVO = orgService.getOrgInfo(dashBoardVO.getDashBoardUrl());
+		String getDashCode = dashBoardVO.getDashBoardCode();
+		orgService.deleteOrg(getDashCode);
+	}
+
 	//결제 진행은 별도 컨트롤러에서
-	@GetMapping("/billing")
+	@GetMapping("billing")
 	public String billingDashBoard(Model model, DashBoardVO dashBoardVO) {
 		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
@@ -149,21 +218,6 @@ public class DashBoardMainController {
 		return "dashboard/billing";
 	}
 	
-	//@GetMapping("menu")
-		//public String orgMenu(Model model, @RequestParam(value = "dashBoardCode") String dashBoardCode) {
 
-			//DashBoardVO orgInfo = orgService.getOrgInfo(dashBoardCode);
-			//model.addAttribute("orgInfo",orgInfo);
-			//System.out.println("조직 정보: "+orgInfo);
-			
-			//admin, owner일때
-			//spaces, teams, settings, billings 모든 메뉴 보이기
-			
-			
-			//reader, writer 일때
-			//space 메뉴만 보이기
-			
-			//return "include/dashboardMenu";
-		//}
 }
 

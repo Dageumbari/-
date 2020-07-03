@@ -34,14 +34,14 @@ public class OrgServiceImpl implements OrgService {
 	}
 
 	@Override
-	public DashBoardVO orgNameModify(DashBoardVO dashBoardVO) {
-		// TODO Auto-generated method stub
-		return orgDAO.orgNameModify(dashBoardVO);
+	public void createOrg(String dashBoardName) {
+		
+		orgDAO.createOrg(dashBoardName);
 	}
 
 	@Override
-	public DashBoardVO orgURLModify(DashBoardVO dashBoardVO) {
-		// TODO Auto-generated method stub
-		return orgDAO.orgURLModify(dashBoardVO);
+	public void deleteOrg(String dashBoardCode) {
+		
+		orgDAO.deleteOrg(dashBoardCode);
 	}
 }

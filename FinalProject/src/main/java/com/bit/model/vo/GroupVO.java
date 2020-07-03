@@ -1,5 +1,7 @@
 package com.bit.model.vo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class GroupVO {
 	private String groupCode;
-	private String dashboardCode;
+	private String dashBoardCode;
 	private String groupName;
 	private String groupOrder;
 }
