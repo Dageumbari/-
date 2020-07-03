@@ -21,11 +21,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.getAllMemberList(dashBoardCode);
 	}
 	
-	@Override
-	public List<MemberDTO> getTeamList(String dashBoardCode) {
-		// TODO Auto-generated method stub
-		return memberDAO.getTeamList(dashBoardCode);
-	}
+	/*
+	 * @Override public List<MemberDTO> getTeamList(String dashBoardCode) { // TODO
+	 * Auto-generated method stub return memberDAO.getTeamList(dashBoardCode); }
+	 */
 
 	@Override
 	public List<MemberDTO> getTeamMemberList(String teamCode) {

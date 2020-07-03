@@ -2094,7 +2094,7 @@ input, select, textarea, button {
 .button-36063075--small-30ceeddb--button-ec6b2350 {
     color: rgb(255, 255, 255);
     cursor: pointer;
-    `	    height: 30px;
+    height: 30px;
     display: inline-flex;
     align-items: center;
     line-height: 1em;
@@ -2113,6 +2113,9 @@ input, select, textarea, button {
     text-decoration: none;
     transition: all 250ms ease-out 0s;
 }
+
+
+
 
 /*billing*/
 .reset-3c756112--S200Bottom-9b47328c {
@@ -2698,8 +2701,6 @@ rect[Attributes Style] {
     text-decoration: none;
     transition: all 250ms ease-out 0s;
 }
-
-
 
 
 

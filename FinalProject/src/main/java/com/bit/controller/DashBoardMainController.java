@@ -1,18 +1,16 @@
 package com.bit.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bit.model.dto.MemberDTO;
@@ -105,18 +103,7 @@ public class DashBoardMainController {
 		}
 		
 		return "dashboard/spaces";
-	}
-	
-	/*
-	 * @RequestMapping(value = "teams/{teamCode}", method = {RequestMethod.GET,
-	 * RequestMethod.POST}) public void teamMember(HttpServletRequest request,
-	 * MemberDTO memberDTO, String teamCode) { memberDTO.setTeamCode(teamCode);
-	 * 
-	 * List<MemberDTO> memberList = memberService.getTeamMemberList(teamCode);
-	 * 
-	 * }
-	 */
-	
+	}	
 	
 	@GetMapping("teams")
 	public String teamDashBoard(Model model, DashBoardVO dashBoardVO) {
@@ -151,7 +138,36 @@ public class DashBoardMainController {
 		return "dashboard/teams2";
 	}
 	
+	/* 
+	 * 
+	@RequestMapping(value = "teams/{teamCode}", method = {RequestMethod.POST,RequestMethod.GET})
+	public String getTeamCode(Model model, @PathVariable String teamCode) {
+
+		model.addAttribute("getTeamCode", teamCode);
+		System.out.println("팀코드...?" + teamCode);
+
+		return "dashboard/teams2";
+	}
+	*/
 	
+
+
+
+	@PostMapping("getTeamCode")
+	@ResponseBody
+	public void getTeamCode(@RequestParam(value="teamCode") String teamCode, Model model, MemberDTO memberDTO) {
+		
+		System.out.println("code???"+teamCode);
+		
+		List<MemberDTO> memberList = memberService.getTeamMemberList(teamCode);
+		model.addAttribute("memberList", memberList);
+		
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		hashMap.put(teamCode, memberDTO);
+		
+		
+		
+	}
 	
 
 	@GetMapping("settings")
@@ -170,9 +186,18 @@ public class DashBoardMainController {
 		model.addAttribute("allMemberList",allMemberList);
 		System.out.println("조직 모든 멤버: "+allMemberList);
 		
+		
 		return "dashboard/settings";
 	}
 	
+	@GetMapping("deleteOrg")
+	@ResponseBody
+	public void deleteOrg(DashBoardVO dashBoardVO) {
+		dashBoardVO = orgService.getOrgInfo(dashBoardVO.getDashBoardUrl());
+		String getDashCode = dashBoardVO.getDashBoardCode();
+		orgService.deleteOrg(getDashCode);
+	}
+
 	//결제 진행은 별도 컨트롤러에서
 	@GetMapping("/billing")
 	public String billingDashBoard(Model model, DashBoardVO dashBoardVO) {

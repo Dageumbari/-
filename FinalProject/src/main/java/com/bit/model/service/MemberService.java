@@ -11,7 +11,7 @@ public interface MemberService {
 	public int getAllMemberCnt(String DashBoardCode);
 	
 	public List<MemberDTO> getAllMemberList(String dashboardCode);
-	public List<MemberDTO> getTeamList(String dashBoardCode);
+	//public List<MemberDTO> getTeamList(String dashBoardCode);
 	public List<MemberDTO> getTeamMemberList(String teamCode);
 	public List<MemberDTO> getMemberListByPermission();
 	

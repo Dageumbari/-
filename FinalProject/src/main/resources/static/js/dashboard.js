@@ -64,32 +64,41 @@ $(function() {
 $(document).ready(function(){
 	$('div[name=teamInfo]').on('click',function(){
 		
-		
-		
-		
 		var clickedTeam = $(this).attr("id");
 		console.log("클릭한 팀: "+clickedTeam);
 		
 		//모두 한번만 실행 되어야 함....
-		/*
-		var param = {};
-		param.MemberDTO.teamCode = clickedTeam;
-		param = JSON.stringify(param);
+		
 		
 		//데이터(팀 코드) 전송 후  리턴값 리스트로 받아 뿌려주기
+
 		$.ajax({
-			url : "/dashboard/getTeamMemberList",
-			data : param,
-			type : "GET",
+			url : "/dashboard/getTeamCode",
+			data : {
+				"teamCode" : clickedTeam
+			},
+			type : "POST",
+			dataType : "JSON"
 		})
 		.done(function(data){
+			//window.opener.location.reload();
+			console.log("팀 코드 보내기 성공")
+			var result = data.memberList;
+			console.log("리스트?"+result)
 			
+			for(var i=0; i<result.length; i++){
+				alert(list[i]);
+			}
 			
 		})
 		.fail(function(data){
-			console.log("시류ㅐ~");
-		})
-		*/
+			console.log("팀 코드 보내기 실패~");
+		});
+		
+		
+		
+	
+		
 		
 		//바디
 		var newBody = document.createElement("div");
@@ -112,7 +121,7 @@ $(document).ready(function(){
 		var attrMembers = document.createAttribute("class");
 		attrMembers.value = "reset-3c756112--S400Top-02771c54--teamPanelMembersGridItem-e5314f8c";
 		newMembers.setAttributeNode(attrMembers);
-		newMembers.setAttribute("id","memberItem");
+		newMembers.setAttribute("id","memberList");
 		
 		var newMember1 = document.createElement("div");
 		newMembers.appendChild(newMember1);
@@ -148,13 +157,13 @@ $(document).ready(function(){
 		
 		
 		
-		
+		/*
 		var newMember3 = document.createElement("div");
 		newMember2.appendChild(newMember3);
 		var attrMember3 = document.createAttribute("class");
 		attrMember3.value ="";
 		newMember3.setAttributeNode(attrMember3);
-		
+		*/
 		//푸터
 		var newfooter = document.createElement("div");
 		
@@ -164,8 +173,31 @@ $(document).ready(function(){
 	});
 });
 
+$('#orgDelete').on('click',function(){
 
+	var result = confirm("조직을 삭제 하시겠습니까? 삭제 이후에는 되돌릴 수 없습니다.");
+	
+	if (result === true){
+		
+		$.ajax({
+			url: "/dashboard/settings",
+			type: "get",
+		})
+		.done(function(result){
+			alert("조직이 삭제 되었습니다.");
+			//개인 조직으로 돌아가기
+		})
+		.fail(function(result){
+			alert("다시 시도해주세요.");
+			
+		});
 
+	}else {
+		
+		return false;
+	}
+	
+});
 
 
 

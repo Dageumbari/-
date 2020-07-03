@@ -12,9 +12,9 @@ public interface OrgDAO {
 	public List<DashBoardVO> getAllOrgList();
 	public DashBoardVO getOrgInfo(String dashBoardUrl);
 	public void createOrg(String dashBoardName);
+	public void deleteOrg(String dashBoardCode); 
 	
 	//리턴자료형 설정 해야됨
-	public void deleteOrg(); //owner이외의 멤버가 있는지 확인하고 삭제
 	public DashBoardVO orgNameModify(DashBoardVO dashBoardVO);
 	public DashBoardVO orgURLModify(DashBoardVO dashBoardVO);
 	

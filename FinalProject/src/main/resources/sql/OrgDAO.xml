@@ -10,6 +10,7 @@
 		<result property="dashBoardName" column="dashBoardName"/>
 	 	<result property="dashBoardType" column="dashBoardType"/>
 	 	<result property="dashBoardUrl" column="dashBoardUrl"/>
+	 	<result property="status" column="status"/>
 	 	<association property="groupInfo" javaType="com.bit.model.vo.GroupVO">
 	 		<id property="groupCode" column="groupCode"/>
 	 		<result property="groupName" column="groupName"/>
@@ -39,6 +40,7 @@
 			JOIN MEMPERMIT M ON (T.TEAMCODE = M.TEAMCODE)
         	JOIN USER_INFO U ON (M.USERNO = U.USERNO)
     	WHERE 1 = U.USERNO
+    		AND D.STATUS = 1
     	ORDER BY DASHBOARDCODE
 	</select>
 	
@@ -54,18 +56,18 @@
 	</select>
 	
 	<!-- 조직 삭제 -->
-	<delete id="deleteOrg">
-		DELETE *
-			FROM dashBoard
-		WHERE dashboardCode = #{dashboardCode}
-	</delete>
+	<update id="deleteOrg" >
+		UPDATE DASHBOARD
+ 			SET STATUS = 0
+ 		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
+	</update>
 	
 	<!-- 조직 생성 -->
 	<!-- 시큐리티에서 userNo 가져오는 처리 완료 후 MEMPERMIT 수정하기 -->
 	<insert id="createOrg" parameterType="String">
 		INSERT ALL
 			INTO DASHBOARD 
-			VALUES('da'||LPAD(DASHBOARD_SEQ.NEXTVAL, 2, 0),'orgdefault.png', #{DASHBOARDNAME}, 'private', #{DASHBOARDNAME})
+			VALUES('da'||LPAD(DASHBOARD_SEQ.NEXTVAL, 2, 0),'orgdefault.png', #{DASHBOARDNAME}, 'private', #{DASHBOARDNAME}, 1)
 			INTO GROUPINFO 
 			VALUES('gr'||LPAD(GROUPINFO_SEQ.NEXTVAL, 2, 0), 'da'||LPAD(DASHBOARD_SEQ.CURRVAL, 2, 0), 'default', 1)
 			INTO TEAM 

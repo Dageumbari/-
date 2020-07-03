@@ -15,6 +15,7 @@ public class DashBoardVO {
 	private String dashBoardName;
 	private String dashBoardType;
 	private String dashBoardUrl;
+	private int status;
 	
 	@Autowired(required = false)
 	private GroupVO groupInfo;

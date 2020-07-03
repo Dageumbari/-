@@ -21,7 +21,7 @@
 	<div class="reset-3c756112--dashboardTab-2357d04a--dashboardTabWithMenu-1be0e63a">
 		<div class="reset-3c756112--dashboardTab-6c6dd16c">
 			<div class="reset-3c756112--dashboardTabHeader-f7d1f108--S400Bottom-9b457f18">
-				<span class="text-4505230f--InfoH200-3a8a7a86--textUIFamily-5ebd8e40--orgTitle-22ea4f82">${orgList.dashboardName}</span>
+				<span class="text-4505230f--InfoH200-3a8a7a86--textUIFamily-5ebd8e40--orgTitle-22ea4f82" th:text="${orgInfo.dashBoardName}">dashBoardName</span>
 				<div class="reset-3c756112--dashboardTabContent-12b621e6">
 					<div class="reset-3c756112--mobileMenuContainer-19573906">
 						<button
@@ -107,7 +107,8 @@
 			
 			
 			<!-- 닫힌 메뉴 -->
-			<div th:each="teamList : ${teamList}" th:id="${teamList.teamCode}" name="teamInfo" class="reset-3c756112--S300Bottom-9b4658d2--panel-1b61b7b4--dark-095bdbe8--dark-7dfad810--dark-a885782e--medium-1b61b7b5" role="presentation">
+			<div th:each="teamList : ${teamList}" th:id="${teamList.teamCode}" name="teamInfo" class="reset-3c756112--S300Bottom-9b4658d2--panel-1b61b7b4--dark-095bdbe8--dark-7dfad810--dark-a885782e--medium-1b61b7b5" 
+				 role="presentation">
 				<div class="reset-3c756112--panelHeader-2f79c7a6--medium-90fc7d46" >
 					<div class="reset-3c756112--panelHeaderLeft-f6ad52b8">
 						<div class="reset-3c756112--panelHeaderTitle-c44ec79e">
@@ -117,6 +118,8 @@
 							<span class="text-4505230f--TextH200-a3425406--textUIFamily-5ebd8e40">3 members</span>
 						</div>
 					</div>
+					
+					<!-- 닫힌 아바타 리스트
 					<div class="reset-3c756112--panelHeaderRight-2f79c7a6">
 						<div class="reset-3c756112--ownerAvatarList-696792ce--avatars-e0759ade">
 							<div class="reset-3c756112--tooltipContainer-7fdb9b70--small-2ec8ae1a--circle-6c5acd10--ownerAvatarStackListItem-1b188f0f--darkOutline-a3afcd28">
@@ -144,6 +147,7 @@
 							</div>
 						</div>
 					</div>
+					  -->
 				</div>
 			</div>
 			
