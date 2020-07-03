@@ -149,12 +149,12 @@ sup {
 	top: -.5em
 }
 
-a {
-	color: #5FCB71;
+ a {
+	color: white;
 	text-decoration: none;
 	background-color: transparent
 }
-
+/*
 a:hover {
 	color: #36a749;
 	text-decoration: underline
@@ -174,7 +174,7 @@ a:not ([href] ):not ([tabindex] ):hover, a:not ([href] ):not ([tabindex]
 a:not ([href] ):not ([tabindex] ):focus {
 	outline: 0
 }
-
+ */
 pre, code, kbd, samp {
 	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
 		"Courier New", monospace;

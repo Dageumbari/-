@@ -21,16 +21,24 @@ public class PageServiceImpl implements PageService {
 	}
 
 	@Override
-	public List<PageVO> getAllList() {
-		return pageDAO.getAllList();
-	}
-
-	@Override
 	public int pageSave(PageVO pv) {
 		return pageDAO.pageSave(pv);
 	}
 
+	@Override
+	public PageVO getPageDetail(int pageNO) {
+		return pageDAO.getPageDetail(pageNO);
+	}
+
+	@Override
+	public PageVO getPageDetailVo(PageVO pv) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/*
-	 * @Override public int pagePudate(PageVO pv) { return pageDAO.PageUpdate(pv); }
+	 * @Override public int getPageUpdate(PageVO pv) { return
+	 * pageDAO.getPageUpdate(pv); }
 	 */
+
 }

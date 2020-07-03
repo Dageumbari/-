@@ -1,7 +1,5 @@
 package com.bit.model.vo;
 
-import java.sql.Clob;
-import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,14 +25,19 @@ public class PageVO {
 	private String pageDescription;
 
 	/* 저장시간 */
-	private Timestamp pageSavetime;
+	private String pageSavetime;
 
 	/* 페이지 내용 */
-	private Clob pageConenet;
+	private String pageContent;
 
 	/* 페이지 순서 */
 	private int pageOrder;
 
 	/* 부모 페이지 */
 	private int pageGroupNo;
+
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

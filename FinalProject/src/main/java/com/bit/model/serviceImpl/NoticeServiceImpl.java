@@ -21,47 +21,46 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired(required = false)
 	private NoticeDAO noticeDAO;
 
-	@Override
-	public List<NoticeVO> getAllNoticeInfo(NoticeCriteriaDTO noticeCri) {
-		// TODO Auto-generated method stub
-		log.info("Get notice PageList w/ criteria:" + noticeCri);
-		return noticeDAO.getListwithPaging(noticeCri);
-	}
+   @Override
+   public List<NoticeVO> getAllNoticeInfo(NoticeCriteriaDTO noticeCri) {
+      // TODO Auto-generated method stub
+      log.info("Get notice PageList w/ criteria:" + noticeCri);
+      return noticeDAO.getListwithPaging(noticeCri);
+   }
 
 	@Override
 	public void register(NoticeVO notice) {
 		// TODO Auto-generated method stub
 		log.info("공지작성 :" + notice);
 		noticeDAO.insert(notice);
-		
+
 	}
-	
+
 	public NoticeVO get(int noticeNO) {
 		// TODO Auto-generated method stub
-		log.info("공지조회 : "+noticeNO);
+		log.info("공지조회 : " + noticeNO);
 		return noticeDAO.read(noticeNO);
 	}
 
 	@Override
 	public boolean modify(NoticeVO notice) {
 		// TODO Auto-generated method stub
-		log.info("공지수정 :"+notice);
-		return noticeDAO.update(notice)==1;
-	} 
+		log.info("공지수정 :" + notice);
+		return noticeDAO.update(notice) == 1;
+	}
 
 	@Override
 	public boolean remove(int noticeNo) {
 		// TODO Auto-generated method stub
-		log.info("공지삭제: "+noticeNo);
-		return noticeDAO.delete(noticeNo)==1;
+		log.info("공지삭제: " + noticeNo);
+		return noticeDAO.delete(noticeNo) == 1;
 	}
 
-	
-	@Override
-	public int getTotalNoticeCount(NoticeCriteriaDTO noticeCriteria) {
-		// TODO Auto-generated method stub
-		return noticeDAO.getTotalNoticeCount(noticeCriteria);
-	}
+   
+   @Override
+   public int getTotalNoticeCount(NoticeCriteriaDTO noticeCriteria) {
+      // TODO Auto-generated method stub
+      return noticeDAO.getTotalNoticeCount(noticeCriteria);
+   }
 }
-	
-
+   

@@ -4,12 +4,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class FileController {
 
-	@RequestMapping
+	@RequestMapping("")
 	private String fileCreateMain() {
 		
 		return "fileCreate";
 	}
-	@RequestMapping
+	@RequestMapping("")
 	private String fileModifyMain() {
 		
 		return "fileModify";

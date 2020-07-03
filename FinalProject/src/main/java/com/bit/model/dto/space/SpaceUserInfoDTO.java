@@ -10,12 +10,11 @@ import lombok.ToString;
 @Setter
 @ToString
 @Alias("spaceUserInfo")
-public class SpaceUserInfo {
+public class SpaceUserInfoDTO {
  	private String spaceCode;
 	private String spaceName;
 	private String spaceUrl;
 	private String name;
 	private int userNo;
 	private String userImage;
-	
 }

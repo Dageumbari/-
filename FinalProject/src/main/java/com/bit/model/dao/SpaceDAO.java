@@ -1,18 +1,22 @@
 package com.bit.model.dao;
 
-
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
-import com.bit.model.dto.space.SpaceUserInfo;
+import com.bit.model.dto.space.DraftListDTO;
+import com.bit.model.dto.space.SpaceUserInfoDTO;
 
 @Mapper
 public interface SpaceDAO {
 
-	// 드래프트 리스트 불러오기
+	// 스페이스 유저 정보
+	public SpaceUserInfoDTO getSpaceUserInfo();
 
-	public SpaceUserInfo getSpaceUserInfo(@Param("userNo") int userNo, 
-			@Param("spaceCode") String spaceCode);
+	// draftsList
+	public List<DraftListDTO> getDraftList();
 
+	public List<DraftListDTO> getMergedList();
+
+	public List<DraftListDTO> getArchivedList();
 }

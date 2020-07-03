@@ -35,50 +35,72 @@
 		from user_info
 		inner join user_role
 		on user_info.userNO = user_role.userNo
-		where user_info.email = #{email}
+		where
+		user_info.email = #{email}
 
 	</select>
-	
-	<select id="getJoinCheck" resultType="String" >
 
-		select user_info.email
+	<select id="getJoinCheck" resultType="String">
+
+		select
+		user_info.name
 		from user_info
 		where user_info.email = #{email}
 
 	</select>
-	
+
 
 	<insert id="setUserInfo" parameterType="com.bit.model.dto.UserDTO">
 		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
-		SELECT USERINFOSEQ.NEXTVAL FROM DUAL
+			SELECT USERINFOSEQ.NEXTVAL FROM DUAL
 		</selectKey>
-		
+
+		insert all
+		into user_info
+		values (#{userNo}, #{email}, #{pw}, #{name}, #{userNo}, 0, #{gender}, 0, localtimestamp(0), 082, #{key})
+		into user_role (roleNo, userNo,	roleName)
+		values
+		<foreach item="roles" collection="roles" separator=",">
+			(USERROLESEQ.NEXTVAL, #{userNo}, #{roles.roleName})
+		</foreach>
+		SELECT * FROM DUAL
+
+	</insert>
+
+	<insert id="setAdminInfo" parameterType="com.bit.model.dto.UserDTO">
+		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
+			SELECT USERINFOSEQ.NEXTVAL FROM DUAL
+		</selectKey>
+
 		insert all 
+		into admin_info 
+		values (#{userNo}, #{email}, #{key})
 		into user_info 
 		values (#{userNo}, #{email}, #{pw}, #{name}, #{userNo}, 0, #{gender}, 0, localtimestamp(0), 082, #{key})
-		into user_role (roleNo, userNo, roleName) 
+		into user_role (roleNo, userNo,	roleName)
 		values 
 		<foreach item="roles" collection="roles" separator=",">
-		(USERROLESEQ.NEXTVAL, #{userNo}, #{roles.roleName})
-  		</foreach>
+			(USERROLESEQ.NEXTVAL, #{userNo}, #{roles.roleName})
+		</foreach>
 		SELECT * FROM DUAL
 		
 	</insert>
-	
+
 	<update id="setEmailCheck">
-	
-	update user_info
-	set key = 'Y'
-	where email = #{email} and key = #{key}
-	
+
+		update user_info
+		set key = 'Y'
+		where email = #{email} and key = #{key}
+
 	</update>
-	
+
 	<update id="setLoginFailCount">
 
-	update user_info
-	set loginFailCount = loginFailCount + 1 
-	where email = #{email}
-	
+		update user_info
+		set loginFailCount = loginFailCount + 1
+		where email = #{email}
+
 	</update>
-	
+
+
 </mapper>

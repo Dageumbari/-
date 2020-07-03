@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="context-path" th:content="@{/}" />
-<title>pageContent</title>
-<link th:href="@{/css/sidenav.css}" rel="stylesheet">
-<link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet">
-<link th:href="@{/css/style.css}" rel="stylesheet">
-<link th:href="@{/css/theme-1.css}" rel="stylesheet">
-<!-- <link th:href="@{/css/theme-2.css}" rel="stylesheet">
-<link th:href="@{/css/theme-3.css}" rel="stylesheet">
-<link th:href="@{/css/theme-4.css}" rel="stylesheet">
-<link th:href="@{/css/theme-5.css}" rel="stylesheet">
-<link th:href="@{/css/theme-6.css}" rel="stylesheet">
-<link th:href="@{/css/theme-7.css}" rel="stylesheet"> -->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/spaceMain}">
 
-<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}" ></script>
-<style type="text/css">
+<head>
+	<title>pageContent</title>
+</th:block>
+
+</head>
+
+<th:block layout:fragment="script">
+
+	<!-- Javascript_ -->
+	<script
+		th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+	<style type="text/css">
 .btnPre {
 	float: left;
 }
@@ -29,49 +26,81 @@
 .btnSave {
 	margin-left: 250px;
 }
-
-
 </style>
-<script type="text/javascript">
-	function save() {
-		
-		
-	}
+	<script type="text/javascript">
+		function save() {
+
+		}
+	</script>
+<script>
+$(document).ready(function() {
+	  $('#summernote').summernote({
+ 	    	placeholder: 'content',
+	        minHeight: 370,
+	        maxHeight: null,
+	        focus: true, 
+	        lang : 'ko-KR'
+	  });
+	});
 </script>
+</th:block>
 </head>
 <body>
-	<th:block th:replace="common/nav/sidenav"></th:block>
-	<th:block th:replace="common/nav/sidenavDrawer"></th:block>
-	<th:block th:replace="common/nav/navHeader"></th:block>
-	<th:block th:fragment="pageContent">
 
+	<div layout:fragment="pageContent">
 		<!-- Page Title,Content  -->
 		<div class="main-wrapper">
-			<form action="/pageSave" method="get" >
+			<form action="/pageSave" method="get">
 				<div class="container" align="center">
-					<input type="text" class="form-control" placeholder="Untitled"
-						id="pageTitle" name="pageTitle">
+
+					<!-- <th:block  th:if="${#strings.equals(pageDetail, 'NoData')}"> -->
+					<th:block th:if="${pageDetail == null}">
+						<input type="text" class="form-control" placeholder="Untitled"
+							id="pageTitle" name="pageTitle" />
+					</th:block>
+
+					<!-- Not Null -->
+					<th:block th:if="${pageDetail != null}">
+						<input th:value="${pageDetail.pageTitle}" type="text"
+							class="form-control" placeholder="Untitled" id="pageTitle"
+							name="pageTitle" />
+					</th:block>
+
 				</div>
 				<hr class="container" style="width: 400px;" />
 				<div class="container" align="center">
-					<textarea style="height: 400px" class="form-control"
-						placeholder="Enter your content here..." id="pageConenet"
-						name="pageConenet"></textarea>
+
+					<!-- Null -->
+					<!-- <th:block  th:unless="${pageDetail != 'null' && pageDetail != ''}"> -->
+					<th:block th:if="${pageDetail == null}">
+						<textarea style="height: 400px" class="form-control"
+							placeholder="Enter your content here..." id="pageContent"
+							name="pageContent"></textarea>
+					</th:block>
+
+					<!-- Not Null -->
+					<th:block th:each="ld : ${pageDetail}"
+						th:if="${pageDetail != null}">
+						<textarea style="height: 400px" class="form-control"
+							placeholder="Enter your content here..." id="pageContent"
+							name="pageContent" th:text="${ld.pageContent}"></textarea>
+					</th:block>
 				</div>
-	
+
 				<hr class="container" style="width: 400px;" />
 				<!-- Previous,Next -->
-	
-				<article class="container-center-plz">
+
+				<div class="container-center-plz">
+					<!-- 수정  -->
 					<div class="container" style="left: 10px;">
 						<button class="btn btn-primary btnPre">&laquo; Previous</button>
-						<button onclick="save();" type="submit" class="btn btn-primary btnSave">저장하기</button>
+						<button onclick="save();" type="submit"
+							class="btn btn-primary btnSave">저장하기</button>
 						<button class="btn btn-primary btnNext">Next &raquo;</button>
 					</div>
-				</article>
+				</div>
 			</form>
 		</div>
-
-	</th:block>
+	</div>
 </body>
 </html>

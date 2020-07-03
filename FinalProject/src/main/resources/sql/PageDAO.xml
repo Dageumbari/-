@@ -13,21 +13,53 @@
 		FROM PAGE
 	</select>
 	
-<!-- 	<select id="getPageSave" resultType="com.bit.model.vo.PageVO">
-	SELETE
-		PAGENO,
-		PAGETITLE,
-		PAGECONTENT,
-		PAGESAVETIME
-	FROM PAGE
-	</select> -->
+		<!-- view에서 저장시킬 데이터를 DB에 최초로 저장 시켜주는 것 -->
+	<update id="pageSave" parameterType="com.bit.model.vo.PageVO">
+	INSERT INTO 
+		page(PAGENO, PAGEGROUPCODE, PAGETYPECODE,
+			PAGETITLE, PAGESAVETIME,PAGECONTENT)
+		values
+		(PAGE_SEQ.NEXTVAL, 'pg01', 'page',#{pageTitle},
+		sysdate, #{pageContent}) 
+	</update>
 	
-	<!-- <insert id="insertPage" parameterType="PageVO">
-		SELECT 
-		PAGENO,
-		PAGETITLE,
-		PAGECONENET,
-		PAGESAVETIME
+	<select id="getPageDetail" resultType="com.bit.model.vo.PageVO">
+		SELECT
+		    PAGENO,
+		    PAGETITLE,
+		    PAGECONTENT,
+		    PAGESAVETIME
 		FROM PAGE
-	</insert> -->
+		WHERE 1=1
+		AND PAGENO = #{pageNo, jdbcType=INTEGER}
+	</select>
+	
+<!-- 	<update id="getPageUpdate">
+		UPDATE PAGE
+		SET
+		PAGETITLE=#{PAGETITLE},
+		PAGECONTENT=#{PAGECONTENT},
+		PAGESAVETIME =
+		SYSDATE
+		WHERE
+		PAGENO=#{PAGENO}
+	</update> -->
+
+	<!-- view에서 저장시킬 데이터를 DB에 최초로 저장 시켜주는 것 -->
+
+
+
+
+	<!-- <update id="pageUpdate">UPDATE PAGESETPAGETITLE=#{PAGETITLE},PAGECONTENT=#{PAGECONTENT},PAGESAVETIME 
+		=SYSDATEWHEREPAGENO=#{PAGENO}</update> -->
+
+
+	<!-- <select id="getPageSave" resultType="com.bit.model.vo.PageVO">SELETEPAGENO,PAGETITLE,PAGECONTENT,PAGESAVETIMEFROM 
+		PAGE</select> -->
+
+
+	<!-- <insert id="insertPage" parameterType="PageVO">SELECTPAGENO,PAGETITLE,PAGECONENET,PAGESAVETIMEFROM 
+		PAGE</insert> -->
+
+
 </mapper>
