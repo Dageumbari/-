@@ -1,5 +1,6 @@
 package com.bit.controller.space;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,8 +61,13 @@ public class SpaceController {
 	@GetMapping("/pageList")
 	public String getPageList(Model model) {
 		// model.addAttribute("pageDetail", "NoData");
-		model.addAttribute("list", pageService.getPageList());
-		System.out.println("PAGELIST START");
+		List<PageVO>  pageVOs=  pageService.getPageList();
+		model.addAttribute("list", pageVOs);
+		
+		PageVO pv = pageVOs.get(pageVOs.size()-1);
+		
+		model.addAttribute("lastPageNo", pv.getPageNo());
+		System.out.println("PAGELIST START " + pv.getPageNo());
 		return "common/contents/pageContent"; // navHeader가 나오는데 인클루드할때 값이 나와야함
 	}
 
@@ -70,6 +76,7 @@ public class SpaceController {
 		System.out.println("=======getPageDetail START=====");
 		pv = pageService.getPageDetail(pv.getPageNo());
 		//model.addAttribute("pageDetail", pv);
+		
 		if (pv == null) {
 			System.out.println("NoData");
 			model.addAttribute("pageDetail", "NoData");

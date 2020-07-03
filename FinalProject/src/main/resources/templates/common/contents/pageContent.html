@@ -35,6 +35,7 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
+	
 	$('#summernote').summernote({
 		placeholder : 'Enter your content here...',
 		maximumImageFileSize : 10000 * 1024 * 1024,
@@ -49,11 +50,11 @@ $(document).ready(function() {
 			} 
 		}
 	});
-	
+});
+
 /* 	$(function() {
 		getModalFormEditPage("editPage-popup-link");
 	}); */
-});
 
 <!--  callback 함수에서  onImageUpload 함수 사용 -->
 <!-- 이미지 파일 업로드 -->
@@ -138,10 +139,9 @@ function del(pageNo) {
 							name="pageTitle" style="width: 600px;" />
 					</th:block>
 				</div>
-				<div class="container" >
-				<hr class="container" />
 				
-
+				<div class="container" >
+				<hr style="width: 500px;">
 					<!-- Null  -->
 						<th:block th:if="${pageDetail == null}">
 							<textarea id="summernote" name="pageContent" class="form-control"></textarea>
@@ -151,25 +151,31 @@ function del(pageNo) {
 						<th:block th:each="ld : ${pageDetail}"
 							th:if="${pageDetail != null}">
 						<textarea id="summernote" name="pageContent" class="form-control" th:text="${ld.pageContent}"></textarea>
-								 
 						</th:block>
 				</div>
 				<hr class="container" style="width: 400px;" />
+				
 				<!-- 작성 시간, 수정 시간  -->
 			   <!-- <span th:text="${#temporals.format(ld.pageSavetime, 'yyyy-MM-dd HH:mm')}"></span> -->
-				
 			
 			<!-- Previous,Next -->
 			<div class="container-center-plz">
 				<!-- 수정  -->
-				<div class="container" style="left: 10px;" th:each="ld : ${pageDetail}">
+				<!-- Null -->
+				<div th:if="${pageDetail ==null}" class="container" style="left: 10px;" >
+					<a class="btn btn-primary btnPre" th:href="@{/pageDetail(pageNo=${lastPageNo})}">&laquo; Previous</a>
+					<input onclick="goWrite(this.form)" type="button" class="btn btn-primary btnSave" value="저장하기">
+ 			
+				</div>
+				<!-- Not Null -->
+				<div th:if="${pageDetail !=null}" class="container" style="left: 10px;" th:each="ld : ${pageDetail}">
 					<a class="btn btn-primary btnPre" th:href="@{/pageDetail(pageNo=${ld.prev})}">&laquo; Previous</a>
 					<input onclick="goWrite(this.form)" type="button" class="btn btn-primary btnSave" value="저장하기">
 <!-- 				<input type="button" class="btn btn-primary btnDelete" value="삭제하기" th:onclick="'javascript:del('+${pageDetail.pageNo}+')'"> -->
 					<a class="btn btn-primary btnNext" th:href="@{/pageDetail(pageNo=${ld.next})}">Next &raquo;</a>
 				</div>
 			</div>
-			</form>
-		</div>
+		</form>
+	</div>
 </body>
 </html>
