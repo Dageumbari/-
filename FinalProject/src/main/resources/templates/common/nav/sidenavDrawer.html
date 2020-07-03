@@ -44,11 +44,11 @@
 						<div class="reset-3c756112--draftsDrawer">
 							<div class="reset-3c756112--controlsCenterTabHeader">
 								<div class="reset-3c756112--draftTabs">
-									<div th:include="draft/draftList :: draftList"></div>
+									<!-- <div th:include="draft/draftList :: draftList"></div> -->
 									<a role="button" tabindex="0"
 										class="reset-3c756112--tabsItem-touchableView" type="button"
 										href="javascript:void(0);" onclick="callDraftList();"><span
-										class="tabsItemInfo-draftTabs">drafts</span> <!-- <div th:insert="~{draft/draftList::draftList}"></div>  -->
+										class="tabsItemInfo-draftTabs" id="draftList">drafts</span> <!-- <div th:insert="~{draft/draftList::draftList}"></div>  -->
 										<!-- <a role="button" tabindex="0"
 										class="reset-3c756112--tabsItem-touchableView" type="button"
 										href="getDraftList(/draftList)"> <span class="tabsItemInfo-draftTabs">drafts</span> -->
@@ -56,7 +56,7 @@
 										class="reset-3c756112--tabsItem-touchableView"
 										href="/mergedList"> <span class="tabsItemInfo-draftTabs">merged</span>
 									</a> <a role="button" tabindex="0"
-										class="reset-3c756112--tabsItem-touchableView"
+										class="reset-3c756112--tabsItem-touchableView"  
 										href="/archivedList"> <span class="tabsItemInfo-draftTabs">archived</span>
 									</a>
 								</div>
