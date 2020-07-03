@@ -59,8 +59,7 @@
 		set
 		NOTICETITLE=#{NOTICETITLE},
 		NOTICECONTENT=#{NOTICECONTENT},
-		NOTICEDATE =
-		SYSDATE
+		NOTICEDATE = SYSDATE
 		where
 		noticeNo=#{noticeNo}
 	</update>
@@ -141,7 +140,7 @@
       <![CDATA[ rownum <= #{pageNo} * #{noticeAmount}) where rn > (#{pageNo} -1) 
       * #{noticeAmount} ]]> </select> -->
 
-   <select id="getTotalNoticeCount" resultType="int">
+   <select id="getTotalNoticeCount" parameterType="com.bit.model.dto.NoticePagingDTO" resultType="int">
       <![CDATA[
       select
        count(noticeNo)
