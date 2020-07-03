@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.bit.model.dto.space.DraftListDTO;
 import com.bit.model.service.PageService;
@@ -67,16 +66,22 @@ public class SpaceController {
 	@GetMapping("/pageList")
 	public String getPageList(Model model) {
 		// model.addAttribute("pageDetail", "NoData");
-		model.addAttribute("list", pageService.getPageList());
-		System.out.println("PAGELIST START");
+		List<PageVO>  pageVOs=  pageService.getPageList();
+		model.addAttribute("list", pageVOs);
+		
+		PageVO pv = pageVOs.get(pageVOs.size()-1);
+		
+		model.addAttribute("lastPageNo", pv.getPageNo());
+		System.out.println("PAGELIST START " + pv.getPageNo());
 		return "common/contents/pageContent"; // navHeader가 나오는데 인클루드할때 값이 나와야함
 	}
 
 	@GetMapping("/pageDetail")
 	public String getPageDetail(Model model, PageVO pv) {
-		System.out.println("==================pageDetailStart=================" + pv);
+		System.out.println("=======getPageDetail START=====");
 		pv = pageService.getPageDetail(pv.getPageNo());
-		System.out.println("pv====" + pv);
+		//model.addAttribute("pageDetail", pv);
+		
 		if (pv == null) {
 			System.out.println("NoData");
 			model.addAttribute("pageDetail", "NoData");
@@ -85,8 +90,21 @@ public class SpaceController {
 			model.addAttribute("pageDetail", pv);
 			model.addAttribute("list", pageService.getPageList());
 		}
+		System.out.println("=======getPageDetail END=====");
 		return "common/contents/pageContent";
 	}
+
+	/*
+	 * @GetMapping("/pageUpdate") public String getPageUpdate(HttpServletRequest
+	 * req, Model model) { model.addAttribute("1::" +
+	 * req.getParameter("pageTitle")); model.addAttribute("2::" +
+	 * req.getParameter("pageContent")); PageVO pv = new PageVO();
+	 * pv.setPageTitle(req.getParameter("pageTitle"));
+	 * pv.setPageTitle(req.getParameter("pageContent"));
+	 * System.out.println("게시글 수정 성공!!");
+	 * 
+	 * return "redirect:/pageList"; }
+	 */
 
 	@GetMapping("/pageSave")
 	public String getPageSave(HttpServletRequest req, Model model) {
@@ -108,13 +126,16 @@ public class SpaceController {
 		return "redirect:/pageList";
 	}
 
-	@GetMapping("/edits")
-	public String editsPage() {
-		return "draft/edits";
-	}
+	/*
+	 * @GetMapping("/delete") public String delete(@RequestParam("pageNo") int
+	 * pageNo, Model model) { System.out.println("삭제!!!");
+	 * pageService.deletePage(pageNo); return "redirect: /pageList"; }
+	 */
 
-	@GetMapping("/spacePage")
-	public String spacePage() {
-		return "page/spacePage";
-	}
+	/*
+	 * @GetMapping("/edits") public String editsPage() { return "draft/edits"; }
+	 * 
+	 * @GetMapping("/spacePage") public String spacePage() { return
+	 * "page/spacePage"; }
+	 */
 }

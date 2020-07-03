@@ -27,7 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable();
+		httpSecurity.csrf().disable(); //security 토큰을 비활성화
+		
 		httpSecurity.authorizeRequests()
 				.antMatchers("/resources/**").permitAll()
 				.antMatchers("/password").hasRole("MEMBER")

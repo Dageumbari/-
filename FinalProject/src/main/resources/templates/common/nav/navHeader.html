@@ -27,26 +27,28 @@
 					<hr>
 				</div>
 				<!-- nav-section -->
-				<ul class="navbar-nav flex-column" th:each="pageDetail: ${list}"  th:if="${pageDetail != null}">
-					<li>
-						<a th:href="@{/pageDetail(pageNo=${pageDetail.pageNo})}" th:text="${pageDetail.pageTitle}" >
+				<div class="ml-5" align="left">
+				<ul class="navbar-nav flex-column">
+					<li th:each="pageDetail: ${list}"  th:if="${pageDetail != null}">
+						<a th:href="@{/pageDetail(pageNo=${pageDetail.pageNo})}" th:text="${pageDetail.pageTitle}">
 						</a>
+						&emsp;&emsp;&emsp;
+						<!-- <a onclick="aaabbb();" data-mfc-src=".editBoradGroupPanelWrapper" href="#" class="editPage-popup-link">&gt;&gt;&gt;</a> -->
+						<hr>
 					</li>
 				</ul>
-				<ul class="nav-item">
-					<li class="nav-item">
-						<a class="nav-link" href="fileUpload">
-							<i class="far fa-images"></i>
-							File 
-						</a>
-					</li>
-					<li class="nav-item">
+				<div class="nav-item" align="center">
 						<a class="nav-link" href="pageList">
 							<i class="fas fa-plus"></i>
 							New
 						</a>
-					</li>
-				</ul>
+						<a class="nav-link" href="fileUpload">
+							<i class="far fa-images"></i>
+							File 
+						</a>
+				</div>
+				<hr align="right">
+			</div>
 			</div>
 	</div>
 	</header>

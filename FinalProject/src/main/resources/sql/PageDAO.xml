@@ -4,6 +4,18 @@
 
 <mapper namespace="com.bit.model.dao.PageDAO">
 
+<!-- <resultMap type="com.bit.model.vo.PageVO" id="pageMap">
+	<result property="pageNo" column="pageNo" />
+	<result property="pageGroupCode" column="pageGroupCode" />
+	<result property="pageTypeCode" column="pageTypeCode" />
+	<result property="pageTitle" column="pageTitle" />
+	<result property="pageDescription" column="pageDescription" />
+	<result property="pageSavetime" column="pageSavetime" />
+	<result property="pageContent" column="pageContent" />
+	<result property="pageOrder" column="pageOrder" />
+	<result property="pageGroupNo" column="pageGroupNo" />
+</resultMap> -->
+
 	<select id="getPageList" resultType="com.bit.model.vo.PageVO">
 		SELECT
 		    PAGENO,
@@ -11,6 +23,7 @@
 		    PAGECONTENT,
 		    PAGESAVETIME
 		FROM PAGE
+		ORDER BY PAGENO DESC
 	</select>
 	
 		<!-- view에서 저장시킬 데이터를 DB에 최초로 저장 시켜주는 것 -->
@@ -24,42 +37,31 @@
 	</update>
 	
 	<select id="getPageDetail" resultType="com.bit.model.vo.PageVO">
-		SELECT
-		    PAGENO,
-		    PAGETITLE,
-		    PAGECONTENT,
-		    PAGESAVETIME
-		FROM PAGE
+		SELECT *
+		FROM (
+			SELECT
+			    PAGENO,
+			    LAG(PAGENO) OVER (ORDER BY PAGENO DESC) PREV,
+	    		LEAD(PAGENO) OVER (ORDER BY PAGENO DESC) NEXT,
+			    PAGETITLE,
+			    PAGECONTENT,
+			    PAGESAVETIME
+			FROM PAGE
+		)
 		WHERE 1=1
-		AND PAGENO = #{pageNo, jdbcType=INTEGER}
+		AND PAGENO = #{pageNo}
 	</select>
 	
- 	<!-- <update id="getPageUpdate">
-		UPDATE PAGE
-		SET
-		PAGETITLE=#{PAGETITLE},
-		PAGECONTENT=#{PAGECONTENT},
-		PAGESAVETIME =
-		SYSDATE
-		WHERE
-		PAGENO=#{PAGENO}
-	</update> -->
+<!-- 	<selete id="date" resultType="com.bit.model.vo.PageVo">
+	SELETE TO_CHAR
+		(SYSDATE, 'YYYYMMDD HH24:MI:SS'), 
+		   TO_CHAR
+		(SYSDATE -1/24/60, 'YYYYMMDD HH24:MI:SS') 
+	FROM 
+		DUAL;
+	</selete> -->
 
-	<!-- view에서 저장시킬 데이터를 DB에 최초로 저장 시켜주는 것 -->
-
-
-
-
-	<!-- <update id="pageUpdate">UPDATE PAGESETPAGETITLE=#{PAGETITLE},PAGECONTENT=#{PAGECONTENT},PAGESAVETIME 
-		=SYSDATEWHEREPAGENO=#{PAGENO}</update> -->
-
-
-	<!-- <select id="getPageSave" resultType="com.bit.model.vo.PageVO">SELETEPAGENO,PAGETITLE,PAGECONTENT,PAGESAVETIMEFROM 
-		PAGE</select> -->
-
-
-	<!-- <insert id="insertPage" parameterType="PageVO">SELECTPAGENO,PAGETITLE,PAGECONENET,PAGESAVETIMEFROM 
-		PAGE</insert> -->
-
-
+	<delete id="deletePage" parameterType="int">
+		DELETE FROM PAGE WHERE PAGENO=#{pageNo}
+	</delete> 
 </mapper>
