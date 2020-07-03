@@ -1,4 +1,4 @@
-<script type="text/javascript">
+
 $(document).ready(function() {
   
   var operForm = $("#operForm"); 
@@ -18,4 +18,3 @@ $(document).ready(function() {
     
   });  
 });
-</script>

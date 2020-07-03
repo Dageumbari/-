@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDEMapper3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   <mapper namespace="com.bit.model.dao.ChartDAO">
+   
+   
+<!--    <resultMap type="com.bit.model.dto.ChartDTO" id="selectLoginDate">
+   <id property="userHistoryNo" column="userHistoryNo" />
+   <result property="Jan" column="loginDate" />
+   <result property="Feb" column="loginDate" />
+   <result property="Mar" column="loginDate" />
+   <result property="Apr" column="loginDate" />
+   <result property="May" column="loginDate" />
+   <result property="Jun" column="loginDate" />
+   </resultMap>
+ -->
+   <select id="selectLoginDate" resultType="com.bit.model.dto.ChartDTO">
+   <![CDATA[
+     select 
+     distinct to_char(userhistory.logindate, 'yyyy-mm') as loginStatus_Monthly,
+    (select count(*) from userHistory where 
+     to_char(userHistory.logindate, 'yyyy-MM') <= '2020-01') as Jan,
+     (select count(*) from userHistory where 
+     to_char(userHistory.logindate, 'yyyy-MM') <= '2020-02'   
+     and to_char(userHistory.logindate, 'yyyy-MM') > '2020-01') as Feb,
+     (select count(*) from userHistory where 
+     to_char(userHistory.logindate, 'yyyy-MM') <= '2020-03'   
+     and to_char(userHistory.logindate, 'yyyy-MM') > '2020-02') as Mar,
+     (select count(*) from userHistory where 
+     to_char(userHistory.logindate, 'yyyy-MM') <= '2020-04'   
+     and to_char(userHistory.logindate, 'yyyy-MM') > '2020-03') as Apr,
+     (select count(*) from userHistory where 
+     to_char(userHistory.logindate, 'yyyy-MM') <= '2020-05'   
+     and to_char(userHistory.logindate, 'yyyy-MM') > '2020-04') as May,
+     (select count(*) from userHistory where 
+     to_char(userHistory.logindate, 'yyyy-MM')<= '2020-06' 
+     and to_char(userHistory.logindate, 'yyyy-MM') > '2020-05'  ) as Jun
+     from userhistory
+     order by to_char(userhistory.logindate, 'yyyy-mm')]]>
+   </select>
+   </mapper>
