@@ -52,13 +52,20 @@
 		AND PAGENO = #{pageNo}
 	</select>
 	
-<!-- 	<selete id="date" resultType="com.bit.model.vo.PageVo">
+	<!-- <selete id="date" resultType="com.bit.model.vo.PageVo">
+	SELETE *
+		(SYSDATE, 'YYYYMMDD HH24:MI:SS')  
+	FROM 
+		PAGE
+	</selete>  -->
+
+	<!-- <selete id="date" resultType="com.bit.model.vo.PageVo">
 	SELETE TO_CHAR
 		(SYSDATE, 'YYYYMMDD HH24:MI:SS'), 
 		   TO_CHAR
 		(SYSDATE -1/24/60, 'YYYYMMDD HH24:MI:SS') 
 	FROM 
-		DUAL;
+		PAGE
 	</selete> -->
 
 	<delete id="deletePage" parameterType="int">

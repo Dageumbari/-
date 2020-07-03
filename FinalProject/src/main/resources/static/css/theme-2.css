@@ -63,6 +63,7 @@ body {
 	font-size: 1.1rem;
 	font-weight: 400;
 	/* line-height: 1.5; */
+	/*변동사항x*/
 	color: #292929;
 	text-align: left;
 	background-color: #fff
@@ -2423,6 +2424,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 	color: #292929
 	/* background-color: #c2c2c2;
 	border-color: #c2c2c2 */
+	/* 에디터 굵기등,의 테두리*/
 }
 
 .btn-light:hover {
@@ -9140,6 +9142,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 	/* padding: .375rem 1rem; */
 	/* height: 2.75rem; */
+	/* 에디터 굵기등, 의 창이 커짐*/
 	transition: all 0.4s ease-in-out
 }
 

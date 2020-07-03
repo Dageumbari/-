@@ -73,12 +73,6 @@ function uploadSummernoteImageFile(file, editor) {
 			$(editor).summernote('insertImage', data.url);
 		}
 	});
-	$("div.note-editable").on('drop',function(e){
-		for(i=0; i< e.originalEvent.dataTransfer.files.lenght; i++){
-			uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i], $("#summernote")[0]);
-		}
-		e.preventDefault();
-	});
 }
 
 /* 
@@ -150,13 +144,12 @@ function del(pageNo) {
 					<!-- Not Null  -->
 						<th:block th:each="ld : ${pageDetail}"
 							th:if="${pageDetail != null}">
-						<textarea id="summernote" name="pageContent" class="form-control" th:text="${ld.pageContent}"></textarea>
+						<textarea id="summernote" name="pageContent" class="form-control" th:text="${ld.pageContent}" ></textarea>				
 						</th:block>
+				<!-- 작성 시간, 수정 시간  -->
+			  <!--  <span th:text="${ld.pageSavetime}"></span> -->
 				</div>
 				<hr class="container" style="width: 400px;" />
-				
-				<!-- 작성 시간, 수정 시간  -->
-			   <!-- <span th:text="${#temporals.format(ld.pageSavetime, 'yyyy-MM-dd HH:mm')}"></span> -->
 			
 			<!-- Previous,Next -->
 			<div class="container-center-plz">
