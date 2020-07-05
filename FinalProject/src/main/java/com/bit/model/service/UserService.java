@@ -13,6 +13,4 @@ public interface UserService {
 	public void forgot(String email);
 	
 	public String emailCheck(String email, String key);
-	
-	public void setDefaultDashBoard(String email);
 }

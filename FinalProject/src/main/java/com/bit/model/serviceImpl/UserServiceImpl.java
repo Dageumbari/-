@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.model.dao.MainDAO;
-import com.bit.model.dao.OrgDAO;
 import com.bit.model.dto.UserDTO;
 import com.bit.model.service.UserService;
 import com.bit.security.SendEmail;
@@ -21,7 +20,6 @@ import lombok.extern.java.Log;
 public class UserServiceImpl implements UserService {
 
 	private final MainDAO mainDAO;
-	private final OrgDAO orgDAO;
 	private final PasswordEncoder pwEncoder;
 	private final SendEmail sendEmail;
 
@@ -43,8 +41,6 @@ public class UserServiceImpl implements UserService {
 
 			log.info("\n==email");
 			sendEmail.joinEmail(userDTO.getEmail(), userDTO.getName(), userDTO.getKey()); // 가입시 입력한 정보로 이메일 전송
-			
-			setDefaultDashBoard();
 			
 			modelAndView.addObject("email", userDTO.getEmail());
 			modelAndView.setViewName("/main/joinResult");
@@ -128,12 +124,4 @@ public class UserServiceImpl implements UserService {
 			return "잘못된 접근입니다.";
 		}
 	}
-
-	@Override
-	public void setDefaultDashBoard(String email) {
-		
-		orgDAO.createOrg(""); // 유저 가입시 개인 대시보드 생성
-
-	}
-
 }
