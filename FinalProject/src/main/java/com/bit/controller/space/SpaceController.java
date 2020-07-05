@@ -40,20 +40,20 @@ public class SpaceController {
 		model.addAttribute("userInfo", spaceService.getSpaceUserInfo());
 	}
 
-	//드래프트 리스트 호출
-	//@ModelAttribute
-	@GetMapping("/draftList")
-	public String getDraftList(Model model, @Param("userNo") int userNo) {
-		List<DraftListDTO> draftList = spaceService.getDraftList();
-		log.error(draftList);
-		model.addAttribute("draftList", draftList);
-		
-		SessionUser sessionUser = (SessionUser) httpsession.getAttribute("sessionUser");
-		userNo = sessionUser.getUserNo();
-		System.out.println("세션????????????????????: "+userNo);
-		
-		return "draft/draftList";
-	}
+	/*
+	 * //드래프트 리스트 호출 //@ModelAttribute
+	 * 
+	 * @GetMapping("/draftList") public String getDraftList(Model
+	 * model, @Param("userNo") int userNo) { List<DraftListDTO> draftList =
+	 * spaceService.getDraftList(); log.error(draftList);
+	 * model.addAttribute("draftList", draftList);
+	 * 
+	 * SessionUser sessionUser = (SessionUser)
+	 * httpsession.getAttribute("sessionUser"); userNo = sessionUser.getUserNo();
+	 * System.out.println("세션????????????????????: "+userNo);
+	 * 
+	 * return "draft/draftList"; }
+	 */
 	/*
 	 * @ModelAttribute public String getNavbar(@ModelAttribute("userId") String
 	 * userId,Model model){ model.addAttribute("userId", "jin2020");

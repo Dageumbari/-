@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	<th:block th:fragment="mainHeadFragment">
+ 
+	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/main}">Bitbook</a>
+		
+		<!-- Navbar Search-->
+		<div class="input-group">
+			<div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+				
+				<div sec:authorize="isAnonymous()" id="login">
+					<button onclick="location.href='/login'" >Login</button>
+				</div>
+				
+				<div sec:authorize="isAuthenticated()" id="logout">
+					<div class="form-group">
+						<button>
+                        	<a th:href="@{/dashboard/spaces}"> Go to Dashboard </a>
+						</button>
+						<form th:action="@{/logout}" method="POST">
+							<input type="submit" value="Logout" />
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</nav>
+	
+	</th:block>
+</html>

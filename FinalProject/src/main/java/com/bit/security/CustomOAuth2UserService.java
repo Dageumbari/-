@@ -49,6 +49,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 		if (mainDAO.getJoinCheck(userDTO.getEmail()) == null) {
 			
 			mainDAO.setSocialUserInfo(userDTO);
+			userDTO.setUserNo(mainDAO.getUserNo(userDTO.getEmail()));
 			httpSession.setAttribute("sessionUser", new SessionUser(userDTO));
 			
 			return new DefaultOAuth2User(makeGrantedAuthorities.getRoles(userDTO.getRoles()),

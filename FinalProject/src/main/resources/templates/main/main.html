@@ -30,15 +30,18 @@
 				</div>
 				
 				<div sec:authorize="isAuthenticated()" id="logout">
-					<form th:action="@{/logout}" method="POST">
-						<input type="submit" value="Logout" />
-					</form>
+					<div class="form-group">
+						<button>
+                        	<a th:href="@{/dashboard/spaces}"> Go to Dashboard </a>
+						</button>
+						<form th:action="@{/logout}" method="POST">
+							<input type="submit" value="Logout" />
+						</form>
+					</div>
 				</div>
 
 			</div>
 		</div>
-
-
 	</nav>
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">

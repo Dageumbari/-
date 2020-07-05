@@ -18,6 +18,7 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Component;
 
 import com.bit.model.dao.MainDAO;
+import com.bit.model.dto.UserDTO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -35,15 +36,15 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		log.info("\n==onAuthenticationSuccess");
-
+		
 		String email = request.getParameter("username");
 		mainDAO.setLoginFailCountReset(email);
 
 		loginFailSessionClaer(request);
 		sendRedirect(request, response);
 
-		// UserDTO userDTO = mainDAO.getUserAllInfo(email);
-		// httpSession.setAttribute("sessionUser", new SessionUser(userDTO));
+		UserDTO userDTO = mainDAO.getUserAllInfo(email);
+		httpSession.setAttribute("sessionUser", new SessionUser(userDTO));
 	}
 
 	private void loginFailSessionClaer(HttpServletRequest request) { // 로그인 실패시 저장된 세션 제거

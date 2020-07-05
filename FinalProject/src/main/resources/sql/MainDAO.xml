@@ -43,7 +43,7 @@
 	<select id="getJoinCheck" resultType="String">
 
 		select
-		user_info.name
+		user_info.email
 		from user_info
 		where user_info.email = #{email}
 
@@ -73,8 +73,8 @@
 		</selectKey>
 
 		insert all
-		into user_info
-		values (#{userNo}, #{email}, #{pw}, #{name}, #{userNo}, 0, #{gender}, 0, localtimestamp(0), 082, #{key})
+		into user_info (userNo, email, name, userImage, alert, gender, loginFailCount, loginCountDate, countryCode)
+		values (#{userNo}, #{email}, #{name}, #{userNo}, 0, #{gender}, 0, localtimestamp(0), 082)
 		into usersocial
 		values (USERSOCIALSEQ.NEXTVAL, #{userNo}, #{pw}, #{key})
 		into user_role (roleNo, userNo,	roleName)
