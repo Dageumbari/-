@@ -1,6 +1,5 @@
 package com.bit.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,8 +38,7 @@ public class MainController {
 	private final HttpSession httpSession;
 
 	@GetMapping("/main")
-	public String main(Principal principal) {
-		// log.info("\n==main : " + principal.getName());
+	public String main() {
 		return "/main/main";
 	}
 
@@ -64,7 +63,7 @@ public class MainController {
 		mainDAO.setForgotPassword(passwordEncoder.encode(password), email);
 
 		// 로그아웃 실행할것.
-		return "redirect:/login";
+		return "redirect:/logout";
 	}
 
 	@GetMapping("/rename")
@@ -114,11 +113,11 @@ public class MainController {
 	}
 
 	@PostMapping("/forgot")
-	public String forgotEamil(String email) {
+	public String forgotEamil(Model model,String email) {
 
-		userService.forgot(email);
-
-		return "/main/main";
+		String msg = userService.forgot(email);
+		model.addAttribute("msg", msg);
+		return "/main/forgot";
 	}
 
 	@GetMapping("/login")
@@ -166,9 +165,9 @@ public class MainController {
 	@GetMapping("/join/email/{email}/{key}")
 	public String joinKey(@PathVariable("email") String email, @PathVariable("key") String key, Model model) {
 		log.info("joinKey");
-	
+
 		String msg = userService.emailCheck(email, key);
-		
+
 		model.addAttribute("msg", msg);
 
 		return "/main/joinResult";
@@ -179,9 +178,10 @@ public class MainController {
 
 		return "/main/main";
 	}
-
+	
+	@ResponseBody
 	@PostMapping("/valid-recaptcha")
-	public @ResponseBody String validRecaptcha(HttpServletRequest request) {
+	public String validRecaptcha(HttpServletRequest request) {
 		log.info("\n==valid-Recaptcha");
 
 		String result;

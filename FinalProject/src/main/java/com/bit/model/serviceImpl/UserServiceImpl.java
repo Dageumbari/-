@@ -50,10 +50,10 @@ public class UserServiceImpl implements UserService {
 		} else {
 			log.info("\n==not null");
 
-			String errorMsg = "존재하는 유저입니다";
+			String msg = "존재하는 유저입니다";
 			String url = "/main/join";
 
-			modelAndView.addObject("errorMsg", errorMsg);
+			modelAndView.addObject("errorMsg", msg);
 			modelAndView.setViewName(url);
 
 			return modelAndView;
@@ -87,10 +87,10 @@ public class UserServiceImpl implements UserService {
 		} else {
 			log.info("\n==not null");
 
-			String errorMsg = "존재하는 유저입니다";
+			String msg = "존재하는 유저입니다";
 			String url = "main/adminjoin";
 
-			modelAndView.addObject("errorMsg", errorMsg);
+			modelAndView.addObject("errorMsg", msg);
 			modelAndView.setViewName(url);
 
 			return modelAndView;
@@ -98,19 +98,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void forgot(String email) {
+	public String forgot(String email) {
 		log.info("\n==UserServiceImpl=forgot");
 		String name = mainDAO.getJoinCheck(email);
+		String msg;
 		if (name == null) {
-
+			msg = "존재하지 않는 유저입니다.";
 		} else {
 			String key = sendEmail.getKey();
 
 			mainDAO.setForgotPassword(pwEncoder.encode(key), email);
 
 			sendEmail.forgotEmail(email, name, key);
+			
+			msg = email + "을 확인해주세요";
+			
 		}
-
+		return msg;
 	}
 
 	@Override

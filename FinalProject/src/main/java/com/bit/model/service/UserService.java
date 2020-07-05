@@ -10,7 +10,7 @@ public interface UserService {
 	
 	public ModelAndView adminjoin(UserDTO userDTO,String adminEmail);
 	
-	public void forgot(String email);
+	public String forgot(String email);
 	
 	public String emailCheck(String email, String key);
 }
