@@ -99,14 +99,14 @@
 			 PERMISSIONNO,
 			 PERMISSIONNAME,
 			 USERNO,
-			 NAME,
+			 NAME AS USERNAME,
 			 USERIMAGE
 		FROM MEMBER
-		WHERE #{TEAMCODE} = TEAMCODE
+		WHERE #{teamCode} = TEAMCODE
 		ORDER BY PERMISSIONNO
 	</select>
 	
-	<select id="getAllMemberCnt" resultType="int" >
+	<select id="getAllMemberCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM MEMBER 
 		WHERE #{DASHBOARDCODE} = DASHBOARDCODE

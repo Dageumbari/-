@@ -23,8 +23,8 @@ public class OrgServiceImpl implements OrgService {
 	}
 	
 	@Override
-	public List<DashBoardVO> getAllOrgList() {
-		return orgDAO.getAllOrgList();
+	public List<DashBoardVO> getAllOrgList(int userNo) {
+		return orgDAO.getAllOrgList(userNo);
 	}
 
 	@Override

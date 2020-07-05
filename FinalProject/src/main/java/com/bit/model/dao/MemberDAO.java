@@ -1,6 +1,7 @@
 package com.bit.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,8 +15,9 @@ public interface MemberDAO {
 	public int getAllMemberCnt(String DashBoardCode);
 	
 	public List<MemberDTO> getAllMemberList(String dashBoardCode);
-	//public List<MemberDTO> getTeamList(String dashBoardCode);
-	public List<MemberDTO> getTeamMemberList(String teamCode);
+	
+	//public List<MemberDTO> getTeamMemberList(String teamCode);
+	public List<Map<String, Object>> getTeamMemberList(MemberDTO memberDTO);
 	public List<MemberDTO> getMemberListByPermission();
 	
 	//리턴자료형, 매개변수 설정 필요

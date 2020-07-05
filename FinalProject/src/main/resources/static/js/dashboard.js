@@ -40,7 +40,7 @@ $(function() {
 				//var result = JSON.parse(orgName);
 				//if(result.statusCode==200){
 					console.log("입력된 조직 이름: "+orgName);
-					location.href="/dashboard/spaces?dashboardUrl="+orgName;
+					window.location.href="/dashboard/spaces?dashBoardUrl="+orgName;
 					
 					//$("#butsave").removeAttr("disabled");
 					//$('#fupForm').find('input:text').val('');
@@ -77,18 +77,18 @@ $(document).ready(function(){
 			data : {
 				"teamCode" : clickedTeam
 			},
-			type : "POST",
+			type : "GET",
 			dataType : "JSON"
 		})
 		.done(function(data){
-			//window.opener.location.reload();
 			console.log("팀 코드 보내기 성공")
-			var result = data.memberList;
-			console.log("리스트?"+result)
+
+			var a ='';
 			
-			for(var i=0; i<result.length; i++){
-				alert(list[i]);
-			}
+			$.each(data,function(key,value){
+				alert("반복~");
+			});
+			$('').html(a);
 			
 		})
 		.fail(function(data){

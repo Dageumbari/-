@@ -6,7 +6,7 @@ import com.bit.model.vo.DashBoardVO;
 
 public interface OrgService {
 	
-	public List<DashBoardVO> getAllOrgList();
+	public List<DashBoardVO> getAllOrgList(int userNo);
 	public DashBoardVO getOrgInfo(String dashBoardUrl);
 	public void createOrg(String dashBoardName);
 	public void deleteOrg(String dashBoardCode); 

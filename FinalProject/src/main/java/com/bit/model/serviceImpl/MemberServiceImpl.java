@@ -1,6 +1,7 @@
 package com.bit.model.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,12 +26,6 @@ public class MemberServiceImpl implements MemberService {
 	 * @Override public List<MemberDTO> getTeamList(String dashBoardCode) { // TODO
 	 * Auto-generated method stub return memberDAO.getTeamList(dashBoardCode); }
 	 */
-
-	@Override
-	public List<MemberDTO> getTeamMemberList(String teamCode) {
-		// TODO Auto-generated method stub
-		return memberDAO.getTeamMemberList(teamCode);
-	}
 
 	@Override
 	public List<MemberDTO> getMemberListByPermission() {
@@ -78,6 +73,12 @@ public class MemberServiceImpl implements MemberService {
 	public int getAllMemberCnt(String DashBoardCode) {
 		// TODO Auto-generated method stub
 		return memberDAO.getAllMemberCnt(DashBoardCode);
+	}
+
+	@Override
+	public List<Map<String, Object>> getTeamMemberList(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return memberDAO.getTeamMemberList(memberDTO);
 	}
 
 }

@@ -9,9 +9,10 @@ import com.bit.model.vo.DashBoardVO;
 @Mapper
 public interface OrgDAO {
 
-	public List<DashBoardVO> getAllOrgList();
+	public List<DashBoardVO> getAllOrgList(int userNo);
 	public DashBoardVO getOrgInfo(String dashBoardUrl);
 	public void createOrg(String dashBoardName);
+	public void createPersonalOrg(int userNo);
 	public void deleteOrg(String dashBoardCode); 
 	
 	//리턴자료형 설정 해야됨
