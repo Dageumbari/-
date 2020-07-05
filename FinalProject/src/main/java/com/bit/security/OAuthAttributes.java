@@ -50,7 +50,7 @@ public class OAuthAttributes {
 		userDTO.setEmail((String)response.get("email"));
 		userDTO.setName((String) response.get("name"));
 		userDTO.setPw((String) response.get("id"));
-		userDTO.setGender((String) attributes.get("gender"));
+		userDTO.setGender((String) response.get("gender"));
 		userDTO.setKey("naver");
 		
 		return userDTO;

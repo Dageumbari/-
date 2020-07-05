@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 /**
  * 로그백 테스트용
- */
+ *
 @RestController
 public class HomeRestController {
 private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -23,3 +23,4 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
 		return "Hello World!";
 	}
 }
+*/
