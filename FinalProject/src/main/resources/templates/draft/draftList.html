@@ -1,19 +1,19 @@
-<div th:fragment="draftList">
-	<div id="draftListTmpl">
-		<div class="reset-3c756112--draftsListing"
+<!-- <div th:fragment="draftList"> -->
+	<!-- <div id="draftList"> -->
+		<div class="reset-3c756112--draftsListing" id="draftList"
 			th:each="draftList : ${draftList}">
 			<!-- 드래프트 리스트 출력 -->
 			<input th:value="${draftList.draftCode}" type="hidden"
 				class="hidden-draftCode">
 			<div class="reset-3c756112--draftItemContainer">
 				<div class="reset-3c756112--draftItem">
-					<div class="reset-3c756112--draftCardActive" role="presentation">
+					<div class="reset-3c756112--draftCard" role="presentation">
 						<div class="reset-3c756112--draftCardExtra">
 							<div class="reset-3c756112--draftCardHeader">
 								<div class="reset-3c756112">
 									<div class="reset-3c756112--ownerAvatarList">
 										<!-- 드래프트 유저 정보 넣는곳  -->
-										<div aria-label="User1" th:text="${draftList.name}"
+										<div aria-label="User1"
 											class="reset-3c756112--ownerAvatarStackListItem">
 											<div class="reset-3c756112--avatarFrame" role="presentation">
 												<!-- 드래프트 유저 이미지경로-->
@@ -22,21 +22,28 @@
 												<div class="reset-3c756112--innerShadow"></div>
 											</div>
 										</div>
-		
-										<div class="reset-3c756112"></div>
-										<div class="reset-3c756112--white-42ab09c4"></div>
+										<!-- <div class="reset-3c756112"></div>
+										<div class="reset-3c756112--white-42ab09c4"></div> -->
+
 									</div>
+
+								</div>
+								<div class="reset-3c756112--draftCardHeaderAuthor">
+									<span class="text-draftAuthorInfo"
+										th:text="|${draftList.name} - ${#dates.format(draftList.draftSavetime,'yy-MM-dd HH:mm')}|">
+										<!-- <span th:text="${#utilityClass.getDifferenceInDays(${draftList.draftSavetime}, ${now)}">
+											</span> -->
+									</span>
 								</div>
 							</div>
-		
-		
+
 						</div>
 						<div class="reset-3c756112--draftCardFooter">
 							<div class="reset-3c756112--draftCardFooterActivitySummary"
 								role="presentation">
 								<div class="reset-3c756112--draftCardFooterActivitySummaryIcon">
-									<svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
-										fill="none" xmlns="http://www.w3.org/2000/svg"
+									<svg preserveAspectRatio="xMidYMid meet" height="1em"
+										width="1em" fill="none" xmlns="http://www.w3.org/2000/svg"
 										viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
 										stroke-linejoin="round" stroke="currentColor"
 										class="icon-7f6730be--text-3f89f380">
@@ -44,9 +51,10 @@
 																		<polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon>
 																		<line x1="3" y1="22" x2="21" y2="22"></line></g></svg>
 								</div>
-								<span class="text-activitySummary" th:text="${draftList.editsCount}"> edits</span>
+								<span class="text-activitySummary"
+									th:text="|${draftList.editsCount} edits|"> </span>
 							</div>
-		
+
 							<!-- 드래프트 카드 클릭시 오픈되는 부분 -->
 							<!-- <div class="reset-3c756112--toolbar-small"
 														style="grid-template-columns: repeat(2, auto);">
@@ -77,10 +85,10 @@
 														</button>
 													</div> -->
 						</div>
-					</div>
+					</div><!-- 	</div> -->
 				</div>
 			</div>
-		
+
 		</div>
-	</div>
-</div>
+
+<!-- </div> -->

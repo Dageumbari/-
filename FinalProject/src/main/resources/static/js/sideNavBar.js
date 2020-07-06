@@ -1,5 +1,8 @@
 $(function(){
 	sideEvent();
+	closeNav();
+	callDraftList();
+	/*functionBold();*/
 })
 
 function sideEvent(){
@@ -12,10 +15,33 @@ function sideEvent(){
 		} 
 		else {
 			item.removeClass('active-1')
-			$('.edit-bar').hide()
+			$('.edit-bar').hide();
 		}
 		
 		
 		
 	})
 }
+
+function closeNav(){
+	$('.reset-3c756112--closeButton').on('click', function(e){
+		$('.edit-bar').hide()
+	})
+}
+
+function callDraftList(){
+	$('.reset-3c756112--tabsItem-touchableView').on('click',function(){
+		$.ajax({
+			url: "/draftList",
+			success: function(result){
+				$('#draftList').html(result);
+			}
+		})
+	})
+}
+/*//tabsItemInfo-draftTabs
+function functionBold(){
+	$(.reset-3c756112--tabsItem-touchableView).on('click', function(e){
+		var clicked = $(this).
+	}
+}*/
