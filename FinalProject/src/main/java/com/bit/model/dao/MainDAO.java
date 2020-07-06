@@ -2,12 +2,14 @@ package com.bit.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.bit.model.dto.InquiryDTO;
 import com.bit.model.dto.UserDTO;
+import com.bit.model.vo.InquiryVO;
 
 @Mapper
 public interface MainDAO {
@@ -45,4 +47,6 @@ public interface MainDAO {
 	public void setName(String name, String email);
 
 	public List<InquiryDTO> getInquiryVO();
+	
+	public void setInquiryVO(InquiryVO inquiryVO);
 }

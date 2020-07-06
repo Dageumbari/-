@@ -91,15 +91,15 @@
 			SELECT USERINFOSEQ.NEXTVAL FROM DUAL
 		</selectKey>
 
-		insert all 
+		insert all
 		into admin_info 
 		values (#{userNo}, #{email}, #{key})
 		into user_info 
 		values (#{userNo}, #{email}, #{pw}, #{name}, #{userNo}, 0, #{gender}, 0, localtimestamp(0), 082, #{key})
 		into user_role (roleNo, userNo,	roleName)
 		values 
-		<foreach item="roles" collection="roles" separator=",">
-			(USERROLESEQ.NEXTVAL, #{userNo}, #{roles.roleName})
+		<foreach item="roles" collection="roles" separator="into user_role (roleNo, userNo,	roleName) values" index="i">
+			(USERROLESEQ.NEXTVAL+#{i}, #{userNo}, #{roles.roleName})
 		</foreach>
 		SELECT * FROM DUAL
 		
@@ -128,5 +128,12 @@
 	order by inquiry.inqno DESC
 	
 	</select>
-
+	
+	<insert id="setInquiryVO" parameterType="com.bit.model.vo.InquiryVO" >
+	
+	insert into Inquiry 
+	VALUES (INQSEQ.NEXTVAL, #{userNo}, #{inqTitle}, localtimestamp(0), #{inqContent})
+	
+	
+	</insert>
 </mapper>

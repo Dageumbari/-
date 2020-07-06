@@ -9,7 +9,6 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <link th:href="@{/css/styles.css}" rel="stylesheet" />
-<script src="@{/js/scripts.js}"></script>
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
@@ -18,25 +17,55 @@
 <script	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	/*
-	  $("#Notice").click(function(){
-		  location.href="/main/notice/list";
-	  });
-	  $("#Chart").click(function(){
-		  location.href="/Chart";
-	  }); */
-	  $("#inquiry").click(function(){
-		  $("#content").load("/inquiry");
-	  }); 
-	  $("#inquiryWrite").click(function(){
-		  $("#content").load("/inquiry/write");
-	  });
-	});
-	
-    /* $("#content").load("main/notice/list");
-	} */
+function pageLoad(value){
 
+	switch(value){
+		case 'Notice':
+		location.href="/main/notice/list";
+		break;
+	
+		case 'Chart':
+		location.href="/Chart";
+		break;
+	
+		case 'inquiry':
+		$("#content").load("/inquiry");
+		break;
+	
+		case 'inquiryWrite': 
+		$("#content").load("/inquiry/write");
+		break;
+		
+		case 'write':
+		var formData = $("#inquiryForm").serialize();
+		alert(formData);
+		
+		$.ajax({
+			type : 'POST',
+	        contentType : "application/x-www-form-urlencoded",
+	        url : '/inquiry/write',
+	        data : formData,
+	        dataType : 'text',
+	        cache : false,
+	        
+	        success : function(data) {
+	            if (data == 'success') {
+	               $("#content").load("/inquiry");
+
+	            } else {
+	                alert('관리자에게 문의해주세요.');
+	            }
+	        },
+	        error : function(xhr, status, error) {
+	            console.log(error);
+	        }
+	    });
+		break;
+		
+		default :
+		alert("잘못된 접근입니다." );
+		}
+	}
 </script>
 
 </head>
@@ -51,7 +80,7 @@ $(document).ready(function(){
 		<div id="layoutSidenav_content">
 			<main>
 				<div id="content" class="container-fluid">
-				
+				<img th:src="@{/images/mainView.png}"  width="1500px" height="700px;" />
 				</div>
 			</main>
 			

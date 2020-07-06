@@ -1,5 +1,6 @@
 package com.bit.controller;
 
+import java.sql.Clob;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import com.bit.model.dao.MainDAO;
 import com.bit.model.dto.InquiryDTO;
 import com.bit.model.dto.UserDTO;
 import com.bit.model.service.UserService;
+import com.bit.model.vo.InquiryVO;
 import com.bit.security.RecaptchaService;
 import com.bit.security.SessionUser;
 
@@ -85,26 +87,38 @@ public class MainController {
 
 	@GetMapping("/inquiry")
 	public String inquiry(Model model) {
-
+		log.info("\n==inquiry");
 		List<InquiryDTO> InquiryDTO = mainDAO.getInquiryVO();
 		model.addAttribute("inquiryList", InquiryDTO);
-		log.info(InquiryDTO.toString());
 
 		return "/main/inquiry";
 	}
 
 	@PostMapping("/inquiry")
-	public String postInquiry() {
+	public String postInquiry(Model model) {
 		log.info("\n==inquiry");
-
+		SessionUser sessionUser = (SessionUser) httpSession.getAttribute("sessionUser");
+		String email = sessionUser.getEmail();
+		model.addAttribute("email", email);
 		return "/main/inquiry";
 	}
 
 	@GetMapping("/inquiry/write")
 	public String inquiryWrite() {
-
+		
 		return "/main/inquiryWrite";
 	}
+	@ResponseBody
+	@PostMapping("/inquiry/write")
+	public String postInquiryWrite(InquiryVO inquiryVO) {
+		log.info("\n==postInquiryWrite");
+		SessionUser sessionUser = (SessionUser) httpSession.getAttribute("sessionUser");
+		inquiryVO.setUserNo(sessionUser.getUserNo());
+		mainDAO.setInquiryVO(inquiryVO);
+		
+		return "success";
+	}
+	
 
 	@GetMapping("/forgot")
 	public String forgot() {
@@ -122,14 +136,14 @@ public class MainController {
 
 	@GetMapping("/login")
 	public String login() {
-		log.info("============================= get =========================");
+		log.info("\n==loing==get");
 
 		return "/main/login";
 	}
 
 	@PostMapping("/login")
 	public String loginPost() {
-		log.info("============================= post =========================");
+		log.info("\n==loing==post");
 
 		return "/main/login";
 	}
@@ -142,17 +156,19 @@ public class MainController {
 
 	@PostMapping("/join")
 	public ModelAndView postJoin(@ModelAttribute("userDTO") UserDTO userDTO) {
-		log.info("\n==join controller");
+		log.info("\n==join");
 
 		return userService.join(userDTO);
 	}
 
 	@GetMapping("/join/admin")
 	public String adminJoin() {
+		log.info("\n==adminJoin");
 
 		return "/main/joinAdmin";
 	}
 
+	
 	@PostMapping("/join/admin")
 	public ModelAndView adminJoinPost(UserDTO userDTO) {
 		log.info("\n==aminjoin controller");
