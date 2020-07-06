@@ -15,6 +15,18 @@
 		<div class="reset-3c756112--navigation-3e92335c">
 			<div class="reset-3c756112--withScrollbar-39338630--scrollAxisY-7680295e--navigationBody-3dc152bc">
 				
+				<!-- 
+				<a class="reset-3c756112--orgTab-8d620844" th:if="${orgInfo.dashBoardType == 'personal'}" th:href="@{/dashboard/spaces(dashBoardUrl=${orgInfo.dashBoardUrl})}">
+					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
+						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10" role="presentation">
+							<img class="image-67b14f24--avatar-1c1d03ec"
+							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABsUlEQVRYR+2WW0sCQRiG34V1zUyUysoTUlhBB+1IpWYZRUhI9Jv6TUGYrIeSCIqIoiK1NFJwDfLSvdmN9cKgLNodqL2YuZ19mYfn+76ZZXL7kgwdL4YCElaHGiQUCGqQGiQ1QJqnPUgNkhogzRP3oCzLEGp13N3eo/RUhiiKcDgd8PlGMDY+CtbAEjESAUqShOurG1ycX8Js7oZ32Asjx6FWE1AuPcPtcSEcCcJqtWqGJAIs5IvIpk8wOT2BufkZGAyGNkilUkWGz7ZshlaD4LiPPTW0mgGVUmZSx5AlGZFoGCaT6cu5StlPc2fYjm3B5Xaq4Wp/qxmwXn/F4UECgVk//IGpjoc33ho4SvDwej1YXFoAwzCqITUDFguPSCZ47MRjrV7rtJpNEXwyBYulByuhZbCs+oHRDJh/KIBPprG7F8eQY/BHQGVzYzOKri7j3xnUPaDuS6z7IdH9NaN0+28uavuAHZH1MIxG9QOinKF5ipXwd0+dINRReamir78Xa9EIbLZ/euoUSF3/LKi+1DQEiEqs4TzVEQqoWtmnADVIDZIaIM3THqQGSQ2Q5nXfg+9EKz0A21b+QQAAAABJRU5ErkJggg==">
+							<div class="reset-3c756112--innerShadow-7a3a8651"></div>
+						</div>
+					</div>
+				</a>
+				 -->
+				
 				<a class="reset-3c756112--orgTab-8d620844"  th:each="orgList : ${orgList}" th:href="@{/dashboard/spaces(dashBoardUrl=${orgList.dashBoardUrl})}">
 					<div class="reset-3c756112--tooltipContainer-7fdb9b70--medium-296350e4--circle-6c5acd10">
 						<div class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10" role="presentation">
@@ -51,6 +63,7 @@
 			
 			<div class="reset-3c756112--sidebarFooter-20adc0e5">
 				<div class="reset-3c756112--navButtons-8646a146" >
+				<!-- 
 					<button class="button-36063075--medium-6e2a217a--button-78c61f17--button-dark-50f870b6--medium-54db2ab3">
 						<span class="medium-3bde6db7--iconOnly-bddce91a">
 							<div class="reset-3c756112--iconWithBadge-56f27afc">
@@ -73,8 +86,9 @@
 						</span>
 						<span class="text-4505230f--UIH400-4e41e82a--textUIFamily-5ebd8e40--text-8ee2c8b2"></span>
 					</button>
+					 -->
 				</div>
-				<a class="logoLink-7eaeba6b" href="/"><svg
+				<a class="logoLink-7eaeba6b" href="/main"><svg
 						preserveAspectRatio="xMidYMid meet" height="1em" width="1em"
 						fill="currentColor" viewBox="0 0 1067 769"
 						xmlns="http://www.w3.org/2000/svg" stroke="none"

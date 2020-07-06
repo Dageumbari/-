@@ -23,16 +23,13 @@
 
 				<tbody>
 					<div th:each="inquiryVO : ${inquiryList}">
+					<!-- 
 						<span th:text="${inquiryVO.userNo}"></span>
 						<span th:text="${session.sessionUser.getUserNo()}"> </span>
-						<span th:if="${inquiryVO.userNo == session.sessionUser.getUserNo()} "></span>
+						 -->
 						<tr>
-							<td th:text="${inquiryVOStat.count}"></td>
-							
-							<td th:text="${inquiryVO.inqTitle}">
-							
-							</td>
-
+							<td th:text="${inquiryVOStat.count}"></td>						
+							<td th:text="${inquiryVO.inqTitle}"></td>
 							<td th:text="${inquiryVO.name}"></td>
 							<td th:text="${#dates.format(inquiryVO.inqDate, 'yyyy-MM-dd')}"></td>
 						</tr>

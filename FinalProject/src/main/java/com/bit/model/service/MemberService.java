@@ -1,6 +1,7 @@
 package com.bit.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bit.model.dto.MemberDTO;
 
@@ -12,7 +13,7 @@ public interface MemberService {
 	
 	public List<MemberDTO> getAllMemberList(String dashboardCode);
 	//public List<MemberDTO> getTeamList(String dashBoardCode);
-	public List<MemberDTO> getTeamMemberList(String teamCode);
+	//public List<MemberDTO> getTeamMemberList(String teamCode);
 	public List<MemberDTO> getMemberListByPermission();
 	
 	public void addMember();

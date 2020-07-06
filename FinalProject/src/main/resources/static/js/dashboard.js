@@ -14,6 +14,7 @@
 
 $(function() {
 
+	/*
 	$('.reset-3c756112--orgTab-8d620844').on('click',function(event){
 		$.ajax({
 			url: "/dashboard/orgNavi"
@@ -21,10 +22,11 @@ $(function() {
 			console.log("orgNavi 호출 했을까나...")
 		})
 	})
+	*/
 
 	$('#createOrgBtn').on('click', function() {
  
-		var orgName = prompt("Your app/company name 조직 이름 넣으쇼");
+		var orgName = prompt("생성할 조직 이름을 입력 해주세요.");
 		
 		if(orgName && orgName.length){
 			$.ajax({
@@ -33,27 +35,22 @@ $(function() {
 				data: {
 					"dashBoardName" : orgName				
 				},
+				async: false
 			})
 				//dataType: "json", //"json"
 				//cache: false,
 			.done(function(result){
-				//var result = JSON.parse(orgName);
-				//if(result.statusCode==200){
-					console.log("입력된 조직 이름: "+orgName);
-					location.href="/dashboard/spaces?dashboardUrl="+orgName;
-					
-					//$("#butsave").removeAttr("disabled");
-					//$('#fupForm').find('input:text').val('');
-					//$("#success").show();
-					//$('#success').html('Data added successfully !'); 
+
+				console.log("입력된 조직 이름: "+orgName);
+				window.location.href="/dashboard/spaces?dashBoardUrl="+orgName;
+				
 			})
 			.fail(function(result){
-				//console.log("조직 생성 실패"+error);
 				alert("다시 시도해주세요.");	
 			})
 
 		}else{
-			
+			aler("취소되었습니다.");
 		}
 	});
 });
@@ -77,18 +74,18 @@ $(document).ready(function(){
 			data : {
 				"teamCode" : clickedTeam
 			},
-			type : "POST",
+			type : "GET",
 			dataType : "JSON"
 		})
 		.done(function(data){
-			//window.opener.location.reload();
 			console.log("팀 코드 보내기 성공")
-			var result = data.memberList;
-			console.log("리스트?"+result)
+
+			var a ='';
 			
-			for(var i=0; i<result.length; i++){
-				alert(list[i]);
-			}
+			$.each(data,function(key,value){
+				alert("반복~");
+			});
+			$('').html(a);
 			
 		})
 		.fail(function(data){
@@ -176,18 +173,26 @@ $(document).ready(function(){
 $('#orgDelete').on('click',function(){
 
 	var result = confirm("조직을 삭제 하시겠습니까? 삭제 이후에는 되돌릴 수 없습니다.");
+	var dashBoardUrl = $('#orgDelete').val();
 	
 	if (result === true){
 		
 		$.ajax({
-			url: "/dashboard/settings",
-			type: "get",
+			url: "/dashboard/deleteOrg",
+			type: "GET",
+			data: {
+				"dashBoardUrl": dashBoardUrl
+			}
 		})
-		.done(function(result){
+		.done(function(data){
 			alert("조직이 삭제 되었습니다.");
-			//개인 조직으로 돌아가기
+			dashBoardUrl = data;
+			console.log("dashBoardUrl: "+data);
+			
+			window.location.href="/dashboard/spaces?dashBoardUrl="+orgName;
+			
 		})
-		.fail(function(result){
+		.fail(function(data){
 			alert("다시 시도해주세요.");
 			
 		});
@@ -198,16 +203,5 @@ $('#orgDelete').on('click',function(){
 	}
 	
 });
-
-
-
-
-
-
-
-
-
-
-
 
 

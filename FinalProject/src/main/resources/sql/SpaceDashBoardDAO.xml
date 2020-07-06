@@ -30,4 +30,10 @@
 		ORDER BY SPACEORDER
 	</select>
 	
+	<!-- 스페이스 생성 -->
+	<insert id="createSpace">
+		INSERT INTO ('sp'||LPAD(스페이스_SEQ.NEXTVAL, 2, 0), {그룹pk 디폴트 그룹코드}, #{SPACENAME}, 'spacedefault.png', '스페이스유알엘pageList', 스페이스순서, 'public', {팀pk = 디폴트 팀]})
+		FROM SPACE
+		WHERE
+	</insert>
 </mapper>

@@ -412,6 +412,13 @@ a:-webkit-any-link {
     vertical-align: middle;
 }
 
+.logoLink-7eaeba6b {
+    color: rgb(157, 170, 182);
+    font-size: 30px;
+    padding-top: 16px;
+    transition: color 250ms ease-out 0s;
+}
+
 
 
 

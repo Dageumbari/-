@@ -22,14 +22,28 @@
 	 		<association property="memPermit" javaType="com.bit.model.vo.MemPermitVO">
 	 			<id property="userNo" column="userNo"/>
 	 			<result property="permissionNo" column="permissionNo"/>
+	 			<association property="userInfo" javaType="com.bit.model.vo.UserInfoVO">
+	 				<id property="userNo" column="userNo"/>
+	 			</association>
 	 		</association>
 	 	</association>
 	 </resultMap>
 	
+	<!-- 개인 조직 주소 찾기 -->
+	<select id="getPersonalOrgUrl" resultType="String" parameterType="int">
+		SELECT D.DASHBOARDURL
+		FROM DASHBOARD D 
+        	JOIN TEAM T ON (D.DASHBOARDCODE = T.DASHBOARDCODE)
+			JOIN MEMPERMIT M ON (T.TEAMCODE = M.TEAMCODE)
+        	JOIN USER_INFO U ON (M.USERNO = U.USERNO)
+    	WHERE U.USERNO = #{userNo}
+    		AND D.STATUS = 1
+    		AND D.DASHBOARDTYPE = 'personal'
+	</select>
+	
 	 
 	<!-- 가입 조직 리스트 불러오기 -->
-	<!-- 시큐리티에서 userNo 가져오는 처리 완료 후 WHERE절 수정하기 -->
-	<select id="getAllOrgList" resultType="com.bit.model.vo.DashBoardVO">
+	<select id="getAllOrgList" resultMap="dashBoardResultMap" parameterType="int">
 		SELECT DISTINCT D.DASHBOARDCODE, 
 			   D.DASHBOARDIMAGE, 
 			   D.DASHBOARDNAME, 
@@ -39,8 +53,9 @@
         	JOIN TEAM T ON (D.DASHBOARDCODE = T.DASHBOARDCODE)
 			JOIN MEMPERMIT M ON (T.TEAMCODE = M.TEAMCODE)
         	JOIN USER_INFO U ON (M.USERNO = U.USERNO)
-    	WHERE 1 = U.USERNO
+    	WHERE U.USERNO = #{userNo}
     		AND D.STATUS = 1
+    		<!-- AND D.DASHBOARDTYPE != 'personal' -->
     	ORDER BY DASHBOARDCODE
 	</select>
 	
@@ -59,21 +74,40 @@
 	<update id="deleteOrg" >
 		UPDATE DASHBOARD
  			SET STATUS = 0
- 		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
+ 		WHERE DASHBOARDURL = #{DASHBOARDURL, jdbcType=VARCHAR}
 	</update>
 	
 	<!-- 조직 생성 -->
-	<!-- 시큐리티에서 userNo 가져오는 처리 완료 후 MEMPERMIT 수정하기 -->
-	<insert id="createOrg" parameterType="String">
+	<select id="orgUrlCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM DASHBOARD
+		WHERE DASHBOARDNAME = #{DASHBOARDNAME}
+	</select>
+	
+	<insert id="createOrg" >
 		INSERT ALL
 			INTO DASHBOARD 
-			VALUES('da'||LPAD(DASHBOARD_SEQ.NEXTVAL, 2, 0),'orgdefault.png', #{DASHBOARDNAME}, 'private', #{DASHBOARDNAME}, 1)
+			VALUES('da'||LPAD(DASHBOARD_SEQ.NEXTVAL, 2, 0),'orgdefault.png', #{dashBoardName}, 'private', #{dashBoardUrl}, 1)
 			INTO GROUPINFO 
 			VALUES('gr'||LPAD(GROUPINFO_SEQ.NEXTVAL, 2, 0), 'da'||LPAD(DASHBOARD_SEQ.CURRVAL, 2, 0), 'default', 1)
 			INTO TEAM 
 			VALUES('te'||LPAD(TEAM_SEQ.NEXTVAL, 2, 0), 'da'||LPAD(DASHBOARD_SEQ.CURRVAL, 2, 0), 'All Members')
 			INTO MEMPERMIT 
-			VALUES('te'||LPAD(TEAM_SEQ.CURRVAL, 2, 0), 1, 1)
+			VALUES('te'||LPAD(TEAM_SEQ.CURRVAL, 2, 0), #{userNo}, 1)
+		SELECT * 
+		FROM DUAL
+	</insert>
+	
+	<insert id="createPersonalOrg">
+		INSERT ALL
+			INTO DASHBOARD 
+			VALUES('da'||LPAD(DASHBOARD_SEQ.NEXTVAL, 2, 0),'orgdefault.png', #{dashBoardName}, 'personal', #{dashBoardUrl}, 1)
+			INTO GROUPINFO 
+			VALUES('gr'||LPAD(GROUPINFO_SEQ.NEXTVAL, 2, 0), 'da'||LPAD(DASHBOARD_SEQ.CURRVAL, 2, 0), 'default', 1)
+			INTO TEAM 
+			VALUES('te'||LPAD(TEAM_SEQ.NEXTVAL, 2, 0), 'da'||LPAD(DASHBOARD_SEQ.CURRVAL, 2, 0), 'All Members')
+			INTO MEMPERMIT 
+			VALUES('te'||LPAD(TEAM_SEQ.CURRVAL, 2, 0), #{userNo}, 1)
 		SELECT * 
 		FROM DUAL
 	</insert>

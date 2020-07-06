@@ -16,7 +16,9 @@
 						class="reset-3c756112--avatarFrame-2f40cdc9--medium-296350e4--circle-6c5acd10"
 						role="presentation">
 						<img class="image-67b14f24--avatar-1c1d03ec"
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABoElEQVRYR+2VS0sCURiG39N4m1IyKITINIyylByRWmS0cNWihS36hf2LIqpNJCIEhZeyu1F0WQRl6thMOGCUmyPnzNAszmy/eec8PN/3nSGbT1s6bPwQAcjZHWGQUyCEQWGQ1wBvXsygMMhrgDfPPYNne3ncn1b/cMjDPoRScwhEwxiQJC5GSwC7RMFkFJFlBWSAMEOaAth4ryO2lobkdEDXdXy8vqG4fYh2U0VyIwPZ77MPYJfkuXqHyn4eSjYD76jffoAPxQvcFkpIZDPw+AbtA6h9aXi5rOH8oIDQYgwTiRlmuE7QlBns3WKX7EEknUAgOgVC2BfEMkDjw4RgPD6NyEoSkoP9qjHF4O8t7sC16g08lq9wnTtBeCmOydQ8c5stAezQ6JqO8m4OaqP5cwWxUFoIqKG0c4R2S7UfoPrZxE2hiNpxBcbfJK2wyDMyphjs3eIujXdsBAvrq3B7//ke7AV0D8nGBgeVWUguJ7M9Uwxynd5HmLvFfZzB9YoA5NJnxhbzAtDyosU0Q7S6MEgzRKsLgzRDtLowSDNEq38DSrQMYOZ84HwAAAAASUVORK5CYII=">
+							th:src="${orgInfo.dashBoardImage}">
+						<!-- <img class="image-67b14f24--avatar-1c1d03ec"
+							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABoElEQVRYR+2VS0sCURiG39N4m1IyKITINIyylByRWmS0cNWihS36hf2LIqpNJCIEhZeyu1F0WQRl6thMOGCUmyPnzNAszmy/eec8PN/3nSGbT1s6bPwQAcjZHWGQUyCEQWGQ1wBvXsygMMhrgDfPPYNne3ncn1b/cMjDPoRScwhEwxiQJC5GSwC7RMFkFJFlBWSAMEOaAth4ryO2lobkdEDXdXy8vqG4fYh2U0VyIwPZ77MPYJfkuXqHyn4eSjYD76jffoAPxQvcFkpIZDPw+AbtA6h9aXi5rOH8oIDQYgwTiRlmuE7QlBns3WKX7EEknUAgOgVC2BfEMkDjw4RgPD6NyEoSkoP9qjHF4O8t7sC16g08lq9wnTtBeCmOydQ8c5stAezQ6JqO8m4OaqP5cwWxUFoIqKG0c4R2S7UfoPrZxE2hiNpxBcbfJK2wyDMyphjs3eIujXdsBAvrq3B7//ke7AV0D8nGBgeVWUguJ7M9Uwxynd5HmLvFfZzB9YoA5NJnxhbzAtDyosU0Q7S6MEgzRKsLgzRDtLowSDNEq38DSrQMYOZ84HwAAAAASUVORK5CYII="> -->
 					</div>
 				</div>
 				<span class="text-4505230f--DisplayH700-a03ad9b4--textUIFamily-5ebd8e40--headerText-bece5cbe" th:text="${orgInfo.dashBoardName}">OrgName</span>
@@ -24,7 +26,7 @@
 			<div class="reset-3c756112--menu-5b8a7448--menu-86b02dde">
 				<div
 					class="reset-3c756112--withScrollbar-39338630--scrollAxisY-7680295e--menuItems-2e6f017b--menuItems-86b02dde">
-					<a
+					<a 
 						class="reset-3c756112--menuItem-aa02f6ec--menuItemDark-e675f118--menuItemInline-173bdf97--menuItem-38f0db02"
 						th:href="@{/dashboard/spaces(dashBoardUrl=${orgInfo.dashBoardUrl})}" style="color: rgb(255, 255, 255);">
 						<div class="reset-3c756112--menuItemIcon-206eb252" style="">
@@ -43,7 +45,7 @@
 							<span class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40">Spaces</span>
 						</div>
 						</a>
-						<a
+						<a th:if="${orgInfo.dashBoardType != 'personal'}"
 						class="reset-3c756112--menuItem-aa02f6ec--menuItemDark-e675f118--menuItemInline-173bdf97--menuItem-38f0db02"
 						th:href="@{/dashboard/teams(dashBoardUrl=${orgInfo.dashBoardUrl})}" style="color: rgb(255, 255, 255);">
 						<div
@@ -81,7 +83,10 @@
 						<div class="reset-3c756112--menuItemContent-c44ec79e">
 							<span
 								class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40" th:href="@{/dashboard/settings(dashBoardUrl=${orgInfo.dashBoardUrl})}">Settings</span>
-						</div></a><a
+						</div>
+						</a>
+						<!-- 
+						<a th:if="${orgInfo.dashBoardType != 'personal'}"
 						class="reset-3c756112--menuItem-aa02f6ec--menuItemDark-e675f118--menuItemInline-173bdf97--menuItem-38f0db02"
 						th:href="@{/dashboard/billing(dashBoardUrl=${orgInfo.dashBoardUrl})}" style="color: rgb(255, 255, 255);"><div
 							class="reset-3c756112--menuItemIcon-206eb252" style="">
@@ -97,10 +102,13 @@
 						<div class="reset-3c756112--menuItemContent-c44ec79e">
 							<span
 								class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40" th:href="@{/dashboard/billings(dashBoardUrl=${orgInfo.dashBoardUrl})}">Billing</span>
-						</div></a>
+						</div>
+						</a>
+						 -->
 					<div
 						class="reset-3c756112--menuDivider-630eb14c--menuDividerDark-28d5c180--menuDivider-73a116b0"></div>
-					<div
+					
+					<div th:if="${orgInfo.dashBoardType != 'personal'}"
 						class="reset-3c756112--menuItem-aa02f6ec--menuItemDark-e675f118--menuItemInline-173bdf97--menuItem-38f0db02"
 						role="presentation" style="">
 						<div class="reset-3c756112--menuItemIcon-206eb252" style="">
@@ -117,11 +125,33 @@
 									stroke-linejoin="round" stroke-width="2"></line></g></svg>
 						</div>
 						<div class="reset-3c756112--menuItemContent-c44ec79e">
-							<span
+							<span 
 								class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40">Leave
 								organization</span>
 						</div>
 					</div>
+					
+					<div th:if="${orgInfo.dashBoardType == 'personal'}"
+					class="reset-3c756112--menuItem-aa02f6ec--menuItemDark-e675f118--menuItemInline-173bdf97--menuItem-38f0db02" role="presentation" style="">
+						<div class="reset-3c756112--menuItemIcon-206eb252" style="">
+							<svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" class="icon-7f6730be--text-3f89f380">
+								<g>
+									<path d="M10 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+									<polyline points="17 16 21 12 17 8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline>
+									<line x1="21" y1="12" x2="9" y2="12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></line>
+								</g>
+							</svg>
+						</div>
+						<div class="reset-3c756112--menuItemContent-c44ec79e">
+							<form th:action="@{/logout}" method="POST" >
+								<span class="text-4505230f--UIH300-2063425d--textUIFamily-5ebd8e40">
+									<input type="submit" value="Sign out" class="reset-3c756112--menuItemContent-c44ec79e"/>
+								</span>
+							</form>
+						</div>
+					</div>
+
+					
 					<div class="reset-3c756112--menuDivider-630eb14c--menuDividerDark-28d5c180--menuDivider-73a116b0"></div>
 					<div class="reset-3c756112--S100Top-62efda1a--S100Bottom-0d15855d">
 						<div role="button" tabindex="0" class="reset-3c756112--touchableView-a079aa82">
@@ -130,7 +160,8 @@
 									<div
 										class="reset-3c756112--avatarFrame-2f40cdc9--small-2ec8ae1a--circle-6c5acd10"
 										role="presentation">
-										<img class="image-67b14f24--avatar-1c1d03ec" src="https://gblobscdn.gitbook.com/users%2FIR8rlUhGuJOEVzaRL8eE9FmLRIO2%2Favatar-1590479261730.png?alt=media">
+										<!-- <img class="image-67b14f24--avatar-1c1d03ec" src="https://gblobscdn.gitbook.com/users%2FIR8rlUhGuJOEVzaRL8eE9FmLRIO2%2Favatar-1590479261730.png?alt=media"> -->
+										<img class="image-67b14f24--avatar-1c1d03ec" th:src="${allMemberList.userImage}">
 										<div class="reset-3c756112--innerShadow-7a3a8651"></div>
 									</div>
 								</div>

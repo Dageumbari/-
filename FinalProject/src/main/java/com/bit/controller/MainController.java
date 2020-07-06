@@ -1,6 +1,5 @@
 package com.bit.controller;
 
-import java.sql.Clob;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,13 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.model.dao.MainDAO;
 import com.bit.model.dto.InquiryDTO;
 import com.bit.model.dto.UserDTO;
+import com.bit.model.service.OrgService;
 import com.bit.model.service.UserService;
 import com.bit.model.vo.InquiryVO;
 import com.bit.security.RecaptchaService;
@@ -38,9 +37,14 @@ public class MainController {
 	private final RecaptchaService recaptchaService;
 	private final PasswordEncoder passwordEncoder;
 	private final HttpSession httpSession;
+	private final OrgService orgService;
 
 	@GetMapping("/main")
-	public String main() {
+	public String main(Model model) {
+		String personalOrgUrl = orgService.getPersonalOrgUrl();
+		log.info("\n" + personalOrgUrl);
+		model.addAttribute("personalOrgUrl", personalOrgUrl);
+		
 		return "/main/main";
 	}
 
@@ -63,7 +67,7 @@ public class MainController {
 		SessionUser sessionUser = (SessionUser) httpSession.getAttribute("sessionUser");
 		String email = sessionUser.getEmail();
 		mainDAO.setForgotPassword(passwordEncoder.encode(password), email);
-
+		
 		// 로그아웃 실행할것.
 		return "redirect:/logout";
 	}
