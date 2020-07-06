@@ -1,7 +1,5 @@
 package com.bit.controller.space;
 
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bit.model.dto.space.DraftListDTO;
 import com.bit.model.service.PageService;
@@ -53,18 +52,6 @@ public class SpaceController {
 		
 		log.error(draftList);
 		model.addAttribute("draftList", draftList);
-		
-		/*
-		 * //현재시간 가져오기 DateTimeFormatter FORMATTER =
-		 * DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss"); String now =
-		 * ZonedDateTime.now().format(FORMATTER); log.error(now);
-		 */
-		
-		/*
-		 * SessionUser sessionUser = (SessionUser)
-		 * httpsession.getAttribute("sessionUser"); userNo = sessionUser.getUserNo();
-		 * System.out.println("세션????????????????????: " + userNo);
-		 */
 
 		return "draft/draftList";
 	}
