@@ -1,9 +1,9 @@
 <!-- <div th:fragment="draftList"> -->
 	<!-- <div id="draftList"> -->
-		<div class="reset-3c756112--draftsListing" id="archivedList"
-			th:each="archivedList : ${archivedList}">
+		<div class="reset-3c756112--draftsListing" id="mergedList"
+			th:each="mergedList : ${mergedList}">
 			<!-- 드래프트 리스트 출력 -->
-			<input th:value="${archivedList.draftCode}" type="hidden"
+			<input th:value="${mergedList.draftCode}" type="hidden"
 				class="hidden-draftCode">
 			<div class="reset-3c756112--draftItemContainer">
 				<div class="reset-3c756112--draftItem">
@@ -30,7 +30,7 @@
 								</div>
 								<div class="reset-3c756112--draftCardHeaderAuthor">
 									<span class="text-draftAuthorInfo"
-										th:text="|${archivedList.name} - ${#dates.format(archivedList.draftSavetime,'yy-MM-dd HH:mm')}|">
+										th:text="|${mergedList.name} - ${#dates.format(mergedList.draftSavetime,'yy-MM-dd HH:mm')}|">
 										<!-- <span th:text="${#utilityClass.getDifferenceInDays(${draftList.draftSavetime}, ${now)}">
 											</span> -->
 									</span>
@@ -52,7 +52,7 @@
 																		<line x1="3" y1="22" x2="21" y2="22"></line></g></svg>
 								</div>
 								<span class="text-activitySummary"
-									th:text="|${archivedList.editsCount} edits|"> </span>
+									th:text="|${mergedList.editsCount} edits|"> </span>
 							</div>
 
 							<!-- 드래프트 카드 클릭시 오픈되는 부분 -->

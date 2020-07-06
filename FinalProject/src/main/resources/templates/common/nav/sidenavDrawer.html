@@ -49,13 +49,14 @@
 									<!-- <div th:include="draft/draftList :: draftList"></div> -->
 									<a role="button" tabindex="0"
 										class="reset-3c756112--tabsItem-touchableView" type="button"
-										href="#" onclick="functionBold()"><span class="tabsItemInfo-draftTabs">drafts</span>
-									</a> <a role="button" tabindex="0"
-										class="reset-3c756112--tabsItem-touchableView" href="#" onclick="functionBold()"> <span
+										id="draftTab" href="#" onclick="functionBold()"><span
+										class="tabsItemInfo-draftTabs">drafts</span> </a> <a role="button"
+										tabindex="0" class="reset-3c756112--tabsItem-touchableView"
+										type="button" id="mergeTab" href="#" onclick="functionBold()"> <span
 										class="tabsItemInfo-draftTabs">merged</span>
 									</a> <a role="button" tabindex="0"
-										class="reset-3c756112--tabsItem-touchableView" href="#" > <span
-										class="tabsItemInfo-draftTabs">archived</span>
+										class="reset-3c756112--tabsItem-touchableView" type="button"
+										href="#" id="archiveTab"> <span class="tabsItemInfo-draftTabs">archived</span>
 									</a>
 								</div>
 							</div>

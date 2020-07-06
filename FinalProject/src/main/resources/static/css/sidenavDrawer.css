@@ -143,7 +143,7 @@
 }
 
 .reset-3c756112--draftsDrawer {
-	height: 100%;
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	-webkit-box-orient: vertical;

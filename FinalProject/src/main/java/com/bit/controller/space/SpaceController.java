@@ -49,31 +49,28 @@ public class SpaceController {
 	@GetMapping("/draftList")
 	public String getDraftList(Model model) {
 		List<DraftListDTO> draftList = spaceService.getDraftList();
-		
+
 		log.error(draftList);
 		model.addAttribute("draftList", draftList);
 
 		return "draft/draftList";
 	}
 
-	/*
-	 * @ModelAttribute public String getNavbar(@ModelAttribute("userId") String
-	 * userId,Model model){ model.addAttribute("userId", "jin2020");
-	 * model.addAttribute("boardGroupList",boardService.getNavbar(userId)); return
-	 * "include/nav/boardNavbar"; }
-	 */
+	@GetMapping("/mergedList")
+	public String getMedrgedList(Model model) {
+		List<DraftListDTO> mergedList = spaceService.getMergedList();
+		log.error(mergedList);
+		model.addAttribute("mergedList", mergedList);
+		return "draft/mergedList";
+	}
 
-	/*
-	 * @GetMapping("/mergedList") public String getMedrgedList(Model model) {
-	 * List<DraftListDTO> merged = spaceService.getMergedList();
-	 * //log.error(merged); model.addAttribute("merged", merged); return
-	 * "space/draft/mergedList"; }
-	 * 
-	 * @GetMapping("/archivedList") public String getArchivedList(Model model) {
-	 * List<DraftListDTO> archived = spaceService.getArchivedList();
-	 * log.error(archived); model.addAttribute("archived", archived); return
-	 * "space/draft/archivedList"; }
-	 */
+	@GetMapping("/archivedList")
+	public String getArchivedList(Model model) {
+		List<DraftListDTO> archivedList = spaceService.getArchivedList();
+		log.error(archivedList);
+		model.addAttribute("archivedList", archivedList);
+		return "draft/archivedList";
+	}
 
 	/**
 	 * 페이지 파트
