@@ -56,7 +56,7 @@
 		DRAFTSAVETIME, DRAFTSTATUS, MSGCONTENT, EDITSCOUNT,
 		NAME, USERIMAGE
 		from draftlist
-		where spaceCode='sp11' and userNo=1 and
+		where spaceCode='sp11' and userNo=#{userNo} and
 		draftStatus='saved' and
 		msgno=(select max(msgno) from draftlist)
 	</select>

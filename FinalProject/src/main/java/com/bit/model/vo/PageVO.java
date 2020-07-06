@@ -35,9 +35,10 @@ public class PageVO {
 
 	/* 부모 페이지 */
 	private int pageGroupNo;
-
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
+	/* 이전 페이지 */
+	private int prev;
+	
+	/* 다음 페이지 */
+	private int next;
 }

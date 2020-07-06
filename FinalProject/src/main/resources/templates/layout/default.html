@@ -9,7 +9,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="context-path" th:content="@{/}" />
-<link rel="shortcut icon" href="favicon.ico">
 <title>스페이스 레이아웃</title>
 
 <!-- FontAwesome JS-->
@@ -20,9 +19,7 @@
 
 <!-- Javascript -->
 <script src="/plugins/jquery-3.3.1.min.js"></script>
-<script src="/plugins/popper.min.js"></script>
-<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-
+<!-- <script th:src="@{/js/magnific-popup.js}"></script> -->
 
 <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
 <script src="/js/demo/style-switcher.js"></script>
@@ -40,6 +37,8 @@
 <link th:href="@{/css/theme-7.css}" rel="stylesheet">
 <link th:href="@{/css/sidenavStyle.css}" rel="stylesheet">
 <link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet">
+
+<script type="text/javascript" src="/js/sideNavBar.js"></script>
 </head>
 <!-- 공통 css js end -->
 
@@ -53,6 +52,8 @@
 <!-- 내용/비워두는 자리 -->
 
 <div layout:fragment="pageContent"></div>
+
+<!-- <div th:replace="~{draft/editPage :: editPage}"></div> -->
 
 <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
 <div id="config-panel" class="config-panel d-none d-lg-block">
@@ -75,7 +76,4 @@
 			class="fa fa-times-circle"></i></a>
 	</div>
 </div>
-
-
-
 </html>

@@ -12,7 +12,6 @@ import lombok.Setter;
 @Setter
 @ToString
 public class SessionUser implements Serializable {
-	
 	private int userNo;
 	private String name;
 	private String email;

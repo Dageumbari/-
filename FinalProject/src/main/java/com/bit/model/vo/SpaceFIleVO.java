@@ -10,7 +10,7 @@ import lombok.ToString;
 public class SpaceFIleVO {
 
 	/* 파일업로드 pk */
-	private int fileUploadVO;
+	private int fileUploadNo;
 
 	/* 스페이스 pk */
 	private String spaceCode;
