@@ -1,4 +1,4 @@
-$(function() {
+/*$(function() {
 	getDraftList(url);
 	openEditsDrawer();
 })
@@ -32,7 +32,7 @@ function openEditsDrawer() {
 		}
 	);
 
-/*
+
  * function openNav() {
  * 
  * $("#contents").load("/test/test.do", {"name" : "Kim"});
@@ -43,8 +43,8 @@ function openEditsDrawer() {
  * content to 0 function closeNav() {
  * document.getElementById("mySidenav").style.width = "0";
  * document.getElementById("main").style.marginLeft = "0"; }
- */
-/*
+ 
+
  * $(document).ready(function(){ $(".dropdown, .btn-group").hover(function(){
  * var dropdownMenu = $(this).children(".dropdown-menu");
  * if(dropdownMenu.is(":visible")){ dropdownMenu.parent().toggleClass("open"); }
@@ -55,5 +55,6 @@ function openEditsDrawer() {
  * $(".secondary-menu").toggleClass("hidden")})
  * 
  * });
- */
+ 
 
+*/

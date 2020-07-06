@@ -10,7 +10,8 @@
 	<header th:fragment="sideNavDrawerFragment(userInfo)">
 
 		<div class="reset-3c756112--sidebarDrawer">
-			<div class="reset-3c756112--sidebarDrawerInner edit-bar" style="display: none;">
+			<div class="reset-3c756112--sidebarDrawerInner edit-bar"
+				style="display: none;">
 				<div class="reset-3c756112--drawerContent">
 					<div class="reset-3c756112--drawerContentHeader">
 						<div class="reset-3c756112--drawerHeader">
@@ -26,8 +27,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="reset-3c756112--closeButton" role="presentation">
-								<a onclick="closeNav()"></a>
+							<div class="reset-3c756112--closeButton" role="presentation"
+								data-toggle="offcanvas">
+								<!-- <a onclick="closeNav()" data-toggle="offcanvas"></a> -->
 								<svg preserveAspectRatio="xMidYMid meet" fill="none"
 									xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
 									stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -47,24 +49,21 @@
 									<!-- <div th:include="draft/draftList :: draftList"></div> -->
 									<a role="button" tabindex="0"
 										class="reset-3c756112--tabsItem-touchableView" type="button"
-										href="javascript:void(0);" onclick="callDraftList();"><span
-										class="tabsItemInfo-draftTabs" id="#draftList ">drafts</span>
-										<!-- <div th:insert="~{draft/draftList::draftList}"></div>  -->
-										<!-- <a role="button" tabindex="0"
-										class="reset-3c756112--tabsItem-touchableView" type="button"
-										href="getDraftList(/draftList)"> <span class="tabsItemInfo-draftTabs">drafts</span> -->
+										href="#" onclick="functionBold()"><span class="tabsItemInfo-draftTabs">drafts</span>
 									</a> <a role="button" tabindex="0"
-										class="reset-3c756112--tabsItem-touchableView"
-										href="/mergedList"> <span class="tabsItemInfo-draftTabs">merged</span>
+										class="reset-3c756112--tabsItem-touchableView" href="#" onclick="functionBold()"> <span
+										class="tabsItemInfo-draftTabs">merged</span>
 									</a> <a role="button" tabindex="0"
-										class="reset-3c756112--tabsItem-touchableView"
-										href="/archivedList"> <span class="tabsItemInfo-draftTabs">archived</span>
+										class="reset-3c756112--tabsItem-touchableView" href="#" > <span
+										class="tabsItemInfo-draftTabs">archived</span>
 									</a>
 								</div>
 							</div>
-
+							<div id="draftList"></div>
+							<div id="mergedList"></div>
+							<div id="archivedList"></div>
 							<!-- <th:if savedList 없으면 .placeholder 호출 , 있으면  > -->
-							<div th:replace="draft/draftList :: draftList"></div>
+							<!-- 	<div th:replace="draft/draftList :: draftList"></div> -->
 							<!-- <div class="reset-3c756112--draftsPlaceholder">
 								<div role="presentation" alt=""
 									class="reset-3c756112--illustration--draftsPlaceholderImage"
@@ -79,38 +78,6 @@
 
 			</div>
 		</div>
-		<script type="text/javascript">
-			$(function() {
-				getDraftList("/draftList");
-			});
-			/*
-			function openNavDrawer() {
-				$('#draft').click(function(){
-					$(this).show()
-				});
-				
-			};
-			 */
-
-			function getDraftList(url) {
-				var ajaxOption = {
-					url : url,
-					async : true,
-					type : "GET",
-					dataType : "html",
-					cache : false
-				};
-
-				$.ajax(ajaxOption).done(function(data) {
-					// if('.reset-3c756112--draftsPlaceholder') = null이면 placeholder호출
-					// 아니면 draftListing 호출 
-					// Contents 영역 삭제
-					//$('.reset-3c756112--draftsPlaceholder').children().remove();
-					// Contents 영역 교체
-					$('#draftListTmpl').html(data);
-				});
-			}
-		</script>
 	</header>
 </body>
 </html>

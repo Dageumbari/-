@@ -1,23 +1,22 @@
 package com.bit.controller.space;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bit.model.dto.space.DraftListDTO;
 import com.bit.model.service.PageService;
 import com.bit.model.service.SpaceService;
 import com.bit.model.vo.PageVO;
-import com.bit.security.SessionUser;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -25,6 +24,12 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 //@RequestMapping("/space")
 public class SpaceController {
+
+	/*
+	 * @InitBinder public void initBinder(WebDataBinder binder) {
+	 * binder.registerCustomEditor(Timestamp.class, new CustomDateEditor(new
+	 * SimpleDateFormat("yyyy-MM-dd HH:mm:SS"), true)); }
+	 */
 
 	@Autowired(required = false)
 	PageService pageService;
@@ -34,26 +39,36 @@ public class SpaceController {
 
 	@Autowired
 	HttpSession httpsession;
-	
+
 	@ModelAttribute
 	public void sideNavFragmentValue(Model model) {
 		model.addAttribute("userInfo", spaceService.getSpaceUserInfo());
 	}
 
-	/*
-	 * //드래프트 리스트 호출 //@ModelAttribute
-	 * 
-	 * @GetMapping("/draftList") public String getDraftList(Model
-	 * model, @Param("userNo") int userNo) { List<DraftListDTO> draftList =
-	 * spaceService.getDraftList(); log.error(draftList);
-	 * model.addAttribute("draftList", draftList);
-	 * 
-	 * SessionUser sessionUser = (SessionUser)
-	 * httpsession.getAttribute("sessionUser"); userNo = sessionUser.getUserNo();
-	 * System.out.println("세션????????????????????: "+userNo);
-	 * 
-	 * return "draft/draftList"; }
-	 */
+	// 드래프트 리스트 호출 //@ModelAttribute
+
+	@GetMapping("/draftList")
+	public String getDraftList(Model model) {
+		List<DraftListDTO> draftList = spaceService.getDraftList();
+		
+		log.error(draftList);
+		model.addAttribute("draftList", draftList);
+		
+		/*
+		 * //현재시간 가져오기 DateTimeFormatter FORMATTER =
+		 * DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss"); String now =
+		 * ZonedDateTime.now().format(FORMATTER); log.error(now);
+		 */
+		
+		/*
+		 * SessionUser sessionUser = (SessionUser)
+		 * httpsession.getAttribute("sessionUser"); userNo = sessionUser.getUserNo();
+		 * System.out.println("세션????????????????????: " + userNo);
+		 */
+
+		return "draft/draftList";
+	}
+
 	/*
 	 * @ModelAttribute public String getNavbar(@ModelAttribute("userId") String
 	 * userId,Model model){ model.addAttribute("userId", "jin2020");
@@ -79,11 +94,11 @@ public class SpaceController {
 	@GetMapping("/pageList")
 	public String getPageList(Model model) {
 		// model.addAttribute("pageDetail", "NoData");
-		List<PageVO>  pageVOs=  pageService.getPageList();
+		List<PageVO> pageVOs = pageService.getPageList();
 		model.addAttribute("list", pageVOs);
-		
-		PageVO pv = pageVOs.get(pageVOs.size()-1);
-		
+
+		PageVO pv = pageVOs.get(pageVOs.size() - 1);
+
 		model.addAttribute("lastPageNo", pv.getPageNo());
 		System.out.println("PAGELIST START " + pv.getPageNo());
 		return "common/contents/pageContent"; // navHeader가 나오는데 인클루드할때 값이 나와야함
@@ -93,8 +108,8 @@ public class SpaceController {
 	public String getPageDetail(Model model, PageVO pv) {
 		System.out.println("=======getPageDetail START=====");
 		pv = pageService.getPageDetail(pv.getPageNo());
-		//model.addAttribute("pageDetail", pv);
-		
+		// model.addAttribute("pageDetail", pv);
+
 		if (pv == null) {
 			System.out.println("NoData");
 			model.addAttribute("pageDetail", "NoData");
