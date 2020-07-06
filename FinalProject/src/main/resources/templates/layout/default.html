@@ -27,18 +27,15 @@
 <!-- Theme CSS -->
 <link id="theme-style" rel="stylesheet" href="/css/theme-2.css">
 
-<link th:href="@{/css/style.css}" rel="stylesheet">
-<link th:href="@{/css/theme-1.css}" rel="stylesheet">
-<link th:href="@{/css/theme-2.css}" rel="stylesheet">
-<link th:href="@{/css/theme-3.css}" rel="stylesheet">
-<link th:href="@{/css/theme-4.css}" rel="stylesheet">
-<link th:href="@{/css/theme-5.css}" rel="stylesheet">
-<link th:href="@{/css/theme-6.css}" rel="stylesheet">
-<link th:href="@{/css/theme-7.css}" rel="stylesheet">
-<link th:href="@{/css/sidenavStyle.css}" rel="stylesheet">
-<link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet">
 
-<script type="text/javascript" src="/js/sideNavBar.js"></script>
+<!-- 여기 링크+스크립트  나중에 묶어서 header.html 로 둘 예정 -->
+<link th:href="@{/css/sidenav.css}" rel="stylesheet"/>
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+<link th:href="@{/css/sidenavStyle.css}" rel="stylesheet" />
+<link th:href="@{/css/sidenavDrawer.css}" rel="stylesheet" />
+<link th:href="@{/css/editPageStyle.css}" rel="stylesheet" />
+
+
 </head>
 <!-- 공통 css js end -->
 
@@ -63,8 +60,8 @@
 			class="fas fa-cog fa-spin mx-auto" data-fa-transform="down-6"></i></a>
 		<h5 class="panel-title">Choose Colour</h5>
 		<ul id="color-options" class="list-inline mb-0">
-			<li class="theme-1 active list-inline-item"><a data-style="/css/theme-1.css" href="#"></a></li>
-			<li class="theme-2  list-inline-item"><a data-style="/css/theme-2.css" href="#"></a></li>
+			<li class="theme-1  list-inline-item"><a data-style="/css/theme-1.css" href="#"></a></li>
+			<li class="theme-2 active list-inline-item"><a data-style="/css/theme-2.css" href="#"></a></li>
 			<li class="theme-3  list-inline-item"><a data-style="/css/theme-3.css" href="#"></a></li>
 			<li class="theme-4  list-inline-item"><a data-style="/css/theme-4.css" href="#"></a></li>
 			<li class="theme-5  list-inline-item"><a data-style="/css/theme-5.css" href="#"></a></li>

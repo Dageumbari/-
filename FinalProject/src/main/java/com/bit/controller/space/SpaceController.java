@@ -159,11 +159,4 @@ public class SpaceController {
 	 * pageNo, Model model) { System.out.println("삭제!!!");
 	 * pageService.deletePage(pageNo); return "redirect: /pageList"; }
 	 */
-
-	/*
-	 * @GetMapping("/edits") public String editsPage() { return "draft/edits"; }
-	 * 
-	 * @GetMapping("/spacePage") public String spacePage() { return
-	 * "page/spacePage"; }
-	 */
 }
