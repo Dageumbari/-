@@ -9,12 +9,17 @@
 <!-- editor 적용 -->
 <!-- include libraries(jQuery, bootstrap) -->
 <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> <!--각종 글꼴, 에디터글쓰기의 사이즈까지 다 먹어버림 -->
-<script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <!-- include summernote css/js-->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet"/>
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
 <!-- include summernote-ko-KR -->
 <script src="js/summernote-ko-KR.js"></script>
@@ -37,9 +42,9 @@
 $(document).ready(function() {
 	
 	$('#summernote').summernote({
-		placeholder : 'Enter your content here...',
+		placeholder : '<br>15.0.0 - 2042-12-03<br><br><br><br> <b>Fixed</b> <br><br> <li>Removed humans,they werent doing fine with animals.<br><br><br><br> <b>Changed</b> <br><br> <li>Animals are now super cute, all of them. <br><br><br><hr><br><br> 14.0.0 - 2042-10-06<br><br><br><br> <b>Added</b> <br><br> <li>Introduced animals into the world, we believe theyre going to be a neat addition.',
 		maximumImageFileSize : 10000 * 1024 * 1024,
-		minHeight : 370,
+		minHeight : 700,
 		maxHeight : null,
 		focus : true, //로딩후 포커스 맞춤
 		lang : 'ko-KR',
@@ -116,56 +121,63 @@ function del(pageNo) {
 </head>
 <body>
 	<div layout:fragment="pageContent"></div>
-		<!-- Page Title,Content  -->
-		<div class="main-wrapper">
-			<form action="/pageSave" method="get">
-				<div class="container" align="center">
-					<!-- Null -->
-					<th:block th:if="${pageDetail == null}">
-						<input type="text" class="form-control" placeholder="Untitled"
-							id="pageTitle" name="pageTitle" />
-					</th:block>
+	<!-- Page Title,Content  -->
+	<div class="main-wrapper">
+		<form action="/pageSave" method="get">
+			<div class="container" align="center">
+				<!-- Null -->
+				<th:block th:if="${pageDetail == null}">
+					<input type="text" class="form-control" placeholder="Untitled"
+						id="pageTitle" name="pageTitle" />
+				</th:block>
 
-					<!-- Not Null -->
-					<th:block th:if="${pageDetail != null}">
-						<input th:value="${pageDetail.pageTitle}" type="text"
-							class="form-control" placeholder="Untitled" id="pageTitle"
-							name="pageTitle" style="width: 600px;" />
-					</th:block>
-				</div>
-				
-				<div class="container" >
+				<!-- Not Null -->
+				<th:block th:if="${pageDetail != null}">
+					<input th:value="${pageDetail.pageTitle}" type="text"
+						class="form-control" placeholder="Untitled" id="pageTitle"
+						name="pageTitle" style="width: 600px;" />
+				</th:block>
+			</div>
+
+			<div class="container">
 				<hr style="width: 500px;">
-					<!-- Null  -->
-						<th:block th:if="${pageDetail == null}">
-							<textarea id="summernote" name="pageContent" class="form-control"></textarea>
-						</th:block>
+				<!-- Null  -->
+				<th:block th:if="${pageDetail == null}">
+					<textarea id="summernote" name="pageContent" class="form-control"></textarea>
+				</th:block>
 
-					<!-- Not Null  -->
-						<th:block th:each="ld : ${pageDetail}"
-							th:if="${pageDetail != null}">
-						<textarea id="summernote" name="pageContent" class="form-control" th:text="${ld.pageContent}" ></textarea>				
-						</th:block>
+				<!-- Not Null  -->
+				<th:block th:each="ld : ${pageDetail}" th:if="${pageDetail != null}">
+					<textarea id="summernote" name="pageContent" class="form-control"
+						th:text="${ld.pageContent}"></textarea>
+				</th:block>
 				<!-- 작성 시간, 수정 시간  -->
-			  <!--  <span th:text="${ld.pageSavetime}"></span> -->
-				</div>
-				<hr class="container" style="width: 400px;" />
-			
+				<!--  <span th:text="${ld.pageSavetime}"></span> -->
+			</div>
+			<hr class="container" style="width: 400px;" />
+
 			<!-- Previous,Next -->
 			<div class="container-center-plz">
 				<!-- 수정  -->
 				<!-- Null -->
-				<div th:if="${pageDetail ==null}" class="container" style="left: 10px;" >
-					<a class="btn btn-primary btnPre" th:href="@{/pageDetail(pageNo=${lastPageNo})}">&laquo; Previous</a>
-					<input onclick="goWrite(this.form)" type="button" class="btn btn-primary btnSave" value="저장하기">
- 			
+				<div th:if="${pageDetail ==null}" class="container"
+					style="left: 10px;">
+					<a class="btn btn-primary btnPre"
+						th:href="@{/pageDetail(pageNo=${lastPageNo})}">&laquo;
+						Previous</a> <input onclick="goWrite(this.form)" type="button"
+						class="btn btn-primary btnSave" value="저장하기">
+
 				</div>
 				<!-- Not Null -->
-				<div th:if="${pageDetail !=null}" class="container" style="left: 10px;" th:each="ld : ${pageDetail}">
-					<a class="btn btn-primary btnPre" th:href="@{/pageDetail(pageNo=${ld.prev})}">&laquo; Previous</a>
-					<input onclick="goWrite(this.form)" type="button" class="btn btn-primary btnSave" value="저장하기">
-<!-- 				<input type="button" class="btn btn-primary btnDelete" value="삭제하기" th:onclick="'javascript:del('+${pageDetail.pageNo}+')'"> -->
-					<a class="btn btn-primary btnNext" th:href="@{/pageDetail(pageNo=${ld.next})}">Next &raquo;</a>
+				<div th:if="${pageDetail !=null}" class="container"
+					style="left: 10px;" th:each="ld : ${pageDetail}">
+					<a class="btn btn-primary btnPre"
+						th:href="@{/pageDetail(pageNo=${ld.prev})}">&laquo; Previous</a> <input
+						onclick="goWrite(this.form)" type="button"
+						class="btn btn-primary btnSave" value="저장하기">
+					<!-- 				<input type="button" class="btn btn-primary btnDelete" value="삭제하기" th:onclick="'javascript:del('+${pageDetail.pageNo}+')'"> -->
+					<a class="btn btn-primary btnNext"
+						th:href="@{/pageDetail(pageNo=${ld.next})}">Next &raquo;</a>
 				</div>
 			</div>
 		</form>
