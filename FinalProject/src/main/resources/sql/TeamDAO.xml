@@ -11,7 +11,7 @@
 			TEAMNAME
 		FROM TEAM
 		WHERE #{DASHBOARDCODE} = DASHBOARDCODE
-		  AND TEAMNAME != 'All Members'
+		  <!-- AND TEAMNAME != 'All Members' -->
 		ORDER BY TEAMCODE
 	</select>
 

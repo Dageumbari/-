@@ -78,7 +78,9 @@
 									<div class="reset-3c756112--avatarFrame-2f40cdc9--large-8e58dfee--circle-6c5acd10"
 										role="presentation">
 										<img class="image-67b14f24--avatar-1c1d03ec"
-											src="https://lh3.googleusercontent.com/a-/AOh14GgMEk_JVwJ1YSLaAsiqwtwNIoPVGTC3_WGhkQWL8A">
+											th:src="${allMembers.userImage}">
+										<!-- <img class="image-67b14f24--avatar-1c1d03ec"
+											src="https://lh3.googleusercontent.com/a-/AOh14GgMEk_JVwJ1YSLaAsiqwtwNIoPVGTC3_WGhkQWL8A"> -->
 										<div class="reset-3c756112--innerShadow-7a3a8651"></div>
 									</div>
 								</div>
@@ -106,7 +108,7 @@
 			</div>
 			
 			
-			<!-- 닫힌 메뉴 -->
+			<!-- 닫힌 메뉴 
 			<div th:each="teamList : ${teamList}" th:id="${teamList.teamCode}" name="teamInfo" class="reset-3c756112--S300Bottom-9b4658d2--panel-1b61b7b4--dark-095bdbe8--dark-7dfad810--dark-a885782e--medium-1b61b7b5" 
 				 role="presentation">
 				<div class="reset-3c756112--panelHeader-2f79c7a6--medium-90fc7d46" >
@@ -117,7 +119,7 @@
 						<div class="reset-3c756112--panelHeaderHint-2c5d8183">
 							<span class="text-4505230f--TextH200-a3425406--textUIFamily-5ebd8e40">3 members</span>
 						</div>
-					</div>
+					</div>-->
 					
 					<!-- 닫힌 아바타 리스트
 					<div class="reset-3c756112--panelHeaderRight-2f79c7a6">
@@ -148,10 +150,10 @@
 						</div>
 					</div>
 					  -->
-				</div>
-			</div>
+				<!-- </div>
+			</div> -->
 			
-			<!-- 팀 만들기 -->
+			<!-- 팀 만들기 
 			<div class="reset-3c756112--S200Bottom-9b47328c--panel-1b61b7b4--dark-095bdbe8--dark-7dfad810--dark-a885782e--small-1b61b7b4"
 				role="presentation">
 				<div class="reset-3c756112--panelBody-19b86669--dark-9f89be6e--small-2f9baf58">
@@ -172,7 +174,7 @@
 							added or removed from each space.</span>
 					</div>
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </div>

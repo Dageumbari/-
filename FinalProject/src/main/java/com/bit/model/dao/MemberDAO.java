@@ -17,7 +17,7 @@ public interface MemberDAO {
 	public List<MemberDTO> getAllMemberList(String dashBoardCode);
 	
 	//public List<MemberDTO> getTeamMemberList(String teamCode);
-	public List<Map<String, Object>> getTeamMemberList(MemberDTO memberDTO);
+	public List<MemberDTO> getTeamMemberList(String teamCode);
 	public List<MemberDTO> getMemberListByPermission();
 	
 	//리턴자료형, 매개변수 설정 필요

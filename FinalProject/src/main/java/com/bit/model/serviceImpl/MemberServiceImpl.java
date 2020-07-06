@@ -75,10 +75,5 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.getAllMemberCnt(DashBoardCode);
 	}
 
-	@Override
-	public List<Map<String, Object>> getTeamMemberList(MemberDTO memberDTO) {
-		// TODO Auto-generated method stub
-		return memberDAO.getTeamMemberList(memberDTO);
-	}
 
 }

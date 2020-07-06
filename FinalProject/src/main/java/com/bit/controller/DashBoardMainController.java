@@ -3,13 +3,13 @@ package com.bit.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +24,6 @@ import com.bit.model.vo.DashBoardVO;
 import com.bit.model.vo.GroupVO;
 import com.bit.model.vo.SpaceVO;
 import com.bit.model.vo.TeamVO;
-import com.bit.security.SessionUser;
 
 import lombok.extern.java.Log;
 
@@ -42,49 +41,48 @@ public class DashBoardMainController {
 	TeamService teamService;
 	@Autowired
 	MemberService memberService;
-	@Autowired
-	HttpSession httpSession;
 	
-	//로그인 후 테스트 필요 
-	//세션 현재 유저 정보 가져오기
-	public int currentUserNo(int currentUserNo) {
-		
-		SessionUser sessionUser = (SessionUser) httpSession.getAttribute("sessionUser");
-		currentUserNo = sessionUser.getUserNo();
-
-		log.info("USERNO을 알고 싶어요..."+currentUserNo);
-		return currentUserNo;
-	}
 	
+	//테스트용 페이지
 	@GetMapping("/orgNavi")
-	public String orgNavi(Model model, @Param("userNo") int userNo) {
-		SessionUser sessionUser = (SessionUser) httpSession.getAttribute("sessionUser");
+	public String orgNavi(Model model) {
 		
-		log.info("세션?: "+sessionUser);
-		userNo = sessionUser.getUserNo();
-		log.info("유저넘버?: "+userNo);
-
-		List<DashBoardVO> orgList = orgService.getAllOrgList(userNo);
+		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
-		System.out.println("나의 orgList: "+orgList);
+		log.info("나의 orgList: "+orgList);
 
 		return "/include/dashboardNavi";
 	}
 	
+	@GetMapping("/getUrl")
+	public String getPersonalOrgUrl(Model model) {
+		
+		String personalOrgUrl = orgService.getPersonalOrgUrl();
+		model.addAttribute("personalOrgUrl",personalOrgUrl);
+		
+		return "/main/main";
+	}
+	
 	@PostMapping("/createOrg")
 	@ResponseBody
-	public void createOrg(String dashBoardName) {
-		//+유저 정보 가져오기
-		orgService.createOrg(dashBoardName);
-		System.out.println("조직 만들기 컨트롤러 메소드 실행됨: ");
+	public void createOrg(String dashBoardName, String dashBoardUrl) {
 		
-		//return "redirect:/dashboard/spaces?dashboardUrl="+dashBoardName;
+		orgService.createOrg(dashBoardName);
+		log.info("조직 만들기 컨트롤러 메소드 실행");
+		
+	}
+	
+	//회원가입시 개인 조직 생성
+	//회원가입시 실행되게 하는 방법이...?
+	public void createPersonalOrg(String dashBoardName) {
+		
+		orgService.createPersonalOrg();
 	}
 	
 	@GetMapping("/spaces")
 	public String spaceDashboard(Model model,DashBoardVO dashBoardVO, GroupVO groupVO) {
 		//네비
-		List<DashBoardVO> orgList = orgService.getAllOrgList(1);
+		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
 		
 		dashBoardVO = orgService.getOrgInfo(dashBoardVO.getDashBoardUrl());
@@ -116,9 +114,9 @@ public class DashBoardMainController {
 	}	
 	
 	@GetMapping("/teams")
-	public String teamDashBoard(Model model, DashBoardVO dashBoardVO) {
+	public String teamDashBoard(Model model, DashBoardVO dashBoardVO, String teamCode ) {
 		//네비
-		List<DashBoardVO> orgList = orgService.getAllOrgList(1);
+		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
 		System.out.println("나의 orgList: "+orgList);
 		
@@ -144,6 +142,10 @@ public class DashBoardMainController {
 		model.addAttribute("teamList",teamList);
 		System.out.println("팀 리스트: "+teamList);
 		
+		//new team
+		//List<MemberDTO> memberList = memberService.getTeamMemberList(teamCode);
+		//model.addAttribute("memberList",memberList);
+		
 	
 		return "/dashboard/teams2";
 	}
@@ -161,7 +163,7 @@ public class DashBoardMainController {
 	
 
 
-
+	/*
 	@RequestMapping(value = "/getTeamCode", produces = "application/json")
 	@ResponseBody
 	public List<Map<String, Object>> getTeamCodeAddList(@RequestParam(value="teamCode") String teamCode, Model model, MemberDTO memberDTO) throws Exception {
@@ -177,12 +179,13 @@ public class DashBoardMainController {
 		
 		return memberMap;
 	}
+	*/
 	
 
 	@GetMapping("/settings")
 	public String settingDashBoard(Model model, DashBoardVO dashBoardVO) {
 		//네비
-		List<DashBoardVO> orgList = orgService.getAllOrgList(1);
+		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
 		System.out.println("나의 orgList: "+orgList);
 		
@@ -201,16 +204,19 @@ public class DashBoardMainController {
 	
 	@GetMapping("/deleteOrg")
 	@ResponseBody
-	public void deleteOrg(DashBoardVO dashBoardVO) {
-		dashBoardVO = orgService.getOrgInfo(dashBoardVO.getDashBoardUrl());
-		String getDashCode = dashBoardVO.getDashBoardCode();
-		orgService.deleteOrg(getDashCode);
+	public String deleteOrg(HttpServletRequest httpServletRequest) {
+		//String dashBoardUrl = httpServletRequest.getParameter("dashBoardUrl");
+		String dashBoardUrl = httpServletRequest.getParameter("dashBoardUrl");
+		System.out.println("유알엘?????????"+dashBoardUrl);
+		orgService.deleteOrg(dashBoardUrl);
+		
+		return dashBoardUrl;
 	}
 
 	//결제 진행은 별도 컨트롤러에서
 	@GetMapping("/billing")
 	public String billingDashBoard(Model model, DashBoardVO dashBoardVO) {	
-		List<DashBoardVO> orgList = orgService.getAllOrgList(1);
+		List<DashBoardVO> orgList = orgService.getAllOrgList();
 		model.addAttribute("orgList",orgList);
 		System.out.println("나의 orgList: "+orgList);
 		

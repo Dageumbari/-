@@ -13,7 +13,7 @@ public interface MemberService {
 	
 	public List<MemberDTO> getAllMemberList(String dashboardCode);
 	//public List<MemberDTO> getTeamList(String dashBoardCode);
-	public List<Map<String, Object>> getTeamMemberList(MemberDTO memberDTO);
+	//public List<MemberDTO> getTeamMemberList(String teamCode);
 	public List<MemberDTO> getMemberListByPermission();
 	
 	public void addMember();
