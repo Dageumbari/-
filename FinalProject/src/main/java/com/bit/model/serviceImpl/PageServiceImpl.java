@@ -50,4 +50,10 @@ public class PageServiceImpl implements PageService {
 		return pageDAO.deletePage(pageNo);
 	}
 
+	@Override
+	public void draftSave() {
+		pageDAO.draftSave();
+		
+	}
+
 }

@@ -9,7 +9,11 @@ import com.bit.model.vo.PageVO;
 @Mapper
 public interface PageDAO {
 	List<PageVO> getPageList();
+	
+	//
 	int pageSave(PageVO pv);
+	void draftSave();
+	//
 	PageVO getPageDetailVo(PageVO pv);
 	PageVO getPageDetail(int pageNo);
 	

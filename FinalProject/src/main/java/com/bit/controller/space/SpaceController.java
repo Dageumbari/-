@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bit.model.dto.space.DraftListDTO;
 import com.bit.model.service.PageService;
 import com.bit.model.service.SpaceService;
+import com.bit.model.vo.DraftVO;
 import com.bit.model.vo.PageVO;
 
 import lombok.extern.log4j.Log4j2;
@@ -130,12 +131,17 @@ public class SpaceController {
 		System.out.println("4::" + pv.getPageContent());
 		System.out.println("=====================================");
 		int result = pageService.pageSave(pv);
+		pageService.draftSave();
 		if (result < 1) {
 			System.out.println("저장 실패!!!");
 		} else {
 			System.out.println("저장 성공!!!");
 		}
 		return "redirect:/pageList";
+	}
+	
+	public void insertDraft(Model model) {
+		
 	}
 
 	/*

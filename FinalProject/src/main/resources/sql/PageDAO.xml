@@ -36,6 +36,11 @@
 		sysdate, #{pageContent}) 
 	</update>
 	
+		<!-- 드래프트 카드 생성 -->
+	<insert id="draftSave" parameterType="com.bit.model.vo.DraftVO">
+		insert into draft values('dr'||lpad(draft_seq.nextval,2,0), 'sp11', sysdate, 'saved')
+	</insert>
+	
 	<select id="getPageDetail" resultType="com.bit.model.vo.PageVO">
 		SELECT *
 		FROM (

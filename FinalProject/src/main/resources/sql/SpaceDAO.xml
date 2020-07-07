@@ -4,18 +4,26 @@
 
 <mapper namespace="com.bit.model.dao.SpaceDAO">
 
-	<!-- <resultMap type="com.bit.model.vo.PageGroupVO" id="pageGroup_resultmap"> 
-		<id property="pageGroupCode" column="pageGroupCode" /> <collection property="com.bit.model.vo.EditsGroupVO" 
-		ofType="editsGroup" column="draftCode" javaType="List" select="getPageGroupList"> 
-		</collection> <collection property="com.bit.model.vo.PageVO" ofType="page" 
-		column="pageNo" javaType="List" select="getPageList"> </collection> </resultMap> 
-		<resultMap type="com.bit.model.vo.PageVO" id="page_resultmap"> <id property="pageNo" 
-		column="pageNo" /> <collection property="com.bit.model.vo.EditsVO" ofType="edits" 
-		column="editsNo" javaType="List" select="getEditsList"> </collection> </resultMap> 
-		<resultMap type="com.bit.model.vo.EditsVO" id="edits_resultmap"> <id property="editsNo" 
-		column="editsNo" /> <collection property="com.bit.model.vo.EidtsComment" 
-		ofType="editsComment" column="commentNo" javaType="List" select="getEditsCommentList"></collection> 
-		</resultMap> -->
+	<!-- <resultMap type="com.bit.model.vo.draftVO"
+		id="draft_resultmap">
+		<id property="draftCode" column="draftCode" />
+		<result property="spaceCode" column="spaceCode" />
+		<result property="draftStatus" column="draftStatus" />
+		<result property="draftSavetime" column="draftSavetime" />
+		<association property="com.bit.model.vo.pageGroupVO"
+			javaType="pageGroup" column="pageGroupCode">
+			<collection property="com.bit.model.vo.PageVO"
+				ofType="page" column="pageNo" javaType="List">
+			</collection>
+		</association>
+	</resultMap> -->
+
+
+	<!-- 드래프트 카드 생성 -->
+	<!-- <insert id="insertDraft" parameterType="Map">
+		insert into draft values('dr'||lpad(draft_seq.nextval,2,0), 'sp11', sysdate, 'saved');
+	</insert> -->
+
 
 	<!-- sidenavDrawer의 사용자 이름, 스페이스 이름 출력 -->
 	<select id="getSpaceUserInfo" resultType="spaceUserInfo">
@@ -51,7 +59,8 @@
 		select DRAFTCODE,
 		DRAFTSAVETIME, DRAFTSTATUS, MSGCONTENT, EDITSCOUNT,
 		NAME,
-		USERIMAGE from draftlist where spaceCode='sp11' and userNo=1 and
+		USERIMAGE from
+		draftlist where spaceCode='sp11' and userNo=1 and
 		draftStatus='merged'
 		and msgno=(select max(msgno) from draftlist)
 	</select>
@@ -61,14 +70,10 @@
 		select DRAFTCODE,
 		DRAFTSAVETIME, DRAFTSTATUS, MSGCONTENT, EDITSCOUNT,
 		NAME,
-		USERIMAGE from draftlist where spaceCode='sp11' and userNo=1 and
+		USERIMAGE from
+		draftlist where spaceCode='sp11' and userNo=1 and
 		draftStatus='archived'
 		and msgno=(select max(msgno) from draftlist)
 	</select>
-
-	<!-- 드래프트 카드 생성 -->
-	<!-- <insert id="insertDraft"> INSERT INTO draft VALUES(draft_seq.nextval, 
-		#{lectureCode},#{content}, (SELECT NVL( MAX(board_group_order)+1 , 1 ) FROM 
-		draft WHERE lecture_code = #{lectureCode} ) ) </insert> -->
 
 </mapper>

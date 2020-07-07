@@ -12,4 +12,5 @@ public interface PageService {
 	/* public int getPageUpdate(PageVO pv); */
 	//public int pagePudate(PageVO pv);
 	public int deletePage(int pageNo); 
+	void draftSave();
 }
