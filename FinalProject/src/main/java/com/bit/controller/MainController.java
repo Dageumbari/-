@@ -41,9 +41,10 @@ public class MainController {
 
 	@GetMapping("/main")
 	public String main(Model model) {
-		String personalOrgUrl = orgService.getPersonalOrgUrl();
-		log.info("\n" + personalOrgUrl);
-		model.addAttribute("personalOrgUrl", personalOrgUrl);
+		/*
+		 * String personalOrgUrl = orgService.getPersonalOrgUrl(); log.info("\n" +
+		 * personalOrgUrl); model.addAttribute("personalOrgUrl", personalOrgUrl);
+		 */
 		
 		return "/main/main";
 	}

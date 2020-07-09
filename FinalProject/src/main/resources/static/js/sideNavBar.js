@@ -6,7 +6,6 @@ $(function() {
 	callArchivedList();
 	/* functionBold(); */
 })
-
 function sideEvent() {
 	$('.edit-btn').on('click', function(e) {
 		const item = $(e.target);
